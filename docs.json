@@ -1,0 +1,88 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "almond",
+  "name": "TheOptimizer",
+  "colors": {
+    "primary": "#3e47ec",
+    "light": "#fc726a",
+    "dark": "#419fd9"
+  },
+  "logo": {
+    "light": "https://media.brand.dev/ed1c2c24-73f5-4353-8cb3-5174f2bc5eae.png",
+    "dark": "https://media.brand.dev/ed1c2c24-73f5-4353-8cb3-5174f2bc5eae.png"
+  },
+  "favicon": "https://media.brand.dev/502f57b6-41d8-415b-9f3b-f5c23c3603f5.png",
+  "navbar": {
+    "primary": {
+      "type": "button",
+      "label": "Get Started",
+      "href": "https://native.theoptimizer.io"
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "getting-started"
+            ]
+          },
+          {
+            "group": "Integrations",
+            "pages": [
+              "integrations/overview",
+              "integrations/upload-csv"
+            ]
+          },
+          {
+            "group": "Campaign Manager",
+            "pages": [
+              "campaign-manager/overview"
+            ]
+          },
+          {
+            "group": "Automation",
+            "pages": [
+              "automation/rules-guide",
+              "automation/rule-templates",
+              "automation/rule-chains"
+            ]
+          },
+          {
+            "group": "Popular Rules",
+            "pages": [
+              "automation/popular-rules-facebook",
+              "automation/popular-rules-tiktok",
+              "automation/popular-rules-taboola",
+              "automation/popular-rules-outbrain",
+              "automation/popular-rules-native"
+            ]
+          },
+          {
+            "group": "Campaign Creator",
+            "pages": [
+              "campaign-creator/overview",
+              "campaign-creator/facebook"
+            ]
+          },
+          {
+            "group": "Creative Library",
+            "pages": [
+              "creative-library/guide"
+            ]
+          },
+          {
+            "group": "Help",
+            "pages": [
+              "faq"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

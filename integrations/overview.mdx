@@ -1,0 +1,319 @@
+---
+title: "Setting Up Your Integrations in TheOptimizer"
+description: "Connect ad networks, tracking platforms, analytics tools, and search feeds — and manage ad accounts, profiles, and tracker configurations."
+sidebarTitle: "Overview"
+---
+
+Integrations are how TheOptimizer connects to the tools you already use — your ad networks, tracking platforms, analytics dashboards, and search feed providers. Without at least one ad network connected, the platform has no campaign data to work with and no actions it can take. Integrations are the first thing you set up, and the foundation everything else builds on.
+
+## All Integration Categories
+
+TheOptimizer organises integrations into four categories, each serving a different role in your workflow.
+
+<Tabs>
+  <Tab title="Ad Networks">
+    Ad networks are the primary source of campaign data and the target of all automation actions. TheOptimizer pulls spend, impressions, clicks, and conversion data from your connected ad networks, and sends back any actions your rules trigger — pausing campaigns, adjusting budgets, and so on.
+
+    <Warning>
+      You must connect at least one ad network before anything else in the platform can function.
+    </Warning>
+
+    | Ad Network | Auth Method | Status |
+    | --- | --- | --- |
+    | Facebook | OAuth (login with Facebook) | Available |
+    | Google Ads | OAuth (login with Google) | Available |
+    | TikTok | OAuth (login with TikTok) | Available |
+    | Taboola | API credentials (key/secret) | Available |
+    | Outbrain | API credentials (key/secret) | Available |
+    | MGID | API credentials (key/secret) | Available |
+    | MediaGo | API credentials (key/secret) | Available |
+    | BigoAds | API credentials (key/secret) | Available |
+    | Adskeeper | API credentials (key/secret) | Available |
+    | RevContent | API credentials (key/secret) | Available |
+    | NewsBreak | API credentials (key/secret) | Available |
+    | Trillion | API credentials (key/secret) | Beta |
+    | YahooDSP | API credentials (key/secret) | Beta |
+  </Tab>
+  <Tab title="Tracking Platforms">
+    Tracking platforms sit between your ads and your landing pages, providing accurate click-level reporting and advanced funnel analytics. They overcome the attribution limitations that come with cookie restrictions on ad networks, and enable features like browser and device breakdowns, funnel management, and traffic distribution.
+
+    Supported platforms include ClickFlare, Voluum, RedTrack, Bemob, Binom, Everflow, and others.
+
+    <Tip>
+      ClickFlare is the recommended tracking platform for users who don't already have a preferred tool. It offers robust features, deep integration with TheOptimizer, and 24/7 support.
+    </Tip>
+  </Tab>
+  <Tab title="Analytics & Reporting">
+    Additional analytics integrations let you bring external reporting data into TheOptimizer alongside your ad network data, giving you a unified view without switching between tools.
+
+    - **Google Analytics 4** — syncs behavioural metrics (sessions, bounce rate, engagement rate) with your ad network campaign performance.
+    - **Assertive Yield** — connects yield analytics for content arbitrage operators. If you run traffic to content pages monetised through display networks such as Taboola, Outbrain, or Google Ad Manager, Assertive Yield tracks the revenue those pages generate and makes it available in TheOptimizer for rule-based optimisation.
+    - **Google Sheets** — pulls conversion and revenue data from a Google Sheet every 30 minutes. Designed for users whose tracking platform is not natively supported — you export your data into a Google Sheet and TheOptimizer reads it automatically.
+
+    **Search Feeds**
+
+    Search feed integrations allow TheOptimizer to track click revenue and conversion data from search arbitrage campaigns. Supported providers: **Sedo**, **System1**, and **Tonic**.
+  </Tab>
+</Tabs>
+
+---
+
+## Connecting an Ad Network
+
+The connection flow is broadly the same across all ad networks — you authorise access and TheOptimizer pulls in your accounts. Facebook, Google Ads, and TikTok use OAuth. All other networks use API credentials (key/secret).
+
+The steps below walk through **Facebook** as the example, but the process is very similar for all ad networks.
+
+<Steps>
+  <Step title="Click Connect">
+    From the **Integrations** page, find the ad network you want to connect and click **Connect →**.
+  </Step>
+  <Step title="Authorise Pages Access">
+    Facebook will ask which Pages you want TheOptimizer to access.
+
+    <Tip>
+      Select **"Opt in to all current and future Pages."** This grants access to any Pages you create in the future, so you won't need to reauthorise every time you launch a new campaign under a new Page.
+    </Tip>
+  </Step>
+  <Step title="Authorise Business Manager Access">
+    Facebook will ask which Business Managers to include. Select the Business Manager that contains the ad accounts you want to manage in TheOptimizer, then click **Continue**.
+  </Step>
+  <Step title="Review Permissions and Complete">
+    Facebook will show a summary of the permissions being granted. Review them and confirm to complete the authorisation.
+  </Step>
+  <Step title="Connection Confirmed">
+    Once authorised, TheOptimizer shows a confirmation screen with the number of ad accounts added and the integration name.
+
+    Initial sync takes up to 20–30 minutes. After connection, TheOptimizer starts pulling your campaign data. Campaigns and ads may not appear immediately — this is expected. Give it up to half an hour before troubleshooting.
+
+    If you use a tracking platform alongside this ad network, you can connect it directly from this screen by clicking **Connect Tracker**. You can also do it later — see [Connecting a Tracking Platform](#connecting-a-tracking-platform) below.
+  </Step>
+</Steps>
+
+---
+
+## Managing Ad Accounts
+
+Once an ad network is connected, you can manage the individual ad accounts associated with it. Click on the integration to show the list of ad accounts.
+
+**Changing profiles per account**
+
+Each ad account is linked to a profile — the login or API credential used to access it. You can change which profile is linked to a specific ad account at any time. This is useful when a profile gets banned and you need to switch to a backup login, a team member's access changes, or you want to reorganise which credentials manage which accounts.
+
+**Enabling and disabling accounts**
+
+You can pause any ad account at any time using the **ON/OFF** toggle, or in bulk via the bulk actions menu. Pausing stops TheOptimizer from syncing data and running automation on that account but retains all historical data.
+
+<Warning>
+  Deleting ad accounts is not currently supported. If you need an account removed, contact support. To stop syncing without losing data, use pausing instead.
+</Warning>
+
+**Adding tags**
+
+Ad accounts can be tagged for organisation purposes — grouping by client, brand, vertical, or team makes it easier to filter and manage large account lists. Some tags (timezone, currency) are applied automatically by TheOptimizer, so you may see pre-existing tags when you first open an account.
+
+**Customising tracker connections per account**
+
+You can link a different tracker, pause the tracker connection, or edit the tracking template for a specific ad account without affecting other accounts in the same integration. Access this from **Linked Trackers** on the account.
+
+<Tip>
+  There is no limit on the number of ad accounts you can connect across all networks.
+</Tip>
+
+---
+
+## Managing Profiles
+
+**Profiles** are the authentication credentials TheOptimizer uses to access your ad networks. A profile is either a **login profile** (your OAuth-connected account, stored as a token after the OAuth flow — used for Facebook, Google Ads, TikTok) or **API credentials** (an API key and/or secret provided by the ad network — used for all other networks).
+
+**Multiple profiles**
+
+You can add multiple profiles to a single ad network integration. This supports team management (each team member has their own profile), backup access (a backup profile takes over if the primary is banned), and multiple accounts under different logins.
+
+**Syncing new ad accounts**
+
+When you add a new ad account to a network you're already connected to, you can sync from your profile management settings to pull the new account into TheOptimizer — no need to go through the full connection flow again.
+
+**Re-authentication**
+
+OAuth tokens expire or become invalid when you change your account password, the ad network flags suspicious activity, or security settings change. When this happens, TheOptimizer can no longer sync data or run automation for the affected accounts. Re-authenticating the profile refreshes the token without losing any account history or automation settings.
+
+<Warning>
+  You will receive email notifications if an account needs re-authentication. Don't ignore them. If a profile becomes invalid and isn't refreshed, all automation and data sync for the accounts under that profile will silently stop. Check your integrations regularly, especially after changing passwords or seeing unexpected drops in data.
+</Warning>
+
+---
+
+## Connecting a Tracking Platform
+
+Tracking platforms integrate with TheOptimizer to bring in revenue and conversion data alongside your ad network data. The platform then matches tracker-reported conversions to specific campaigns, ad sets, and ads and factors that data into your automation rules.
+
+The steps below use **ClickFlare** as the example. The process is the same for all tracking platforms that use API key authentication.
+
+<Steps>
+  <Step title="Enter Your API Credentials">
+    From the **Integrations** page, click **Connect →** on your tracking platform. You'll be prompted to enter:
+
+    - **Integration name** — a label for this connection for your reference. Use something descriptive like "ClickFlare – Brand A".
+    - **API Key** — found in your tracker's settings or API section.
+    - **Currency** — the currency your tracker reports revenue in.
+    - **Conversion registration time** — choose whether conversions are reported at **visit time** (when the user lands) or **postback time** (when the conversion fires). This affects how data is matched across time windows.
+
+    <Warning>
+      The Currency and Conversion Registration Time settings must match what you have configured on your tracking platform. Using different options here will cause data discrepancies between TheOptimizer and your tracker.
+    </Warning>
+  </Step>
+  <Step title="Configure the Tracker for Each Ad Network">
+    After connecting, TheOptimizer prompts you to configure the tracker for each ad network you use. This tells the platform how to match tracker data to ad network data.
+
+    For each ad network listed, click **Configure →** and select the **tracking template** that corresponds to the way you've set up your tracker for that network.
+
+    <Warning>
+      No data will be pulled from your tracker for ad networks that are not configured.
+    </Warning>
+
+    **Understanding tracking templates**
+
+    A tracking template is a set of macros that defines how your tracker reports campaign data for a specific ad network — which tracking parameter maps to the Campaign ID, Ad Set ID, Ad ID, and so on. These are typically called "Traffic Sources" on your tracking platform.
+
+    The **Choose a tracking template** dropdown shows all available tracking templates you have set up on your tracker. The template you select becomes the default for all ad accounts of that ad network.
+
+    <Warning>
+      Required macros: a template must include mappings for **Campaign ID**, **Ad Set ID**, **Ad ID**, and **Placement**. If any of these are missing, TheOptimizer will flag the issue and you'll need to fix the template in your tracker before proceeding.
+    </Warning>
+  </Step>
+  <Step title="Confirm the Connection">
+    Once a tracking template is selected for an ad network, the connection status updates to **Connected**.
+
+    Turn off the connection if you want to stop receiving data from your tracker for a specific ad network.
+  </Step>
+  <Step title="Add Tracking Parameters to Your Campaigns">
+    Make sure the generated **tracking parameters code** is added to your campaigns on the ad network. This is what enables the tracker to receive the correct campaign and ad data and report it back to TheOptimizer.
+
+    Without the tracking code added to your campaigns, the tracker will receive visits but won't be able to match them to your campaigns — meaning no conversion or revenue data will flow into TheOptimizer.
+  </Step>
+</Steps>
+
+**The one tracker per campaign rule**
+
+Only one instance of a tracker type should track any individual campaign at a time. Using two instances of the same tracker type (for example, two ClickFlare trackers) on the same campaign causes conflicts in data matching and attribution. Running multiple **different** tracker types simultaneously on the same campaign is fine — for example, using ClickFlare for affiliate attribution alongside Google Analytics on the same campaign.
+
+---
+
+## Connecting Google Analytics 4
+
+If you are already running campaigns with a click-tracking platform and also using Google Analytics 4 to track on-site user behaviour — sessions, session duration, bounce rate, engagement rate — you can bring those GA4 metrics into TheOptimizer alongside your ad network and tracker data.
+
+GA4 and a tracker can run side by side. TheOptimizer keeps their metrics in separate column sets — tracker metrics appear in their own columns and GA4 metrics in their own. You can display both in a single view and use metrics from either platform when building automation rules.
+
+<Steps>
+  <Step title="Add the GA4 Integration">
+    From the left-hand menu, go to **Integrations**, scroll down to the **Analytics & Reporting** section, and click **Connect** on the **Google Analytics 4** card.
+
+    Click **Connect New Account**, give the integration a descriptive name, then click **Connect**. This launches the Google authorisation flow — log in with the Google account that has access to your GA4 properties and click **Continue** to grant the required permissions.
+
+    <Warning>
+      The integration is not complete after authorisation alone. You have authorised TheOptimizer to access GA4, but you still need to link the integration to your ad accounts. Continue to the next step.
+    </Warning>
+  </Step>
+  <Step title="Link GA4 to Your Ad Accounts">
+    Go back to the **Integrations** page, open your **Ad Networks** section, and click on the ad network whose campaigns you are tracking with GA4 (for example, **Facebook**).
+
+    Select one or more ad accounts you want to link. A floating action menu will appear at the bottom of the screen — click **Manage Linked Trackers**.
+
+    In the dialog that appears, click **Connect Tracking Platform** and choose the GA4 integration you just added from the list.
+
+    <Tip>
+      If the GA4 integration does not appear in the list immediately, refresh the page and navigate back to the ad account selection.
+    </Tip>
+  </Step>
+  <Step title="Add a GA4 Property">
+    After selecting the GA4 integration, a configuration dialog will open. Click **Add Analytics Property**.
+
+    Select the **GA4 account** accessible via the Google profile you used during authorisation, then select the **property** (the specific site whose data you want to use).
+  </Step>
+  <Step title="Select Metrics to Import">
+    Choose which GA4 metrics you want to import. Some are pre-selected by default. Click **Add more metrics** to search for additional ones, or deselect any you don't need.
+
+    <Warning>
+      There is a hard limit of 60 metrics across all your GA4 integrations combined. This limit applies to the total number of distinct metrics imported from all properties and all GA4 connections. Plan your selection carefully — import only the metrics you will actually use in your views or automation rules.
+    </Warning>
+  </Step>
+  <Step title="Configure Macro Mapping">
+    The macro mapping section is where you tell TheOptimizer how your campaigns are tracked in GA4 — which UTM parameter (or custom dimension) carries each ad network dimension.
+
+    **Standard UTM mapping for Facebook:**
+
+    | Facebook Macro | UTM Parameter |
+    | --- | --- |
+    | Campaign ID | utm\_campaign |
+    | Ad Set ID | utm\_medium |
+    | Ad ID | utm\_content |
+    | Placement | utm\_source |
+
+    If you are already using standard UTM parameters for other purposes (for example, passing campaign names rather than campaign IDs), you should create **custom dimensions** in GA4 and pass the required ad network IDs through those. You can then select those custom dimensions in the macro mapping instead of the standard UTM parameters.
+
+    TheOptimizer requires Campaign ID, Ad Set ID, Ad ID, and Placement to be flowing into GA4 — either via standard UTMs or custom dimensions — before this integration can work.
+  </Step>
+  <Step title="Complete the Integration">
+    Once you have configured the macro mappings, click **Add** to save the property. You can add multiple properties at this stage. When done, click **Connect Tracker** to finalise the link between GA4 and the ad account.
+
+    After completing the integration:
+
+    - Allow **20–30 minutes** before GA4 metrics begin appearing in TheOptimizer.
+    - **Check your column visibility.** GA4 metrics are not displayed by default — go to your column settings and add the GA4 columns you want to see.
+    - If your campaigns are not yet passing macro data to GA4, append the tracking parameter code shown at the end of the setup flow to your campaign URLs.
+  </Step>
+</Steps>
+
+---
+
+## Connecting Google Sheets
+
+The Google Sheets integration is the solution for users whose tracking platform is not natively supported by TheOptimizer. Instead of a direct API connection, you export conversion data from your tracker into a Google Sheet. TheOptimizer reads from that sheet automatically every 30 minutes and makes the data available alongside your ad network metrics — just like any natively integrated tracker.
+
+<Steps>
+  <Step title="Add the Google Sheets Integration">
+    From the left-hand menu, go to **Integrations**, scroll down to **Analytics & Reporting**, and click **Connect** on the **Google Sheets** card.
+
+    Give the integration a name — for example, the name of the platform you're exporting from.
+  </Step>
+  <Step title="Clone the Template">
+    Below the name field, click the link to clone the required Google Sheet template. If you are logged into a Google account, this automatically creates a copy in your Google Drive.
+
+    <Warning>
+      You must use the provided template. The Google Sheet must follow a specific structure for TheOptimizer to read it correctly — do not create your own sheet from scratch. Review each column's description carefully; the data format, column order, and naming must match the template exactly.
+    </Warning>
+  </Step>
+  <Step title="Share the Sheet with TheOptimizer">
+    For TheOptimizer to read your Google Sheet, you must share it with TheOptimizer's service account. The service account email address is displayed in the integration dialog.
+
+    Copy the email address shown, then in Google Sheets:
+    1. Click **Share** in the top right.
+    2. Paste the service account email address.
+    3. Grant it **Viewer** or **Editor** access.
+    4. Click **Share**.
+
+    <Warning>
+      Without this step, TheOptimizer cannot access the sheet and the integration will fail. Complete the share before clicking Connect.
+    </Warning>
+  </Step>
+  <Step title="Enter the Sheet URL and Currency">
+    Back in TheOptimizer integration dialog, paste the Google Sheet URL into the URL field and select the currency that your revenue data is reported in. Click **Connect** — TheOptimizer will verify it can access the sheet.
+  </Step>
+  <Step title="Populate the Sheet and Keep It Updated">
+    Once the integration is live, TheOptimizer pulls data from your sheet every 30 minutes. You are responsible for keeping the sheet populated with up-to-date data, whether through a manual export or an automated export from your tracking system on a schedule.
+
+    **Data structure: one row per entity per level**
+
+    Each row maps to a specific entity — a campaign, ad set, or ad — based on the ID in that row. You must provide a separate row for each entity at each level you want data for.
+
+    | Level | What to include |
+    | --- | --- |
+    | Campaign | One row per Campaign ID with its clicks, conversions, and revenue |
+    | Ad Set / Ad Group | One row per Ad Set ID with its clicks, conversions, and revenue |
+    | Ad | One row per Ad ID with its clicks, conversions, and revenue |
+
+    If a level is missing, TheOptimizer will not show data for that level. For example, if you only populate campaign-level rows, you will see Google Sheets data on campaigns but not on ad sets or ads.
+  </Step>
+</Steps>

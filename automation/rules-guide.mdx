@@ -1,0 +1,314 @@
+---
+title: "Automation Rules: Complete Guide for Media Buyers"
+description: "Learn how to build, configure, and schedule automation rules in TheOptimizer — from conditions and actions to scope, filtering, and notifications."
+sidebarTitle: "Rules Guide"
+---
+
+Automation rules are the engine behind TheOptimizer's optimization capabilities. Instead of logging in every few hours to pause underperformers or scale winners, you define the logic once and let the platform act for you around the clock. There are three core reasons to use them: they **free up your time** by handling repetitive tasks so you can focus on higher-leverage work like creative testing and landing page improvements; they provide **24/7 coverage** so a campaign going over budget at 3am or a winner hitting its limit overnight gets handled automatically; and they **eliminate human error** by executing exactly what you define, every single time.
+
+---
+
+## 1. Navigating the Rules Engine
+
+### Accessing Rules
+
+<Steps>
+  <Step title="Open Automation">
+    On the left-side navigation menu, locate the **Automation** section.
+  </Step>
+  <Step title="Click Rules">
+    Click **Rules** to open the rules engine.
+  </Step>
+</Steps>
+
+### Top Menu Options
+
+Once inside the Rules page, the top menu bar gives you four key options:
+
+| Option | Description |
+|--------|-------------|
+| **New Rule (Standard)** | Creates a rule that applies to specific campaigns you manually select. New campaigns launched later must be added manually. |
+| **New Global Rule** | Works identically to a Standard Rule in terms of logic, but applies to an entire **Ad Account**. Any new campaign launched inside the selected account automatically inherits the rule. |
+| **Load from Template** | Opens a library of pre-built rule templates (Stop-Loss, Scaling, Dayparting, and more). A fast way to get started — but always customize the default values before saving. |
+| **Manage Groups** | Lets you organize rules into folders. Groups also let you assign a whole set of rules to a campaign at once, saving significant time as your rule library grows. |
+
+### Standard Rules vs. Global Rules
+
+The most important practical difference between the two rule types is what happens when you launch a new campaign.
+
+With a **Standard Rule**, you must manually open the rule and add every new campaign you create. If you forget, those new campaigns are completely unprotected — no automation applies to them.
+
+With a **Global Rule**, you select an Ad Account instead of individual campaigns. Any new campaign you launch inside that account is automatically covered from day one, with no extra steps required.
+
+<Tip>
+For stop-loss and scaling rules that you want applied consistently across all your campaigns, prefer **Global Rules**. Reserve **Standard Rules** for logic that should only apply to a specific, curated subset of campaigns.
+</Tip>
+
+### Finding the Right Rule for Your Traffic Source
+
+When you click **New Rule**, the system loads available rule types for every ad network you have connected. Use these methods to find what you need quickly:
+
+- **Search by network name** — type "Facebook" to filter only Facebook rules.
+- **Search by level** — type "ad", "campaign", or "adset" to see rules at that level.
+- **Read the icons** — each rule shows the logos of ad networks that support it. A rule showing all your connected network logos works across all of them.
+
+<Note>
+**Cross-network rules:** Rules supported by multiple networks can be applied to campaigns from different ad networks within a single rule. If your Pause Campaign logic is the same for Facebook and TikTok, you can create one rule and add campaigns from both networks — rather than maintaining two separate rules.
+</Note>
+
+### Platform Terminology: Widget & Content
+
+If you're running on native networks like Taboola or Outbrain, you'll encounter these terms throughout the platform:
+
+| Platform term | What it means |
+|---------------|---------------|
+| **Widget** | A site (on Taboola) or publisher (on Outbrain) — the placement level below the ad. |
+| **Content** | An ad or creative. "Content rules" are ad-level rules. |
+
+---
+
+## 2. Creating a Rule: Basic Settings
+
+Click **New Rule**, select your rule type (for example, "Pause Ads – Facebook"), and you'll enter the rule builder. The first section is **Basic Settings**.
+
+### Key Configuration Steps
+
+<Steps>
+  <Step title="Name your rule">
+    Use a name that describes the logic, not just the type. `Pause Ads – Spend > $50 & 0 Conv` tells you everything at a glance; `Rule 1` tells you nothing. As your rule library grows, self-explanatory names save a lot of scrolling.
+  </Step>
+  <Step title="Assign a Rule Group (optional)">
+    Assign the rule to a group to keep your dashboard tidy and to bulk-assign rules to campaigns later without selecting them one by one.
+  </Step>
+  <Step title="Set the Default Data Interval">
+    The time window the system looks at when evaluating all conditions. Options range from **Today** and **Yesterday** to **Last 3 Days**, **Last 7 Days**, all the way to **Last 90 Days**. Every condition in the rule uses this interval unless you override it individually (see Section 3).
+  </Step>
+  <Step title="Configure Exclude Days (optional)">
+    Removes specific recent days from the evaluation window. If your revenue data arrives with a 24-hour delay — common in Search Arbitrage — excluding **Today** prevents the rule from making decisions based on spend with no corresponding revenue yet. You can exclude up to the last 3 days.
+  </Step>
+</Steps>
+
+<Warning>
+If you create a rule from a template, always review and adjust the default values before saving. Template values are placeholders to get you started — they are almost never the right numbers for your specific account and offers.
+</Warning>
+
+---
+
+## 3. Rule Logic: Conditions & Time Frames
+
+The **Conditions** section is the brain of your automation. Conditions define the exact criteria that must all be true for the rule to execute. Each condition has three parts: a **Metric**, an **Operator**, and a **Value**.
+
+### Adding Conditions
+
+<Steps>
+  <Step title="Click Add Condition">
+    Click **Add Condition** (or the `+` button) to open a new condition row.
+  </Step>
+  <Step title="Select a metric">
+    Use the search bar in the dropdown to find metrics quickly.
+  </Step>
+  <Step title="Select an operator">
+    Choose Greater Than, Less Than, Greater or Equal, Less or Equal, etc.
+  </Step>
+  <Step title="Enter a value">
+    Enter the number you're comparing against.
+  </Step>
+</Steps>
+
+**Example logic:**
+
+```
+IF Amount Spent > 50
+AND Conversions ≤ 0
+```
+
+### Understanding Metric Categories
+
+Metrics in the dropdown are organized into three categories:
+
+| Category | Source |
+|----------|--------|
+| **Traffic Source Metrics** | Data pulled directly from your ad network (Amount Spent, Impressions, Clicks from Facebook or TikTok). |
+| **Tracker Metrics** | Data from your connected tracking platform (conversions, revenue, EPC from Voluum, Binom, etc.). |
+| **Custom Metrics** | Metrics you define yourself by writing a formula inside TheOptimizer — useful for KPIs that combine data from multiple sources. |
+
+### Duplicating a Condition
+
+When you need two conditions that are very similar — for example, checking that spend is both greater than $50 and less than $200 — use the **duplicate button** on the right side of any condition row. This clones the condition so you only need to change the operator or value, rather than rebuilding from scratch.
+
+### Advanced Logic: Percentage Comparisons
+
+Instead of comparing a metric to a fixed number, you can compare it to another metric. Click the `$` icon next to the value field to switch modes:
+
+| Mode | Description |
+|------|-------------|
+| **$ (Fixed Value)** | Default. Compare against a specific number (e.g., Spend > $50). |
+| **% of Campaign** | Compare against a campaign-level metric. Example: "Spend is greater than 20% of Campaign Daily Budget." |
+| **% of** | Compare against another metric at the same level. Example: "Spend is greater than 50% of Revenue" — an ROI threshold without a fixed number. |
+
+### Custom Time Frames (Per Condition)
+
+All conditions use the Default Data Interval by default, but you can override this on a per-condition basis — allowing you to build rules that look at different time windows simultaneously.
+
+To do this, toggle **Use Custom Interval** inside the condition row and select a time range. The condition will display a small label showing its custom interval. You can also define fully custom date ranges — for example, "between 10 days ago and 6 days ago" — for advanced use cases where you need to analyze performance in a specific historical window.
+
+<Tip>
+**Mixed time frames example:** Check whether an ad has spent money _Today_, while also checking its ROI over the _Last 7 Days_. Set the global interval to Last 7 Days, then give the Spend condition a custom interval of Today.
+</Tip>
+
+### Hour of Day Condition
+
+The Hour of Day condition restricts **when** a rule is allowed to act, independently of whether the other conditions are met. If you only select Monday 9am–5pm, the rule will not take any action outside those hours — even if all other conditions are true.
+
+<Steps>
+  <Step title="Add the Hour of Day metric">
+    Find it under the "Other" category, or search for it directly.
+  </Step>
+  <Step title="Configure the grid">
+    A grid appears with days on the vertical axis and hours on the horizontal axis. Click individual cells, or use the shortcuts: **Weekdays**, **Weekends**, **Working Hours**, **Select All**, and **Clear All**. You can also click an hour header to select that hour across all days, or click a day label to select all hours for that day.
+  </Step>
+  <Step title="Set the Timezone">
+    Defaults to UTC. Change this if your team or traffic operates in a specific timezone.
+  </Step>
+</Steps>
+
+<Note>
+If you use an Hour of Day condition, set the rule's execution frequency to **Every 1 Hour**. Running it every 10 minutes is redundant and clutters your execution logs.
+</Note>
+
+---
+
+## 4. Rule Actions
+
+The **Rule Actions** section defines what the rule does when all conditions are met. There are four main action types.
+
+### 1. Status Actions (Pause / Activate)
+
+The simplest action type. When conditions are met, the entity (ad, adset, or campaign) is paused or activated. No further configuration is needed — the action is fully defined by the rule type you selected.
+
+### 2. Budget & Bid Adjustments
+
+For change-budget and change-bid rule types, configure the action in the **Rule Action** section:
+
+| Action | Description |
+|--------|-------------|
+| **Set To** | Forces the budget or bid to an exact value — a fixed number or a percentage of another metric. |
+| **Increase By** | Adds to the current value by a fixed amount or a percentage. Useful for incremental scaling. |
+| **Decrease By** | Subtracts from the current value by a fixed amount or a percentage. Useful for gradually pulling back on underperformers. |
+
+#### Budget Safety Rails: Floor & Ceiling
+
+When using **Increase By** or **Decrease By**, you can set a minimum and maximum budget value to prevent the rule from adjusting beyond safe limits:
+
+- **Min Budget (Floor)** — The rule will never reduce the budget below this value, even if the decrease amount would go lower.
+- **Max Budget (Ceiling)** — The rule will never increase the budget above this value, even if the increase amount would go higher.
+
+<Warning>
+Budget floors and ceilings are optional but strongly recommended for all scaling rules. Without them, a single rule execution can accidentally push a budget to an extreme value if something unexpected happens in your account.
+</Warning>
+
+### 3. Cloning Actions
+
+Cloning rules automatically duplicate a campaign, adset, or ad when conditions are met. Two additional fields appear:
+
+- **Number of Copies** — How many clones to create each time the rule fires.
+- **Adjust budget before cloning** — Optionally set the budget on the cloned copy to a specific value at creation time, rather than inheriting the original's current budget.
+- **Destination** — By default, clones land in the same campaign. Enable **Change Cloned Ad Destination** to redirect them to a specific adset, campaign, or even a different ad account.
+
+### 4. Dayparting
+
+Dayparting rules let you schedule exactly when a campaign runs.
+
+<Note>
+Dayparting is only available at the **campaign level**. It cannot be applied to ads or adsets.
+</Note>
+
+The rule combines a grid (where you select hours and days) with an action:
+
+| Action | Description |
+|--------|-------------|
+| **Pause on selected hours, otherwise do nothing** | Pauses during selected hours only. Outside those hours, the campaign is left in its current state. |
+| **Pause on selected hours, otherwise start** | The most commonly used option. Pauses during selected hours and actively ensures the campaign is running at all other times. |
+
+<Tip>
+**Example:** Select all hours on Saturday and Sunday, then choose "Pause on selected hours, otherwise start." The campaign will automatically pause on Friday night and resume Monday morning — no manual intervention needed.
+</Tip>
+
+---
+
+## 5. Scope and Filtering
+
+Once the logic and action are defined, you control exactly which entities the rule monitors and acts on.
+
+### Filtering: Include or Exclude Specific Items
+
+The filter section lets you narrow or exclude specific items within your selected campaigns:
+
+| Mode | Behavior |
+|------|----------|
+| **Include** | Overrides the campaign selection scope. Even if you have 100 campaigns selected, the rule will only act on the specific items you list here. |
+| **Exclude** | The rule applies to everything across all selected campaigns, _except_ the items you list. Use this to protect specific ads (e.g., those with "DO NOT TOUCH" in the name) while automating everything else. |
+
+You can populate either list by searching for specific items manually, or by using bulk filtering to select all items matching a naming pattern at once.
+
+### Select Campaigns
+
+Every rule — regardless of whether it acts on ads, adsets, or campaigns — requires you to specify which campaigns it monitors. The rule evaluates entities within those campaigns only.
+
+- **Manual Selection** — Search for specific campaigns and check them one by one.
+- **Smart Filtering** — Use the filter sidebar to auto-select all campaigns matching a naming pattern (e.g., all campaigns containing "US\_2026").
+
+<Warning>
+**Standard Rules: don't forget new campaigns.** A campaign not in this list is completely invisible to the rule. Every time you launch a new campaign with a Standard Rule, you must come back and add it here. This is the key reason to prefer Global Rules for broad automations.
+</Warning>
+
+<Note>
+If you are creating a **Global Rule**, this section asks you to select **Ad Accounts** instead of individual campaigns.
+</Note>
+
+---
+
+## 6. Scheduling & Frequency
+
+This setting controls how often TheOptimizer evaluates your conditions and potentially fires the rule.
+
+| Frequency | Best For |
+|-----------|----------|
+| **Every 10 min – Every 1 Hour** | Stop-loss rules where you need to react quickly to bad performance. |
+| **As Soon as Conditions Are Met** | Time-sensitive actions. The system continuously checks and fires the moment all conditions become true. |
+| **Once Daily / Daily at Specific Time** | Budget resets or full-day performance reviews. You can set the exact time (e.g., 8:00am UTC). |
+| **Weekly** | Rules that only need to run once a week — e.g., reviewing and adjusting budgets every Monday morning. |
+
+<Note>
+If your rule includes an **Hour of Day** condition, set the frequency to **Every 1 Hour**. Running it every 10 minutes is redundant — the rule won't act outside the specified hours regardless — and it clutters your execution logs.
+</Note>
+
+---
+
+## 7. Notifications & Alerts
+
+The final step controls whether the rule acts, notifies you, or both.
+
+### Execution Modes
+
+| Mode | Description |
+|------|-------------|
+| **Execute & Alert** | The rule makes the change **and** sends you a notification listing all items that triggered it. |
+| **Execute** | The rule makes the change silently. No notification is sent. Use for well-established automations you trust completely. |
+| **Alert Only** | Sends a notification but makes **no changes** whatsoever. The rule becomes a monitoring and alerting tool. |
+
+<Tip>
+**Building a pure monitoring rule:** You can turn any rule type into a monitoring-only rule by selecting **Alert Only**. The rule type itself doesn't matter — what matters is the level (campaign, ad, adset) and the conditions. Create a "Pause Ads" rule, define your conditions, set it to **Alert Only**, and you'll be notified when matches occur without anything actually being paused.
+</Tip>
+
+### Notification Channels
+
+Notifications can be sent via **Email**, **Slack**, or **Telegram**. You can configure multiple accounts for each — for example, alert multiple Slack channels or multiple team members by email simultaneously.
+
+To configure channels, go to **Profile icon → Settings → Notifications** tab. Channels must be set up there before they can be selected inside a rule.
+
+### Run on Paused Campaigns
+
+By default, rules only evaluate entities within **active** campaigns. Paused campaigns are completely invisible to the rule — this is intentional, as in most cases you don't want automations touching campaigns you've deliberately stopped.
+
+Toggle **Run on Paused Campaigns** to **ON** only when you specifically need a rule to monitor paused entities — for example, a rule that reactivates an ad if late conversions arrive after it was paused.

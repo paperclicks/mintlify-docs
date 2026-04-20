@@ -1,0 +1,434 @@
+---
+title: "TikTok Automation Rules: Popular Patterns"
+description: "TikTok automation rule patterns covering real-time pausing, tiered ROI scaling, ad group cloning, bid control, and creative fatigue detection for media buyers."
+sidebarTitle: "TikTok Rules"
+---
+
+These patterns come from analyzing 2,113 real TikTok automation rules deployed across high-performing media buyer accounts. TikTok moves faster than any other platform — a losing ad group discovered at 8 AM can cost you thousands by 5 PM. The rules below are organized by layer: protective pauses first, then scaling, then cloning, then bid and creative refinement. Start with the protective layer and add the rest once your guardrails are solid.
+
+---
+
+## Real-Time Performance Control
+
+Ad group pausing dominates TikTok automation — 973 of 2,113 rules use pause/AdGroup. This reflects the harsh economics of the platform: fast spend, fast fatigue, and no tolerance for wasted budget. All rules in this section fire on today's data only.
+
+### Rule 1: Pause Ad Groups — Cost Exceeds Performance Threshold
+
+The core TikTok pause pattern. Pause when spend exceeds a minimum baseline but conversions or ROI fail to justify it.
+
+**Platform:** TikTok | **Data Interval:** Today | **Scheduling:** Every 1–2 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | &gt;= | $1.00–$3.00 |
+| Tracker Conversions | &lt; | 1–2 |
+| Tracker ROI | &lt; | 5% |
+
+**Action:** Pause Ad Group
+
+<Tip>
+Adjust the spend threshold based on your account size. Media buyers with $20k daily budgets set this to $5–10 per ad group. Smaller accounts set it to $0.50–2. Running this hourly is common because catching a loser early saves substantial budget.
+</Tip>
+
+---
+
+### Rule 2: Pause Ad Groups — Traffic Source CPA Exceeds Payout Threshold
+
+Use this when TikTok's native conversion attribution is more reliable than your third-party tracker. This sets a hard ceiling on acceptable cost per acquisition.
+
+**Platform:** TikTok | **Data Interval:** Today | **Scheduling:** Every 2 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | &gt; | $3.00–$5.00 |
+| Traffic Source Conversions | &gt;= | 1 |
+| Traffic Source CPA | &gt; | 1.5–2× your target payout |
+
+**Action:** Pause Ad Group
+
+<Tip>
+If your payout is $8, set the CPA threshold to $12–15. This gives room for variance while preventing catastrophic loss. Requiring at least 1 Traffic Source Conversion prevents firing on noise.
+</Tip>
+
+---
+
+### Rule 3: Pause Ad Groups — Multi-Condition Safety Rule
+
+When one metric lies, three rarely do. Combine spend, profitability, and net profit to reduce false positives and avoid pausing winners with early variance.
+
+**Platform:** TikTok | **Data Interval:** Today | **Scheduling:** Every 2–3 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | &gt; | $2.00 |
+| Tracker ROI | &lt; | -20% |
+| Tracker Net Profit | &lt; | -$1 |
+| Impressions | &gt; | 100 |
+
+**Action:** Pause Ad Group
+
+<Tip>
+Waiting for three signals before pausing prevents knee-jerk reactions. New ad groups with early variance won't trigger, but genuine losers will. The impressions condition ensures there's enough delivery to make a judgment.
+</Tip>
+
+---
+
+## Dynamic Profitability Scaling
+
+Instead of scaling all winners equally, use tiered budget increases that calibrate to ROI ranges. The data shows sophisticated buyers segment into four tiers: $20/$30/$40/$50 increases at 24%/34%/44%/60%+ ROI respectively. Higher ROI ad groups can absorb larger budget increases without saturation.
+
+All scaling rules in this section operate on a **3-day window** to smooth out daily variance while staying responsive enough to capitalize on trends.
+
+### Rule 4: Scale Tier 1 — 24–34% ROI (Solid Performers)
+
+Entry-level winners that have proven traction. A 20% increase compounds steadily without overexposure risk.
+
+**Platform:** TikTok | **Data Interval:** Last 3 Days | **Scheduling:** Once daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent (L3D) | &gt; | $5–10 |
+| Tracker ROI (L3D) | &gt;= | 24% |
+| Tracker ROI (L3D) | &lt; | 34% |
+
+**Action:** Increase Ad Group Budget by 20%
+
+---
+
+### Rule 5: Scale Tier 2 — 34–44% ROI (Strong Performers)
+
+Proven winners with meaningful profit velocity. A 30% increase is justified by the risk-reward profile at this tier.
+
+**Platform:** TikTok | **Data Interval:** Last 3 Days | **Scheduling:** Once daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent (L3D) | &gt; | $5–10 |
+| Tracker ROI (L3D) | &gt;= | 34% |
+| Tracker ROI (L3D) | &lt; | 44% |
+
+**Action:** Increase Ad Group Budget by 30%
+
+---
+
+### Rule 6: Scale Tier 3 — 44–59% ROI (Excellent Performers)
+
+Exceptional performers generating serious profit. A 40% increase reflects the reduced saturation risk at this ROI tier.
+
+**Platform:** TikTok | **Data Interval:** Last 3 Days | **Scheduling:** Once daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent (L3D) | &gt; | $5–10 |
+| Tracker ROI (L3D) | &gt;= | 44% |
+| Tracker ROI (L3D) | &lt; | 59% |
+
+**Action:** Increase Ad Group Budget by 40%
+
+---
+
+### Rule 7: Scale Tier 4 — 60%+ ROI (Elite Performers)
+
+Rare air. If an ad group hits 60% ROI, you've found a goldmine.
+
+**Platform:** TikTok | **Data Interval:** Last 3 Days | **Scheduling:** Once daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent (L3D) | &gt; | $5–10 |
+| Tracker ROI (L3D) | &gt;= | 60% |
+
+**Action:** Increase Ad Group Budget by 50%
+
+<Tip>
+A 50% increase is conservative relative to the profit opportunity at 60%+ ROI. Pair this with a max budget cap rule to prevent any single ad group from consuming your entire daily budget. Most buyers cap at $300–500/day per ad group.
+</Tip>
+
+---
+
+### Rule 8: Scale by CPA Efficiency (Advanced Pattern)
+
+The most sophisticated scaling approach in the dataset. Compare your tracker CPA directly to your campaign payout. This is TikTok-specific because media buyers here obsess over unit economics.
+
+**Platform:** TikTok | **Data Interval:** Last 3 Days | **Scheduling:** Once daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker CPA (L3D) | &lt; | 70% of Campaign payout |
+| Tracker Conversions (L3D) | &gt; | 5 |
+
+**Action:** Increase Ad Group Budget by 35%
+
+<Tip>
+If your campaign payout is $10 and CPA drops below $7, increase budget. If CPA drops below $5 (50% of payout), consider increasing by 50% instead of 35%. Requiring 5+ conversions ensures statistical confidence before scaling.
+</Tip>
+
+---
+
+## Campaign-Level Safety Nets
+
+Ad group rules are surgical. Campaign rules are blunt-force protection. Use these to prevent entire campaigns from running sideways while you're focused elsewhere.
+
+### Rule 9: Pause Campaigns — Zero Conversions at Scale
+
+**Platform:** TikTok | **Data Interval:** Today | **Scheduling:** Every 3 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | &gt; | $20–50 |
+| Traffic Source Conversions | = | 0 |
+
+**Action:** Pause Campaign
+
+<Warning>
+If you've spent $30+ with zero conversions, something fundamental is broken. Pause immediately and investigate — wrong pixel event, broken landing page, or mismatched audience are the most common culprits.
+</Warning>
+
+---
+
+### Rule 10: Pause Campaigns — Spend Ceiling
+
+A hard stop at your daily budget limit, accounting for platform delivery variance.
+
+**Platform:** TikTok | **Data Interval:** Today | **Scheduling:** Every 1 hour
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | &gt;= | Your daily budget limit × 1.05 |
+
+**Action:** Pause Campaign
+
+<Tip>
+Set the threshold to 105–110% of your daily target, not 100%. TikTok's spend delivery can overshoot the nominal daily cap by 5–10% due to auction timing. Setting the threshold at 100% causes false positives.
+</Tip>
+
+---
+
+## Cloning Winning Ad Groups
+
+This is the TikTok-exclusive advantage. While Facebook buyers manually pause and restart audiences, TikTok buyers clone winners. The data is stark: 190 rules use copy/AdGroup, 78 use copy_budget/Campaign, and 41 use copy/Content — 309 cloning rules out of 2,113 total (15%). Cloning works because TikTok's audience targeting makes duplication effective: if an audience performs at 40% ROI, a cloned version on the same audience usually performs similarly.
+
+Run cloning rules every 4–6 hours, not hourly. Let winning ad groups stabilize first before spinning up clones.
+
+### Rule 11: Clone Ad Groups — Profitability + Volume
+
+The core cloning pattern. Clone when you have both meaningful conversions (proof of concept) and strong ROI (proof of profit).
+
+**Platform:** TikTok | **Data Interval:** Today | **Scheduling:** Every 4 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker Conversions (Today) | &gt; | 2–3 |
+| Tracker ROI (Today) | &gt; | 20% |
+
+**Action:** Copy Ad Group
+
+<Tip>
+Three conversions at 20% ROI is a pattern, not luck. Cloning at this point captures the audience while it's hot. Most clones inherit audience targeting and creative, starting at equal efficiency to the original.
+</Tip>
+
+---
+
+### Rule 12: Clone Ad Groups — High-Efficiency, Low-Cost Winners
+
+When CPA is exceptionally low relative to conversions, you've found an audience inefficiency on TikTok. Clone to saturate that inefficiency before competition or audience drift stales it.
+
+**Platform:** TikTok | **Data Interval:** Today | **Scheduling:** Every 4 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Traffic Source Conversions (Today) | &gt; | 3–5 |
+| Traffic Source CPA (Today) | &lt;= | 40–50% of target payout |
+
+**Action:** Copy Ad Group
+
+<Tip>
+If your target payout is $10 and CPA is $4–5 per conversion, clone it immediately. This signals you've found something the algorithm hasn't priced efficiently yet.
+</Tip>
+
+---
+
+### Rule 13: Clone Campaigns — Proven Profitability at Scale
+
+The most popular TikTok cloning pattern: clone entire campaigns. This copies targeting, creative, and budget configuration in one action. Use when a campaign has demonstrated stable, repeatable profitability.
+
+**Platform:** TikTok | **Data Interval:** Today | **Scheduling:** Once daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Campaign Status | = | Running |
+| Traffic Source Conversions (Today) | &gt;= | 8–10 |
+| Traffic Source CPA (Today) | &lt;= | 60% of target payout |
+
+**Action:** Clone Campaign with Budget
+
+<Tip>
+The cloned campaign starts paused. Review settings, then manually or auto-start. This is safer than cloning ad groups alone because you capture the entire performance context — targeting, creative mix, and budget structure all intact.
+</Tip>
+
+---
+
+### Rule 14: Clone Content — Winning Creative
+
+Clone individual ads outperforming within their ad group. The data shows 41 copy/Content rules — some sophisticated buyers are tracking creative-level efficiency explicitly.
+
+**Platform:** TikTok | **Data Interval:** Today | **Scheduling:** Every 6 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent (Today) | &gt; | $1–2 |
+| Tracker Conversions (Today) | &gt; | 1 |
+| Tracker CPA (Today) | &lt; | 50% of target payout |
+
+**Action:** Copy Content
+
+<Tip>
+Duplicating a winning creative serves two purposes: it increases impression share for the best-performing ad, and it creates a control version in case the original ad group pauses later. Think of it as insurance for your best creative.
+</Tip>
+
+---
+
+## Bid & Budget Management
+
+Bid management on TikTok is subtle — bid caps constrain delivery but don't guarantee it. Use these rules conservatively, paired with budget rules for best results.
+
+### Rule 15: Decrease Bids — Unprofitable Ranges
+
+When ROI turns negative but isn't catastrophic yet, decrease bids before pausing. This buys you another test cycle at lower cost.
+
+**Platform:** TikTok | **Data Interval:** Last 7 Days | **Scheduling:** Once daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker ROI (L7D) | &lt; | -10% |
+| Tracker Net Profit (L7D) | &lt; | -$1 |
+| Tracker ROI (L7D) | &gt; | -50% |
+
+**Action:** Decrease Ad Group Bid by 10–15%
+
+<Tip>
+If an ad group is at -5% ROI on $20 spend, decrease bid first — see if cost-per-click drops enough to restore profitability before you pause. The lower bound (-50%) prevents this rule from firing on catastrophically bad ad groups, which should be paused outright.
+</Tip>
+
+---
+
+### Rule 16: Increase Bids — High-Efficiency Winners
+
+When CPA is exceptionally low, increase bids to capture more inventory. TikTok's auction is sophisticated — higher bids often return proportional increases in conversions.
+
+**Platform:** TikTok | **Data Interval:** Last 3 Days | **Scheduling:** Once daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Traffic Source CPA (L3D) | &lt; | 40% of target payout |
+| Traffic Source Conversions (L3D) | &gt; | 5 |
+
+**Action:** Increase Ad Group Bid by 10–15%
+
+---
+
+### Rule 17: Budget Ceiling Protection
+
+Prevent runaway spend by pausing when cumulative spend approaches your daily limit.
+
+**Platform:** TikTok | **Data Interval:** Today | **Scheduling:** Every 1 hour
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent (Today) | &gt; | Daily budget × 1.08 |
+
+**Action:** Pause Campaign
+
+<Tip>
+Set to 108% instead of 100% to account for TikTok's platform variance in spend delivery. Campaigns can overshoot the daily cap by 5–10% due to auction timing — using 100% as the threshold will create constant false positives.
+</Tip>
+
+---
+
+## Creative Performance Optimization
+
+Ad-level rules catch the creative duds your audience doesn't want to see. These run on today's data only, enabling rapid creative refresh.
+
+### Rule 18: Pause Underperforming Ads — Cost Without Conversions
+
+Pause ads that spend without delivering. This signals either poor creative appeal or wrong audience.
+
+**Platform:** TikTok | **Data Interval:** Today | **Scheduling:** Every 2 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent (Today) | &gt; | $2–3 |
+| Traffic Source Conversions (Today) | = | 0 |
+
+**Action:** Pause Content
+
+<Tip>
+Removing a non-converting ad from the ad group improves overall performance — TikTok reallocates budget and impressions to the remaining creatives. Pair this with regular creative uploads to keep rotation fresh.
+</Tip>
+
+---
+
+### Rule 19: Pause Underperforming Ads — High Cost, Low Tracker Conversions
+
+Similar to Rule 18 but using tracker conversions. Use this if third-party tracking is more reliable than TikTok's native conversion signals for your offer type.
+
+**Platform:** TikTok | **Data Interval:** Today | **Scheduling:** Every 2 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent (Today) | &gt; | $2 |
+| Tracker Conversions (Today) | &lt; | 1 |
+
+**Action:** Pause Content
+
+---
+
+### Rule 20: Reactivate High-Efficiency Ads
+
+Resume previously paused ads that prove themselves with low CPA and conversions. Use this sparingly — only reactivate ads that clearly exceed your profitability threshold.
+
+**Platform:** TikTok | **Data Interval:** Today | **Scheduling:** Every 4 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker CPA (Today) | &lt; | 40–50% of target payout |
+| Tracker Conversions (Today) | &gt; | 0 |
+
+**Action:** Start Content
+
+<Tip>
+Only reactivate ads when CPA is genuinely excellent — 40–50% of target payout, not just positive. You have limited creative slots in each ad group. Use them for your best performers.
+</Tip>
+
+---
+
+## How Pro Media Buyers Layer These Rules
+
+The rules above work best in combination:
+
+1. **Protective layer (runs hourly):** Real-time pauses catch disasters before they cost you thousands. Deploy these first and treat them as your safety net.
+2. **Scaling layer (runs daily):** Tiered ROI scaling feeds winners more budget without manual oversight. Set once and let it run.
+3. **Cloning layer (runs every 4 hours):** Clone winners before they saturate. TikTok audiences move fast — the first person to clone a profitable audience has an advantage over latecomers.
+4. **Optimization layer (runs daily):** Bid and content pauses refine performance. These are refinements; focus on layers 1–3 first.
+
+## Key Insights from 2,113 Rules
+
+- **Pause dominates:** 973 rules pause ad groups because fast response is critical. The first person to pause a loser avoids the bulk of wasted spend.
+- **Cloning is TikTok-specific:** 309 cloning rules out of 2,113 (15%) — not coincidence. TikTok's audience targeting makes duplication unusually effective.
+- **CPA vs. payout comparisons are where profit lives:** Rules comparing tracker CPA to Campaign.payout show sophisticated buyers calibrating to their own economics. A $10 payout with $3 CPA is a 3:1 ratio — worth scaling aggressively.
+- **Real-time rules dominate:** 60%+ of rules use today's data interval. 24-hour-old data is stale on TikTok.
+- **Complex rules (3+ conditions) are common:** 845 of 2,113 rules use 3+ conditions, reducing false positives. Pros use multi-condition rules; beginners use single-condition rules and wonder why their winners get paused.
+
+## Customization by Campaign Type
+
+- **High-payout campaigns ($5–20 per conversion):** Use higher spend thresholds before pausing ($5–10). Budget increases can be more aggressive (50%+ for top tier).
+- **Low-payout, high-volume campaigns ($0.50–$2 per conversion):** Use lower spend thresholds ($0.50–2) and clone more aggressively. Saturation happens faster.
+- **Brand/awareness campaigns:** Reduce reliance on conversion metrics. Add impression-share, reach, and engagement rules instead.
+- **Affiliate/e-commerce:** These rules are built for you. Adjust thresholds to match your payout structure and cost of goods.
+
+## Troubleshooting Common Issues
+
+- **Rules firing too often:** Increase the cost threshold or require multi-condition confirmation (add Impressions > 50 as an additional condition).
+- **Winners getting paused:** Use ROI + profit conditions together, never ROI alone. A -10% ROI at $0.50 spend is noise, not signal.
+- **Clones underperforming:** This is normal — first clones match original performance roughly 70% of the time. Monitor separately and pause underperformers within 24 hours.
+- **Budget caps not working:** Set threshold to 108–110%, not 100%. Platform variance in delivery makes 100% unreliable as a ceiling.

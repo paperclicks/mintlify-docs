@@ -1,0 +1,190 @@
+---
+title: "Frequently Asked Questions — TheOptimizer"
+description: "Answers to the most common questions about TheOptimizer — covering setup, automation, campaign creation, pricing, integrations, and troubleshooting."
+sidebarTitle: "FAQ"
+---
+
+This page covers the most common questions about TheOptimizer, organized by topic. If you do not find what you are looking for here, reach out to support directly.
+
+## General platform and usage
+
+<AccordionGroup>
+  <Accordion title="Who is TheOptimizer for?">
+    TheOptimizer is built for media buyers, affiliate marketers, and performance marketing teams who run paid campaigns across multiple ad networks and need to manage, optimize, and scale them efficiently. Whether you are a solo media buyer or part of an agency managing dozens of ad accounts, TheOptimizer is designed to fit your workflow.
+  </Accordion>
+
+  <Accordion title="What can TheOptimizer do for my campaigns?">
+    TheOptimizer connects your ad networks (like Facebook, TikTok, Taboola) and trackers (like ClickFlare, Voluum) in one dashboard. It lets you see accurate cost and revenue data in one place, automate optimization tasks (pausing ads, changing bids and budgets) via rules, and launch campaigns in bulk.
+  </Accordion>
+
+  <Accordion title="Which ad networks does TheOptimizer support?">
+    TheOptimizer supports: Facebook (Meta), Google Ads, TikTok, Taboola, Outbrain, MGID, RevContent, MediaGo, BigoAds, Adskeeper, NewsBreak, YahooDSP, and Trillion (Beta).
+  </Accordion>
+
+  <Accordion title="Can I use TheOptimizer without a third-party tracking platform?">
+    Yes. You can use TheOptimizer with ad network data alone. A tracking platform is optional.
+  </Accordion>
+
+  <Accordion title="Does TheOptimizer make changes to my campaigns automatically?">
+    Only if you set up automation rules and tell it to. Nothing happens by default — you decide what the platform is allowed to do, under what conditions, and on which campaigns. You control the thresholds, time windows, and actions for every rule.
+  </Accordion>
+
+  <Accordion title="What permissions does TheOptimizer need to access my ad accounts?">
+    For Facebook, Google Ads, and TikTok, you connect via OAuth — you log in with your account and grant standard ads management permissions. For native ad networks (Taboola, Outbrain, MGID, and others), you provide API credentials generated from within the ad network's own settings.
+  </Accordion>
+
+  <Accordion title="Can I manage campaigns from multiple ad accounts in one view?">
+    Yes. The **Campaigns** section shows all campaigns from all connected ad accounts for a given network in a single table. This is one of the main advantages over native ad managers, where you can only view one ad account at a time.
+  </Accordion>
+
+  <Accordion title="How quickly does data sync after I connect my ad account?">
+    Data typically starts appearing within a few minutes. For newly added accounts, the platform pulls data for the past 30 days. Selecting a date range older than that may show no data initially.
+  </Accordion>
+
+  <Accordion title="Can I invite team members to my account?">
+    Yes. The multi-user feature is available starting from the Master plan. Admins can invite sub-users and assign them access to specific ad accounts. Sub-users only see data for the accounts assigned to them.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Automation rules
+
+<AccordionGroup>
+  <Accordion title="What is the difference between a Standard Rule and a Global Rule?">
+    A **Standard Rule** applies only to the campaigns you manually select. If you launch a new campaign, you must add it to the rule manually. A **Global Rule** applies to an entire ad account — any new campaign launched in that account inherits the rule automatically. For safety nets like stop-loss rules, Global Rules are the safer choice.
+  </Accordion>
+
+  <Accordion title="What actions can automation rules take?">
+    Rules can pause or resume campaigns, ad sets, and ads; increase or decrease budgets and bids; clone campaigns; send email or Slack alerts; and more. Every action is conditional — it only fires when the conditions you define are met.
+  </Accordion>
+
+  <Accordion title="My automation rule did not trigger. How do I debug it?">
+    Check the **Logs** section and look at the generated logs for that campaign. The most common reasons a rule does not trigger are:
+
+    - The wrong metric is used in the conditions — for example, **Revenue** instead of **Revenue (tracker)**, or **Budget** instead of **Daily Budget**
+    - You have a time condition set and the time has not arrived yet
+    - The conditions were simply not met during the evaluation window
+    - An error occurred, which should be visible in the logs
+  </Accordion>
+
+  <Accordion title="My new campaigns are not being picked up by my rules. Why?">
+    If you are using Standard Rules, new campaigns must be added to the rule manually. Switch to a Global Rule so all future campaigns in that ad account are covered automatically.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Campaign Creator
+
+<AccordionGroup>
+  <Accordion title="Which ad networks support campaign creation from TheOptimizer?">
+    Campaign creation is supported for Facebook, Taboola, Outbrain, RevContent, MGID, and AdsKeeper. Native ad networks support both an interactive interface and an Excel bulk uploader. Facebook uses the interactive interface only.
+  </Accordion>
+
+  <Accordion title="Why can't I create campaigns for TikTok or Google Ads from TheOptimizer?">
+    Campaign creation is not currently supported for TikTok, Google Ads, MediaGo, or some other networks. The team is working to expand coverage — check with support for the latest progress.
+  </Accordion>
+
+  <Accordion title="Can I upload new ads into an existing campaign?">
+    Yes. Uploading new ads or ad sets is supported for all ad networks that support campaign creation.
+  </Accordion>
+
+  <Accordion title="What happens if a campaign fails to be created?">
+    The failed action appears in the **Campaign Creator Queue** along with an error message. You can use the **Retry** button to push the campaign again, or review the error message, make the necessary fixes, and then retry.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Troubleshooting and common problems
+
+<AccordionGroup>
+  <Accordion title="Why am I seeing zero revenue in the Dashboard and Totals view?">
+    The most common cause is that the revenue toggle in the **Dashboard** is set to the wrong option. TheOptimizer can display revenue from the ad network or from your tracker — check the toggle and make sure it is set to the correct revenue source.
+  </Accordion>
+
+  <Accordion title="Why do I see an asterisk (*) instead of a currency symbol on my totals?">
+    This means you have ad accounts using different currencies (for example, USD and EUR). TheOptimizer does not perform automatic currency conversion — the total is a simple sum across currencies. Filter by individual accounts if you need accurate per-currency totals.
+  </Accordion>
+
+  <Accordion title="Why is my data missing or showing empty stats?">
+    For newly connected accounts, the first data can take up to 30 minutes to appear. TheOptimizer also only pulls back 30 days of data by default — selecting a date range older than that will show empty stats. It can also take up to 20 minutes for the first data pull after you connect a new traffic source.
+  </Accordion>
+
+  <Accordion title="How do I change the time zone?">
+    TheOptimizer does not have a global time zone setting. Each ad account uses its own timezone. If you have a tracker connected, TheOptimizer uses the ad account's timezone when pulling data from the tracker.
+  </Accordion>
+
+  <Accordion title="Why is there a revenue discrepancy between TheOptimizer and my tracker?">
+    The two most common causes are:
+
+    1. **Timezone mismatch** — when comparing revenue and conversions between TheOptimizer and your tracker, make sure your tracker is set to the same timezone as the ad account in TheOptimizer.
+    2. **Missing campaign ID tracking** — if only a few campaigns are showing $0 revenue, check that the campaign ID is being tracked and reported correctly on your tracker for those campaigns. TheOptimizer cannot pull revenue or conversions from the tracker if the campaign ID is not being tracked.
+  </Accordion>
+
+  <Accordion title="My Facebook integration is showing permission issues. How do I fix it?">
+    Facebook occasionally invalidates authorized sessions, which can cause your integration to stop working. When this happens, you will receive an email with all the instructions needed to re-authorize the connection.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Pricing, subscriptions, and account management
+
+<AccordionGroup>
+  <Accordion title="What are the pricing tiers?">
+    TheOptimizer is priced by monthly ad spend volume:
+
+    | Plan   | Price   | Monthly ad spend coverage |
+    | ------ | ------- | ------------------------- |
+    | Tier 1 | $199/mo | Up to $20,000             |
+    | Tier 2 | $399/mo | Up to $50,000             |
+    | Tier 3 | $699/mo | Up to $100,000            |
+    | Tier 4 | Custom  | Above $100,000            |
+
+    Overage fees apply if you exceed your tier's limit, ranging from 1% to 0.6% depending on the plan.
+  </Accordion>
+
+  <Accordion title="Is there a free trial?">
+    Yes. TheOptimizer offers a trial period so you can explore the platform without being charged. You can cancel at any point during the trial to avoid being billed.
+  </Accordion>
+
+  <Accordion title="How do I cancel my subscription?">
+    Cancel directly through the **Member Area**. Navigate to the membership login page to manage invoices and cancellation settings.
+  </Accordion>
+
+  <Accordion title="What happens to my data if I cancel?">
+    Your campaign data, rules, and configurations remain accessible until the end of your current billing period. After that, data retention follows the standard policy outlined in the terms of service.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Integrations and data
+
+<AccordionGroup>
+  <Accordion title="What tracking platforms are supported?">
+    TheOptimizer integrates with most major trackers, including ClickFlare (recommended), Voluum, RedTrack, Bemob, Binom, Everflow, Google Analytics 4, and others. See the full list in the **Integrations** section.
+  </Accordion>
+
+  <Accordion title="My tracker is not on the supported list. Can I still use it?">
+    Yes. Use the **Google Sheets or CSV integration** — export your conversion and revenue data from your tracker into a Google Sheet, connect it to TheOptimizer, and the platform will sync from it automatically every 30 minutes. Alternatively, use the API to programmatically generate and push a CSV to TheOptimizer at regular intervals.
+  </Accordion>
+
+  <Accordion title="How do I handle multiple currencies across my ad accounts?">
+    TheOptimizer does not perform automatic currency conversion — totals are displayed as a simple sum across currencies. To view accurate aggregated data, filter by individual accounts. You can also create **Custom Metrics** and manually apply exchange rates.
+  </Accordion>
+
+  <Accordion title="Can I export my data?">
+    Yes. The **Campaigns** view has an export button at the bottom of the table. It exports everything currently displayed based on your active filters and date range.
+  </Accordion>
+
+  <Accordion title="Can I connect analytics tools like Google Analytics?">
+    Yes. TheOptimizer supports Google Analytics 4 and Google Sheets under **Analytics & Reporting** integrations. For content arbitrage operators, Assertive Yield is also supported. Search feed providers — Sedo, System1, and Tonic — can be connected for search arbitrage revenue data.
+  </Accordion>
+
+  <Accordion title="Can I push my own data to TheOptimizer?">
+    Yes. TheOptimizer supports uploading conversions, revenue, and other custom data by uploading a CSV file either manually or automatically using the API.
+  </Accordion>
+</AccordionGroup>

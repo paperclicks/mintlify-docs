@@ -1,0 +1,182 @@
+---
+title: "Upload Conversion and Revenue Data via CSV File"
+description: "Manually upload tracker, revenue, or publisher data into TheOptimizer using a CSV file — for delayed revenue, unsupported trackers, and backfilling."
+sidebarTitle: "Upload CSV Data"
+---
+
+If your tracking system, CRM, or internal reporting tool is not directly integrated with TheOptimizer via API, you can still bring your conversion and revenue data into the platform by uploading a CSV file. Once uploaded, this data is treated exactly like data pulled from an integrated tracker — it appears in your dashboards, feeds into calculated metrics like ROI and CPA, and can be used by your automation rules.
+
+## When to Use CSV Upload
+
+**Delayed or confirmed revenue.** You are running search feed arbitrage campaigns (Tonic, Sedo, System1, etc.) and revenue is only confirmed 24–36 hours after the click. You need to upload the confirmed numbers once they become available so your rules and reports reflect actual performance — not estimates.
+
+**Unsupported tracker or CRM.** Your tracking platform is not one of the systems TheOptimizer integrates with via API. Rather than going without tracker data, you export a report from your tracker and upload it as a CSV.
+
+**Manual reconciliation.** Conversions were not posted to your tracker in real time — delayed postbacks, server issues, or manual entry workflows. A CSV upload lets you backfill the missing data so your historical reports and rule evaluations are accurate.
+
+**Internal reporting systems.** You track conversions in an internal database, a BI tool, or a spreadsheet. Exporting to CSV and uploading is the simplest way to get that data into TheOptimizer without building an API integration.
+
+---
+
+## Where to Find It
+
+Go to **Manual Stats Update** in the left-hand menu, then click **Upload CSV File**.
+
+The **Manual Stats Update** page supports two workflows: pulling data on demand from a connected tracker (using the dropdowns at the top), and uploading a CSV file.
+
+---
+
+## Download the CSV Template
+
+TheOptimizer provides a ready-made CSV template with all supported columns and the correct header names. Always start from this template.
+
+[**Download the CSV Template (Google Sheets)**](https://docs.google.com/spreadsheets/d/1DGpytxaY-dJEW0G6OvNhcSew12H6BmNv3Wspt_r8u2E/edit#gid=0)
+
+Make a copy of the template into your own Google Drive, fill in the data you need, then export it as a `.csv` file and upload it to TheOptimizer.
+
+<Warning>
+  Column names must match the template exactly — including capitalisation. `TrackerRevenue` works; `tracker_revenue`, `Tracker Revenue`, or `Revenue` will not. If column names don't match, the upload will fail.
+</Warning>
+
+---
+
+## How the CSV Works
+
+**One row = one entity on one date.** Each row updates the data for a single entity (a campaign, an ad set, an ad, a widget, etc.) for a single date. If you want to update campaign-level revenue for three days, you need three rows — one per day.
+
+**Rows are scoped to the entity type in that row.** If you enter a row with `Type=campaign` and `TrafficSourceCampaignId=12345`, the revenue in that row will only be updated at the campaign level for that campaign. Ads, ad sets, or other placements inside that campaign will not be updated. You need separate rows for each entity level you want to update.
+
+**You can mix entity types in a single file.** A single CSV can contain rows for campaigns, ad sets, ad groups, ads, widgets, sections, and domains — all in one upload. The `Type` column tells TheOptimizer how to interpret each row.
+
+**Data columns are additive — use only what you need.** Fill in only the columns relevant to your upload. Leave everything else empty.
+
+**After upload, you will receive an email** with details about what was processed, including any errors (unrecognised campaign IDs, invalid dates, or formatting issues).
+
+---
+
+## CSV Column Reference
+
+### Required Columns
+
+These columns are required in every row.
+
+| Column | Description |
+| --- | --- |
+| **Date** | The date being updated, in `yyyy-mm-dd` format (e.g., `2026-04-13`). |
+| **Type** | The entity type being updated. Accepted values: `campaign`, `adset`, `adgroup`, `widget`, `site`, `publisher`, `content` (ad), `section`, `domain`, `exchange`. |
+| **TrafficSourceCampaignId** | The campaign ID as it appears on the traffic source (Facebook, TikTok, Taboola, Outbrain, etc.). Always required — even when updating a sub-entity like an ad or widget — because it tells TheOptimizer which campaign the entity belongs to. |
+
+### Entity ID Columns
+
+Use the column that matches the `Type` value in your row. Leave all other entity ID columns empty.
+
+| Column | When to Use |
+| --- | --- |
+| **TrafficSourceWidgetId** | `Type=widget`, `site`, or `publisher`. The ID must match the format shown in TheOptimizer's Widgets/Sites/Publishers tab. |
+| **TrafficSourceContentId** | `Type=content` (ad). The ad ID as reported on the traffic source. |
+| **TrafficSourceSectionId** | `Type=section` (Outbrain sections). |
+| **TrafficSourceDomainId** | `Type=domain`. |
+| **TrafficSourceSiteId** | `Type=site` (for platforms that distinguish sites from widgets). |
+| **TrafficSourceExchangeId** | `Type=exchange`. |
+| **TrafficSourceAdGroupId** | `Type=adgroup` (TikTok ad groups) or `Type=adset` (Facebook ad sets). The ad group or ad set ID from the traffic source. |
+| **TrackerCampaignId** | Only for search feed data (Tonic, Sedo, etc.) where the tracker campaign ID is needed to match the data correctly. Leave empty in all other cases. |
+
+### Data Columns
+
+Fill in only the columns relevant to your upload. Leave all others empty.
+
+<Warning>
+  Leave unused columns **empty** — do not enter zero. An empty cell means "no data to upload for this metric." A zero means "the value is zero" and will overwrite whatever is currently stored. Accidentally filling cost or revenue columns with `0` will wipe out that day's stored data for those entities.
+</Warning>
+
+| Column | Description |
+| --- | --- |
+| **TrackerClicks** | Clicks as reported by your tracking system. |
+| **TrackerConversions** | Conversions as reported by your tracking system. |
+| **TrackerRevenue** | Revenue as reported by your tracking system. |
+| **TrafficSourceImpressions** | Impressions as reported by the traffic source. |
+| **TrafficSourceClicks** | Clicks as reported by the traffic source. |
+| **TrafficSourceConversions** | Conversions as reported by the traffic source. |
+| **Cost** | Ad spend / cost as reported by the traffic source. |
+| **TrafficSourceRevenue** | Revenue as reported by the traffic source. |
+| **PublisherClicks** | Clicks as reported by your publisher integration (Tonic, Sedo, etc.). |
+| **PublisherRevenue** | Revenue as reported by your publisher integration. |
+| **PublisherConversions** | Conversions as reported by your publisher integration. |
+
+---
+
+## Examples by Platform
+
+### Facebook — Campaign-level revenue
+
+You are running Facebook campaigns tracked by an internal CRM and want to upload yesterday's confirmed revenue at the campaign level.
+
+```csv
+Date,Type,TrafficSourceCampaignId,TrackerConversions,TrackerRevenue
+2026-04-13,campaign,23851234567890,42,315.50
+2026-04-13,campaign,23851234567891,18,127.00
+```
+
+All other columns are left empty. The campaign IDs are the Facebook campaign IDs as they appear in Ads Manager and in TheOptimizer.
+
+### Facebook — Individual ads (Type=content)
+
+To get revenue data at the ad level, use `Type=content` with the ad ID in `TrafficSourceContentId`.
+
+```csv
+Date,Type,TrafficSourceCampaignId,TrafficSourceContentId,TrackerConversions,TrackerRevenue
+2026-04-13,content,23851234567890,23851234500001,15,112.50
+```
+
+### TikTok — Campaigns and ad groups
+
+TikTok uses "ad groups" instead of "ad sets". Use `Type=campaign` for campaign-level data and `Type=adgroup` for ad-group-level data. Leave `TrafficSourceAdGroupId` empty on campaign rows.
+
+```csv
+Date,Type,TrafficSourceCampaignId,TrafficSourceAdGroupId,TrackerConversions,TrackerRevenue
+2026-04-13,campaign,1790123456789,,30,240.00
+2026-04-13,adgroup,1790123456789,1790123456001,18,144.00
+```
+
+### Native — Widget-level data with search feed revenue
+
+Native traffic sources have additional entity types like widgets, sites, sections, and domains. For search feed data at the widget level, `TrackerCampaignId` is required — it tells TheOptimizer which tracker campaign to associate the publisher data with.
+
+```csv
+Date,Type,TrafficSourceCampaignId,TrafficSourceWidgetId,TrackerCampaignId,PublisherRevenue,PublisherClicks
+2026-04-13,widget,12345678,msn-home-network,vol-abc123,45.20,320
+```
+
+---
+
+## Google Sheets — Automated Alternative
+
+<Tip>
+  If you upload the same type of data every day — for example, confirmed search feed revenue each morning — consider using the **Google Sheets integration** instead. It uses the same column format as the CSV template, but TheOptimizer pulls data from your Google Sheet automatically every 30 minutes. You keep the spreadsheet up to date; TheOptimizer handles the rest.
+
+  **How to set it up:**
+
+  1. Go to the **Account Wizard** page and select the traffic source account you want to connect.
+  2. Click **Add New** in the tracker step and select **Google Sheets** from the tracking platform dropdown.
+  3. Clone the Google Sheets template into your own Google Drive.
+  4. Share your Google Sheet with TheOptimizer's service account by adding `optimizer-google-sheets@theoptimizerio.iam.gserviceaccount.com` as a viewer.
+  5. Paste the **Google Sheet URL** into TheOptimizer, select your currency, and save.
+
+  The column format and naming rules are identical to the CSV template, so if you've already been preparing CSV files you can use the same structure.
+</Tip>
+
+---
+
+## Tips and Common Mistakes
+
+**Always use the template.** Column names must match exactly — including capitalisation. Download the template and work from it to avoid formatting issues.
+
+**Use `yyyy-mm-dd` for dates.** The date format must be `2026-04-13`, not `04/13/2026` or `13-Apr-2026`. If your spreadsheet application auto-formats dates into a different style, format the Date column as plain text before exporting.
+
+**Campaign IDs must match exactly.** The `TrafficSourceCampaignId` must be the ID as it appears in TheOptimizer and on the traffic source — not a tracker campaign ID or an internal reference number. If an ID doesn't match, that row will be skipped and reported as an error in the confirmation email.
+
+**One row updates one entity on one date.** If you want to update both the campaign level and the ad level for the same campaign on the same day, you need separate rows — one with `Type=campaign` and one with `Type=content`. The campaign-level row does not cascade down to ads.
+
+**Leave unused columns empty — not zero.** See the warning in the [Data Columns](#data-columns) section above.
+
+**Check your confirmation email.** After every upload, TheOptimizer sends an email summarising what was processed and any errors. If rows were skipped, the email will tell you why — usually an unrecognised campaign ID or a formatting issue in one of the columns.

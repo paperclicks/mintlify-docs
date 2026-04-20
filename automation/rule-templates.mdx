@@ -1,0 +1,1013 @@
+---
+title: "Automation Rule Templates and Examples"
+description: "Ready-to-use rule patterns for pausing losers, reactivating winners, scaling budgets, managing bids, cloning campaigns, and detecting creative fatigue."
+sidebarTitle: "Rule Templates"
+---
+
+Rather than logging in every few hours to pause losers, top up budgets, or scale winners, you define conditions once and let TheOptimizer act automatically. This page collects the most useful rule patterns — grouped by what they do — so you can get started quickly or find inspiration for your own setup. Each example includes a plain-English summary, the exact conditions and action to configure, and the recommended data interval and schedule.
+
+<Tip>
+All examples are available as built-in templates inside the platform. Go to **Automation → Rules → New Rule** and look for the **Templates** tab to find them pre-configured and ready to customise.
+</Tip>
+
+---
+
+## 1. Protecting Your Budget — Pause Underperformers
+
+These rules stop spend on campaigns, ad sets, ad groups, or ads that have had enough data to prove they are not profitable. The key principle in all of them is to only act after a meaningful spend threshold has been reached — this prevents the rule from pausing campaigns that simply haven't had enough impressions yet.
+
+---
+
+### Pause Campaigns with Poor ROAS
+
+**Platforms:** Facebook · TikTok (use Conversions instead of ROAS for the TikTok variant)
+
+After a campaign has spent enough to be statistically meaningful, if it still isn't returning at least $1 for every $1 spent, it's better to stop it than to keep burning budget. This rule is typically scoped to specific geos using a name filter.
+
+**Data Interval:** Last 7 Days (Today Included)
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Amount Spent | is Greater than | $100 |
+| And | ROAS | is Less or Equal to | 1 USD |
+| And | Campaign Name | Contains | `usa` |
+
+**Action:** Pause Campaign
+
+**Scheduling:** Run every hour, or at a fixed time once per day — depending on how tightly you want to control spend.
+
+<Tip>
+Remove the name filter if you want the rule to apply to all your campaigns regardless of geo. Add multiple name values (e.g., `usa`, `us`) to catch different naming conventions.
+</Tip>
+
+---
+
+### Pause Ad Sets / Ad Groups with Poor ROAS
+
+**Platforms:** Facebook (Ad Sets) · TikTok (Ad Groups — use Conversions instead of ROAS)
+
+The same logic as the campaign-level rule, but applied one level down. Useful when you want to keep a campaign alive and only cut the specific ad sets or ad groups that are losing money, rather than pausing the whole campaign.
+
+**Data Interval:** Last 7 Days (Today Included)
+
+**Conditions (Facebook — Ad Set):**
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Amount Spent | is Greater or Equal to | $100 |
+| And | ROAS | is Less or Equal to | 1 USD |
+| And | Name | Contains | `usa` |
+
+**Conditions (TikTok — Ad Group):**
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Amount Spent | is Greater than | $100 |
+| And | Conversions | are Less than | 1 |
+| And | Name | Contains | `usa` |
+
+**Action:** Pause Ad Set / Pause Ad Group
+
+**Scheduling:** Run every hour, or daily.
+
+---
+
+### Pause Low CTR & Low Engagement Ads
+
+**Platforms:** Facebook · TikTok
+
+Ad-level rules let you cut creatives that are dragging down the overall ad set. If an ad has received enough spend but is delivering poor click-through rates — and on Facebook, low social engagement signals — it's not resonating with the audience and should be replaced.
+
+**Data Interval:** Last 3–7 Days (Today Included)
+
+**Conditions (Facebook):**
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Amount Spent | is Greater than | $50 |
+| And | CTR | is Less than | 1% |
+| And | Likes | are Less than | 100 |
+
+**Conditions (TikTok):**
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Amount Spent | is Greater than | $50 |
+| And | CTR | is Less or Equal to | 1% |
+
+**Action:** Pause Ad
+
+**Scheduling:** Once per day, typically in the morning before reviewing your account.
+
+---
+
+### Pause Campaign When 90% of Daily Budget is Spent
+
+**Platforms:** Facebook
+
+A safety rule that stops a campaign once it has consumed 90% of its daily budget. Useful when you want tight control over daily spend and to trigger a notification so you can decide whether to increase the budget manually.
+
+**Data Interval:** Today
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Amount Spent | is Greater than | 90% of Daily Budget |
+
+**Action:** Pause Campaign
+
+**Scheduling:** Run every 30 minutes throughout the day to catch the threshold promptly.
+
+---
+
+### Stop-Loss: Pause Campaign After 3 Days Below Break-Even
+
+**Platforms:** Facebook · TikTok
+
+New campaigns don't usually hit their CPA target on day one. Meta and TikTok need a few days to exit the learning phase — and it's normal for day-one CPA to be above target. What this rule checks is whether the campaign is _still_ above your CPA threshold on day three. If it hasn't improved after three full days of real spend, it's unlikely to self-correct.
+
+The power of this rule comes from evaluating each day in isolation using **per-condition custom intervals**. Rather than comparing against a rolling 3-day average (which would hide a bad day between two good ones), it checks CPA Day 1, CPA Day 2, and CPA Day 3 individually — and only pauses when all three days have been above the threshold.
+
+**Global Data Interval:** Last 3 Days
+
+| # | Metric | Interval | Operator | Value |
+|---|--------|----------|----------|-------|
+| If | Amount Spent | Last 3 Days | is Greater than | $90 _(~$30/day, confirms 3 days of active spend)_ |
+| And | CPA | Day 1 | is Greater than | $15 _(your CPA target)_ |
+| And | CPA | Day 2 | is Greater than | $15 |
+| And | CPA | Day 3 | is Greater than | $15 |
+| And | Hour of Day | — | is in | 00:00 every day |
+
+**Action:** Pause Campaign
+
+**Scheduling:** Run every hour. The Hour of Day condition ensures the pause fires once at midnight — at the exact moment when Day 3 rolls over to Day 4 — so you don't accidentally pause a campaign mid-day based on incomplete data.
+
+<Tip>
+Set the CPA threshold to your break-even CPA, not your target CPA. The goal of a stop-loss rule is to cut campaigns that have no path to profitability — not to enforce strict targets during the learning phase. Replace CPA with ROI if you use a tracker to measure blended performance.
+</Tip>
+
+---
+
+## 2. Reactivating Winners
+
+These rules bring paused campaigns, ad sets, ad groups, or ads back to life automatically when performance data shows they are worth running again. Together with pause rules, they form a continuous loop that keeps only profitable activity running.
+
+---
+
+### Activate Campaigns with Positive ROAS
+
+**Platforms:** Facebook
+
+Re-enables any paused campaign that has delivered at least $1 in return for every $1 spent over the last 7 days, provided it has had some spend. Particularly useful after manual pauses or after a budget-exhaustion pause rule has fired.
+
+**Data Interval:** Last 7 Days (Today Included)
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | ROAS | is Greater or Equal to | 1 USD |
+| And | Amount Spent | is Greater than | $0 |
+
+**Action:** Activate Campaign
+
+**Scheduling:** Once per day, ideally in the morning.
+
+---
+
+### Activate Campaigns with Good CPA
+
+**Platforms:** TikTok
+
+The TikTok equivalent of the ROAS activation rule, using Cost Per Action as the primary metric. Campaigns that have generated conversions at or below your target CPA and have enough spend data are re-enabled automatically.
+
+**Data Interval:** Last 7 Days (Today Included)
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | CPA | is Less than | $2 |
+| And | Amount Spent | is Greater than | $50 |
+
+**Action:** Activate Campaign
+
+**Scheduling:** Once per day in the morning.
+
+<Tip>
+Adjust the CPA threshold to match your own target. If your offer pays $5 per conversion, a $2 CPA target gives you a 2.5× return.
+</Tip>
+
+---
+
+### Re-Activate Ad Sets with Positive ROAS
+
+**Platforms:** Facebook
+
+The same positive-ROAS logic applied at the ad set level. Brings back individual ad sets that were paused but have recovered to profitability over the last week.
+
+**Data Interval:** Last 7 Days (Today Included)
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | ROAS | is Greater or Equal to | 1 USD |
+| And | Amount Spent | is Greater than | $0 |
+
+**Action:** Activate Ad Set
+
+**Scheduling:** Once per day.
+
+---
+
+### Re-Activate Ad Groups with Good CPA
+
+**Platforms:** TikTok
+
+Restores paused ad groups that have delivered conversions below your CPA target, provided they've had enough spend to be a meaningful signal.
+
+**Data Interval:** Last 7 Days (Today Included)
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Amount Spent | is Greater than | $50 |
+| And | CPA | is Less than | $5 |
+
+**Action:** Activate Ad Group
+
+**Scheduling:** Once per day.
+
+---
+
+### Re-Activate Ads with Positive ROI
+
+**Platforms:** TikTok
+
+Brings back paused ads that have delivered a positive return on investment. Useful when you have a large creative library and want to cycle previously paused ads back in when conditions improve.
+
+**Data Interval:** Last 7 Days (Today Included)
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Amount Spent | is Greater than | $50 |
+| And | ROI | is Greater than | 0% |
+
+**Action:** Activate Ad
+
+**Scheduling:** Once per day.
+
+---
+
+## 3. Scaling Budgets Automatically
+
+These rules increase budgets on campaigns or ad sets/groups that are performing well and are about to run out of money for the day. Rather than manually topping up budgets each afternoon, the rule detects that a campaign is on track and increases its budget while there are still hours left to spend.
+
+---
+
+### Increase Budget When Nearly Spent — Ad Set / Ad Group Level
+
+**Platforms:** Facebook (Ad Sets) · TikTok (Ad Groups)
+
+When an ad set or ad group has already consumed 90% of its daily budget, it means the campaign is finding good inventory. Increasing the budget at this point allows it to keep spending for the rest of the day rather than going dark.
+
+**Data Interval:** Today
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Amount Spent | is Greater than | 90% of Daily Budget |
+
+**Action:** Increase Budget By **20%** of Current Budget
+- Do not allow the budget to go lower than **$50**
+- Do not allow the budget to go higher than **$200**
+
+**Scheduling:** Run every 30–60 minutes during peak spend hours.
+
+<Tip>
+The min/max budget guards prevent the rule from scaling a budget too low (which would be meaningless) or too high (which would risk overspend). Set these limits based on your own risk tolerance and campaign size.
+</Tip>
+
+---
+
+### Increase Budget When Nearly Spent + Positive ROAS — Campaign Level
+
+**Platforms:** Facebook · TikTok
+
+A more conservative version that adds a profitability condition before increasing the budget. The campaign must both be on pace (90%+ of daily budget spent) _and_ be profitable before a budget increase is applied.
+
+**Data Interval:** Today
+
+**Conditions (Facebook):**
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | ROAS | is Greater or Equal to | 1 USD |
+| And | Amount Spent | is Greater or Equal to | 90% of Daily Budget |
+
+**Conditions (TikTok):**
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | CPA | is Less or Equal to | $2 |
+| And | Amount Spent | is Greater or Equal to | 90% of Daily Budget |
+
+**Action:** Increase Budget By **20%** of Current Budget
+- Do not allow the budget to go lower than **$100**
+- Do not allow the budget to go higher than **$1,000**
+
+**Scheduling:** Every 30–60 minutes throughout the day.
+
+---
+
+### Scale Budget 2× a Week When CPA is Stable for 3 Consecutive Days
+
+**Platforms:** Facebook · TikTok
+
+Intraday budget scaling reacts to what is happening today. This rule takes a longer view: it confirms that a campaign has been consistently profitable over three individual days before increasing its budget, and it runs on a fixed schedule to prevent overly aggressive compounding.
+
+The three per-day CPA conditions are what set this rule apart from a simple "Last 7 Days" check. If a campaign had two great days followed by one bad day, a 7-day average might still look fine — but the per-day check would correctly hold back the budget increase until stability is restored.
+
+**Global Data Interval:** Last 7 Days
+
+| # | Metric | Interval | Operator | Value |
+|---|--------|----------|----------|-------|
+| If | Amount Spent | Last 7 Days | is Greater than | $150 |
+| And | Results | Last 7 Days | are Greater than | 50 |
+| And | CPA | Day 1 | is Less than | $15 _(your CPA target)_ |
+| And | CPA | Day 2 | is Less than | $15 |
+| And | CPA | Day 3 | is Less than | $15 |
+| And | Hour of Day | — | is in | 00:00 — Tue, Thu |
+
+**Action:** Increase Budget By **20%** of Current Budget
+- Do not allow the budget to go lower than **$50**
+- Do not allow the budget to go higher than **$1,000**
+
+**Scheduling:** Run every hour. The Hour of Day condition on Tuesday and Thursday means the budget change happens at the start of the day so Meta/TikTok can pace spend smoothly.
+
+<Tip>
+Scaling twice a week (Tuesday and Thursday) gives the algorithm time to adjust to each budget increase before the next one fires. If CPA is running well below target and you have higher risk tolerance, you can add Wednesday and Friday. Use the min/max budget caps as a safety net.
+</Tip>
+
+---
+
+## 4. Daily Budget Reset
+
+Budget reset rules fire once per day at a specific time to set every campaign's or ad set's budget back to a fixed amount. This is useful when Facebook or TikTok has carried over unspent budget from the previous day, inflating today's available amount.
+
+---
+
+### Reset Ad Set / Ad Group Budget Every Day at 9 AM
+
+**Platforms:** Facebook (Ad Sets) · TikTok (Ad Groups)
+
+Fires once per day at 9 AM and sets the budget back to your defined amount. The time condition is set using the **Hour of Day** metric in the rule conditions, so the rule runs on its normal schedule but only takes action when the hour matches.
+
+**Data Interval:** Today
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Hour of Day | is in | 09:00 — every day |
+|  | Timezone |  | America/New_York (or your preferred timezone) |
+
+**Action:** Set Budget to your target daily budget amount (e.g., $100)
+
+**Scheduling:** Run every hour so the rule checks reliably at the 9 AM window.
+
+---
+
+### Reset Campaign Budget Every Day at 9 AM (Pacific Time)
+
+**Platforms:** Facebook · TikTok
+
+Same as above but at the campaign level and in Pacific Time. On TikTok, you can also add a name filter to target only specific campaign groups — for example, campaigns whose names end with `eCom`.
+
+**Data Interval:** Today
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Campaign Name | Ends with | `eCom` _(optional — remove to apply to all campaigns)_ |
+| And | Hour of Day | is in | 09:00 — every day |
+|  | Timezone |  | PST8PDT (Pacific Time) |
+
+**Action:** Set Budget to your target daily budget amount
+
+**Scheduling:** Run every hour.
+
+---
+
+## 5. Bid Optimisation
+
+Bid rules adjust what you pay per click or per impression based on actual performance data. Instead of setting a static bid and leaving it, these rules keep your bids aligned with what the traffic is actually worth.
+
+---
+
+### Set Bid to 80% of EPC
+
+**Platforms:** Facebook
+
+EPC (Earnings Per Click) is the average revenue generated per click. Setting your bid to 80% of EPC means you are paying no more than 80 cents for every dollar of revenue earned — a built-in profit margin baked into every bid.
+
+**Data Interval:** Last 3 Days (Today Included)
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Amount Spent | is Greater than | $50 |
+| And | Revenue | is Greater than | $0 |
+
+**Action:** Set Bid to **80% of EPC**
+- Do not allow the bid to go lower than **$0.20**
+- Do not allow the bid to go higher than **$0.65**
+
+**Scheduling:** Once per day, or every few hours if your EPC fluctuates significantly intraday.
+
+<Tip>
+The 80% multiplier is a starting point. If your campaigns are consistently spending out, you may be bidding too high — try 70%. If they're struggling to win impressions, try 85–90%.
+</Tip>
+
+---
+
+### Increase Bid When Underspending
+
+**Platforms:** Facebook
+
+If a campaign has spent less than 50% of its daily budget by midday, it is likely losing auctions — either because the bid is too low or the targeting is too narrow. This rule increases the bid by 10% to improve competitiveness.
+
+**Data Interval:** Today
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Amount Spent | is Less or Equal to | 50% of Daily Budget |
+| And | Hour of Day | is in | Mon–Sun 12:00–23:00 |
+|  | Timezone |  | America/New_York |
+
+**Action:** Increase Bid By **10%**
+
+**Scheduling:** Run every 1–2 hours between noon and midnight.
+
+---
+
+## 6. Cloning for Scale
+
+Clone rules create duplicate copies of campaigns, ad sets, or ad groups. This is a scaling technique: instead of increasing a single campaign's budget indefinitely (which can cause Facebook or TikTok to exit the learning phase), you duplicate winning campaigns so multiple versions compete simultaneously, each with its own budget and audience delivery.
+
+---
+
+### Clone Campaigns 3 Times
+
+**Platforms:** Facebook · TikTok
+
+The simplest clone rule. Any campaign that has had any spend is duplicated three times. Best used as a one-off scaling action rather than a recurring rule, and typically run manually after identifying a winner.
+
+**Data Interval:** Today
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Amount Spent | is Greater or Equal to | $0 |
+
+**Action:** Clone Campaign — **3 copies**
+
+**Scheduling:** Run once manually. Disable the rule after it fires to avoid repeated cloning.
+
+---
+
+### Clone Campaigns That Spent Less Than 50% of Their Budget
+
+**Platforms:** Facebook · TikTok
+
+Targets campaigns that had available budget yesterday but didn't spend it all. Cloning them creates fresh duplicates — sometimes a new copy will find better delivery and spend through more efficiently, especially when the original has accumulated poor historical signals with the ad network.
+
+**Data Interval:** Yesterday
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Amount Spent | is Less than | 50% of Daily Budget |
+
+**Action:** Clone Campaign
+
+**Scheduling:** Run once per day, typically in the morning.
+
+---
+
+### Clone Winning Campaigns by ROAS
+
+**Platforms:** Facebook
+
+Creates copies of campaigns that have proven to be profitable over a longer window and have had significant spend. This is a strategic scaling move: once you know a campaign converts well, you duplicate it to multiply its budget capacity without touching the original.
+
+**Data Interval:** Last 7 Days (Today Included)
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | ROAS | is Greater than | 1 USD |
+| And | Amount Spent | is Greater or Equal to | $200 |
+
+**Action:** Clone Campaign
+
+**Scheduling:** Run once per day, or on demand.
+
+---
+
+### Clone Ad Groups with Good EPC
+
+**Platforms:** TikTok
+
+Identifies ad groups that are generating strong earnings per click and have enough spend to be statistically reliable, then duplicates them. Works well for traffic arbitrage setups where EPC is the primary profitability signal.
+
+**Data Interval:** Last 3 Days (Today Included)
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Amount Spent | is Greater than | $50 |
+| And | EPC (traffic source) | is Greater than | $0.55 |
+
+**Action:** Clone Ad Group
+
+**Scheduling:** Once per day.
+
+---
+
+### Clone Ad Groups That Are Underspending
+
+**Platforms:** TikTok
+
+When an ad group hasn't spent much in the last 3 days, creating a fresh copy can help it find better delivery. This is especially effective on TikTok where the algorithm's learning phase can stall on older ad groups.
+
+**Data Interval:** Last 3 Days (Today Included)
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Amount Spent | is Less than | $50 |
+
+**Action:** Clone Ad Group — **3 copies**
+
+**Scheduling:** Once per day, in the morning.
+
+---
+
+## 7. Day Parting
+
+Day parting rules control when your campaigns run. They activate campaigns at the start of a window and pause them at the end, completely hands-free. Useful for advertisers who only want to pay for traffic during hours when their offer converts well, or when their support team is available to handle leads.
+
+---
+
+### Run Campaigns Only During Working Hours
+
+**Platforms:** Facebook · TikTok
+
+Starts all selected campaigns at 9 AM Monday–Friday and pauses them at 5 PM. Campaigns are off over weekends and outside business hours. The "Otherwise" clause in the action means you only need one rule — not separate start and stop rules.
+
+**Data Interval:** N/A — this rule is time-based, not performance-based
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Hour of Day | is in | Mon–Fri 09:00–17:00 |
+|  | Timezone |  | America/New_York (or your preferred timezone) |
+
+**Action:** Start Campaign — **Otherwise:** Pause Campaign
+
+**Scheduling:** Run every hour, every day.
+
+<Tip>
+To customise the hours, adjust the checked boxes in the Hour of Day grid. You can select any combination of days and hours — for example, Mon–Fri 08:00–22:00 for a longer active window.
+</Tip>
+
+---
+
+## 8. Creative Fatigue Detection
+
+Creative fatigue happens when the same people have seen your ad too many times. The creative stops feeling fresh, CTR drops, and your cost-per-result climbs. What makes fatigue detection powerful in TheOptimizer is the ability to assign a **different data interval to each individual condition**. Rather than averaging performance over a week, you can check each day in isolation — and only fire the rule when the same KPI has been moving in the wrong direction for two or three consecutive days.
+
+<Note>
+**How per-condition intervals work:** When a conditions table below shows an "Interval" column, each row is evaluated against that specific window of data. "Day 1" = yesterday, "Day 2" = two days ago, "Day 3" = three days ago, and so on.
+</Note>
+
+---
+
+### Detect Fatigued Ads: 3-Day CTR Decline and CPA Rise
+
+**Platforms:** Facebook
+
+Rather than checking a single rolled-up average, this rule compares each day individually — confirming that CTR has been falling and CPA has been rising for three consecutive days. All three must be true before the rule fires, which dramatically reduces false positives.
+
+**Global Data Interval:** Last 3 Days
+
+| # | Metric | Interval | Operator | Value |
+|---|--------|----------|----------|-------|
+| If | Impressions | Last 3 Days | is Greater than | 2,000 |
+| And | Clicks | Last 3 Days | is Greater than | 50 |
+| And | Frequency | Last 3 Days | is Greater than | 2 |
+| And | CTR | Day 3 | is Less than | 100% of CTR (Day 4) |
+| And | CTR | Day 2 | is Less than | 100% of CTR (Day 3) |
+| And | CTR | Day 1 | is Less than | 100% of CTR (Day 2) |
+| And | CPA | Day 3 | is Greater than | 100% of CPA (Day 4) |
+| And | CPA | Day 2 | is Greater than | 100% of CPA (Day 3) |
+| And | CPA | Day 1 | is Greater than | 100% of CPA (Day 2) |
+
+**Action:** Send Alert (Slack / Telegram / Email) — or Pause Ad if you prefer automatic action
+
+**Scheduling:** Every 3 hours.
+
+<Tip>
+The CTR conditions say "CTR Day 3 is less than 100% of CTR Day 4" — meaning CTR three days ago was lower than CTR four days ago, confirming the start of the decline. Repeating this for Day 2 vs Day 3 and Day 1 vs Day 2 confirms the downward trend held across all three days. If you don't track conversions, you can remove the CPA conditions and use the CTR trend alone, though pairing both metrics produces far fewer false positives.
+</Tip>
+
+---
+
+### Alert: Ad Still Performing Well but Frequency Is Rising
+
+**Platforms:** Facebook
+
+The best time to replace a fatigued creative is _before_ the CPA deteriorates — while the ad is still performing. This rule detects that early-warning window: CPA is still within your target for the last 3 days, but frequency has already climbed to 3 or above. Rather than pausing, it sends a notification so you can queue a replacement creative in advance.
+
+**Global Data Interval:** Last 6 Days
+
+| # | Metric | Interval | Operator | Value |
+|---|--------|----------|----------|-------|
+| If | Amount Spent | Last 6 Days | is Greater than | $5 |
+| And | CPA | Day 1 | is Less than | $15 _(your CPA target)_ |
+| And | CPA | Day 2 | is Less than | $15 |
+| And | CPA | Day 3 | is Less than | $15 |
+| And | Frequency | Days 3–1 | is Greater or Equal to | 3 |
+
+**Action:** Send Alert (Slack / Telegram / Email)
+
+**Scheduling:** Once per day.
+
+<Tip>
+This rule is designed to be paired with the pause rule below. Think of it as a two-stage system: this alert fires first ("your ad is about to saturate — prepare a replacement"), and then the pause rule fires if performance actually degrades.
+</Tip>
+
+---
+
+### Pause: Saturated Ad with Degraded CPA
+
+**Platforms:** Facebook
+
+When a fatigued ad has already pushed CPA above your target for three consecutive days and frequency has climbed above 3, this rule pauses the ad automatically. Because it checks each of the last 3 days individually (not just an average), it avoids pausing ads that had one bad day surrounded by good ones.
+
+**Global Data Interval:** Last 7 Days
+
+| # | Metric | Interval | Operator | Value |
+|---|--------|----------|----------|-------|
+| If | Amount Spent | Last 7 Days | is Greater than | $5 |
+| And | CPA | Day 1 | is Greater than | $15 _(your CPA target)_ |
+| And | CPA | Day 2 | is Greater than | $15 |
+| And | CPA | Day 3 | is Greater than | $15 |
+| And | Frequency | Days 3–1 | is Greater than | 3 |
+
+**Action:** Pause Ad
+
+**Scheduling:** Once per day, typically in the morning.
+
+<Tip>
+This is the companion rule to the alert above. Together they give you a proactive workflow: alert when saturation is approaching → launch replacement creative → pause when the old ad has fully degraded.
+</Tip>
+
+---
+
+### Pause TikTok Ads with Low Hook Rate and Low CTR
+
+**Platforms:** TikTok
+
+On TikTok, creative fatigue manifests differently. Because the algorithm continuously serves content to fresh audiences, frequency rarely spikes the way it does on Facebook. Instead, the signal is a creative that has simply stopped stopping the scroll. The **Hook Rate** — the percentage of viewers who watched at least the first 3 seconds — is the leading indicator. Combined with a low CTR, this confirms the creative is no longer resonating.
+
+**Global Data Interval:** Last 3 Days
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Amount Spent | is Greater than | $30 |
+| And | Hook Rate | is Less than | 20% |
+| And | CTR | is Less than | 1% |
+
+**Action:** Pause Ad
+
+**Scheduling:** Once per day.
+
+<Tip>
+A healthy Hook Rate for most direct-response TikTok ads sits around 25–30%. If your best performers are at 35–40%, set your fatigue threshold at 20% to catch creatives that are materially underperforming your own baseline.
+</Tip>
+
+---
+
+## 9. Native Ads — Site & Ad Rules
+
+Native ad platforms like Taboola, Outbrain, MGID, and RevContent have a different structure from Facebook and TikTok. Instead of Ad Sets and Ads, you work with three levels:
+
+- **Campaign** — the top-level budget container, same as other platforms.
+- **Site** — the individual placements (a specific website or page where your ad appears). Called _Sites_ on Taboola, _Sections_ or _Publishers_ on Outbrain, _Widgets_ on MGID, AdsKeeper, and RevContent.
+- **Ad** — the actual ad creative (headline + image combination).
+
+Rules at the site and ad level are the most valuable part of native automation. Blocking a low-performing site is equivalent to negative placement targeting — once blocked, it no longer receives your budget.
+
+<Note>
+**Site bid limits:** Taboola allows a maximum of 200 sites with custom bids per campaign. Outbrain allows approximately 500 bid changes per campaign. If you are running high-volume campaigns and hitting these limits, ask your account manager to increase them.
+</Note>
+
+---
+
+### Block Low CTR Sites
+
+**Platforms:** Taboola · Outbrain · MGID · RevContent
+
+Sites with very low CTR drag down your overall campaign CTR — and on most native networks, a lower CTR reduces your traffic priority regardless of your bid. This rule blocks any site that has received enough impressions to generate reliable data but is still clicking at under 0.05%, with no revenue to justify the poor click rate.
+
+**Data Interval:** Last 7 or Last 14 Days
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Impressions | is Greater than | 20,000 |
+| And | CTR | is Less than | 0.05% |
+| And | Tracker Revenue | is Equal to | $0 |
+
+**Action:** Block Site
+
+**Scheduling:** Run every 10–15 minutes. Sites accumulate impressions quickly, so checking frequently helps you cut bad placements before they consume significant budget.
+
+---
+
+### Block Sites with Suspiciously High LP CTR (Bot Traffic)
+
+**Platforms:** Taboola · Outbrain · MGID · RevContent
+
+A landing page CTR above 75% is a strong signal of bot clicks — bots typically click through to the landing page at near-100% rates. These clicks cost money but generate no conversions, and they skew your campaign's performance data.
+
+**Data Interval:** Last 7 or Last 14 Days
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Clicks | is Greater than | 50 |
+| And | LP CTR | is Greater than | 75% |
+| And | Tracker Revenue | is Equal to | $0 |
+
+**Action:** Block Site
+
+**Scheduling:** Every 10–15 minutes.
+
+<Tip>
+You can also create the inverse rule — block sites with a very low LP CTR (under 10% with 50+ clicks and no revenue). Abnormally low LP CTR indicates clicks that never load the landing page, which is another bot signal. Running both rules gives you a bracket that catches bot traffic from both ends.
+</Tip>
+
+---
+
+### Block Unprofitable Sites
+
+**Platforms:** Taboola · Outbrain · MGID · RevContent
+
+Once a site has accumulated enough spend to provide a meaningful signal, cut it if it's generating negative ROI and no revenue. This is the native equivalent of the Facebook/TikTok pause rules — it protects budget by eliminating proven money-losers at the placement level rather than pausing the whole campaign.
+
+**Data Interval:** Last 7 or Last 14 Days
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Cost | is Greater than | $50 |
+| And | Tracker ROI | is Less than | -10% |
+| And | Tracker Revenue | is Equal to | $0 |
+
+**Action:** Block Site
+
+**Scheduling:** Every 15–30 minutes.
+
+<Tip>
+The `-10%` ROI threshold gives sites a small margin of tolerance before being blocked. If your offer has conversion postback delays (common with Cash on Delivery or affiliate networks), widen this to `-20%` or `-30%` and pair it with an unblock rule so sites are recovered once delayed conversions post.
+</Tip>
+
+---
+
+### Unblock Profitable Sites (After Conversion Delay)
+
+**Platforms:** Taboola · Outbrain · MGID · RevContent
+
+Many affiliate and e-commerce offers have known postback delays — conversions may arrive 24–48 hours after the click. This means a site that was blocked while its data looked flat may actually be profitable once all conversions have posted. This rule automatically re-enables blocked sites that have since shown positive ROI.
+
+**Data Interval:** Last 7 or Last 14 Days
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Cost | is Greater than | $20 |
+| And | Tracker ROI | is Greater or Equal to | 0% |
+
+**Action:** Unblock Site
+
+**Scheduling:** Once per day, typically in the morning after overnight conversion data has posted.
+
+---
+
+### Pause Low CTR Ads
+
+**Platforms:** Taboola · Outbrain · MGID · RevContent
+
+An ad with a high impression count but very low CTR and no revenue is not winning attention — pausing it lets the platform redistribute budget to better-performing ads in the same campaign.
+
+**Data Interval:** Last 7 or Last 14 Days
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Impressions | is Greater than | 20,000 |
+| And | Ad CTR | is Less than | 0.1% |
+| And | Tracker Revenue | is Equal to | $0 |
+
+**Action:** Pause Ad
+
+**Scheduling:** Every 10–15 minutes.
+
+---
+
+### Activate Profitable Ads
+
+**Platforms:** Taboola · Outbrain · MGID · RevContent
+
+When a paused ad has started generating revenue or positive ROI — often due to delayed conversion data — this rule re-enables it automatically. Particularly useful for Cash on Delivery or high-payout offers where an ad may look unprofitable for a day or two before its conversions catch up.
+
+**Data Interval:** Last 7 or Last 14 Days
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Ad CTR | is Greater than | 0.1% |
+| And | Tracker ROI | is Greater than | 1% |
+
+**Action:** Activate Ad
+
+**Scheduling:** Once per day.
+
+---
+
+### Scale Campaign Budget — Taboola
+
+**Platforms:** Taboola
+
+Taboola's two bidding strategies require different scaling approaches. With **Maximum Conversions** (the default for most advertisers), the algorithm is sensitive to budget shocks — increasing the budget by more than 30% in a single step can force the algorithm to re-enter learning and spike your CPA. With **Enhanced CPC (Smart Bids)**, you control the bids and the algorithm is more robust, allowing larger percentage increases.
+
+**For Maximum Conversions campaigns:** Scale 20–25%, two to three times per week.
+
+**Data Interval:** Last 7 Days (Today Included)
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Traffic Source Spent | is Greater or Equal to | 350% of Campaign Daily Budget _(confirms ~3.5 days of active spend)_ |
+| And | Tracker ROI | is Greater or Equal to | 25% _(Last 7 Days)_ |
+| And | Tracker ROI | is Greater or Equal to | 25% _(Yesterday)_ |
+| And | Hour of Day | is in | 01:00 — Mon, Wed, Fri |
+
+**Action:** Increase Budget By **20%** of Current Budget
+- Do not allow the budget to go lower than **$50**
+- Do not allow the budget to go higher than **$2,500**
+
+**For Enhanced CPC campaigns:** You can be more aggressive — scale 30–50% every day or every other day.
+
+**Scheduling:** Run every hour. The Hour of Day condition ensures the increase fires at 1 AM so Taboola can pace the new budget smoothly from the start of the day.
+
+<Tip>
+Checking both last-7-days ROI _and_ yesterday's ROI ensures you aren't scaling a campaign that had a few profitable days but fell apart recently. The 350% spend condition confirms the campaign has been consistently active and not stuck in a learning pause.
+</Tip>
+
+---
+
+### Scale Campaign Budget — Outbrain
+
+**Platforms:** Outbrain
+
+Outbrain's budget scaling works best when your campaign is set to **Daily budget allocation with Accelerated pacing**. Standard and Daily Target pacing modes are not well-suited to automated scaling because they manage their own delivery curves. With Accelerated pacing, Outbrain spends the daily budget as fast as possible, making budget-based rules a reliable proxy for performance.
+
+**Data Interval:** Today
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Traffic Source Spent | is Greater or Equal to | 90% of Campaign Daily Budget |
+| And | Tracker ROI | is Greater or Equal to | 20% |
+| And | Hour of Day | is in | desired scaling window (e.g. 10:00–18:00) |
+
+**Action:** Increase Budget By **20%** of Current Budget
+- Do not allow the budget to go lower than **$50**
+- Do not allow the budget to go higher than **$1,000**
+
+**Scheduling:** Every 1–2 hours.
+
+<Tip>
+Outbrain has a known reporting delay of up to a few hours on some metrics. If you notice rules firing on stale data, switch the **Traffic Source Spent** condition to **Estimated Spent**, which uses real-time estimates rather than the delayed official figures.
+</Tip>
+
+---
+
+### Bid Day Parting — Lower Bid During Off-Hours Instead of Pausing
+
+**Platforms:** Taboola · Outbrain
+
+On native networks, pausing a campaign entirely during off-hours can reduce your traffic priority even after you resume, because the algorithm uses historical delivery patterns to allocate inventory. A softer approach is to lower the bid during low-converting hours rather than pausing. This keeps the campaign active at a lower cost, preserving your delivery history while limiting spend.
+
+**Data Interval:** Today
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Impressions | is Greater than | 10 _(ensures rule only runs on active campaigns)_ |
+| And | Hour of Day | is in | off-peak hours (e.g. 22:00–06:00) |
+|  | Timezone |  | your target GEO timezone |
+
+**Action:** Set Campaign Bid to your reduced off-hours value (e.g., $0.05)
+
+**Scheduling:** Run every hour. Create a matching rule with the active hours window and your normal bid to restore it during peak hours.
+
+<Tip>
+Run this rule in pairs: one rule sets a low bid during off-hours, and a companion rule sets the normal bid during active hours. Both use the same Hour of Day condition with their respective time windows.
+</Tip>
+
+---
+
+### Automate Site / Section Bids Based on ROI
+
+**Platforms:** Taboola (Site Bid) · Outbrain (Section Bid)
+
+Rather than using a single campaign-level bid for all placements, this rule adjusts bids site-by-site based on actual performance. Sites with positive ROI and good EPC get a higher bid; the formula ties your spend directly to what each placement is worth.
+
+**Data Interval:** Last 3–7 Days
+
+**Conditions (increase bid on profitable sites):**
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Tracker ROI | is Greater than | 20% |
+| And | Tracker EPC | is Greater than | $2.70 |
+
+**Action:** Set Site Bid / Section Bid to **$0.80** _(your target CPC for profitable placements)_
+- Or: Increase Bid by 15% of Current Bid
+- Do not allow the bid to go lower than **$0.05**
+- Do not allow the bid to go higher than **$2.00**
+
+**Conditions (decrease bid on poor sites):**
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Cost | is Greater than | $30 |
+| And | Tracker CPA | is Greater than | $15 _(your CPA limit)_ |
+| And | Tracker ROI | is Less than | 10% |
+
+**Action:** Decrease Site Bid / Section Bid by **15%** of Current Bid
+
+**Scheduling:** Every 30 minutes.
+
+---
+
+### Set Ad Bid to 80% of EPC
+
+**Platforms:** Outbrain · MGID · RevContent
+
+Outbrain supports ad-level bid changes directly through the API — a capability not available in Outbrain's own interface. This rule sets each ad's bid to 80% of its EPC, ensuring you maintain a built-in profit margin on every click. MGID and RevContent offer similar ad-level bid controls.
+
+**Data Interval:** Last 3 Days
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Cost | is Greater than | $20 |
+| And | Tracker Revenue | is Greater than | $0 |
+
+**Action:** Set Ad Bid to **80% of EPC**
+- Do not allow the bid to go lower than **$0.03**
+- Do not allow the bid to go higher than **$0.80**
+
+**Scheduling:** Once per day, or every few hours if your EPC fluctuates significantly.
+
+<Tip>
+The 80% multiplier means you're targeting a 20% margin on every click. If your campaigns are underspending, try raising the multiplier to 90%. If margins are tight, lower it to 70%.
+</Tip>
+
+---
+
+### Widget Coefficient Change
+
+**Platforms:** MGID · AdsKeeper
+
+Widget Coefficient is a multiplier on top of the base campaign bid, available exclusively on MGID and AdsKeeper. Setting a coefficient above 1.0 increases how much you bid on a specific widget relative to your campaign baseline; below 1.0 reduces it. This gives you fine-grained control without changing the base campaign bid.
+
+**Data Interval:** Last 7 Days
+
+**Conditions (increase coefficient on good widgets):**
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Cost | is Greater than | $30 |
+| And | Tracker ROI | is Greater than | 20% |
+
+**Action:** Set Widget Coefficient to **1.3** _(30% above base bid)_
+- Do not allow the coefficient to go lower than **0.5**
+- Do not allow the coefficient to go higher than **2.0**
+
+**Conditions (reduce coefficient on poor widgets):**
+
+| # | Metric | Operator | Value |
+|---|--------|----------|-------|
+| If | Cost | is Greater than | $30 |
+| And | Tracker ROI | is Less than | -10% |
+
+**Action:** Set Widget Coefficient to **0.7** _(30% below base bid)_
+
+**Scheduling:** Once per day.
+
+<Tip>
+Widget coefficients are an alternative to hard blocking — instead of cutting a placement entirely, you reduce what you pay for it. Useful for widgets that are marginally unprofitable but still generating some revenue, where you'd rather keep them at a lower bid than lose the traffic source entirely.
+</Tip>
+
+---
+
+## Tips for Using These Examples
+
+**Start with the spend threshold.** Every pause and activate rule works best when you set a meaningful minimum spend before acting. Too low and you'll pause campaigns that just had a bad hour. A good starting point is 1–2× your target CPA, or $50–$100 depending on your vertical.
+
+**Use the data interval wisely.** Last 7 Days smooths out day-to-day volatility and is good for structural decisions (pause, activate, clone). Today is better for intraday budget and bid adjustments where you need to react quickly.
+
+**Layer conditions, don't rely on one metric.** The strongest rules combine a spend threshold + a performance metric + optionally a name filter. This keeps the rule scoped and prevents accidental mass pauses.
+
+**Use rule groups to organise and control.** If you run the same rule pattern across multiple accounts or campaigns, put them in named groups. You can pause an entire group at once, which is much easier than managing individual rules.
+
+**Test on a small set of campaigns first.** When setting up a new rule, use the campaign filter in the **Select Campaigns** section to restrict it to 2–3 test campaigns. Confirm it behaves as expected before expanding it to your full account.

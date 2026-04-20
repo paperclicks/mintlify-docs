@@ -1,0 +1,1064 @@
+---
+title: "Native Network Rules: MGID, RevContent, NewsBreak"
+description: "Proven automation rule patterns for MGID, RevContent, and NewsBreak — covering widget blocking, bid tiering, fraud detection, and budget scaling."
+sidebarTitle: "Other Native Rules"
+---
+
+MGID, RevContent, and NewsBreak each have distinct optimization mechanics, but share a common DNA: aggressive widget-level blocking, ROI-tiered bid adjustments, and rapid reactivation loops. This page covers the proven rule patterns for all three platforms, drawn from analysis of thousands of real active rules. Use the tabs to navigate to your platform — or read all three to spot the patterns that carry across networks.
+
+<Tabs>
+  <Tab title="RevContent">
+
+RevContent automation centers on two core strategies: systematically pausing unprofitable widgets through spend and conversion thresholds, and dynamically adjusting bids using ROI-tiered increments. Analysis of 1,516 active RevContent rules shows 855 widget pause rules and 325 ROI-based bid adjustments — RevContent's signature bid-tiering system is the foundation of performance optimization here.
+
+---
+
+## Widget pausing — zero-conversion blocks
+
+These rules form the first line of defense against unprofitable widgets. The pattern is consistent: identify widgets that spend money without converting, then pause them aggressively across different timeframes.
+
+### Quick kill: $25 spend, zero conversions (3-day window)
+
+Pause widgets within 3 days of reaching $25 spend with zero traffic source conversions. This quick-reaction rule prevents early testing spend from accumulating into larger losses.
+
+**Data Interval:** Last 3 days | **Scheduling:** Every 6 hours
+
+| Metric | Operator | Value |
+|--------|----------|-------|
+| Amount Spent | Greater than | $25 |
+| Tracker Conversions | Less than | 1 |
+
+**Action:** Pause Widget
+
+<Tip>
+Use alongside longer-lookback rules to catch widgets going cold mid-campaign. Pair with reactivation rules to retry proven performers after brief rest periods.
+</Tip>
+
+---
+
+### Medium-term spend cap: $55+ spend, zero conversions (10-day window)
+
+Pause widgets after $55 spend over 10 days without any tracker conversions. This extended lookback catches sustained non-performers that slip through daily monitoring.
+
+**Data Interval:** Last 10 days | **Scheduling:** Every 8 hours
+
+| Metric | Operator | Value |
+|--------|----------|-------|
+| Amount Spent | Greater or Equal to | $55 |
+| Tracker Conversions | Less than | 1 |
+
+**Action:** Pause Widget
+
+<Tip>
+Adjust thresholds by vertical: lower to $35–40 for high-frequency testing, raise to $80–100 for slower conversion paths (nutra, VSL, subscription offers).
+</Tip>
+
+---
+
+### Long-term loss limit: $120+ spend, single conversion or less (30-day window)
+
+Pause widgets exceeding $120 spend over 30 days with one or fewer tracker conversions. This rule targets high spend-to-conversion ratios that systematically drag down campaign profitability.
+
+**Data Interval:** Last 30 days | **Scheduling:** Daily at 8 AM
+
+| Metric | Operator | Value |
+|--------|----------|-------|
+| Amount Spent | Greater or Equal to | $120 |
+| Tracker Conversions | Less or Equal to | 1 |
+
+**Action:** Pause Widget
+
+---
+
+### High spend, zero landing page visits (high clicks, no LP clicks)
+
+Pause widgets generating 100+ traffic source clicks but zero landing page clicks over 14 days, indicating a traffic-source-to-landing-page conversion failure.
+
+**Data Interval:** Last 14 days | **Scheduling:** Daily at 8 AM
+
+| Metric | Operator | Value |
+|--------|----------|-------|
+| Traffic Source Clicks | Greater or Equal to | 100 |
+| LP Clicks | Less than | 1 |
+| Impressions | Greater or Equal to | 15 |
+
+**Action:** Pause Widget
+
+<Tip>
+This pattern reveals broken landing pages, domain issues, or traffic that never reaches your funnel. Diagnose LP redirect settings and domain accessibility before re-enabling.
+</Tip>
+
+---
+
+## Fraud & quality detection
+
+### Suspicious conversion rate: publisher conversions > 15% of clicks (7-day window)
+
+Pause widgets where tracker conversions exceed 15% of traffic source clicks over 7 days — an unusually high rate indicating potential fraud or misattribution.
+
+**Data Interval:** Last 7 days | **Scheduling:** Every 12 hours
+
+| Metric | Operator | Value |
+|--------|----------|-------|
+| Publisher Conversions | Greater than | 15% of Traffic Source Clicks |
+| Traffic Source Clicks | Greater or Equal to | 50 |
+
+**Action:** Pause Widget
+
+<Warning>
+High conversion rates (>15%) are rare in affiliate marketing and suggest either pixel flooding, publisher fraud, or misconfigurations.
+</Warning>
+
+---
+
+### High clicks on landing page, zero conversions (14-day funnel check)
+
+Pause widgets with 50+ traffic source clicks, 10+ LP clicks, but zero tracker conversions over 14 days. This signals either a broken post-LP funnel or landing page quality issues.
+
+**Data Interval:** Last 14 days | **Scheduling:** Daily at 8 AM
+
+| Metric | Operator | Value |
+|--------|----------|-------|
+| Traffic Source Clicks | Greater or Equal to | 50 |
+| LP Clicks | Greater or Equal to | 10 |
+| Tracker Conversions | Less than | 1 |
+
+**Action:** Pause Widget
+
+---
+
+### Extremely low CTR: 20,000+ impressions below 0.1% CTR (30-day window)
+
+Pause widgets reaching 20,000 impressions with a CTR under 0.1% over 30 days. This indicates severely poor publisher inventory or traffic source quality.
+
+**Data Interval:** Last 30 days | **Scheduling:** Daily at 8 AM
+
+| Metric | Operator | Value |
+|--------|----------|-------|
+| Impressions | Greater or Equal to | 20,000 |
+| CTR | Less than | 0.1% |
+| Amount Spent | Greater or Equal to | $40 |
+
+**Action:** Pause Widget
+
+---
+
+## ROI-tiered bid management
+
+The RevContent bid-adjustment system is the signature automation pattern: six distinct ROI tiers control bid increases and decreases in 10%, 20%, or 30% increments. These rules operate in parallel on a 12-hour cycle, creating a self-balancing system where widgets naturally trend toward profitability.
+
+### Tier 1 — critical loss: ROI below −35% (bid down 20%)
+
+**Data Interval:** Last 7 days | **Scheduling:** Every 12 hours
+
+| Metric | Operator | Value |
+|--------|----------|-------|
+| Amount Spent | Greater than | $20 |
+| Tracker ROI | Less than | −35% |
+| Traffic Source Conversions | Greater or Equal to | 1 |
+
+**Action:** Decrease Widget Bid by 20%
+
+---
+
+### Tier 2 — moderate loss: ROI −35% to −13% (bid down 15%)
+
+**Data Interval:** Last 7 days | **Scheduling:** Every 12 hours
+
+| Metric | Operator | Value |
+|--------|----------|-------|
+| Amount Spent | Greater than | $20 |
+| Tracker ROI | Greater or Equal to | −35% |
+| Tracker ROI | Less than | −13% |
+| Traffic Source Conversions | Greater or Equal to | 1 |
+
+**Action:** Decrease Widget Bid by 15%
+
+---
+
+### Tier 3 — slight loss: ROI −13% to 0% (bid down 10%)
+
+**Data Interval:** Last 7 days | **Scheduling:** Every 12 hours
+
+| Metric | Operator | Value |
+|--------|----------|-------|
+| Amount Spent | Greater than | $20 |
+| Tracker ROI | Greater or Equal to | −13% |
+| Tracker ROI | Less than | 0% |
+| Traffic Source Conversions | Greater or Equal to | 1 |
+
+**Action:** Decrease Widget Bid by 10%
+
+---
+
+### Tier 4 — moderate profit: ROI 35% to 85% (bid up 10%)
+
+**Data Interval:** Last 7 days | **Scheduling:** Every 12 hours
+
+| Metric | Operator | Value |
+|--------|----------|-------|
+| Amount Spent | Greater than | $20 |
+| Tracker ROI | Greater or Equal to | 35% |
+| Tracker ROI | Less than | 85% |
+| Traffic Source Conversions | Greater or Equal to | 1 |
+
+**Action:** Increase Widget Bid by 10%
+
+---
+
+### Tier 5 — strong profit: ROI 85% to 160% (bid up 20%)
+
+**Data Interval:** Last 7 days | **Scheduling:** Every 12 hours
+
+| Metric | Operator | Value |
+|--------|----------|-------|
+| Amount Spent | Greater than | $20 |
+| Tracker ROI | Greater or Equal to | 85% |
+| Tracker ROI | Less than | 160% |
+| Traffic Source Conversions | Greater or Equal to | 1 |
+
+**Action:** Increase Widget Bid by 20%
+
+---
+
+### Tier 6 — exceptional profit: ROI > 160% (bid up 30%)
+
+**Data Interval:** Last 7 days | **Scheduling:** Every 12 hours
+
+| Metric | Operator | Value |
+|--------|----------|-------|
+| Amount Spent | Greater than | $20 |
+| Tracker ROI | Greater than | 160% |
+| Traffic Source Conversions | Greater or Equal to | 1 |
+
+**Action:** Increase Widget Bid by 30% (capped at maximum bid)
+
+<Tip>
+Always set a maximum bid cap (e.g., $2.50) to prevent runaway costs. These six tiers running in parallel create a self-balancing feedback loop where widgets naturally migrate toward the profitable ROI bands.
+</Tip>
+
+---
+
+## Reactivating profitable widgets
+
+### Restart positive ROI widgets (7-day window)
+
+Reactivate widgets showing positive tracker ROI (>0%) over the last 7 days, regardless of spend. This catches widgets that recovered quickly and deserve another chance.
+
+**Data Interval:** Last 7 days | **Scheduling:** Every 12 hours
+
+| Metric | Operator | Value |
+|--------|----------|-------|
+| Tracker ROI | Greater than | 0% |
+| Traffic Source Conversions | Greater or Equal to | 1 |
+
+**Action:** Start Widget
+
+---
+
+### Restart high-volume profitable widgets (30-day proven performer)
+
+Reactivate widgets that spent $300+ over 30 days with tracker ROI above −30% and at least 1 conversion. These widgets have genuine historical profitability and deserve scaling.
+
+**Data Interval:** Last 30 days | **Scheduling:** Daily at 10 AM
+
+| Metric | Operator | Value |
+|--------|----------|-------|
+| Amount Spent | Greater than | $300 |
+| Tracker ROI | Greater than | −30% |
+| Tracker Conversions | Greater or Equal to | 1 |
+
+**Action:** Start Widget
+
+---
+
+### Positive net revenue activation (14-day baseline)
+
+Reactivate widgets with tracker net revenue above $0 over the last 14 days, using absolute profit rather than ROI percentage.
+
+**Data Interval:** Last 14 days | **Scheduling:** Daily
+
+| Metric | Operator | Value |
+|--------|----------|-------|
+| Tracker Net Revenue | Greater than | $0 |
+
+**Action:** Start Widget
+
+---
+
+## Campaign-level safety & scaling
+
+### Daily spend cap — $20 (testing phase)
+
+Pause the entire campaign if daily spend exceeds $20 today. Use this as a safety valve during high-volume testing periods.
+
+**Data Interval:** Today | **Scheduling:** Every 2 hours
+
+| Metric | Operator | Value |
+|--------|----------|-------|
+| Amount Spent | Greater or Equal to | $20 |
+
+**Action:** Pause Campaign
+
+---
+
+### Daily spend cap — $15 (conservative brand testing)
+
+Pause campaign after spending $15 today to limit exposure during initial publisher testing or A/B tests.
+
+**Data Interval:** Today | **Scheduling:** Every hour
+
+| Metric | Operator | Value |
+|--------|----------|-------|
+| Amount Spent | Greater or Equal to | $15 |
+
+**Action:** Pause Campaign
+
+---
+
+### Emergency spend stop: cost >= 300% of campaign payout (15+ days)
+
+Pause campaign if cumulative cost over 15 days hits 300% of campaign payout — an emergency valve for sustained unprofitability.
+
+**Data Interval:** Last 15 days | **Scheduling:** Every 8 hours
+
+| Metric | Operator | Value |
+|--------|----------|-------|
+| Cost | Greater or Equal to | 300% of Campaign.payout |
+
+**Action:** Pause Campaign
+
+---
+
+### Budget scale-up: spend at threshold + conversions > 4
+
+Increase campaign budget by 20% if daily spend is at 85–90% of budget AND tracker conversions exceed 4 in the same day.
+
+**Data Interval:** Today | **Scheduling:** Every 4 hours
+
+| Metric | Operator | Value |
+|--------|----------|-------|
+| Amount Spent | Greater or Equal to | 85% of Budget |
+| Tracker Conversions | Greater or Equal to | 4 |
+| Tracker ROI | Greater than | 0% |
+
+**Action:** Increase Campaign Budget by 20%
+
+---
+
+## Creative performance management
+
+### Pause dead creatives: $300+ spend, zero conversions (30-day window)
+
+**Data Interval:** Last 30 days | **Scheduling:** Daily at 7 AM
+
+| Metric | Operator | Value |
+|--------|----------|-------|
+| Amount Spent | Greater than | $300 |
+| Tracker Conversions | Less than | 1 |
+
+**Action:** Pause Ad
+
+---
+
+### Reactivate marginally viable creatives (90-day profitability test)
+
+**Data Interval:** Last 90 days | **Scheduling:** Daily at 9 AM
+
+| Metric | Operator | Value |
+|--------|----------|-------|
+| Amount Spent | Greater than | $300 |
+| Tracker ROI | Greater than | −25% |
+| Tracker Conversions | Greater than | 1 |
+
+**Action:** Start Ad
+
+<Tip>
+Use 90-day lookback to avoid re-testing creatives too frequently. This creates a "seasonal rotation" where creatives cycle in and out as their performance drifts.
+</Tip>
+
+---
+
+## Implementation priority
+
+**Week 1 — blocking only.** Start with the three widget pause rules plus the suspicious conversion rate fraud rule. Establish your zero-conversion floor before optimizing bids.
+
+**Week 2 — introduce bid tiering.** Add all six ROI-tier bid rules once widget baseline is clear. Let the tiering system run for 7 days to establish patterns.
+
+**Week 3 — add campaign safety.** Implement daily spend caps and emergency brakes. Monitor campaign-level metrics for 3–5 days before enabling budget scaling.
+
+**Week 4+ — optimization & refinement.** After 2–3 weeks of data, adjust spend thresholds and ROI tier bands based on your specific vertical. Reactivation rules work best on mature campaigns with 100+ historical conversions.
+
+  </Tab>
+  <Tab title="MGID">
+
+Based on analysis of 1,392 active MGID rules, media buyers prioritize widget-level pausing (632 rules), MGID's unique Widget Coefficient system (231 rules), and sophisticated fraud detection. The Widget Coefficient — MGID's native bid multiplier — is what makes this platform distinct: instead of pausing underperforming publishers outright, you reduce their coefficient to keep them in rotation at a lower cost, then escalate or retire based on results.
+
+---
+
+## Widget pausing — core blocking rules
+
+### Zero conversions + high spend (30-day window)
+
+Pause widgets that have spent $25+ in the last 30 days without a single tracker conversion. This is your baseline rule for removing non-performing publishers early.
+
+**Data Interval:** Last 30 days | **Scheduling:** Daily at 8 AM
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | &gt;= | $25 |
+| Tracker Conversions | &lt; | 1 |
+
+**Action:** Pause Widget
+
+<Tip>
+Start with $25. For campaigns under $500/day, lower to $15. For high-volume campaigns ($5k+/day), increase to $50–75 to gather more performance data before killing a publisher.
+</Tip>
+
+---
+
+### Bot traffic detection (high clicks, no conversions)
+
+Pause widgets with 50+ traffic source clicks AND 30+ tracker clicks over 30 days but zero tracker conversions. High engagement with zero conversions indicates bot traffic or misaligned audience.
+
+**Data Interval:** Last 30 days | **Scheduling:** Daily at 9 AM
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Traffic Source Clicks | &gt;= | 50 |
+| Tracker Clicks | &gt;= | 30 |
+| Tracker Conversions | &lt; | 1 |
+
+**Action:** Pause Widget
+
+<Tip>
+Verify these clicks are hitting your landing page (check LP Clicks metric). If LP Clicks = 0, the traffic is fake at MGID's level — pause immediately. If LP Clicks is high but conversions are zero, the landing page or offer is misaligned with the traffic source.
+</Tip>
+
+---
+
+### Suspicious landing page CTR (potential fraud)
+
+Pause widgets with high LP CTR (>90%) AND 20+ traffic source clicks AND zero conversions over 7 days. This is a classic fraud pattern.
+
+**Data Interval:** Last 7 days | **Scheduling:** Every 12 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| LP CTR | &gt; | 90% |
+| Traffic Source Clicks | &gt;= | 20 |
+| Tracker Conversions | &lt; | 1 |
+
+**Action:** Pause Widget
+
+<Warning>
+LP CTR over 80% is unnatural. Legitimate publishers run 3–10% LP CTR depending on vertical. This rule catches click farms or misaligned traffic.
+</Warning>
+
+---
+
+### Very high LP CTR + spend (anomaly detection)
+
+Pause widgets where LP CTR exceeds 5% AND amount spent is $500+ AND conversions are &gt;= 1 BUT ROI is &lt;= −60% over 14 days. Despite high CTR suggesting quality traffic, the ROI is severely negative.
+
+**Data Interval:** Last 14 days | **Scheduling:** Daily at 10 AM
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| LP CTR | &gt; | 5% |
+| Amount Spent | &gt;= | $500 |
+| Tracker Conversions | &gt;= | 1 |
+| Tracker ROI | &lt;= | −60% |
+
+**Action:** Pause Widget
+
+---
+
+### Large spend, single conversion (cost explosion)
+
+Pause widgets where cost exceeds 150% of your Campaign.payout in the last 14 days. You're spending $1.50 for every $1 in payout.
+
+**Data Interval:** Last 14 days | **Scheduling:** Every 12 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Cost | &gt; | 150% of Campaign.payout |
+
+**Action:** Pause Widget
+
+<Tip>
+This rule adapts to your payout model automatically. If your Campaign.payout is $100, this triggers at $150 spend. Set it once and let it run across all campaigns.
+</Tip>
+
+---
+
+### Long-tail spend blocker (all-time protection)
+
+Pause widgets that have spent $10+ all-time without any tracker conversions. This catches widgets that aren't immediately profitable and prevents them from lingering unprofitably indefinitely.
+
+**Data Interval:** All-time | **Scheduling:** Daily at 6 AM
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | &gt; | $10 |
+| Tracker Conversions | &lt; | 1 |
+
+**Action:** Pause Widget
+
+---
+
+## Fraud detection & cost control
+
+### Publisher conversion rate too high (fake conversions)
+
+Pause widgets where publisher conversions exceed 15% of traffic source clicks over 14 days. A 15% conversion rate at the publisher level indicates fake conversion attribution.
+
+**Data Interval:** Last 14 days | **Scheduling:** Daily at 11 AM
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Publisher Conversions | &gt; | 15% of Traffic Source Clicks |
+
+**Action:** Pause Widget
+
+---
+
+### Publisher conversion rate too low (misattribution)
+
+Pause widgets where publisher conversions are &lt;= 10% of traffic source clicks over 14 days despite having tracker conversions. The publisher is under-attributing conversions.
+
+**Data Interval:** Last 14 days | **Scheduling:** Daily at 11 AM
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Publisher Conversions | &lt;= | 10% of Traffic Source Clicks |
+| Tracker Conversions | &gt;= | 1 |
+
+**Action:** Pause Widget
+
+---
+
+### Low CTR after high volume (dead publisher)
+
+Pause ad when impressions exceed 20,000 over 30 days, CTR is below 0.12%, AND ROI is negative. This publisher had its chance.
+
+**Data Interval:** Last 30 days | **Scheduling:** Daily at 8 AM
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Impressions | &gt; | 20,000 |
+| CTR | &lt; | 0.12% |
+| Tracker ROI | &lt; | 0% |
+
+**Action:** Pause Widget
+
+---
+
+## Widget Coefficient — MGID's bid multiplier system
+
+The **Widget Coefficient** is MGID's unique bid multiplier. Instead of pausing underperforming publishers, you adjust their coefficient to control spend granularly:
+
+- **1.0** = baseline bid (e.g., $0.05)
+- **0.5** = half the bid ($0.025)
+- **0.1** = 10% of bid ($0.005)
+- **1.5** = 50% higher bid ($0.075)
+- **2.0** = double the bid ($0.10)
+
+This creates a performance tier system without pausing widgets entirely. Use coefficients to fine-tune before committing to a full pause.
+
+### Tier 1: deep reduction (Coefficient 0.1 — test mode)
+
+Set coefficient to 0.1 when tracker conversions >= 1 AND CPA >= $700 over the last 30 days. The widget converts, but at very high CPA. Reduce bid drastically to test if lower cost attracts better conversions.
+
+**Data Interval:** Last 30 days | **Scheduling:** Daily at 7 AM
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker Conversions | &gt;= | 1 |
+| Custom Metric 2 (CPA) | &gt;= | $700 |
+
+**Action:** Set Widget Coefficient to 0.1
+
+---
+
+### Tier 2: moderate reduction (Coefficient 0.3 — watchlist)
+
+Set coefficient to 0.3 when tracker conversions >= 1 AND CPA is between $350–$500. These publishers convert at acceptable-but-high CPA.
+
+**Data Interval:** Last 30 days | **Scheduling:** Daily at 7 AM
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker Conversions | &gt;= | 1 |
+| Custom Metric 2 (CPA) | &gt;= | $350 |
+| Custom Metric 2 (CPA) | &lt; | $500 |
+
+**Action:** Set Widget Coefficient to 0.3
+
+---
+
+### Tier 3: slight reduction (Coefficient 0.5 — marginal performers)
+
+Set coefficient to 0.5 when tracker conversions >= 1 AND CPA is between $500–$700. These are borderline profitable.
+
+**Data Interval:** Last 30 days | **Scheduling:** Daily at 7 AM
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker Conversions | &gt;= | 1 |
+| Custom Metric 2 (CPA) | &gt;= | $500 |
+| Custom Metric 2 (CPA) | &lt; | $700 |
+
+**Action:** Set Widget Coefficient to 0.5
+
+---
+
+### Tier 4: baseline (Coefficient 1.0 — good performers)
+
+Set coefficient to 1.0 when tracker conversions >= 1 AND CPA is below $350. These are your proven profitable publishers.
+
+**Data Interval:** Last 30 days | **Scheduling:** Daily at 7 AM
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker Conversions | &gt;= | 1 |
+| Custom Metric 2 (CPA) | &lt; | $350 |
+
+**Action:** Set Widget Coefficient to 1.0
+
+---
+
+### Tier 5: increased bid (Coefficient 1.5 — strong winners)
+
+Set coefficient to 1.5 when tracker conversions >= 1 AND tracker ROI > 50% AND traffic source clicks >= 50 over the last 7 days.
+
+**Data Interval:** Last 7 days | **Scheduling:** Every 12 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker Conversions | &gt;= | 1 |
+| Tracker ROI | &gt; | 50% |
+| Traffic Source Clicks | &gt;= | 50 |
+
+**Action:** Set Widget Coefficient to 1.5
+
+---
+
+### Tier 6: aggressive scaling (Coefficient 2.0 — top tier)
+
+Set coefficient to 2.0 when tracker conversions >= 2 AND tracker ROI > 100% AND traffic source clicks >= 75 over the last 7 days. Elite performers with proven volume and profitability.
+
+**Data Interval:** Last 7 days | **Scheduling:** Every 12 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker Conversions | &gt;= | 2 |
+| Tracker ROI | &gt; | 100% |
+| Traffic Source Clicks | &gt;= | 75 |
+
+**Action:** Set Widget Coefficient to 2.0
+
+<Warning>
+Coefficient 2.0 doubles your bid on elite publishers. Set a max bid cap in MGID ($0.20–0.50) to prevent runaway costs.
+</Warning>
+
+---
+
+### ROI throttling (Coefficient 0.5 — negative ROI recovery)
+
+Set coefficient to 0.5 when tracker ROI is between −25% and 0% AND traffic source clicks >= 50 over the last 7 days. Rather than pausing a recently profitable widget, reduce bid to see if lower competition helps recovery.
+
+**Data Interval:** Last 7 days | **Scheduling:** Every 12 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker ROI | &gt;= | −25% |
+| Tracker ROI | &lt; | 0% |
+| Traffic Source Clicks | &gt;= | 50 |
+
+**Action:** Set Widget Coefficient to 0.5
+
+---
+
+## Campaign spend & budget scaling
+
+### Daily spend cap — conservative ($10 limit)
+
+Pause the entire campaign when daily spend reaches $10. Use for the first 3–7 days of a new MGID campaign to control risk during publisher onboarding.
+
+**Data Interval:** Today | **Scheduling:** Every hour
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | &gt;= | $10 |
+
+**Action:** Pause Campaign
+
+---
+
+### Daily spend cap — standard ($20 limit)
+
+Pause the campaign at $20 daily spend. Standard safeguard during testing phases.
+
+**Data Interval:** Today | **Scheduling:** Every hour
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | &gt;= | $20 |
+
+**Action:** Pause Campaign
+
+---
+
+### Budget scaling on ROI + high spend
+
+Increase campaign budget by 20% when daily spend is at 70–80% of the daily budget AND all-time tracker ROI > 10% over last 14 days.
+
+**Data Interval:** Today (spend) + Last 14 days (ROI) | **Scheduling:** Daily at 11 AM
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | &gt;= | 70% of Daily Budget |
+| Tracker ROI | &gt;= | 10% |
+
+**Action:** Increase Campaign Budget by 20%
+
+---
+
+### Budget scaling on yesterday's data
+
+Increase campaign budget by 20% when yesterday's spend hit 80%+ of daily budget AND tracker ROI > 10% over the last 14 days. Using yesterday's data is safer because you have complete information.
+
+**Data Interval:** Yesterday (spend) + Last 14 days (ROI) | **Scheduling:** Daily at 9 AM
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | &gt;= | 80% of Daily Budget |
+| Tracker ROI | &gt;= | 10% |
+
+**Action:** Increase Campaign Budget by 20%
+
+---
+
+## Ad (teaser) management
+
+### Pause underperforming creatives
+
+Pause ads with $12+ spend over 30 days AND zero tracker conversions.
+
+**Data Interval:** Last 30 days | **Scheduling:** Daily at 8 AM
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | &gt;= | $12 |
+| Tracker Conversions | &lt; | 1 |
+
+**Action:** Pause Ad
+
+---
+
+### Pause high-click creatives with zero conversions
+
+Pause ads with 30+ tracker clicks all-time but zero tracker conversions. The creative drives engagement without intent.
+
+**Data Interval:** All-time | **Scheduling:** Daily at 9 AM
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker Clicks | &gt;= | 30 |
+| Tracker Conversions | &lt; | 1 |
+
+**Action:** Pause Ad
+
+---
+
+### Reactivate profitable creatives
+
+Reactivate ads with tracker conversions >= 1 AND tracker net revenue > $0 over the last 30 days. Prevent profitable creatives from staying paused indefinitely.
+
+**Data Interval:** Last 30 days | **Scheduling:** Daily at 10 AM
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker Conversions | &gt;= | 1 |
+| Tracker Net Revenue | &gt; | $0 |
+
+**Action:** Start Ad
+
+  </Tab>
+  <Tab title="NewsBreak">
+
+NewsBreak automation is real-time and dynamic. This guide covers the most impactful rule patterns from analysis of 157 active NewsBreak rules. The defining characteristic: 116 of 157 rules use today's data interval, making NewsBreak the most aggressively real-time platform in the optimization suite. Rules use Tracker Clicks + Tracker CPA (not traffic source metrics) to filter for meaningful conversions. CPA thresholds vary by offer type: home value ($0.20–$0.30), bank accounts ($0.95), and disability benefits ($0.25–$0.30).
+
+---
+
+## Real-time Tracker CPA control
+
+NewsBreak's core pattern: stack Tracker Clicks + Tracker CPA to pause ad groups in real-time. Tracker Clicks are meaningful — clicks that reached your conversion funnel — which filters out bot traffic automatically.
+
+### Rule 1a: generic high-CPA pause
+
+Pause ad groups when Tracker Clicks exceed 8 with Tracker CPA above $1.00. This is the baseline threshold.
+
+**Data Interval:** Today | **Scheduling:** Every 1 hour
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker Clicks | &gt; | 8 |
+| Tracker CPA | &gt; | $1.00 |
+
+**Action:** Pause Ad Group
+
+---
+
+### Rule 1b: home value offer (tight margins)
+
+Home valuation leads have tight economics. Pause at 8 Tracker Clicks with CPA above $0.20.
+
+**Data Interval:** Today | **Scheduling:** Every 1 hour
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker Clicks | &gt; | 8 |
+| Tracker CPA | &gt; | $0.20 |
+
+**Action:** Pause Ad Group
+
+---
+
+### Rule 1c: debt relief offer (moderate CPA)
+
+Debt consolidation leads allow slightly higher CPA ($0.25–$0.30).
+
+**Data Interval:** Today | **Scheduling:** Every 2 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker Clicks | &gt; | 8 |
+| Tracker CPA | &gt; | $0.25 |
+
+**Action:** Pause Ad Group
+
+---
+
+### Rule 1d: disability benefits (higher value)
+
+Disability benefit leads are high-value. Allow Tracker CPA up to $0.30.
+
+**Data Interval:** Today | **Scheduling:** Every 2 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker Clicks | &gt; | 8 |
+| Tracker CPA | &gt; | $0.30 |
+
+**Action:** Pause Ad Group
+
+---
+
+## Today-focused zero-conversion pauses
+
+46 of 57 NewsBreak rules use today's data. Zero-conversion pauses must be hyper-responsive.
+
+### Rule 2a: ad group zero Tracker Conversions
+
+Pause ad groups generating 6+ Tracker Clicks today with zero conversions.
+
+**Data Interval:** Today | **Scheduling:** Every 3 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker Clicks | &gt; | 6 |
+| Tracker Conversions | = | 0 |
+
+**Action:** Pause Ad Group
+
+---
+
+### Rule 2b: campaign zero-conversion emergency
+
+Pause campaigns that spent $50+ today with zero Tracker Conversions.
+
+**Data Interval:** Today | **Scheduling:** Every 2 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Cost | &gt;= | $50 |
+| Tracker Conversions | = | 0 |
+
+**Action:** Pause Campaign
+
+---
+
+### Rule 2c: ad-level zero conversions
+
+Pause individual ads hitting $10 today with zero conversions.
+
+**Data Interval:** Today | **Scheduling:** Every 4 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Cost | &gt;= | $10 |
+| Tracker Conversions | = | 0 |
+
+**Action:** Pause Ad
+
+---
+
+## Cost escalation rules
+
+Dynamic cost thresholds prevent runaway spend when traffic quality shifts.
+
+### Rule 3a: campaign cost cap at daily budget
+
+Pause campaigns when cost reaches 90% of daily budget to prevent overspend.
+
+**Data Interval:** Today | **Scheduling:** Every 4 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Cost | &gt;= | 90% of Daily Budget |
+
+**Action:** Pause Campaign
+
+---
+
+### Rule 3b: cost-to-campaign-payout comparison
+
+When cost exceeds 150% of campaign's typical CPA times conversions and Tracker CTR is below 1%, pause.
+
+**Data Interval:** Today | **Scheduling:** Every 3 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Cost | &gt; | 150% of Campaign.ts_cpa |
+| Tracker CTR | &lt; | 1% |
+
+**Action:** Pause Campaign
+
+---
+
+## Offer-specific CPA thresholds
+
+Different offers have different economics. Never use one CPA threshold across all offers.
+
+### Rule 4a: home value offers (aggressive)
+
+Home value leads are high-volume, low-margin. Pause when CPA exceeds $0.20.
+
+**Data Interval:** Today | **Scheduling:** Every 2 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Campaign Name | contains | `_HOME_` |
+| Tracker CPA | &gt; | $0.20 |
+| Tracker Clicks | &gt; | 8 |
+
+**Action:** Pause Ad Group
+
+---
+
+### Rule 4b: disability benefits (higher value)
+
+Disability leads are high-value. Allow CPA up to $0.30.
+
+**Data Interval:** Today | **Scheduling:** Every 2 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Campaign Name | contains | `_DISABILITY_` |
+| Tracker CPA | &gt; | $0.30 |
+| Tracker Clicks | &gt; | 8 |
+
+**Action:** Pause Ad Group
+
+---
+
+## Budget adjustments & scaling
+
+Instead of binary pause/start, adjust ad group budgets dynamically based on today's ROI.
+
+### Rule 5a: increase budget for profitable days
+
+If an ad group generates conversions today with ROI >= 10%, increase budget by 15%.
+
+**Data Interval:** Today | **Scheduling:** Every 4 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker Conversions | &gt; | 0 |
+| Tracker ROI | &gt;= | 10% |
+
+**Action:** Increase Ad Group Budget (15%)
+
+---
+
+### Rule 5b: decrease budget for negative ROI days
+
+When ad group ROI turns negative today, reduce budget to conserve spend.
+
+**Data Interval:** Today | **Scheduling:** Every 3 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker Conversions | &lt;= | 0 |
+| Tracker ROI | &lt; | 0% |
+
+**Action:** Decrease Ad Group Budget (20%)
+
+<Tip>
+Budget adjustments before hard pauses. When Tracker ROI turns negative, reduce budget first. Only pause if ROI stays negative after 2 hours. This allows recovery while capping losses.
+</Tip>
+
+---
+
+## Rapid recovery reactivation
+
+NewsBreak allows fast reactivation because today-focused rules catch problems quickly.
+
+### Rule 6a: reactivate on 3-day positive ROI
+
+If a paused ad group shows 10%+ ROI over 3 days with conversions, restart it.
+
+**Data Interval:** Last 3 days | **Scheduling:** Daily at 8 AM
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Status | = | PAUSED |
+| Tracker ROI | &gt;= | 10% |
+| Tracker Conversions | &gt; | 1 |
+
+**Action:** Start Ad Group
+
+---
+
+### Rule 6b: reactivate Tier 2 (faster)
+
+If a paused ad group hits positive ROI in just 2 days, restart immediately.
+
+**Data Interval:** Last 2 days | **Scheduling:** Every 12 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Status | = | PAUSED |
+| Tracker ROI | &gt;= | 5% |
+| Tracker Conversions | &gt;= | 1 |
+
+**Action:** Start Ad Group
+
+---
+
+## Best practices for NewsBreak
+
+1. **Stack Tracker Clicks + Tracker CPA as your core filter.** Never pause on Tracker Clicks alone. The CPA check prevents false positives on high-click, low-value traffic.
+
+2. **Go hyper-aggressive on today's data.** 116 of 157 rules use today because NewsBreak traffic is fast-moving. Check rules every 2–4 hours, not daily. Real-time pauses stop bleeding before it compounds.
+
+3. **Calibrate CPA thresholds per offer vertical.** Home value offers: $0.20–$0.25. Debt relief: $0.25–$0.30. Disability benefits: $0.30–$0.35. Bank accounts: $0.95.
+
+4. **Reactivate fast because you pause fast.** If a paused ad group hits positive ROI in 2–3 days, restart it immediately. Your aggressive pause rules mean false positives recover quickly.
+
+5. **Monitor across all three hierarchy levels.** Deploy rules at Ad, Ad Group, and Campaign levels. Don't rely solely on campaign-level rules — ad groups fail before campaigns do.
+
+  </Tab>
+</Tabs>

@@ -1,0 +1,94 @@
+{
+  "projectType": "saas",
+  "projectName": "TheOptimizer",
+  "projectDescription": "A campaign management and automation platform for media buyers that connects ad networks, trackers, and analytics tools to automate optimization, launch campaigns at scale, and manage performance across all accounts in one place.",
+  "theme": "almond",
+  "primaryColor": "#3e47ec",
+  "lightColor": "#fc726a",
+  "darkColor": "#419fd9",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "getting-started"
+            ]
+          },
+          {
+            "group": "Integrations",
+            "pages": [
+              "integrations/overview",
+              "integrations/upload-csv"
+            ]
+          },
+          {
+            "group": "Campaign Manager",
+            "pages": [
+              "campaign-manager/overview"
+            ]
+          },
+          {
+            "group": "Automation",
+            "pages": [
+              "automation/rules-guide",
+              "automation/rule-templates",
+              "automation/rule-chains"
+            ]
+          },
+          {
+            "group": "Popular Rules",
+            "pages": [
+              "automation/popular-rules-facebook",
+              "automation/popular-rules-tiktok",
+              "automation/popular-rules-taboola",
+              "automation/popular-rules-outbrain",
+              "automation/popular-rules-native"
+            ]
+          },
+          {
+            "group": "Campaign Creator",
+            "pages": [
+              "campaign-creator/overview",
+              "campaign-creator/facebook"
+            ]
+          },
+          {
+            "group": "Creative Library",
+            "pages": [
+              "creative-library/guide"
+            ]
+          },
+          {
+            "group": "Help",
+            "pages": [
+              "faq"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Cross-account campaign management across Facebook, TikTok, Taboola, Outbrain, MGID, and more",
+    "Automated rules engine with conditions, actions, scheduling, and global rules",
+    "Rule chains using tags to build multi-step optimization sequences",
+    "Mass campaign launcher with bulk creation, variation groups, and multi-account launch",
+    "Creative Library with aggregated cross-campaign performance analytics",
+    "Tracking platform integrations (ClickFlare, Voluum, RedTrack, Bemob, GA4, and more)",
+    "Google Sheets and CSV data upload for unsupported trackers",
+    "Custom metrics with formula builder",
+    "Dayparting automation rules",
+    "Team collaboration with role-based ad account access"
+  ],
+  "publicApiSurface": [
+    "GET /campaigns — list campaigns across connected ad networks",
+    "POST /manual-stats-update — upload CSV data for tracker conversions and revenue",
+    "Campaign Creation Queue API — submit and monitor bulk campaign launches",
+    "Creative Library API — upload creatives, media, and headlines programmatically",
+    "Google Sheets integration — automated data sync every 30 minutes"
+  ]
+}

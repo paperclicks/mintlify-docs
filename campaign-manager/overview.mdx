@@ -1,0 +1,444 @@
+---
+title: "Manage Campaigns Across All Ad Networks"
+description: "A complete guide to the Campaign Manager: navigation, filtering, bulk actions, the Details View, column customization, and data export."
+sidebarTitle: "Campaign Manager"
+---
+
+The Campaign Manager is the operational core of TheOptimizer. It replaces your native ad managers — Facebook Ads Manager, TikTok Ads, Taboola, Outbrain, and others — with a single workspace where you can view and act on campaigns, ad sets, and ads across every connected account at the same time. This guide covers the full Campaign Manager from top to bottom: navigation, filtering, the main table, the Details View, column settings, and export.
+
+---
+
+## Top navigation
+
+### Ad networks and ad accounts
+
+At the top of the Campaign Manager you will find the ad network navigation bar. Every ad network you have connected to TheOptimizer appears here as an icon. Clicking an icon switches the entire view to that network, showing only the campaigns, ad sets, and ads that belong to it.
+
+<Tip>
+  If you do not see an ad network icon, it has not been connected yet. Go to **Integrations** to add it.
+</Tip>
+
+To the right of the network icons is the **Ad Accounts** filter. Unlike native ad managers that lock you to one account at a time, TheOptimizer lets you view and manage campaigns across all your accounts simultaneously — or filter down to exactly the accounts you need.
+
+#### Filtering by tags
+
+TheOptimizer automatically assigns two tags to every ad account when it is connected:
+
+- **Timezone tag** — the time zone configured on that account (e.g., `UTC`, `America/Los_Angeles`)
+- **Currency tag** — the currency of the account (e.g., `USD`, `EUR`, `GBP`)
+
+These default tags let you instantly filter to, for example, all USD accounts or all accounts running on Eastern time. You can add your own custom tags from **Integrations → Ad Network → Ad Accounts** to create groupings that match your team structure, geo focus, or offer verticals.
+
+#### Searching for specific accounts
+
+Inside the ad account filter, type to search for accounts by name. Select one or more accounts and click **Filter** to scope the Campaign Manager to only those accounts. Your selected accounts act as a persistent scope — all other filters and data apply only within them.
+
+---
+
+### Totals bar
+
+Directly below the navigation bar, the **Totals Bar** shows aggregated metrics across all currently visible campaigns for the selected date range.
+
+| Metric | What it shows |
+|--------|---------------|
+| **Cost** | Total amount spent across selected accounts and date range |
+| **Revenue** | Total revenue (from ad network or tracker — see below) |
+| **NET** | Revenue minus Cost |
+| **ROI** | Return on investment as a percentage |
+
+#### Currency handling
+
+If all your ad accounts for a given network share the same currency, that currency symbol appears next to the cost figure. If you have accounts in multiple currencies, TheOptimizer does not perform automatic currency conversion — it adds the raw values together.
+
+<Warning>
+  When accounts in multiple currencies are selected, an asterisk (`*`) replaces the currency symbol. Hover over the asterisk to see a tooltip confirming that multiple currencies are present. Treat the Totals Bar as a directional indicator in this case, not an exact financial figure. For precise reporting, filter down to accounts that share a single currency.
+</Warning>
+
+#### Revenue source: ad network vs. tracker
+
+TheOptimizer can pull revenue from two sources: the ad network itself (if it passes revenue data) or your connected tracking platform. You control which source is active from the **Dashboard** view — a toggle there switches between **Ad Network Revenue** and **Tracker Revenue**. Whichever option is active on the Dashboard also determines what the Campaign Manager Totals Bar shows.
+
+<Warning>
+  If you see `$0.00` in the Revenue column despite having active campaigns, you most likely have **Ad Network Revenue** selected but are not pushing revenue data to the traffic source. Switch to **Tracker Revenue** on the Dashboard and the correct figures will appear.
+</Warning>
+
+---
+
+### Date ranges and comparisons
+
+The date picker is in the top-right corner of the navigation bar. Click it to change the reporting interval for the entire view.
+
+Available presets: **Today**, **Yesterday**, **Last 3 / 7 / 14 / 30 days**, **Last 90 days**, **This month**, **Last month**, **Last 6 months**, and a fully custom calendar range.
+
+Inside the date picker, enable the **Compare dates** toggle to select a second date range. Comparison data appears as additional columns in the main table for any metric you have designated as a compare column (see [Compare columns](#compare-columns) below).
+
+<Tip>
+  Use **Compare dates** to spot performance shifts between periods — for example, this week vs. last week — to measure the impact of a recent creative or budget change.
+</Tip>
+
+---
+
+## Filtering
+
+The filtering bar sits below the Totals Bar and lets you search and filter campaigns, ad sets, or ads by virtually any metric or attribute. Click the **Search filters...** box to open the filter panel, or use the keyboard shortcut.
+
+### Quick conditions
+
+At the top of the filter panel, **Quick Conditions** are pre-built single-click presets for the most common needs:
+
+- **Delivering** — items with Impressions > 0 (receiving active traffic)
+- **Profitable** — items with NET Profit > 0
+- **Losing Money** — items with NET Profit < 0
+
+### Popular filters and categories
+
+**Popular Filters** is a dynamically generated list of the filters you use most frequently. It updates as you work, surfacing the metrics you reach for regularly.
+
+**Find by Category** is a structured directory of all available filter metrics:
+
+| Category | What it contains |
+|----------|-----------------|
+| **Performance** | Spend, impressions, clicks, CTR, CPC, CPA, ROI, revenue, NET, and other core metrics |
+| **Conversions** | Traffic source conversions, tracker conversions, and custom conversion events |
+| **Identifiers** | Campaign, ad set, and ad names and IDs — useful for filtering to a specific item by name |
+| **Other** | Tags, budgets, start dates, statuses, and other non-metric attributes |
+
+To find a specific metric quickly, start typing in the filter search box — you do not need to browse through the categories manually.
+
+### Keyboard shortcuts
+
+| Key | Action |
+|-----|--------|
+| **Cmd+K** / **Ctrl+K** | Open the filter panel from anywhere in the Campaign Manager |
+| **↑ ↓** | Navigate through filter options |
+| **← →** | Navigate between filter sub-options (condition type, value) |
+| **Enter** | Confirm a selection or apply a filter value |
+| **Escape** | Cancel and close the panel |
+
+You can build a complete filter — metric, condition, value — entirely from the keyboard without touching your mouse.
+
+### Saving custom views
+
+Once you have built a filter combination you want to reuse, save it as a **View**.
+
+<Steps>
+  <Step title="Apply filters">
+    Add one or more filters to the filtering bar.
+  </Step>
+  <Step title="Click Create View">
+    When at least one filter is active, a **Create View** button appears at the right of the filtering bar. Click it.
+  </Step>
+  <Step title="Name the view">
+    Enter a name for the view and click **Create**.
+  </Step>
+</Steps>
+
+Saved views appear as clickable tabs above the filtering bar. A single click applies the entire filter combination instantly.
+
+<Tip>
+  Create views for your most common morning review filters — for example, a "Profitable" view per network, or a "High Spend / No Conversions" view for catching wasted budget quickly.
+</Tip>
+
+---
+
+## Managing campaigns
+
+The main table is your day-to-day campaign management workspace. Its structure deliberately mirrors what you know from Facebook Ads Manager, TikTok Ads, and similar platforms — with the added dimension of working across all your accounts in one place.
+
+### Campaigns, ad sets, and ads tabs
+
+Three tabs sit above the table: **Campaigns**, **Ad Sets**, and **Ads** (some networks use "Ad Groups" instead of "Ad Sets"). Each tab shows all items of that type across every selected ad account.
+
+**Navigation behavior:**
+
+- Clicking a tab with no items selected shows **all** items of that type across your accounts — a cross-account view you cannot get in native ad managers.
+- Selecting one or more campaigns on the **Campaigns** tab and then switching to **Ad Sets** filters the list to show only the ad sets belonging to those campaigns.
+- Selecting ad sets and switching to **Ads** filters to show only ads within those ad sets.
+
+### Inline actions
+
+For individual items, several actions are available directly in the table row without opening any dialog:
+
+- **On/Off toggle** — the toggle at the left of each row pauses or activates the item immediately.
+- **Budget** — if the budget cell is editable (indicated by a pencil icon on hover), click it to modify the daily or lifetime budget inline.
+- **Bid** — bid values can be edited inline where supported by the ad network.
+
+Click the value, make your change, and press **Enter** to confirm or **Escape** to cancel.
+
+### Bulk actions
+
+To act on multiple items at once, check the boxes at the left of each row. Once one or more items are selected, a floating action bar appears at the bottom of the page.
+
+| Bulk action | What it does |
+|-------------|--------------|
+| **Play / Pause** | Activate or pause all selected items |
+| **Change Budget** | Apply a budget change to all selected items at once |
+| **Manage Tags** | Add or remove tags on selected items |
+| **Add Rules** | Attach an automation rule to all selected items simultaneously |
+| **Manage / Un-Manage** | Include or exclude items from TheOptimizer's automation scope |
+| **Archive / Un-archive** | Archive campaigns you no longer want displayed |
+
+<Note>
+  **Archive** and **Manage / Un-Manage** are only available through the bulk action bar, not as inline row actions. These are higher-impact operations most commonly applied to multiple items at once, so they are intentionally kept out of the inline row to prevent accidental single-item changes.
+</Note>
+
+### Keyboard navigation
+
+The main table can be navigated entirely from the keyboard:
+
+| Key | Action |
+|-----|--------|
+| **↑ ↓ ← →** | Move between cells in the table |
+| **Enter** | Start editing a focused editable cell; press again to confirm the change |
+| **Escape** | Abort an edit without saving |
+
+Combined with keyboard-first filtering, you can run a full campaign review session — filter, browse, edit budgets and bids — without ever reaching for the mouse.
+
+### Campaign name hover options
+
+When you hover over a campaign name (or ad set or ad name) in the table, three options appear to the right of the name:
+
+| Option | What it does |
+|--------|--------------|
+| **View Details** | Opens the full Details View panel for that item |
+| **Clone** | Starts the cloning workflow for the campaign, ad set, or ad |
+| **Quick Details** (info icon) | Shows a compact popup with the campaign ID, ad account, advertising objective, budget, and bid strategy |
+
+<Tip>
+  Use **Quick Details** to copy a campaign ID instantly. Hover over the campaign name, click the info icon, and the ID is right there — no need to open the full campaign settings.
+</Tip>
+
+---
+
+## Campaign Details View
+
+The Details View is a side panel that slides in from the right when you click **View Details** on any campaign, ad set, or ad. It gives you a deep look at a single item without leaving the main table, and supports continuous navigation between items so you can review multiple campaigns without repeatedly opening and closing the panel.
+
+At the top of the panel:
+
+- **Item name** — the name of the campaign, ad set, or ad you are viewing
+- **← Prev / Next →** — move to the previous or next item in the table without closing the panel
+- **Totals** — a summary bar showing Cost, Revenue, NET, and ROI for this specific item
+- **Date picker** — adjusts the data shown in the Details View independently from the main table date picker
+
+<Tabs>
+  <Tab title="Overview">
+    The **Overview** tab provides a snapshot of the item's status, configuration, and recent activity. It contains four widgets.
+
+    **Campaign Details**
+
+    A card showing the item's key configuration data:
+
+    | Field | What it shows |
+    |-------|---------------|
+    | **ID** | The campaign, ad set, or ad ID on the ad network |
+    | **Status** | Current status (Running, Paused, etc.) |
+    | **Account** | Which ad account the item belongs to |
+    | **Budget** | Daily or lifetime budget and type |
+    | **Bid Strategy** | The bidding approach (e.g., Highest Volume, Cost Cap, Target CPA) |
+    | **Tracker** | Which tracking platform is linked, if any |
+
+    You can turn the item on or off directly from this card without returning to the main table — making it practical to use the Details View as a decision-making panel: check the details, decide, act, then navigate to the next item.
+
+    **Campaign Rules**
+
+    A list of all automation rules currently attached to this campaign. From here you can click **Add Existing Rule** to link a rule you have already created, or **Create Rule** to build a new rule and attach it in one step.
+
+    <Tip>
+      Reviewing attached rules in the Details View is a fast way to audit what automation is in place for a specific campaign without navigating to the Rules section.
+    </Tip>
+
+    **Campaign Performance**
+
+    A line chart showing the trend of Amount Spent, Revenue, Conversions, and Clicks over the selected date range. Use this to get an at-a-glance sense of whether the campaign is trending up, down, or flat.
+
+    **Campaign Events**
+
+    A timeline of all significant changes the campaign has undergone during the selected period — budget changes, bid changes, status changes, and similar events. This is your audit trail for understanding when something changed and correlating it with performance shifts visible in the Performance chart.
+
+    <Tip>
+      Use **Campaign Events** alongside the **Campaign Performance** chart together. If you see a dip in conversions, scroll the Events timeline to see whether a budget cut, bid change, or rule action happened around the same time.
+    </Tip>
+  </Tab>
+  <Tab title="Performance">
+    The **Performance** tab lets you break a single campaign's data down by time dimension. The available breakdowns are **By Hour**, **By Hour of Day**, and **By Day**.
+
+    When you use **By Hour of Day** with a multi-day date range (e.g., Last 7 Days), it aggregates traffic from all days at each hour — so "10 AM" shows the combined performance of every 10 AM–11 AM slot across the entire selected period.
+
+    **Practical use case — dayparting**
+
+    <Steps>
+      <Step title="Open the Details View">
+        Click **View Details** on the campaign you want to optimize.
+      </Step>
+      <Step title="Set the date range">
+        Set the date range to **Last 7 Days** or **Last 14 Days** for a meaningful sample.
+      </Step>
+      <Step title="Switch to the Performance tab">
+        Click the **Performance** tab inside the Details View.
+      </Step>
+      <Step title="Set the grouping to Hour of Day">
+        Select the **By Hour of Day** breakdown.
+      </Step>
+      <Step title="Identify weak hours">
+        Review which hours have strong conversions and ROI, and which are underperforming.
+      </Step>
+      <Step title="Create dayparting rules">
+        Use these findings to configure time-based automation rules that pause the campaign during low-performing hours and resume it during peak hours.
+      </Step>
+    </Steps>
+
+    <Tip>
+      The Performance tab is available at campaign, ad set, and ad level. Running an hourly breakdown on a specific ad set can help you determine whether poor performance is time-related or structural — giving you a more targeted optimization path than looking at the campaign aggregate.
+    </Tip>
+  </Tab>
+  <Tab title="Logs">
+    The **Logs** tab shows a complete history of all actions that have affected the item — whether triggered by automation rules or made manually by a team member.
+
+    Each log entry shows:
+
+    | Field | What it shows |
+    |-------|---------------|
+    | **Time** | When the action occurred |
+    | **Action** | What was done (e.g., budget changed, campaign paused, bid adjusted) |
+    | **Activity Type** | Whether the action came from a rule (and which rule) or from a manual user action |
+    | **Change** | The specific change made (e.g., budget changed from $50 to $75) |
+
+    You can filter log entries by **Rule** (show only actions triggered by a specific rule) or by **Type** (show only manual actions, or only rule-triggered actions).
+
+    To roll back changes, select the entries you want to undo and click **Rollback Activities**.
+
+    <Tip>
+      The Logs tab is invaluable when investigating why a campaign's performance changed unexpectedly. Cross-reference log timestamps with the Campaign Performance chart in the Overview tab to understand what action preceded the change.
+    </Tip>
+  </Tab>
+  <Tab title="Manage">
+    Beyond the three universal tabs, some ad networks add an extra tab to the Details View that exposes platform-specific optimization data.
+
+    **Native ad networks (Taboola and Outbrain)**
+
+    For native traffic sources, a **Manage** tab appears at the campaign level with a placement-level performance breakdown — the equivalent of the "Sites" or "Publisher" reporting in the native dashboards.
+
+    - **Taboola** — the Manage tab shows performance broken down by individual publisher site. You can identify which sites are driving results and pause underperforming sites directly from this view without navigating away.
+    - **Outbrain** — the Manage tab shows performance broken down by publisher and by section within each publisher. You can pause underperforming publishers or sections directly from this view.
+
+    **Facebook — ad set level: Manage Targeting tab**
+
+    When you open the Details View for a **Facebook ad set** (not a campaign), a **Manage Targeting** tab appears. It contains three sub-breakdowns:
+
+    | Sub-tab | What it shows |
+    |---------|---------------|
+    | **Placement** | Performance by ad placement (Facebook Feed, Instagram Stories, Audience Network, etc.) |
+    | **Device** | Performance split by device type (Mobile, Desktop, Tablet) |
+    | **Geo** | Performance by targeted geography |
+
+    For each dimension you can review performance data and then exclude specific placements, devices, or geos from the ad set's targeting — directly from within TheOptimizer, without going into Facebook Ads Manager.
+
+    <Tip>
+      Run a placement breakdown on your best-performing Facebook ad sets to identify whether a single placement (e.g., Facebook Feed) is driving all results while others (e.g., Audience Network) consume budget without converting. Excluding poor placements at the ad set level is a fast, impactful optimization move.
+    </Tip>
+  </Tab>
+</Tabs>
+
+---
+
+## Column settings
+
+The column settings panel is at the bottom-left corner of the table. Click it to open the **Column Management** dialog, where you can control which columns are visible, their order, and create your own custom column presets.
+
+### Default column views
+
+TheOptimizer provides ready-made column presets for each ad network. For Facebook, for example, you get:
+
+- **Facebook Standard** — essential Facebook ad network metrics only, with no tracker data. A clean, focused view for native Facebook performance.
+- **Facebook + Tracker** — a combined view that merges the most important Facebook metrics with key tracker metrics side by side. This preset is only shown when you have a tracker connected.
+
+Default presets cannot be deleted and are a good starting point for building your own views.
+
+### Creating custom column views
+
+<Steps>
+  <Step title="Open Column Management">
+    Click the column settings icon at the bottom-left of the table to open the **Column Management** dialog.
+  </Step>
+  <Step title="Browse column groups">
+    Use the left panel to browse available column groups: **Traffic Source Metrics**, **Tracker Metrics**, **Custom Metric**, **Custom Conversion Metrics**, **Search Feed Metrics**, and network-specific groups (e.g., **Facebook Metrics**).
+  </Step>
+  <Step title="Select your columns">
+    Check or uncheck columns in the center panel to show or hide them.
+  </Step>
+  <Step title="Reorder columns">
+    Use the **Order Columns** panel on the right to drag columns into the exact order you want.
+  </Step>
+  <Step title="Save as a preset">
+    Any modification to a default view automatically prompts you to **Save as preset** under a new name. Your saved custom views appear at the top of the column view list.
+  </Step>
+</Steps>
+
+<Tip>
+  Create different column presets for different workflows — for example, a "Daily Review" preset with spend, CPA, and ROI, and a separate "Creative Testing" preset focused on CTR, CPM, and click-through rate.
+</Tip>
+
+### Custom metrics
+
+If the default metrics do not cover something you track, you can define up to **10 custom metrics** using your own formulas.
+
+<Steps>
+  <Step title="Open Column Management">
+    Click the column settings icon at the bottom-left of the table.
+  </Step>
+  <Step title="Select Custom Metric">
+    Click **Custom Metric** in the left panel. You will see a list of 10 custom metric slots.
+  </Step>
+  <Step title="Edit a slot">
+    Click the edit icon next to any empty slot.
+  </Step>
+  <Step title="Configure the metric">
+    Enter a **Column Name**, select the **Format** (Currency or Percentage), and set the **Precision** (number of decimal places to display).
+  </Step>
+  <Step title="Build the formula">
+    Use the formula builder to select metrics from the dropdown and combine them using `+`, `−`, `×`, `/`, `(`, `)` operators.
+  </Step>
+  <Step title="Save">
+    Click **Save**. Your custom metric is immediately available as a column in any column preset and as an available metric inside your automation rules.
+  </Step>
+</Steps>
+
+<Note>
+  Custom metrics are available across all ad networks — not just the one you created them on. Make sure your formula references metrics that exist for each network you plan to use the column with.
+</Note>
+
+### Compare columns
+
+The **Compare Columns** tab inside **Column Management** controls which metrics show comparison data when the **Compare dates** feature is active.
+
+<Steps>
+  <Step title="Open Column Management">
+    Click the column settings icon at the bottom-left of the table.
+  </Step>
+  <Step title="Switch to Compare Columns">
+    Click the **Compare Columns** tab at the top right of the dialog.
+  </Step>
+  <Step title="Select metrics to compare">
+    Select the metrics you want to see side-by-side comparison data for (e.g., Amount Spent, Revenue, Conversions).
+  </Step>
+  <Step title="Save as preset">
+    Click **Save as preset**.
+  </Step>
+</Steps>
+
+Once set up, activating **Compare dates** in the date picker causes each selected compare column to display an additional column showing the value for the comparison period — making it easy to see at a glance whether spend went up, conversions dropped, or ROI improved between the two periods.
+
+---
+
+## Exporting data
+
+The **Export** button is at the bottom of the main table, next to the column settings icon.
+
+- With **no filters** applied, the export includes all campaigns, ad sets, or ads for the selected ad network and date range.
+- With **filters active**, the export includes only the filtered results.
+- The export respects the currently visible **columns** — only the columns shown in your active column preset are included in the file.
+
+<Tip>
+  Apply your filters first to narrow down exactly what you need, then export. This keeps your export clean and ready to use without further editing.
+</Tip>

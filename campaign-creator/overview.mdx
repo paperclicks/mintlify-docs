@@ -1,0 +1,146 @@
+---
+title: "Campaign Creator: Launch Campaigns at Scale"
+description: "Build and launch campaigns across Facebook, Taboola, Outbrain, and more — all from one place, with mass creation and API-powered speed."
+sidebarTitle: "Overview"
+---
+
+The Campaign Creator lets you build and launch campaigns on your connected ad networks directly from TheOptimizer — without switching to each native ad manager. Configure targeting, set bids and budgets, upload creatives from a shared media library, and launch everything in one place. This page covers how Campaign Creator is structured, which networks and creation methods are supported, and how the Campaign Creation Queue and Creative Library fit into your workflow.
+
+## Why Use Campaign Creator
+
+You can already create campaigns directly inside each ad network, so why use TheOptimizer's Campaign Creator? Three reasons:
+
+**Everything in one place.** You already use TheOptimizer for campaign management, automation, and optimisation. Having campaign creation here too means you never need to jump between the ad network for launching and TheOptimizer for everything else. One tool, one workflow.
+
+**Mass campaign creation.** Every ad network has a limit on how quickly you can set up campaigns through its native interface. TheOptimizer removes that limit. You can launch 100 campaigns in just a few minutes — something no ad network allows you to do natively. Whether through the interactive interface or the Excel uploader, bulk creation is built into every traffic source we support.
+
+**Speed.** TheOptimizer's campaign creation UI is built with speed in mind. Since we use each network's API rather than replicating their front-end flow, every step — from uploading images and videos to navigating between options — is noticeably faster than doing it in the native dashboard.
+
+---
+
+## How to Access Campaign Creator
+
+**Campaign Creator** is accessible from the **left-hand navigation menu**. Click **Campaign Creator** to open the main page, where you will see a card for every supported ad network.
+
+- Cards for networks you have already connected appear **enabled**.
+- Cards for networks you have not connected yet appear **greyed out**. A greyed-out card does not mean the network is unsupported — it simply means no ad account for that network has been connected. Go to **Integrations** to add it.
+
+At the bottom of the main page you will also see a preview of your recently launched campaigns and their statuses. Click **See full list** to open the full **Campaign Creation Queue**.
+
+---
+
+## Supported Ad Networks & Creation Methods
+
+TheOptimizer supports campaign creation for **Facebook**, **Taboola**, **Outbrain**, **RevContent**, **MGID**, and **AdsKeeper**.
+
+Depending on the traffic source, campaigns can be created through one or both of the following methods:
+
+**Interactive interface (Create Manually)** — a step-by-step guided launcher where you configure campaign settings and upload creatives through a familiar UI. For each ad network, the interface mirrors the flow you already know from that network's native dashboard, but with added helpers and options that make the whole process more efficient. You do not need to learn anything new — the navigation and options will feel familiar, just faster.
+
+**Excel uploader** — a bulk campaign creation tool. You fill in a Google Sheets template with your campaign data (one row per ad), export it to Excel, and upload it. TheOptimizer processes the file and pushes all campaigns to the ad network in one go.
+
+| Traffic Source | Interactive Interface | Excel Uploader |
+|---|---|---|
+| Facebook | ✅ | — |
+| Taboola | ✅ | ✅ |
+| Outbrain | ✅ | ✅ |
+| RevContent | ✅ | ✅ |
+| MGID | ✅ | ✅ |
+| AdsKeeper | ✅ | ✅ |
+
+### Why Two Options for Native Ad Networks?
+
+For Taboola, Outbrain, RevContent, MGID, and AdsKeeper, both creation methods are available because they serve different needs:
+
+- **The Excel uploader enables automation.** Teams with technical resources can generate the Excel file programmatically and push it to TheOptimizer via the API — automating the entire campaign launch pipeline end-to-end without any manual steps.
+- **The Excel uploader is reusable.** Once you build your first Google Sheets template, you will likely reuse it over and over with minor changes — new creatives, adjusted budgets, or updated targeting. Think of it as a living template. The first time takes some effort, but every subsequent launch is just a matter of updating a few columns and re-uploading.
+- **The interactive interface is better for one-off campaigns.** When you need to create a single campaign or a small batch and want a visual, guided experience with helpers and suggestions, the manual interface is the faster path.
+
+### Excel Uploader — How It Works
+
+The workflow is the same across all native ad networks:
+
+<Steps>
+  <Step title="Clone the template">
+    Clone the TheOptimizer Google Sheets template for your traffic source into your own Google account. Every column header has a hover note explaining what the field expects, valid values, and the required format. The template also includes auxiliary sheets with reference data — countries, regions, browsers, timezones, traffic types — to help you look up valid values.
+  </Step>
+  <Step title="Fill in your campaign data">
+    Each row represents one ad. To create a campaign with multiple ads, use one row per ad and keep all campaign-level columns identical across those rows.
+  </Step>
+  <Step title="Export to Excel">
+    In Google Sheets, go to **File → Download → Microsoft Excel (.xlsx)**.
+  </Step>
+  <Step title="Upload in TheOptimizer">
+    Go to **Campaign Creator**, select your traffic source, and upload the file.
+  </Step>
+  <Step title="Monitor progress">
+    Track the status of your submission in the **Campaign Creation Queue** and watch for email notifications.
+  </Step>
+</Steps>
+
+<Tip>
+  Once you create your first Google Sheets template, you will reuse it over and over. The next time you launch, you are most likely just going to change some targeting options, update budgets, or swap in new creatives and headlines — not rebuild from scratch.
+</Tip>
+
+---
+
+## The Campaign Creation Queue
+
+Every campaign created through TheOptimizer — whether through the interactive interface or via Excel — is processed asynchronously through the **Campaign Creation Queue**. Campaigns are not launched instantly; they are queued and submitted to the traffic source in order.
+
+Access the Queue from the **Campaign Creator** main page by clicking **See full list** at the bottom. This opens a panel showing the full list of jobs with the following details:
+
+| Column | What it shows |
+|---|---|
+| **Date** | When the action was submitted |
+| **Ad Account** | Which ad account the campaigns are being created in |
+| **Campaign Name** | The name of the campaign or upload batch |
+| **Action** | The type of operation: Campaign Creation, Campaign Editing, Campaign Clone, or Excel Upload |
+| **Status** | Completed, Failed, or Partially Completed |
+| **Description** | For failed or partial items, additional detail about what went wrong |
+
+### Filtering and Searching
+
+You can filter the Queue by **status** (Completed, Failed, Partially Completed) or by **action type** (Creation, Clone, Editing, Excel Upload). A search bar lets you locate a specific submission by name.
+
+### Handling Errors
+
+If a submission fails or partially completes, two options are available:
+
+**Retry button** — available on failed and partially completed items. Use this when the failure was caused by a transient issue (network error, temporary API error from the ad network, ad network temporarily overloaded). A retry resubmits the same data.
+
+**Details button** — click to see exactly which items within the campaign caused the error. For example, a campaign with five ad sets and ten ads might have succeeded for all ad sets but failed on two specific ads. The details view shows you precisely which items failed and why.
+
+<Warning>
+  If any single item within a campaign submission fails — even one ad out of fifty — TheOptimizer marks the **entire operation as failed** and does not create a partial campaign. This is by design: it prevents incomplete campaigns from being pushed to the ad network with missing ads or ad sets you intended to include. Use the **Retry** button for transient failures, or check **Details** to identify which specific item caused the issue.
+</Warning>
+
+### Email Notifications
+
+For campaign creation via Excel and campaign cloning operations, TheOptimizer sends email notifications to the address configured in your account settings:
+
+- **Success email** — confirms the operation completed and lists how many campaigns were created successfully.
+- **Error email** — details which items failed and why. For Excel uploads specifically, the error email includes a copy of your Excel file with all problematic cells highlighted so you can correct and re-upload.
+
+<Tip>
+  Monitor both the Queue and your email. The Queue gives you real-time status; the email gives you a permanent record — especially useful for Excel uploads where the highlighted error file tells you exactly which cells to fix.
+</Tip>
+
+---
+
+## Creative Library Integration
+
+The Campaign Creator works hand-in-hand with TheOptimizer's **Creative Library** — a centralised collection of every creative (images, videos, headlines, text) currently running across all your active campaigns and connected ad accounts.
+
+When using the **Excel uploader**, instead of specifying each creative individually (image URL, headline, call to action), you can reference one or more **Creative Library tags** in your file. When TheOptimizer processes the upload, it pulls in all creatives tagged with that label and generates the corresponding ads automatically. This is cleaner, faster, and eliminates the risk of copy-paste errors in image URLs and headlines.
+
+For teams with separate creative and media buying functions, the recommended workflow is:
+
+1. Your creative team uploads and tags assets in the **Creative Library**.
+2. Your media buying team references those tags in the **Campaign Creator** — through the interactive interface or the Excel uploader.
+
+This keeps the process clean and ensures everyone works from the same organised asset library. The Campaign Creator combined with the Creative Library lowers human error, saves time, and removes the campaign creation bottleneck — scaling becomes limited only by how much you can spend or how many creatives you have to test.
+
+<Note>
+  The Creative Library is covered in its own help article. In short, it collects all creatives from your active campaigns across all connected accounts, lets you browse and tag them, and makes them available inside both the interactive launcher and the Excel uploader.
+</Note>

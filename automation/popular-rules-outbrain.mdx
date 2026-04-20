@@ -1,0 +1,295 @@
+---
+title: "Outbrain Automation Rules: Popular Patterns"
+description: "Proven Outbrain automation rules from 1,867 real deployments — covering section-level control, publisher blocking, fraud detection, and budget scaling."
+sidebarTitle: "Outbrain Rules"
+---
+
+This page covers 15+ critical automation rules for Outbrain based on analysis of 1,867 real-world rules deployed by high-performing media buyers. On Outbrain, section-level management is what separates profitable campaigns from average ones — 415 pause rules and 80 bid adjustments operate at the section level, making it the engine that high-volume buyers use to scale. Publisher-level blocking and campaign safety nets round out the stack, but the section is where your profit margin lives. Adjust thresholds to match your payout structures.
+
+---
+
+## Section-level control & bid optimization
+
+Sections are placements within publishers — think of them as publisher subsites or contexts. Section-level control is unique to Outbrain and is how buyers scale profitably at high volume.
+
+### Rule 1: pause sections — high spend, crushing payout (3× spend rule)
+
+Kill sections spending 3× your payout with zero conversions. This is aggressive but critical.
+
+**Data Interval:** Last 14 days | **Scheduling:** Once daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | &gt; | 300% of Current Payout |
+| Tracker Conversions | = | 0 |
+
+**Action:** Pause Section
+
+<Tip>
+If your payout is $30 and a section has spent $90+ with zero conversions, it's a drain. This rule fires automatically to prevent waste.
+</Tip>
+
+---
+
+### Rule 2: pause sections — high LP CTR but zero conversions (landing page mismatch)
+
+Sections with abnormally high LP CTR (75%+) but zero conversions indicate audience misalignment — your headline attracts clicks but the offer fails. Kill it and move budget.
+
+**Data Interval:** Last 7 days | **Scheduling:** Once daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | &gt; | $5 |
+| LP CTR | &gt; | 75% |
+| Tracker Conversions | = | 0 |
+
+**Action:** Pause Section
+
+---
+
+### Rule 3: pause sections — abnormally high CTR (1%+ on native)
+
+Native CTR above 1% is rare and usually indicates bot activity, poisoned data, or fraud. Outbrain native typically runs 0.2–0.5% CTR. Use this as a fraud red flag.
+
+**Data Interval:** Last 7 days | **Scheduling:** Once daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | &gt; | $2 |
+| CTR | &gt; | 1% |
+| Tracker Conversions | &lt; | 1 |
+
+**Action:** Pause Section
+
+---
+
+### Rule 4: optimize section bid — sophisticated bid ranges (advanced multi-condition)
+
+Set bids based on a combination of CPC, EPC, conversion volume, and cost. This rule applies a tiered bid strategy that high-volume buyers use consistently.
+
+**Data Interval:** Last 14 days | **Scheduling:** Every 2 days
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Avg CPC | &gt;= | 0.15 AND &lt;= 0.25 |
+| EPC | &gt;= | 2 AND &lt;= 4 |
+| Tracker Conversions | &gt; | 1 |
+| Amount Spent | &gt; | $200 |
+
+**Action:** Set Section Bid to 30% above current bid
+
+<Tip>
+This rule targets sections with balanced metrics — decent click costs, good earnings potential, proven conversions, and adequate spend. Adjust thresholds to your vertical's norms.
+</Tip>
+
+---
+
+### Rule 5: reduce section bid — high cost per acquisition
+
+When section CPA exceeds 100% of your campaign's target CPA, reduce bid to bring costs in line. This prevents overweight sections from eating margins.
+
+**Data Interval:** Last 14 days | **Scheduling:** Every 2 days
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker CPA | &gt; | 100% of Campaign.CPA |
+| Amount Spent | &gt; | $100 |
+
+**Action:** Reduce Section Bid by 15–20%
+
+---
+
+### Rule 6: reactivate sections — positive ROI after pause
+
+If a paused section recovers to positive ROI over 7 days, resume it. This captures sections that had temporary dips but have stabilized.
+
+**Data Interval:** Last 7 days | **Scheduling:** Every 2 days
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker ROI | &gt; | 5% |
+| Tracker Clicks | &gt; | 15 |
+
+**Action:** Start Section
+
+---
+
+## Sophisticated publisher blocking
+
+While publisher-level blocking accounts for a large share of rules in the dataset, it's less critical than section-level control for high-volume buyers. However, blocking patterns at the publisher level remain important for brand safety and quality gates.
+
+### Rule 7: pause publishers — high spend, zero conversions
+
+If a publisher has spent meaningful money with zero conversions, stop it. This fires across all sections of that publisher.
+
+**Data Interval:** Last 7 days | **Scheduling:** Once daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | &gt;= | $20 |
+| Tracker Conversions | = | 0 |
+
+**Action:** Pause Publisher
+
+---
+
+### Rule 8: pause publishers — extreme spend velocity with negative ROI
+
+Some publishers spend fast but burn money. If they're burning 80% of your daily budget with poor ROI, pause to prevent runaway losses.
+
+**Data Interval:** Today | **Scheduling:** Every 4 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | &gt;= | 80% of Daily Budget |
+| Tracker ROI | &lt;= | −50% |
+
+**Action:** Pause Publisher
+
+---
+
+### Rule 9: block publishers by name — brand safety tier
+
+Use name matching to block known low-quality publishers. This is foundational quality control.
+
+**Data Interval:** Last 7 days | **Scheduling:** Once daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Name | contains | [your blacklist terms] |
+| Impressions | &gt;= | 10 |
+
+**Action:** Pause Publisher
+
+---
+
+## Fraud detection & bot prevention
+
+Sophisticated buyers use 3+ condition rules (448 out of 1,867 rules in the dataset). Fraud detection is a key use case — don't skip it.
+
+### Rule 10: detect publisher click vs. traffic source click mismatch (bot detection)
+
+When publisher clicks are 10% or less of traffic source clicks, it's a massive red flag for bot activity. Real users follow the click path; bots don't.
+
+**Data Interval:** Last 7 days | **Scheduling:** Once daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Publisher Clicks | &lt;= | 10% of TS Clicks |
+| Amount Spent | &gt;= | $10 |
+
+**Action:** Pause Section
+
+<Tip>
+Publisher clicks reflect actual user engagement. TS (traffic source) clicks are Outbrain's record. A large gap between the two signals fraudulent inventory.
+</Tip>
+
+---
+
+### Rule 11: bot detection — high impressions, near-zero engagement
+
+Sections with 20k+ impressions but CTR below 0.1% with zero conversions are likely bot-filled or low-quality content blocks.
+
+**Data Interval:** Last 7 days | **Scheduling:** Every 2 days
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Impressions | &gt;= | 20,000 |
+| CTR | &lt; | 0.1% |
+| Tracker Conversions | &lt; | 1 |
+
+**Action:** Pause Section
+
+---
+
+### Rule 12: fraud detection — high cost per click with no payout
+
+If you're paying high CPCs relative to your payout but earning nothing, demand-side fraud or bad inventory is likely.
+
+**Data Interval:** Last 14 days | **Scheduling:** Every 2 days
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker CPA | &gt; | 95% of Current Payout |
+| Amount Spent | &gt;= | $50 |
+| Tracker Conversions | &lt; | 1 |
+
+**Action:** Pause Section
+
+---
+
+## Campaign budget & ROI management
+
+These are the safety nets that prevent catastrophic losses.
+
+### Rule 13: scale profitable campaigns — high spend velocity + positive ROI
+
+When a campaign is hitting 80% of daily budget AND showing positive ROI, increase budget to capture more volume before hitting the cap.
+
+**Data Interval:** Last 7 days | **Scheduling:** Every 4 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | &gt;= | 80% of Daily Budget |
+| Tracker ROI | &gt; | 0% |
+
+**Action:** Increase Campaign Budget by 25–30%
+
+---
+
+### Rule 14: pause campaigns — severe sustained losses
+
+If a campaign is bleeding money over 2 weeks ($300+ spend at −70% ROI or worse), emergency stop it before compounding losses.
+
+**Data Interval:** Last 14 days | **Scheduling:** Every 6 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | &gt;= | $300 |
+| Tracker ROI | &lt;= | −70% |
+
+**Action:** Pause Campaign
+
+---
+
+### Rule 15: kill campaigns — spent budget without ROI
+
+A campaign that's spent 70% of daily budget yet shows CPA 130% above campaign average is not scaling — it's hemorrhaging.
+
+**Data Interval:** Last 7 days | **Scheduling:** Every 6 hours
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | &gt;= | 70% of Daily Budget |
+| Tracker CPA | &gt; | 130% of Campaign.CPA |
+
+**Action:** Pause Campaign
+
+<Warning>
+This fires on campaigns that can't optimize through section or publisher control — they're systemically broken. Pause and investigate the offer or audience targeting before reactivating.
+</Warning>
+
+---
+
+## Creative performance & scaling
+
+Ad-level rules are less frequent because section-level control dominates, but creative scaling is still crucial.
+
+### Rule 16: pause creatives — high spend, zero conversions
+
+Individual creatives that accumulate cost without conversions should be paused to redirect budget to winners.
+
+**Data Interval:** All time | **Scheduling:** Every 3 days
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | &gt;= | $100 |
+| Tracker Conversions | = | 0 |
+
+**Action:** Pause Ads
+
+---
+
+## Where to start
+
+The framework above represents real patterns from 1,867 deployed rules. Focus first on section-level control and fraud detection — that's where your profit margin lives. Adjust thresholds based on your payout and risk tolerance, but the logic stays consistent: move fast on winners, kill losers aggressively, and watch for fraud signals constantly.
