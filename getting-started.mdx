@@ -1,14 +1,59 @@
 ---
-title: "Get Started with TheOptimizer in Five Steps"
-description: "Follow five steps to connect ad networks and trackers, explore the Campaigns view, configure automation rules, and launch your first campaigns at scale."
-sidebarTitle: "Quick Start"
+title: "Quick Start"
 ---
 
 This guide walks you through the five steps to go from a new TheOptimizer account to a fully operational setup. By the end, your ad networks will be connected, your campaigns will be visible in a unified view, and you will have automation rules running to protect and optimize your spend.
 
 <Steps>
-
   <Step title="Connect Your Ad Network">
+
+    <div>
+  {(() => {
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('message', window.__onArcadeIframeMessage);
+      window.__onArcadeIframeMessage = function(e) {
+        if (e.origin !== 'https://demo.arcade.software' || !e.isTrusted) return;
+        const arcadeIframe = document.querySelector(`iframe[src*="${e.data.id}"]`);
+        if (!arcadeIframe || !arcadeIframe.contentWindow) return;
+        if (e.data.event === 'arcade-init') {
+          arcadeIframe.contentWindow.postMessage({event: 'register-popout-handler'}, '*');
+        }
+        if (e.data.event === 'arcade-popout-open') {
+          arcadeIframe.style.height = '100%';
+          arcadeIframe.style.zIndex = '9999999';
+        }
+        if (e.data.event === 'arcade-popout-close') {
+          arcadeIframe.style.height = '0';
+          arcadeIframe.style.zIndex = 'auto';
+        }
+      };
+      window.addEventListener('message', window.__onArcadeIframeMessage);
+    }
+    return null;
+  })()}
+
+  <button
+    onClick={() => {
+      const arcadeIframe = document.querySelector('iframe[src*="125wLEBSv5jjYVSDtZLq"]');
+      if (arcadeIframe && arcadeIframe.contentWindow) {
+        arcadeIframe.contentWindow.postMessage({event: 'request-popout-open'}, '*');
+      }
+    }}
+    style={{border: '1px solid #E5E7EB', padding: '8px 12px', borderRadius: '12px'}}>
+    ✨ ▶ Watch Video ✨
+  </button>
+
+  <iframe
+    src="https://demo.arcade.software/125wLEBSv5jjYVSDtZLq?embed&embed_custom&show_copy_link=true"
+    title="Facebook - Integrations - Connect using a personal profile"
+    frameBorder="0"
+    loading="lazy"
+    allowFullScreen
+    allow="clipboard-write"
+    style={{position: 'fixed', top: 0, left: 0, width: '100%', height: 0, colorScheme: 'light'}}
+  />
+</div>
+
     The first thing you need to do is connect at least one ad network. Without this, the platform has no campaign data to work with and cannot take any actions.
 
     Go to **Integrations** in the left-hand menu and open the **Ad Networks** tab. You will see a grid of all supported networks. Click **Connect** on the network you want to add and follow the authorization flow.
@@ -26,8 +71,11 @@ This guide walks you through the five steps to go from a new TheOptimizer accoun
       You can add tags to your ad accounts (for example, by timezone or currency) from the **Integrations** section. These tags let you filter campaigns by account group with a single click from the main **Campaigns** view.
     </Tip>
   </Step>
-
   <Step title="Connect a Tracking Platform (Optional)">
+    <Frame>
+      ![Image](/images/image-2.png)
+    </Frame>
+
     A tracking platform is not required, but it is strongly recommended. Connecting one gives you accurate cost and revenue data at the click level, browser and device breakdowns not available from ad networks alone, and a reliable revenue signal for your automation rules.
 
     Go to **Integrations → Tracking Platforms** and connect your preferred tracker. TheOptimizer supports ClickFlare, Voluum, RedTrack, Bemob, Binom, Everflow, Google Analytics 4, and others.
@@ -36,13 +84,12 @@ This guide walks you through the five steps to go from a new TheOptimizer accoun
       If you do not already have a preferred tracker, ClickFlare is the recommended option. It offers deep integration with TheOptimizer and 24/7 support.
     </Tip>
 
-    If your tracker is not on the supported list, you can use the **Google Sheets or CSV integration** as a workaround — export your conversion data to a Google Sheet and TheOptimizer will sync from it automatically every 30 minutes. You can also upload a CSV file manually or push one via API.
+    If your tracker is not on the supported list, you can use the **Google Sheets or Custom Data Source** integration as a workaround — export your conversion data to a Google Sheet and TheOptimizer will sync from it automatically every 30 minutes. Or upload a CSV file manually or push one via API.
 
     <Note>
       Once your tracker is connected, check the revenue source toggle on your **Dashboard**. TheOptimizer can display revenue from the ad network or from your tracker — use the toggle to switch between them. If you see zero revenue in the **Campaigns** view, this setting is usually the cause.
     </Note>
   </Step>
-
   <Step title="Explore the Campaigns Section">
     Once your ad network is connected, go to **Campaigns** in the left-hand menu. This is the central hub where you view and manage everything across all your connected accounts.
 
@@ -59,7 +106,6 @@ This guide walks you through the five steps to go from a new TheOptimizer accoun
     - **Details view** — hover over any campaign, ad set, or ad name and click **View Details**. This opens a side panel with performance charts, a change history log, attached automation rules, and publisher or site-level breakdowns for native ad networks. You can move to the next or previous item without closing the panel.
     - **Keyboard shortcuts** — the Campaigns section is designed to be keyboard-navigable. You can launch the filter bar, navigate the table, and edit values without using the mouse.
   </Step>
-
   <Step title="Set Up Your First Automation Rule">
     Automation rules convert your manual optimization strategy into logic that TheOptimizer runs around the clock. A rule watches your campaigns for specific conditions — and when those conditions are met, it takes an action such as pausing a campaign, adjusting a budget, or sending you an alert.
 
@@ -75,7 +121,6 @@ This guide walks you through the five steps to go from a new TheOptimizer accoun
       Use **Global Rules** for your safety nets such as stop-loss rules. A Global Rule automatically covers every campaign in the assigned ad account — including new ones you launch later — so you never have an unprotected campaign.
     </Tip>
   </Step>
-
   <Step title="Launch Campaigns with the Campaign Creator">
     Once you are familiar with the Campaigns section and have automation rules in place, the Campaign Creator lets you build and launch campaigns at a scale that is not possible in native ad managers.
 
@@ -95,5 +140,4 @@ This guide walks you through the five steps to go from a new TheOptimizer accoun
 
     After publishing, monitor the creation process in the **Campaign Creation Queue**. You will receive email notifications when the launch completes or if any item fails — and you can use the **Retry** button on any failed item directly from the queue.
   </Step>
-
 </Steps>
