@@ -53,7 +53,13 @@
           {
             "group": "Campaign Manager",
             "pages": [
-              "campaign-manager/overview"
+              "campaign-manager/overview",
+              "campaign-manager/navigation",
+              "campaign-manager/filtering",
+              "campaign-manager/managing-campaigns",
+              "campaign-manager/details-view",
+              "campaign-manager/columns-and-metrics",
+              "campaign-manager/exporting"
             ]
           },
           {

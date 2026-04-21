@@ -1,0 +1,72 @@
+---
+title: "Navigation, Ad Accounts & Date Ranges"
+description: "Switch between ad networks, filter by account or tag, understand the Totals Bar, and set date ranges and comparisons."
+---
+
+## Ad Networks & Ad Accounts
+
+At the top of the Campaign Manager you will find the ad network navigation bar. Every ad network you have connected to TheOptimizer appears here as an icon. Clicking an icon switches the entire view to that network, showing only the campaigns, ad sets, and ads that belong to it.
+
+<Tip>
+  If you do not see an ad network icon, it has not been connected yet. Go to **Integrations** to add it.
+</Tip>
+
+To the right of the network icons is the **Ad Accounts** filter. Unlike native ad managers that lock you to one account at a time, TheOptimizer lets you view and manage campaigns across all your accounts simultaneously — or filter down to exactly the accounts you need.
+
+### Filtering by Tags
+
+TheOptimizer automatically assigns two tags to every ad account when it is connected:
+
+- **Timezone tag** — the time zone configured on that account (e.g., `UTC`, `America/Los_Angeles`)
+- **Currency tag** — the currency of the account (e.g., `USD`, `EUR`, `GBP`)
+
+These default tags let you instantly filter to, for example, all USD accounts or all accounts running on Eastern time. You can add your own custom tags from **Integrations → Ad Network → Ad Accounts** to create groupings that match your team structure, geo focus, or offer verticals.
+
+### Searching for Specific Accounts
+
+Inside the ad account filter, type to search for accounts by name. Select one or more accounts and click **Filter** to scope the Campaign Manager to only those accounts. Your selected accounts act as a persistent scope — all other filters and data apply only within them.
+
+---
+
+## Totals Bar
+
+Directly below the navigation bar, the **Totals Bar** shows aggregated metrics across all currently visible campaigns for the selected date range.
+
+| Metric | What it shows |
+|--------|---------------|
+| **Cost** | Total amount spent across selected accounts and date range |
+| **Revenue** | Total revenue (from ad network or tracker — see below) |
+| **NET** | Revenue minus Cost |
+| **ROI** | Return on investment as a percentage |
+
+### Currency Handling
+
+If all your ad accounts for a given network share the same currency, that currency symbol appears next to the cost figure. If you have accounts in multiple currencies, TheOptimizer does not perform automatic currency conversion — it adds the raw values together.
+
+<Warning>
+  When accounts in multiple currencies are selected, an asterisk (`*`) replaces the currency symbol. Hover over the asterisk to see a tooltip confirming that multiple currencies are present. Treat the Totals Bar as a directional indicator in this case, not an exact financial figure. For precise reporting, filter down to accounts that share a single currency.
+</Warning>
+
+### Revenue Source: Ad Network vs. Tracker
+
+TheOptimizer can pull revenue from two sources: the ad network itself (if it passes revenue data) or your connected tracking platform. You control which source is active from the **Dashboard** view — a toggle there switches between **Ad Network Revenue** and **Tracker Revenue**. Whichever option is active on the Dashboard also determines what the Campaign Manager Totals Bar shows.
+
+<Warning>
+  If you see `$0.00` in the Revenue column despite having active campaigns, you most likely have **Ad Network Revenue** selected but are not pushing revenue data to the traffic source. Switch to **Tracker Revenue** on the Dashboard and the correct figures will appear.
+</Warning>
+
+---
+
+## Date Ranges & Comparisons
+
+The date picker is in the top-right corner of the navigation bar. Click it to change the reporting interval for the entire view.
+
+Available presets: **Today**, **Yesterday**, **Last 3 / 7 / 14 / 30 days**, **Last 90 days**, **This month**, **Last month**, **Last 6 months**, and a fully custom calendar range.
+
+### Comparing Two Date Ranges
+
+Inside the date picker, enable the **Compare dates** toggle to select a second date range. Comparison data appears as additional columns in the main table for any metric you have designated as a compare column — see [Columns & Custom Metrics](/campaign-manager/columns-and-metrics) for how to set those up.
+
+<Tip>
+  Use **Compare dates** to spot performance shifts between periods — for example, this week vs. last week — to measure the impact of a recent creative or budget change.
+</Tip>

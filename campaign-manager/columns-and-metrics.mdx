@@ -1,0 +1,97 @@
+---
+title: "Columns, Custom Metrics & Compare"
+description: "Choose which columns appear in the campaign table, create your own metric formulas, and configure side-by-side period comparisons."
+---
+
+The column settings panel is at the bottom-left corner of the table. Click it to open the **Column Management** dialog, where you can control which columns are visible, their order, and create your own custom column presets.
+
+---
+
+## Default Column Views
+
+TheOptimizer provides ready-made column presets for each ad network. For Facebook, for example, you get:
+
+- **Facebook Standard** — essential Facebook ad network metrics only, with no tracker data. A clean, focused view for native Facebook performance.
+- **Facebook + Tracker** — a combined view that merges the most important Facebook metrics with key tracker metrics side by side. This preset is only shown when you have a tracker connected.
+
+Default presets cannot be deleted and are a good starting point for building your own views.
+
+---
+
+## Creating Custom Column Views
+
+<Steps>
+  <Step title="Open Column Management">
+    Click the column settings icon at the bottom-left of the table to open the **Column Management** dialog.
+  </Step>
+  <Step title="Browse column groups">
+    Use the left panel to browse available column groups: **Traffic Source Metrics**, **Tracker Metrics**, **Custom Metric**, **Custom Conversion Metrics**, **Search Feed Metrics**, and network-specific groups (e.g., **Facebook Metrics**).
+  </Step>
+  <Step title="Select your columns">
+    Check or uncheck columns in the center panel to show or hide them.
+  </Step>
+  <Step title="Reorder columns">
+    Use the **Order Columns** panel on the right to drag columns into the exact order you want.
+  </Step>
+  <Step title="Save as a preset">
+    Any modification to a default view automatically prompts you to **Save as preset** under a new name. Your saved custom views appear at the top of the column view list and can be switched between at any time.
+  </Step>
+</Steps>
+
+<Tip>
+  Create different column presets for different workflows — for example, a "Daily Review" preset with spend, CPA, and ROI, and a separate "Creative Testing" preset focused on CTR, CPM, and click-through rate.
+</Tip>
+
+---
+
+## Custom Metrics
+
+If the default metrics do not cover something you track, you can define up to **10 custom metrics** using your own formulas.
+
+<Steps>
+  <Step title="Open Column Management">
+    Click the column settings icon at the bottom-left of the table.
+  </Step>
+  <Step title="Select Custom Metric">
+    Click **Custom Metric** in the left panel. You will see a list of 10 custom metric slots.
+  </Step>
+  <Step title="Edit a slot">
+    Click the edit icon next to any empty slot.
+  </Step>
+  <Step title="Configure the metric">
+    Enter a **Column Name**, select the **Format** (Currency or Percentage), and set the **Precision** (number of decimal places to display).
+  </Step>
+  <Step title="Build the formula">
+    Use the formula builder to select metrics from the dropdown and combine them using `+`, `−`, `×`, `/`, `(`, `)` operators.
+  </Step>
+  <Step title="Save">
+    Click **Save**. Your custom metric is immediately available as a column in any column preset and as an available metric inside your automation rules.
+  </Step>
+</Steps>
+
+<Note>
+  Custom metrics are available across all ad networks — not just the one you created them on. Make sure your formula references metrics that exist for each network you plan to use the column with.
+</Note>
+
+---
+
+## Compare Columns
+
+The **Compare Columns** tab inside **Column Management** controls which metrics show comparison data when the **Compare dates** feature is active. See [Navigation & Date Ranges](/campaign-manager/navigation) for how to enable date comparisons.
+
+<Steps>
+  <Step title="Open Column Management">
+    Click the column settings icon at the bottom-left of the table.
+  </Step>
+  <Step title="Switch to Compare Columns">
+    Click the **Compare Columns** tab at the top right of the dialog.
+  </Step>
+  <Step title="Select metrics to compare">
+    Select the metrics you want to see side-by-side comparison data for (e.g., Amount Spent, Revenue, Conversions).
+  </Step>
+  <Step title="Save as preset">
+    Click **Save as preset**.
+  </Step>
+</Steps>
+
+Once set up, activating **Compare dates** in the date picker causes each selected compare column to display an additional column showing the value for the comparison period — making it easy to see at a glance whether spend went up, conversions dropped, or ROI improved between the two periods.
