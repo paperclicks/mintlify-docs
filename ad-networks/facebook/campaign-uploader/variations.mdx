@@ -1,0 +1,111 @@
+---
+title: "Generating Variations"
+description: "Use Groups, Campaign Restructuring, and Duplication to turn a simple base campaign into dozens or hundreds of targeted variations."
+---
+
+The variation generation system is what makes the Facebook Campaign Launcher fundamentally different from Facebook Ads Manager. Instead of manually creating every campaign, ad set, and ad, you use one — or a combination — of three mechanisms to generate your full structure from a simple starting point.
+
+---
+
+## Using Groups
+
+Groups let you define multiple values for a targeting section, and the system generates a variation for each group automatically.
+
+In several sections across the campaign, ad set, and ad levels, you will see a **Group Card** — a row starting with one default group and a **+** button to add more. Each group you create represents a separate variation of the entity you are working on. Click on each group tab to customise its settings independently.
+
+For example, if you create two audience groups at the ad set level — one targeting the US and one targeting the UK — TheOptimizer produces two ad set variations, identical in every way except their audience targeting.
+
+**Managing groups.** Click the three-dot menu (⋯) on any group to:
+
+- **Rename** — give the group a meaningful name (e.g., "US Audience" or "Budget $50"). Group names can be referenced in dynamic naming templates.
+- **Clone** — duplicate this group's settings into a new group.
+- **Clone Bulk** — duplicate the group multiple times at once.
+- **Delete** — remove the group.
+
+**Where groups are available:**
+
+| Level | Section | What varies between groups |
+|---|---|---|
+| **Campaign** | Advantage Campaign Budget | Daily budget, bid strategy |
+| **Ad Set** | Budget & Schedule | Daily/lifetime budget, schedule |
+| **Ad Set** | Audience Controls | Locations, age, gender, languages, custom audiences |
+| **Ad Set** | Placements | Platform and placement selections |
+| **Ad** | Identity | Facebook Page, Instagram Account |
+| **Ad** | Ad Creative | Media, primary text, headlines, descriptions, CTAs |
+
+**How permutations are calculated.** Groups at the same level multiply with each other. If you create three budget groups and three audience groups at the ad set level, the system generates 3 × 3 = 9 ad set variations. Add two placement groups and you get 3 × 3 × 2 = 18 ad set variations.
+
+The **Variation Preview** panel on the right updates in real time as you add groups. Always check this counter before proceeding.
+
+<Warning>
+  Permutations can grow quickly. Three groups in three different sections produces 27 variations. Make sure the total in the **Variation Preview** is intentional before moving forward.
+</Warning>
+
+---
+
+## Using Campaign Restructuring
+
+Campaign Restructuring lets you take a simple campaign structure and transform it into something much larger — without going back and manually duplicating anything.
+
+You access it in the **Manage Variations** step (click **Manage Variations** at the bottom of the screen after completing the **Create Campaign** step).
+
+The idea is simple: you build a straightforward base structure (for example, one campaign, one ad set, 50 ads), and then use Restructuring to reshape it into the structure your testing strategy actually requires.
+
+**Convert into multiple campaigns:**
+
+Toggle: **Create campaigns with ___ Ad Sets and ___ Ad(s) each**
+
+Example: you have one campaign with one ad set and 50 ads. Turn this on and set it to "1 Ad Set and 1 Ad each" — TheOptimizer explodes it into 50 separate campaigns, each with its own ad set and its own ad. Set it to "1 Ad Set and 5 Ads each" and you get 10 campaigns with 5 ads each.
+
+This is the go-to option when you want full budget isolation per creative — each campaign gets its own budget, eliminating Facebook's delivery bias.
+
+**Convert into multiple ad sets:**
+
+Toggle: **Create Ad Set with ___ Ad(s) for each Ad Set**
+
+Example: same starting point — one campaign, one ad set, 50 ads. Turn this on and set it to "1 Ad per Ad Set" — you get one campaign with 50 ad sets, each containing one ad. Set it to "5 Ads per Ad Set" and you get one campaign with 10 ad sets.
+
+This is the go-to option when you want to test creatives in separate ad sets while sharing a campaign-level budget.
+
+**Common use cases:**
+
+| Scenario | How to restructure |
+|---|---|
+| Test each creative in its own campaign (full budget isolation) | Explode by campaign: 1 Ad Set, 1 Ad each |
+| Test each creative in its own ad set (shared campaign budget) | Explode by ad set: 1 Ad per Ad Set |
+| Group five creatives per ad set for rotation testing | Explode by ad set: 5 Ads per Ad Set |
+
+The summary line at the bottom updates in real time — always verify the total campaign, ad set, and ad counts before proceeding.
+
+<Tip>
+  The typical workflow is: build a simple base campaign (one campaign, one ad set, many ads) → upload all your creatives → move to **Manage Variations** → use Restructuring to fan them out into the structure your testing strategy requires. It takes seconds.
+</Tip>
+
+---
+
+## Using Duplication
+
+The third way to generate variations is by manually duplicating items in the left panel tree. Click the three-dot menu (⋯) on any campaign, ad set, or ad and select **Duplicate** (to copy with all settings) or **Create New** (to start a fresh one).
+
+Duplication creates an exact copy of the selected item and everything inside it. You can then click on the copy and modify its settings — different creatives, different destination URLs, different structure.
+
+This is the most manual approach, but it gives you full control over exactly what goes inside each campaign, ad set, or ad.
+
+---
+
+## Groups vs. Restructuring vs. Duplication — When to Use Which
+
+| Method | Best for | Control level |
+|---|---|---|
+| **Groups** | Testing combinations of variables (budgets × audiences × placements) — you want all permutations generated automatically | You control the variables; the system generates all combinations |
+| **Restructuring** | Reshaping a simple structure into many campaigns or ad sets — upload creatives once, then decide how to distribute them | You control the distribution rule; the system does the splitting |
+| **Duplication** | When you need specific creatives in specific ad sets, or different destination URLs per ad — full manual control | You control everything; no automation |
+
+In practice, most workflows use a combination: groups for the variables that can be freely combined, Restructuring to reshape the structure, and duplication for the parts that need manual precision. For example: create a campaign with three audience groups, upload 30 images, explode into one ad per ad set, then duplicate the entire campaign for a second ad account.
+
+---
+
+## Next Steps
+
+- [Multi-Ad Account Launch](/ad-networks/facebook/campaign-uploader/multi-account) — launch the same structure across multiple ad accounts simultaneously
+- [Dynamic Naming Templates](/ad-networks/facebook/campaign-uploader/naming-templates) — auto-generate meaningful names across all your variations

@@ -1,0 +1,99 @@
+---
+title: "Troubleshoot a Facebook Connection"
+description: "Fix common Facebook integration issues — token expiry, missing ad accounts, missing Pages, sync delays, and automation not firing."
+---
+
+## Token Expired / Re-authentication Required
+
+**Symptom:** You receive an email saying a profile needs re-authentication, or you see a warning banner on the Facebook integration page. Campaigns may stop updating or automation rules stop firing.
+
+**Cause:** Facebook OAuth tokens expire when you change your Facebook password, when Facebook detects suspicious activity, or when security settings change.
+
+**Fix:**
+1. Go to **Integrations → Facebook → Profiles**.
+2. Find the profile showing the error.
+3. Click **Re-authenticate** and complete the OAuth flow with the same Facebook login.
+
+Re-authenticating refreshes the token without losing any history or settings. After completing the flow, data sync and automation resume within a few minutes.
+
+<Warning>
+  Do not ignore re-authentication notifications. All automation and data sync for accounts under the affected profile silently stops until the token is refreshed.
+</Warning>
+
+---
+
+## Ad Accounts Not Appearing After Connection
+
+**Symptom:** You connected Facebook but some (or all) of your ad accounts are not showing up in TheOptimizer.
+
+**Possible causes and fixes:**
+
+**Wrong Business Manager selected during OAuth** — during the Facebook authorisation flow, you select which Business Manager to include. If you selected the wrong one or skipped one, the ad accounts in the missed Business Manager won't appear. Fix: go to **Integrations → Facebook → Profiles**, click **Re-authenticate** on the profile, and during the flow make sure to select the correct Business Manager.
+
+**New ad account added after the initial sync** — ad accounts added to a Business Manager after you first connected won't appear automatically. Fix: go to **Integrations → Facebook → Profiles**, find the relevant profile, and click **Sync** to pull in new accounts.
+
+**Ad account belongs to a different login** — each profile only pulls accounts accessible by that specific Facebook login. If an account is managed by a different login, connect that login as an additional profile. See [Manage Ad Accounts & Profiles](/ad-networks/facebook/integration/manage-accounts).
+
+---
+
+## Pages Not Available in the Campaign Creator
+
+**Symptom:** When building a campaign in the Campaign Creator, you can't find a Facebook Page you want to use.
+
+**Cause:** The Page wasn't included during the Facebook authorisation flow.
+
+**Fix:** Go to **Integrations → Facebook → Profiles**, click **Re-authenticate**, and during the OAuth flow select **"Opt in to all current and future Pages"**. This ensures all your Pages are accessible going forward.
+
+---
+
+## Data Not Updating / Sync Delay
+
+**Symptom:** Campaign data in TheOptimizer is hours behind or not updating at all.
+
+**Expected behaviour:** TheOptimizer syncs data from Facebook multiple times per day. There is a natural lag of up to 1–2 hours between a change on Facebook and it appearing in TheOptimizer. Initial sync after first connecting can take up to 30 minutes.
+
+**If the delay is longer than a few hours:**
+1. Check if the profile for the affected ad accounts shows a re-authentication warning (see above).
+2. Go to the ad account in TheOptimizer and verify it is enabled (ON/OFF toggle is ON).
+3. Check if the ad account has the correct profile assigned.
+4. If none of the above resolves it, contact support with the ad account ID.
+
+---
+
+## Automation Rules Not Firing
+
+**Symptom:** Rules are configured and enabled but don't appear to be taking action on Facebook campaigns.
+
+**Check these in order:**
+
+1. **Profile health** — verify the Facebook profile for the affected accounts is not showing a re-authentication error.
+2. **Account enabled** — confirm the ad account is enabled (ON toggle) in the integration settings.
+3. **Rule scope** — open the rule and verify the scope includes the affected campaigns or ad accounts.
+4. **Rule conditions** — check the data interval. If the rule looks at "Today" data, it won't fire until enough data has accumulated in that session. Check the Activity Log on the rule to see when it last evaluated.
+5. **Tracker data** — if the rule uses tracker metrics (Tracker Conversions, Tracker ROI, etc.), confirm the tracker is correctly connected and producing data for the affected campaigns.
+
+---
+
+## Pixel or Tracking Issues
+
+**Symptom:** Tracker conversions are showing zero, or Facebook Results in rules always return zero.
+
+**For Facebook pixel (Facebook Results metric):**
+- Verify the pixel is installed and firing on your landing page or conversion event.
+- In Facebook Events Manager, check that the conversion event you're using is active and receiving data.
+- Make sure the correct pixel is selected at the ad level in TheOptimizer's Campaign Creator.
+
+**For tracker conversions:**
+- Confirm the tracking URL parameters are appended to your campaign destination URLs.
+- Check your tracker's reporting to verify clicks are being recorded for the affected campaigns.
+- Verify the tracking template selected in TheOptimizer matches the traffic source setup in your tracker.
+
+---
+
+## Contact Support
+
+If none of the above resolves your issue, contact TheOptimizer support with:
+- The ad account ID (found in Facebook Ads Manager under the account name)
+- The integration profile name in TheOptimizer
+- A description of what you expected to happen and what happened instead
+- The approximate time the issue started

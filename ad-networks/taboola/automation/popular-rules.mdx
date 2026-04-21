@@ -1,0 +1,363 @@
+---
+title: "Taboola Automation Rules: Popular Patterns"
+description: "Proven Taboola automation rules drawn from 4,066 real deployments — covering site blocking, fraud detection, bid optimization, and creative rotation."
+sidebarTitle: "Taboola Rules"
+---
+
+Based on analysis of 4,066 real Taboola automation rules, this guide reveals the patterns that separate profitable campaigns from money-losing ones. The data shows 53% of all Taboola rules target site-level pausing — publishers range from premium sites to low-quality placements, and smart blocking before spend accumulates is the single highest-leverage automation you can build. Once your blocking foundation is solid, layer in bid optimization and creative rotation to compound your winners.
+
+---
+
+## Site-level blocking: the Taboola foundation
+
+### Rule 1: block publishers by name (brand protection)
+
+Pause sites from known junk publishers — the fastest way to protect brand safety and cut losses.
+
+**Data Interval:** Last 14 days | **Scheduling:** Immediate
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Site Name | Contains | `push\|notification\|pop` |
+
+**Action:** Pause Site
+
+<Tip>
+Customize the keyword list based on your blocked publisher reports. One rule catches an entire category of low-quality publishers instead of pausing them one by one.
+</Tip>
+
+---
+
+### Rule 2: block sites generating clicks but no landing page activity
+
+Click fraud is rampant in native. Sites that drive clicks but zero landing page visits are likely bot farms or mismatched traffic.
+
+**Data Interval:** Last 14 days | **Scheduling:** Immediate
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Traffic Source Clicks | Greater or Equal to | 100 |
+| Landing Page Clicks | Equals | 0 |
+| Tracker Conversions | Equals | 0 |
+
+**Action:** Pause Site
+
+<Tip>
+Real users click your ad, land on the page, and engage. Bots click but never arrive. This three-metric combo catches bot farms with 99%+ accuracy.
+</Tip>
+
+---
+
+### Rule 3: block high-volume placements with terrible CTR
+
+Volume without quality is a money sink. High-impression placements with CTR below 0.1% are jamming traffic that won't convert.
+
+**Data Interval:** Last 14 days | **Scheduling:** Immediate
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Impressions | Greater or Equal to | 20,000 |
+| CTR (%) | Less than | 0.1 |
+| Tracker Conversions | Less than | 1 |
+
+**Action:** Pause Site
+
+---
+
+### Rule 4: block sites with suspiciously high landing page CTR
+
+Landing page CTR above 90% combined with clicks is a fraud signal. Real users don't all click your CTA.
+
+**Data Interval:** Last 14 days | **Scheduling:** Immediate
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Landing Page CTR (%) | Greater than | 90 |
+| Traffic Source Clicks | Greater or Equal to | 20 |
+| Tracker Conversions | Equals | 0 |
+
+**Action:** Pause Site
+
+<Tip>
+Legitimate sites see LP CTR of 5–15%. Higher rates indicate automated clicks or test traffic from that publisher.
+</Tip>
+
+---
+
+## Detect and block fraudulent traffic
+
+Native ads attract sophisticated fraud. The data shows 1,121 rules use 3+ conditions to catch subtle patterns that simple rules miss. Pair conditions — don't rely on single metrics.
+
+### Rule 5: high spend + high CPA + negative ROI (the classic fraud combo)
+
+When a site burns $50+ with terrible CPA and negative ROI in just one week, it's usually fraud or mismatched traffic.
+
+**Data Interval:** Last 7 days | **Scheduling:** Immediate
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | Greater than | 50 |
+| Traffic Source CPA | Greater than | 20 |
+| Tracker ROI (%) | Less than | 0 |
+
+**Action:** Pause Site
+
+<Warning>
+These three metrics together signal either click fraud, bot traffic, or a publisher demographic mismatch. Don't wait — pause immediately and investigate.
+</Warning>
+
+---
+
+### Rule 6: dynamic bid efficiency — CPC vs. EPC comparison
+
+Compare your average CPC to the publisher's estimated earnings per click (EPC). If you're paying more than 70% of EPC, the site isn't worth the bid.
+
+**Data Interval:** Last 14 days | **Scheduling:** Daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Average CPC | Greater than | 70% of EPC |
+
+**Action:** Decrease Bid (−20%)
+
+<Tip>
+This rule lets publishers' own data tell you when you're overpaying. EPC reflects publisher quality. If your CPC approaches or exceeds it, reduce spend aggressively.
+</Tip>
+
+---
+
+### Rule 7: safe bid growth — increase when CPC < EPC
+
+The inverse: if your average CPC is less than 70% of EPC, you have room to grow. Increase the bid to capture more volume at a good price.
+
+**Data Interval:** Last 14 days | **Scheduling:** Daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Average CPC | Less than | 70% of EPC |
+
+**Action:** Increase Bid (+10%)
+
+---
+
+## Bid optimization: grow profitable channels
+
+Bid optimization rules (8% of all rules) multiply your winners. Use ROI tiers to grow systematically without overspending.
+
+### Rule 8: Tier 1 — high performers (ROI > 35%), scale aggressively
+
+When a site delivers strong ROI, push it. Increase bids on your best-performing placements.
+
+**Data Interval:** Last 14 days | **Scheduling:** Daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker ROI (%) | Greater or Equal to | 35 |
+| Amount Spent | Greater or Equal to | 100 |
+| Traffic Source CPA | Less than | Target CPA |
+
+**Action:** Increase Bid (+15%)
+
+<Tip>
+High ROI + solid spend history = safe to scale. 15% bid increases are aggressive enough to grow volume without destabilizing quality.
+</Tip>
+
+---
+
+### Rule 9: Tier 2 — moderate performers (ROI 10–35%), steady growth
+
+Sites in the middle tier are cash generators. Increase bids modestly to grow while protecting profitability.
+
+**Data Interval:** Last 14 days | **Scheduling:** Daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker ROI (%) | Greater than | 10 |
+| Tracker ROI (%) | Less than or Equal to | 35 |
+| Traffic Source Conversions | Greater or Equal to | 2 |
+
+**Action:** Increase Bid (+8%)
+
+---
+
+### Rule 10: Tier 3 — breakeven bids (CPC vs. daily budget ratio)
+
+When daily spend hits 70% of your campaign daily budget and ROI is positive, increase the budget to sustain the winner.
+
+**Data Interval:** Today | **Scheduling:** Daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | Greater or Equal to | 70% of Daily Budget |
+| Tracker ROI (%) | Greater than | 5 |
+
+**Action:** Increase Budget (+25%)
+
+<Tip>
+This prevents artificial capping. If you're spending 70%+ of budget before EOD, the campaign would spend more if allowed. Budget increases let winners grow.
+</Tip>
+
+---
+
+## Campaign-level safety & scaling
+
+Campaign pauses (4.4% of rules) and budget changes (4% of rules) protect capital while scaling works at site level.
+
+### Rule 11: kill catastrophic campaigns (last 30 days)
+
+Pause entire campaigns that have spent $150+ with negative ROI. This is your emergency brake.
+
+**Data Interval:** Last 30 days | **Scheduling:** Immediate
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | Greater than | 150 |
+| Tracker ROI (%) | Less than | −50 |
+
+**Action:** Pause Campaign
+
+<Warning>
+A −50% ROI on $150+ spend is catastrophic. One losing campaign can erase two winners. Pause fast and investigate offline.
+</Warning>
+
+---
+
+### Rule 12: scale winners (dynamic daily budget)
+
+When a campaign spends efficiently and hits profitability targets, increase its daily budget dynamically.
+
+**Data Interval:** Today | **Scheduling:** Daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | Greater or Equal to | 100 |
+| Tracker ROI (%) | Greater or Equal to | 35 |
+| Traffic Source CPA | Less than | 15 |
+
+**Action:** Change Budget (+20%)
+
+---
+
+### Rule 13: cost control — lock budgets on losing campaigns
+
+Set a daily budget ceiling ($100) on campaigns with negative ROI to prevent them from bleeding overnight.
+
+**Data Interval:** Today | **Scheduling:** Daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker ROI (%) | Less than | 0 |
+| Amount Spent | Greater than | 50 |
+
+**Action:** Change Budget (set to $100)
+
+<Tip>
+Negative ROI campaigns will spend unlimited budget if you let them. Cap them at $100 to preserve cash while you diagnose the problem.
+</Tip>
+
+---
+
+## Creative rotation & reactivation
+
+Content pausing (8.4% of rules) and reactivation (5.4% of rules combined) optimize creative mix without eliminating potential winners.
+
+### Rule 14: pause low-performing content (spend threshold)
+
+Stop content that has spent $45+ without hitting your target CPA. Don't let bad creatives drain budget.
+
+**Data Interval:** Last 14 days | **Scheduling:** Immediate
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | Greater or Equal to | 45 |
+| Tracker Conversions | Greater or Equal to | 1 |
+| Traffic Source CPA | Greater than | Target CPA |
+
+**Action:** Pause Content
+
+---
+
+### Rule 15: reactivate profitable content (comeback rule)
+
+Restart content pieces that were previously paused but have recovered to positive ROI. These are second-chance winners.
+
+**Data Interval:** Last 7 days | **Scheduling:** Daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker ROI (%) | Greater or Equal to | 10 |
+| Status | Equals | Paused |
+
+**Action:** Start Content
+
+<Tip>
+A creative that worked, failed, then recovered likely discovered a new audience or improved targeting. Reactivate automatically to capitalize on the second wave.
+</Tip>
+
+---
+
+### Rule 16: reactivate winning sites (ROI recovery)
+
+Automatically restart sites that were paused for being unprofitable but have now recovered to positive ROI.
+
+**Data Interval:** Last 14 days | **Scheduling:** Daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker ROI (%) | Greater than | 5 |
+| Status | Equals | Paused |
+
+**Action:** Start Sites
+
+---
+
+### Rule 17: smart reactivation — spend minimum
+
+Avoid restarting marginal performers. Only restart sites that show profit potential AND have enough recent data (minimum 25 clicks).
+
+**Data Interval:** Last 7 days | **Scheduling:** Daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker ROI (%) | Greater than | 8 |
+| Traffic Source Clicks | Greater or Equal to | 25 |
+| Status | Equals | Paused |
+
+**Action:** Start Sites
+
+<Tip>
+This prevents reactivating under-scaled sites that have only 2–3 recent clicks. The 25-click minimum ensures statistical confidence before you restart.
+</Tip>
+
+---
+
+### Rule 18: copy top content (scale through duplication)
+
+When a content piece hits high ROI with solid spend, duplicate it across more placements.
+
+**Data Interval:** Last 14 days | **Scheduling:** Weekly
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Tracker ROI (%) | Greater or Equal to | 40 |
+| Amount Spent | Greater or Equal to | 100 |
+
+**Action:** Copy Content
+
+---
+
+## Implementation notes
+
+**Start with site blocking.** The data shows 53% of all rules pause sites. Build your foundation first:
+
+- Name-based blocking (brand safety)
+- Bot detection (click-to-LP ratio)
+- High-spend fraud detection
+
+**Then add bid optimization.** Once blockers are in place, dynamic bid rules based on EPC comparison and ROI tiers multiply your winners without adding operational overhead.
+
+**Use recent data windows.** Most rules use Last 14 Days for site rules or Today for campaign rules. This balances sample size with responsiveness.
+
+**Pair conditions — don't rely on single metrics.** Rules with 3+ conditions catch fraud that single-metric rules miss.
+
+**Scale gradually.** 20% budget increases and 15% bid increases are standard because they're aggressive enough to compound growth while preserving ROI. Start there and tighten once you've proven the pattern.

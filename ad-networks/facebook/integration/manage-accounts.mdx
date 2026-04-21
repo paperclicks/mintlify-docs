@@ -1,0 +1,94 @@
+---
+title: "Manage Ad Accounts & Profiles"
+description: "Enable and disable Facebook ad accounts, reassign profiles, add tags, and manage tracker connections per account."
+---
+
+Once your Facebook integration is connected, you can manage the individual ad accounts and authentication profiles associated with it from **Integrations → Facebook**.
+
+## Ad Accounts
+
+Click on the Facebook integration to see the full list of ad accounts pulled from your connected Business Managers.
+
+### Enable and Disable Accounts
+
+Each ad account has an **ON/OFF** toggle. Disabling an account stops TheOptimizer from syncing data and running automation rules for that account. All historical data is retained — you can re-enable it at any time and data will resume syncing.
+
+You can also disable multiple accounts at once using the bulk actions menu.
+
+<Warning>
+  Deleting ad accounts is not currently supported. To stop syncing without losing data, use the disable toggle. If you need permanent removal, contact support.
+</Warning>
+
+### Change the Profile Per Account
+
+Each ad account is linked to a **profile** — the Facebook login used to access it. You can change which profile is linked to a specific ad account at any time:
+
+- Click on the ad account to open its settings.
+- Under **Profile**, select a different profile from the dropdown.
+
+This is useful when a profile gets restricted and you need to switch to a backup login, or when reorganising which team member's credentials manage which accounts.
+
+### Add Tags
+
+Ad accounts can be tagged with any labels you define — by client, brand, vertical, team, or any other convention. Tags appear as filters throughout TheOptimizer, making it easy to work with specific subsets of accounts.
+
+Some tags (timezone, currency) are applied automatically by TheOptimizer when the account is first synced.
+
+To add a tag: click on the ad account → **Tags** → **Add Tag**.
+
+### Customise Tracker Connections Per Account
+
+By default, tracker connections are configured at the integration level and apply to all ad accounts. But you can override this at the individual account level:
+
+- **Link a different tracker** — use a different tracking platform for this specific account.
+- **Pause the tracker connection** — stop pulling tracker data for this account without affecting others.
+- **Change the tracking template** — use a different template (macro mapping) for this account.
+
+Access these settings from **Linked Trackers** on the individual ad account page.
+
+---
+
+## Profiles
+
+**Profiles** are the Facebook logins (OAuth tokens) that TheOptimizer uses to access your ad accounts. After connecting Facebook via OAuth, each authenticated login becomes a profile.
+
+### Add Multiple Profiles
+
+Go to **Integrations → Facebook → Profiles** and click **Add Profile**. Complete the OAuth flow with the additional Facebook login.
+
+Reasons to add multiple profiles:
+
+- **Team access** — each team member manages their own set of accounts under their own login.
+- **Backup access** — if a primary profile is restricted, a backup profile can take over the affected accounts immediately.
+- **Multiple Business Managers** — different Business Managers often have different admin logins.
+
+### Sync New Ad Accounts
+
+When you add a new ad account to a Business Manager you've already connected, it won't appear automatically. To pull in the new account:
+
+1. Go to **Integrations → Facebook → Profiles**.
+2. Find the profile that has access to the new account.
+3. Click **Sync** (or **Refresh Accounts**).
+
+This triggers a re-sync for that profile and pulls in any new accounts without requiring a full re-authorisation.
+
+### Re-authenticate a Profile
+
+Facebook OAuth tokens expire or become invalid when you:
+- Change your Facebook account password
+- The ad network detects suspicious activity on your account
+- Security settings change (e.g., two-factor authentication changes)
+- The token is manually revoked from Facebook's security settings
+
+When a token expires, TheOptimizer can no longer sync data or run automation for the accounts under that profile.
+
+To re-authenticate:
+1. Go to **Integrations → Facebook → Profiles**.
+2. Find the profile showing an error or "Re-authentication required" warning.
+3. Click **Re-authenticate** and complete the OAuth flow again.
+
+Re-authenticating refreshes the token without losing any account history, automation settings, or tags.
+
+<Warning>
+  You will receive email notifications when a profile needs re-authentication. Do not ignore them. If a profile becomes invalid and is not refreshed, all automation and data sync for its accounts will silently stop.
+</Warning>

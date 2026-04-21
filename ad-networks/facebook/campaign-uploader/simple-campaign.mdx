@@ -1,0 +1,113 @@
+---
+title: "Creating a Simple Campaign"
+description: "Configure a straightforward Facebook campaign with one ad set and multiple ads — the base from which all advanced features build."
+---
+
+This section walks through creating a campaign with one ad set and multiple ads — no variations, no restructuring. This is the foundation. All advanced features (groups, restructuring, multi-account launch) build on top of this base.
+
+---
+
+## Campaign Level
+
+Click on the campaign in the left panel tree and configure the following:
+
+| Field | Description |
+|---|---|
+| **Ad Account** | The Facebook ad account to create the campaign in |
+| **Campaign Name** | A name for the campaign, or use a dynamic naming template |
+| **Status** | Whether the campaign is uploaded as Active or Paused |
+| **Special Ad Categories** | Select if applicable (Housing, Credit, Employment, etc.) |
+| **Buying Type** | Auction (the only type currently supported) |
+| **Campaign Objective** | Sales, Traffic, Leads, or Engagement |
+| **Advantage Campaign Budget** | Toggle on to set budget at the campaign level. If enabled, configure the daily budget and bid strategy (Highest Volume, Cost Per Result Goal, Bid Cap, or ROAS Goal) |
+
+<Tip>
+  Upload campaigns as **Paused** if your team uses a two-step workflow where one person prepares campaigns and a reviewer activates them after QA.
+</Tip>
+
+<Tip>
+  To start from a previously saved template, find it in the **My Space** tab on the right panel and click **Apply**.
+</Tip>
+
+---
+
+## Ad Set Level
+
+Click on the Ad Set in the left panel tree and configure the following:
+
+| Field | Description |
+|---|---|
+| **Ad Set Name** | A name for the ad set, or use a naming template |
+| **Conversions Location** | Website, App, Website and App, or Calls |
+| **Performance Goal** | For example, Maximize Number of Conversions or Maximize Value of Conversions |
+| **Pixel** | The Facebook pixel to use for optimisation |
+| **Conversion Event** | The conversion event to optimise toward |
+| **Budget & Schedule** | If Advantage Campaign Budget is not enabled at the campaign level, set the ad set budget here (daily or lifetime) along with start and end dates |
+| **Audience** | Locations, age range, gender, languages, and optionally a saved Custom Audience from Facebook |
+| **Beneficiary** | Enter the beneficiary for ad transparency. If left blank, TheOptimizer uses the default from your ad account settings |
+| **Placements** | Advantage+ Placements (recommended by Facebook) or Manual Placements to select specific platforms, positions, and devices |
+
+<Note>
+  TheOptimizer does not currently support creating Custom Audiences. If you work with custom or lookalike audiences, create them in Facebook Ads Manager first — they will then appear in the audience selector here.
+</Note>
+
+<Tip>
+  Under the **My Space** tab on the right panel, you will see a list of your most frequently used targeting configurations with an **Apply** button next to each. One click applies a previous targeting setup — no need to reconfigure locations, age, gender, and placements from scratch.
+</Tip>
+
+---
+
+## Ad Level
+
+Click on the ad in the left panel tree and configure the following:
+
+**Identity and format:**
+
+| Field | Description |
+|---|---|
+| **Ad Name** | A name for the ad, or use a naming template |
+| **Status** | Active or Paused |
+| **Identity** | The Facebook Page and Instagram Account to run ads from |
+| **Ad Format** | Single Image or Video |
+
+**Uploading media.** Click **Add Media** → **Add Images** or **Add Videos**. This opens the media browser where you can:
+
+- **Browse existing creatives** — TheOptimizer collects and displays all images and videos from your active campaigns across all connected Facebook accounts. Sort by newest, oldest, highest spend, highest EPC, most used, or least used. Filter by Creative Library tags.
+- **Upload new media** — click the **Upload** button to add new images or videos directly.
+
+Each uploaded image or video generates one ad. If you upload five images, five ads are created — the count updates immediately in the **Variation Preview** panel.
+
+**Per-creative options:**
+
+- **Enhance with AI** — generate a new version of any image by providing a prompt or example images.
+- **Customize by Placement** — assign a different image for specific placements (for example, a different crop for Instagram Stories). You can do this per image, or use **Bulk Placement Customization** at the bottom of the media section to apply placement overrides across all ads at once.
+
+**Ad copy and destination:**
+
+| Field | Notes |
+|---|---|
+| **Primary Text** | Add one or more variations |
+| **Headline** | Add one or more variations |
+| **Description** | Add one or more variations |
+| **Call to Action** | Select from available options (Learn More, Shop Now, etc.) |
+| **Destination URL** | The landing page for the ad |
+| **Pixel** | The tracking pixel for this ad |
+| **URL Parameters** | Add tracking parameters for third-party trackers |
+
+<Tip>
+  For the best workflow, upload and tag your creatives in the **Creative Library** first, then come back to the Campaign Creator and filter by tag. This is especially useful when your creative team and media buying team are separate — creatives upload and tag assets, media buyers pull them in by tag.
+</Tip>
+
+---
+
+## What Happens When You Upload Multiple Images
+
+Every image or video you upload becomes a separate ad. If you upload 10 images, you get 10 ads. This is the simplest way to test multiple creatives — one ad per creative, all in the same ad set, sharing the same targeting and budget.
+
+The **Variation Preview** panel on the right updates in real time as you add media. Always check the totals before moving to the next step.
+
+---
+
+## Next: Generating Variations
+
+Once your base campaign is configured, you can move to [Generating Variations](/ad-networks/facebook/campaign-uploader/variations) to multiply this structure into dozens or hundreds of campaigns using Groups, Restructuring, and Duplication.

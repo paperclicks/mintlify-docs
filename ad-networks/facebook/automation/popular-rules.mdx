@@ -1,0 +1,513 @@
+---
+title: "Facebook Automation Rules: Popular Patterns"
+description: "Facebook rule patterns from 2,940 real rules — same-day guardrails, budget protection, CPA scaling, bid control, reactivation, and creative optimization."
+sidebarTitle: "Facebook Rules"
+---
+
+These patterns come from analyzing 2,940 real Facebook automation rules deployed by top media buyers. They reveal how professionals protect budgets, scale winners, and outsmart campaign fatigue. What follows are the conditions, thresholds, and sequences that separate profitable campaigns from budget bleed. Start with the same-day guardrails, then layer in scaling rules once performance stabilizes.
+
+---
+
+## Same-Day Guardrails — Stop Underperformers Before They Bleed
+
+53% of all Facebook rules in the dataset fire on today's data. Real-time reaction is essential on Facebook — a bad ad set discovered at 8 AM can cost you thousands by 5 PM.
+
+### Rule 1: Pause Ad Sets Over 80% of Daily Budget
+
+The single most common rule pattern across 1,025 analyzed pause actions. This fires when a single ad set is burning through your daily allocation — a sign of either success (good) or audience inflation (bad). Either way, pause and investigate.
+
+**Platform:** Facebook | **Data Interval:** Today | **Scheduling:** Immediate
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | is Greater than | 80% of Daily Budget |
+| Amount Spent | is Greater than or Equal to | 25 |
+
+**Action:** Pause Facebook Ad Set
+
+<Tip>
+For a $100 daily budget, this pauses at $80 — enough data to see performance, not enough to crater your day. The $25 floor prevents noise on low-budget accounts.
+</Tip>
+
+---
+
+### Rule 2: Pause Ad Set When CPA Exceeds Campaign Target
+
+This pairs cost data with your actual payout. Simple rule, massive impact.
+
+**Platform:** Facebook | **Data Interval:** Today | **Scheduling:** Immediate
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | is Greater than | 20 |
+| Tracker CPA | is Greater than | Campaign.payout × 1.4 |
+
+**Action:** Pause Facebook Ad Set
+
+<Tip>
+You're comparing actual profitability, not arbitrary thresholds. An ad set with CPA at 140% of payout is burning 40 cents on every dollar earned. For a $10 payout offer, this triggers at $14 CPA.
+</Tip>
+
+---
+
+### Rule 3: Pause Ad Set with Zero Conversions After $50 Spend
+
+This catches broken creatives and mismatched audiences in a single day.
+
+**Platform:** Facebook | **Data Interval:** Today | **Scheduling:** Immediate
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | is Greater than | 50 |
+| Tracker Conversions | Equals | 0 |
+
+**Action:** Pause Facebook Ad Set
+
+<Tip>
+$50 without a conversion means something is fundamentally wrong — bad landing page, wrong audience, or creative fatigue. Pause now; don't wait for more data to bleed.
+</Tip>
+
+---
+
+### Rule 4: Pause Ad Set with Negative ROI and High Spend
+
+A belt-and-suspenders approach for same-day losses.
+
+**Platform:** Facebook | **Data Interval:** Today | **Scheduling:** Immediate
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | is Greater than or Equal to | 75 |
+| Tracker ROI | is Less than | -10% |
+
+**Action:** Pause Facebook Ad Set
+
+<Tip>
+If you've spent $75+ and ROI is negative, you're losing money now. The -10% threshold is conservative — it catches minor losses to protect cash flow before they compound.
+</Tip>
+
+---
+
+## Campaign Age Filters — Protect New Launches
+
+This pattern appears in hundreds of sophisticated rules: gate optimizations by campaign age. Never fully optimize campaigns younger than 2–3 days. You need baseline data first.
+
+### Rule 5: Only Optimize Campaigns Older Than 3 Days
+
+This is the framework rule — combine it with aggressive pausing and scaling rules to protect fresh launches from being killed prematurely.
+
+**Platform:** Facebook | **Data Interval:** Today | **Scheduling:** Immediate
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Campaign Created At | is Less than | now - 3 days |
+| Amount Spent | is Greater than | 50 |
+| Tracker ROI | is Less than | -20% |
+
+**Action:** Pause Facebook Ad Set
+
+<Tip>
+New campaigns need 48–72 hours to stabilize. This rule says "only pause if negative ROI, but only for campaigns running 3+ days." You avoid panicking and killing promising fresh campaigns before they find their footing.
+</Tip>
+
+---
+
+### Rule 6: Monitor New Campaigns for Early Red Flags
+
+A gentler version for new launches — trigger on zero conversions, not ROI.
+
+**Platform:** Facebook | **Data Interval:** Last 2 days | **Scheduling:** Immediate
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Campaign Created At | is Greater than or Equal to | now - 2 days |
+| Amount Spent | is Greater than | 25 |
+| Tracker Conversions | Equals | 0 |
+
+**Action:** Pause Facebook Ad Set
+
+<Tip>
+New campaigns get gentler treatment — pause on zero conversions (a hard stop), but not on soft ROI misses. This catches broken setups without killing early winners that simply haven't converted yet.
+</Tip>
+
+---
+
+## Dynamic Budget Protection — Cost vs. Daily Budget
+
+53% of rules use dynamic comparisons. Instead of hardcoded dollar thresholds, you compare spend to available budget. This scales automatically as your budgets grow.
+
+### Rule 7: Pause at 80% Daily Budget (Safe Mid-Day Check)
+
+Check whether you're burning too fast relative to your daily allocation.
+
+**Platform:** Facebook | **Data Interval:** Today | **Scheduling:** Immediate
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | is Greater than or Equal to | Daily Budget × 0.80 |
+
+**Action:** Pause Facebook Ad Set
+
+<Tip>
+Scales automatically. A $50 daily budget pauses at $40. A $500 daily budget pauses at $400. Same protective ratio, no manual threshold tuning required.
+</Tip>
+
+---
+
+### Rule 8: Overspend Protection at 250% Daily Budget
+
+Rare, but it happens. Pause if you're massively overshooting in a single day.
+
+**Platform:** Facebook | **Data Interval:** Today | **Scheduling:** Immediate
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | is Greater than or Equal to | Daily Budget × 2.5 |
+
+**Action:** Pause Facebook Campaign
+
+<Warning>
+This is your "oh no" level. If an ad set has burned 2.5× its daily allocation in one day, something catastrophic happened — pixel fired offline, audience targeting exploded, etc. Kill the whole campaign immediately and investigate.
+</Warning>
+
+---
+
+### Rule 9: Mid-Day Budget Check at 50% Daily Budget
+
+Early warning before things spiral. Fire at the halfway point.
+
+**Platform:** Facebook | **Data Interval:** Today | **Scheduling:** Immediate
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | is Greater than or Equal to | Daily Budget × 0.50 |
+| Tracker ROI | is Less than | -5% |
+
+**Action:** Pause Facebook Ad Set
+
+<Tip>
+You're at 50% spend with negative ROI. If the pattern holds, you'll hit -10% or worse by day's end. Pause now and save the second half of your daily budget.
+</Tip>
+
+---
+
+## CPA vs. Payout Comparisons — Scale Profitably
+
+The second-most common condition signature across all analyzed rules: pair CPA with campaign payout. This is how you identify which campaigns to scale and which to kill — using your actual economics, not arbitrary numbers.
+
+### Rule 10: Scale Ad Set — CPA Under 99% of Payout
+
+A profitable scale trigger. CPA at 99% or lower means healthy margin.
+
+**Platform:** Facebook | **Data Interval:** Today | **Scheduling:** Daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | is Greater than or Equal to | 50 |
+| Tracker CPA | is Less than | Campaign.payout × 0.99 |
+| Tracker ROI | is Greater than or Equal to | 5% |
+
+**Action:** Change Budget (+20%)
+
+<Tip>
+You're tracking profitably — CPA below payout and positive ROI. Scale aggressively. For a $10 payout, this triggers when CPA stays under $9.90.
+</Tip>
+
+---
+
+### Rule 11: Super-Profitable Scaling — CPA Under 70% of Payout
+
+When CPA is dramatically low relative to payout, you're printing money. Scale hard.
+
+**Platform:** Facebook | **Data Interval:** Today | **Scheduling:** Daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | is Greater than or Equal to | 75 |
+| Tracker CPA | is Less than | Campaign.payout × 0.70 |
+
+**Action:** Change Budget (+40%)
+
+<Tip>
+CPA at 70% of payout leaves 30% margin — that's premium profitability. Increase 40%, then monitor CPM and CPC the next day. If metrics hold, increase again.
+</Tip>
+
+---
+
+### Rule 12: Pause When CPA Exceeds 140% of Payout
+
+You're losing 40 cents per dollar earned. Pause immediately.
+
+**Platform:** Facebook | **Data Interval:** Today | **Scheduling:** Immediate
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | is Greater than | 30 |
+| Tracker CPA | is Greater than | Campaign.payout × 1.40 |
+
+**Action:** Pause Facebook Ad Set
+
+<Warning>
+This is the loss threshold. Anything above 140% of payout and you're underwater. For $15 payouts, pause at $21 CPA.
+</Warning>
+
+---
+
+## Tiered Budget Scaling — ROI-Based Growth
+
+Sophisticated media buyers don't scale uniformly. They tier increases based on ROI ranges. This creates rapid growth on best performers while protecting budgets on marginal ones.
+
+### Rule 13: Moderate ROI — 20% to 50% ROI
+
+ROI in the 20–50% range is solid. Increase budget moderately and cap at a ceiling to avoid overcommitting on marginal performers.
+
+**Platform:** Facebook | **Data Interval:** Today | **Scheduling:** Daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | is Greater than or Equal to | 50 |
+| Tracker ROI | is Greater than or Equal to | 20% |
+| Tracker ROI | is Less than | 50% |
+
+**Action:** Change Budget (+20%, max $200)
+
+<Tip>
++20% increase with a total budget cap of $200. This scales solid performers without overcommitting to unproven winners. You get growth but with guardrails.
+</Tip>
+
+---
+
+### Rule 14: Strong ROI — 50% to 80% ROI
+
+This is the sweet spot. Scale more aggressively.
+
+**Platform:** Facebook | **Data Interval:** Today | **Scheduling:** Daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | is Greater than or Equal to | 50 |
+| Tracker ROI | is Greater than or Equal to | 50% |
+| Tracker ROI | is Less than | 80% |
+
+**Action:** Change Budget (+40%, max $250)
+
+<Tip>
++40% increase on proven winners, capped at $250. By tomorrow, you'll know whether higher spend maintains efficiency.
+</Tip>
+
+---
+
+### Rule 15: Exceptional ROI — 80%+ ROI
+
+This is your best performer. Scale hard, but use static amounts for budgets over $200 to limit risk.
+
+**Platform:** Facebook | **Data Interval:** Today | **Scheduling:** Daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | is Greater than or Equal to | 50 |
+| Tracker ROI | is Greater than or Equal to | 80% |
+
+**Action:** Change Budget (+$50 flat) or (+50% if budget is under $200)
+
+<Tip>
+For budgets $50–$200, use +50%. For budgets over $200, use +$50 flat — static increases scale proportionally slower, reducing algorithm fragility. This lets runaway winners accelerate without blowing up delivery.
+</Tip>
+
+---
+
+## Facebook-Native Conversions — Optimize for Pixel Data
+
+Sophisticated rules use Facebook Results (Facebook pixel conversions) to gate scaling. You want to scale campaigns that Facebook's own algorithm is recognizing — not just ones your tracker sees.
+
+### Rule 16: Scale Only When Facebook Pixel Fires
+
+Don't aggressively scale until Facebook sees conversions directly.
+
+**Platform:** Facebook | **Data Interval:** Today | **Scheduling:** Daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | is Greater than or Equal to | 50 |
+| Facebook Results | is Greater than or Equal to | 3 |
+| Tracker ROI | is Greater than or Equal to | 15% |
+
+**Action:** Change Budget (+20%)
+
+<Tip>
+Facebook Results >= 3 means Facebook's algorithm has seen conversions and can optimize delivery. This gates scaling behind actual pixel data, not just tracker conversions — resulting in better ongoing campaign performance.
+</Tip>
+
+---
+
+### Rule 17: Pause When Facebook Pixel Sees No Results
+
+If you've spent $40 with zero Facebook conversions, something is wrong.
+
+**Platform:** Facebook | **Data Interval:** Today | **Scheduling:** Immediate
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | is Greater than | 40 |
+| Facebook Results | Equals | 0 |
+
+**Action:** Pause Facebook Ad Set
+
+<Warning>
+Your pixel isn't firing. Either your conversion event is misconfigured, your landing page is missing the pixel, or your audience is fundamentally mismatched. Pause and debug before spending more.
+</Warning>
+
+---
+
+## Reactivation — Give Paused Winners a Second Chance
+
+You paused things that were underperforming. But campaigns improve — audiences shift, competition changes, and landing pages get updated. These rules reactivate winners when the data warrants it.
+
+### Rule 18: Restart When CPA Returns to Profitability
+
+Ad set status is Paused and CPA now looks good. Start it back up.
+
+**Platform:** Facebook | **Data Interval:** Last 3 days | **Scheduling:** Daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Ad Set Status | Equals | PAUSED |
+| Amount Spent | is Greater than | 25 |
+| Tracker CPA | is Less than | Campaign.payout × 0.95 |
+
+**Action:** Start Facebook Ad Set
+
+<Tip>
+Campaigns recover. If you paused an ad set and it's now profitably close to payout, give it another shot. The 3-day window gives you recent data without waiting forever.
+</Tip>
+
+---
+
+### Rule 19: Restart Campaigns at Positive ROI
+
+Pause campaigns when negative. Restart when they recover.
+
+**Platform:** Facebook | **Data Interval:** Last 7 days | **Scheduling:** Daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Campaign Status | Equals | PAUSED |
+| Amount Spent | is Greater than | 50 |
+| Tracker ROI | is Greater than or Equal to | 5% |
+
+**Action:** Start Campaign
+
+<Tip>
+A campaign spending $50+ at positive ROI — even weak positive — deserves another chance. You'll generate meaningful data for scaling decisions. Monitor closely for the first 24 hours after reactivation.
+</Tip>
+
+---
+
+## Ad-Level Pausing — Creative Optimization
+
+248 rules in the dataset pause individual content (ads and creatives). This is how you kill underperforming variants without nuking entire ad sets. Surgical approach beats blunt-force pausing.
+
+### Rule 20: Pause Losing Creative — High CPA + Negative ROI
+
+This fires on individual content. CPA is up and ROI is negative.
+
+**Platform:** Facebook | **Data Interval:** Today | **Scheduling:** Immediate
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | is Greater than | 30 |
+| Tracker CPA | is Greater than | Campaign.payout × 1.40 |
+| Tracker ROI | is Less than | -5% |
+
+**Action:** Pause Facebook Content
+
+<Tip>
+You're pausing specific creative variants, not entire ad sets. This lets winning creatives stay live while killing underperformers. Run multiple creatives per ad set to make this pattern effective.
+</Tip>
+
+---
+
+## Bid Adjustments — Squeeze More Volume
+
+Only 133 rules in the dataset use bid adjustments — they're rare but potent when deployed correctly. Always pair bid changes with strict ROI and CPC gates.
+
+### Rule 21: Aggressive Bid Increase on High ROI
+
+ROI >= 30% and meaningful spend? Bid up to capture more impressions.
+
+**Platform:** Facebook | **Data Interval:** Last 2 days | **Scheduling:** Daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | is Greater than | 100 |
+| Tracker ROI | is Greater than or Equal to | 30% |
+| Facebook Results | is Greater than or Equal to | 5 |
+
+**Action:** Change Bid Facebook Ad Set (+15%)
+
+<Tip>
+A +15% bid increase typically lifts volume 20–40%. You're gating it behind high ROI and actual pixel conversions, so you know Facebook's algorithm is working in your favor.
+</Tip>
+
+---
+
+### Rule 22: Bid Reduction for Underperformers
+
+CPC is creeping up and ROI is declining. Lower bids to rebalance.
+
+**Platform:** Facebook | **Data Interval:** Last 2 days | **Scheduling:** Daily
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | is Greater than | 50 |
+| Tracker ROI | is Less than | 10% |
+| Avg. CPC | is Greater than | 1.50 |
+
+**Action:** Change Bid Facebook Ad Set (-15%)
+
+<Tip>
+High CPC combined with low ROI signals audience fatigue or audience expansion gone wrong. Lower bids to throttle volume and refocus on higher-intent audiences before you pause entirely.
+</Tip>
+
+---
+
+## Duplication & Scaling — Clone Winners
+
+Only 57 rules copy ad sets and 34 copy budgets across the entire dataset. These rules are about intentional creative scaling, not accident. Clone after you have proof, not hope.
+
+### Rule 23: Duplicate High-Profit Creative
+
+Clone creatives that are profitable and spending well.
+
+**Platform:** Facebook | **Data Interval:** Last 3 days | **Scheduling:** Every 3 days
+
+| Metric | Condition | Value |
+|--------|-----------|-------|
+| Amount Spent | is Greater than | 75 |
+| Tracker ROI | is Greater than | 50% |
+| Tracker CPA | is Less than | Campaign.payout × 0.80 |
+
+**Action:** Copy Facebook Ad Set
+
+<Tip>
+Duplicates fight ad fatigue by creating fresh variants with independent budgets and bid history. You're cloning proven winners, not guessing. The 3-day interval lets the original accumulate spend before spinning up the clone — this reduces budget fragmentation and algorithm disruption.
+</Tip>
+
+---
+
+## Summary — The Real Patterns
+
+The 2,940 rules analyzed reveal a clear hierarchy:
+
+1. **Real-time is king.** 53% of rules fire on today's data. Facebook moves fast; your rules need to move faster.
+2. **Dynamic thresholds scale with you.** Use percentages of daily budget and payout, not hardcoded dollar amounts.
+3. **Protect new campaigns.** Gate optimizations by campaign age (3+ days) to avoid killing fresh winners before they stabilize.
+4. **Compare CPA to payout.** The most common condition pairing — it tells you profitability, not just cost.
+5. **Tier your scaling.** ROI bands of 20–50%, 50–80%, and 80%+ deserve different scaling strategies.
+6. **Use Facebook pixel data.** Gate scaling behind actual Facebook Results, not just tracker conversions.
+7. **Reactivate winners.** Paused campaigns recover. Check weekly for redemption opportunities.
+8. **Pause creatives, not campaigns.** Kill underperforming ads without nuking ad sets — 248 rules do this.
+9. **Bid adjustments are surgical.** Only when ROI is high and pixel is firing; rarely used correctly by beginners.
+10. **Duplicate on proof, not hope.** Clone after 75+ spent with strong ROI, every 3 days.
+
+Monitor CPM and CPC daily — they'll tell you when audience quality is degrading and when it's time to pull back before losses accumulate.

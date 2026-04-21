@@ -35,7 +35,70 @@
             "group": "Integrations",
             "pages": [
               "integrations/overview",
+              "integrations/ad-networks",
+              "integrations/tracking-platforms",
+              "integrations/google-analytics",
               "integrations/upload-csv"
+            ]
+          },
+          {
+            "group": "Facebook",
+            "pages": [
+              {
+                "group": "Integration",
+                "pages": [
+                  "ad-networks/facebook/integration/connect",
+                  "ad-networks/facebook/integration/manage-accounts",
+                  "ad-networks/facebook/integration/troubleshoot"
+                ]
+              },
+              {
+                "group": "Automation",
+                "pages": [
+                  "ad-networks/facebook/automation/overview",
+                  "ad-networks/facebook/automation/popular-rules"
+                ]
+              },
+              {
+                "group": "Mass Campaign Uploader",
+                "pages": [
+                  "ad-networks/facebook/campaign-uploader/use-cases",
+                  "ad-networks/facebook/campaign-uploader/vs-ads-manager",
+                  "ad-networks/facebook/campaign-uploader/getting-started",
+                  "ad-networks/facebook/campaign-uploader/simple-campaign",
+                  "ad-networks/facebook/campaign-uploader/variations",
+                  "ad-networks/facebook/campaign-uploader/multi-account",
+                  "ad-networks/facebook/campaign-uploader/existing-posts",
+                  "ad-networks/facebook/campaign-uploader/existing-campaign",
+                  "ad-networks/facebook/campaign-uploader/naming-templates",
+                  "ad-networks/facebook/campaign-uploader/templates",
+                  "ad-networks/facebook/campaign-uploader/automation-review"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Outbrain",
+            "pages": [
+              "ad-networks/outbrain/automation/popular-rules"
+            ]
+          },
+          {
+            "group": "Taboola",
+            "pages": [
+              "ad-networks/taboola/automation/popular-rules"
+            ]
+          },
+          {
+            "group": "TikTok",
+            "pages": [
+              "ad-networks/tiktok/automation/popular-rules"
+            ]
+          },
+          {
+            "group": "Native Networks",
+            "pages": [
+              "ad-networks/native-networks/automation/popular-rules"
             ]
           },
           {
@@ -53,20 +116,9 @@
             ]
           },
           {
-            "group": "Popular Rules",
-            "pages": [
-              "automation/popular-rules-facebook",
-              "automation/popular-rules-tiktok",
-              "automation/popular-rules-taboola",
-              "automation/popular-rules-outbrain",
-              "automation/popular-rules-native"
-            ]
-          },
-          {
             "group": "Campaign Creator",
             "pages": [
-              "campaign-creator/overview",
-              "campaign-creator/facebook"
+              "campaign-creator/overview"
             ]
           },
           {

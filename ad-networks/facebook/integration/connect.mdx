@@ -1,0 +1,64 @@
+---
+title: "Connect Facebook"
+description: "Authorise TheOptimizer to access your Facebook ad accounts, Pages, and Business Managers using OAuth."
+---
+
+Facebook uses OAuth for authentication — you log in with your Facebook account directly and grant TheOptimizer the permissions it needs. No API keys to copy and paste.
+
+<Steps>
+  <Step title="Open the Integrations page">
+    From the left-hand navigation menu, go to **Integrations**. Find the **Facebook** card and click **Connect →**.
+  </Step>
+  <Step title="Authorise Pages Access">
+    Facebook will ask which Pages you want TheOptimizer to access.
+
+    <Tip>
+      Select **"Opt in to all current and future Pages."** This grants access to any Pages you create in the future, so you won't need to re-authorise every time you launch a new campaign under a new Page.
+    </Tip>
+  </Step>
+  <Step title="Authorise Business Manager Access">
+    Facebook will ask which Business Managers to include. Select the Business Manager that contains the ad accounts you want to manage in TheOptimizer, then click **Continue**.
+
+    <Tip>
+      If you manage multiple Business Managers, you can connect them all at once — select each one that contains ad accounts you want TheOptimizer to access.
+    </Tip>
+  </Step>
+  <Step title="Review Permissions and Complete">
+    Facebook will show a summary of the permissions being granted. These permissions allow TheOptimizer to read campaign performance data and make changes (pause campaigns, adjust budgets, etc.) on your behalf. Review them and click **Confirm** to complete the authorisation.
+  </Step>
+  <Step title="Connection Confirmed">
+    TheOptimizer shows a confirmation screen with the number of ad accounts added and the integration name.
+
+    Initial sync takes **up to 20–30 minutes**. After connection, TheOptimizer starts pulling your campaign data. Campaigns and ads may not appear immediately — this is expected. Give it up to half an hour before troubleshooting.
+
+    From this screen, you can also click **Connect Tracker** to link a tracking platform to your Facebook integration right away. You can also do this later from the Integrations page.
+  </Step>
+</Steps>
+
+---
+
+## What Permissions Are Granted
+
+TheOptimizer requests the following Facebook permissions:
+
+- **ads_management** — read and update your ad campaigns, ad sets, and ads
+- **ads_read** — read campaign performance metrics
+- **business_management** — access ad accounts within your Business Managers
+- **pages_read_engagement** — read your Pages (required for ad identity setup)
+
+TheOptimizer does not request permission to post to your Pages, access your personal profile, or read your messages.
+
+---
+
+## Connecting Multiple Facebook Profiles
+
+You can connect multiple Facebook logins (profiles) to the same Facebook integration. This is useful for team members who each manage their own set of ad accounts, or to have a backup profile in case a primary one gets restricted.
+
+To add a second profile, go to **Integrations → Facebook** and click **Add Profile**. Complete the same OAuth flow with the second login. Each profile can be assigned to specific ad accounts independently.
+
+---
+
+## Next Steps
+
+- [Manage Ad Accounts & Profiles](/ad-networks/facebook/integration/manage-accounts) — enable/disable accounts, reassign profiles, add tags
+- [Troubleshoot a Connection](/ad-networks/facebook/integration/troubleshoot) — fix token expiry, missing accounts, sync issues

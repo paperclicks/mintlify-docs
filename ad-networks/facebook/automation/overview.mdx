@@ -1,0 +1,143 @@
+---
+title: "Facebook Automation — All Available Rules"
+description: "All automation rule types available for Facebook campaigns in TheOptimizer — what actions you can automate, at which levels, and how they interact."
+sidebarTitle: "All Available Automations"
+---
+
+TheOptimizer's automation engine runs against your Facebook campaigns on a schedule you define. Each rule evaluates a set of conditions and fires a specific action — or sends an alert — when those conditions are met. This page covers all the action types available for Facebook and how they work.
+
+## Rule Levels
+
+Facebook rules can operate at three levels of your campaign hierarchy:
+
+| Level | What it acts on | Common use |
+|---|---|---|
+| **Campaign** | The entire campaign | Pause on sustained losses, scale budget across all ad sets |
+| **Ad Set** | Individual ad sets (the most common level) | Real-time pausing, budget scaling, bid adjustments |
+| **Ad (Content)** | Individual ads/creatives | Pause underperforming variants, reactivate recovered ones |
+
+Most rules are written at the **ad set** level. Ad sets are the most actionable unit on Facebook — they control audience, budget, and delivery, and they can be independently paused or scaled without touching the rest of the campaign.
+
+---
+
+## Available Actions
+
+### Pause / Start
+
+| Action | Level | Description |
+|---|---|---|
+| Pause Campaign | Campaign | Stops delivery on the entire campaign |
+| Start Campaign | Campaign | Resumes a paused campaign |
+| Pause Ad Set | Ad Set | Stops delivery on a specific ad set |
+| Start Ad Set | Ad Set | Resumes a paused ad set |
+| Pause Content | Ad | Stops delivery on a specific ad/creative |
+| Start Content | Ad | Resumes a paused ad/creative |
+
+Pause rules are the most common in the dataset — 1,025 of 2,940 analysed rules pause ad sets. They are typically combined with spend thresholds or CPA conditions to stop losses before they compound.
+
+### Budget Changes
+
+| Action | Level | Description |
+|---|---|---|
+| Increase Budget | Campaign or Ad Set | Increase budget by a fixed amount or percentage |
+| Decrease Budget | Campaign or Ad Set | Decrease budget by a fixed amount or percentage |
+| Set Budget | Campaign or Ad Set | Set budget to a specific value |
+
+Budget rules are typically triggered by ROI or CPA thresholds. Use percentage increases for proportional scaling; use fixed amounts for large-budget campaigns where percentage increases would be too aggressive.
+
+### Bid Changes
+
+| Action | Level | Description |
+|---|---|---|
+| Increase Bid | Ad Set | Increase the ad set bid by a fixed amount or percentage |
+| Decrease Bid | Ad Set | Decrease the ad set bid by a fixed amount or percentage |
+| Set Bid | Ad Set | Set the bid to a specific value |
+
+Bid adjustments are less common than budget changes (133 of 2,940 analysed rules). They are most effective when combined with strict ROI gates and Facebook pixel confirmation — bid up only when the algorithm has enough data to use the increased bid effectively.
+
+### Clone (Duplicate)
+
+| Action | Level | Description |
+|---|---|---|
+| Copy Ad Set | Ad Set | Duplicates a winning ad set into a new one |
+| Copy Campaign | Campaign | Duplicates a winning campaign |
+
+Cloning rules are intentional scaling tools, not accident triggers. They are typically scheduled to run every few days to avoid fragmenting budgets across too many copies at once.
+
+### Alert Only
+
+| Action | Level | Description |
+|---|---|---|
+| Alert | Any | Sends a notification without taking any action on the campaign |
+
+Alert-only rules are useful for monitoring conditions you want to review manually before acting — for example, detecting a tracking discrepancy between Facebook Results and tracker conversions.
+
+---
+
+## Available Condition Metrics
+
+### Spend & Budget
+- **Amount Spent** — total spend in the selected time window
+- **Daily Budget** — the current daily budget allocation (supports dynamic comparisons like "80% of Daily Budget")
+- **Traffic Source CPA** — cost per acquisition as reported by Facebook
+
+### Tracker Metrics (from your connected tracking platform)
+- **Tracker Conversions** — conversions reported by your tracker
+- **Tracker CPA** — cost per acquisition from your tracker
+- **Tracker ROI** — return on investment from your tracker
+- **Tracker Revenue** — revenue reported by your tracker
+- **Tracker EPC** — earnings per click from your tracker
+
+### Facebook-Native Metrics
+- **Facebook Results** — conversions recorded by the Facebook pixel
+- **Avg. CPC** — average cost per click
+- **CPM** — cost per thousand impressions
+- **CTR** — click-through rate
+- **Frequency** — average number of times each person has seen your ad
+- **Video Average Play Time** — average seconds of video watched (for video ads)
+
+### Campaign Properties
+- **Campaign Created At** — the date the campaign was created (useful for protecting new campaigns from premature pausing)
+- **Campaign Status** — current status (Active, Paused)
+- **Ad Set Status** — current status of the ad set
+- **Campaign.payout** — your configured payout for the campaign (enables rules like "CPA > 140% of Campaign.payout")
+
+### Time Conditions
+- **Hour of Day** — trigger rules only during specific hours (e.g., pause at 22:00, resume at 08:00)
+- **Day of Week** — trigger rules only on specific days
+
+---
+
+## Data Intervals
+
+Rules evaluate conditions over a time window you choose:
+
+| Interval | Best for |
+|---|---|
+| **Today** | Real-time guardrails — stop a bad ad set before it bleeds your daily budget |
+| **Last 2 days** | Short-term trend detection without single-day noise |
+| **Last 3 days** | The standard scaling window — enough data, responsive enough to act |
+| **Last 7 days** | Weekly performance assessment — cut or scale on proven patterns |
+| **Last 14 days** | Sustained performance analysis |
+| **Last 30 days** | Long-term campaign health checks |
+
+53% of Facebook rules analysed use **Today** as the data interval — real-time monitoring is the dominant pattern on this platform.
+
+---
+
+## Scheduling
+
+Rules can be scheduled to run:
+
+- **Immediately** (as soon as conditions are met, evaluated every few minutes)
+- **Every N hours** (e.g., every 2 hours)
+- **Once daily** at a specified time
+- **On specific days** of the week
+
+Immediate execution is typical for loss-protection rules. Daily scheduling is typical for budget scaling. Cloning rules typically run every 3 days.
+
+---
+
+## Popular Rule Patterns
+
+For ready-to-use rule templates with specific conditions and thresholds, see [Popular Rules — Facebook](/ad-networks/facebook/automation/popular-rules). That page covers 23 proven patterns across same-day guardrails, budget scaling, CPA optimisation, reactivation, bid adjustments, and creative rotation.

@@ -1,0 +1,117 @@
+---
+title: "Google Analytics & Google Sheets"
+description: "Connect Google Analytics 4 to bring behavioural metrics into TheOptimizer, or use Google Sheets as a manual conversion data feed for unsupported trackers."
+sidebarTitle: "Google Analytics & Sheets"
+---
+
+## Google Analytics 4
+
+If you are already running campaigns with a click-tracking platform and also using Google Analytics 4 to track on-site user behaviour — sessions, session duration, bounce rate, engagement rate — you can bring those GA4 metrics into TheOptimizer alongside your ad network and tracker data.
+
+GA4 and a tracker can run side by side. TheOptimizer keeps their metrics in separate column sets — tracker metrics appear in their own columns and GA4 metrics in their own. You can display both in a single view and use metrics from either platform when building automation rules.
+
+<Steps>
+  <Step title="Add the GA4 Integration">
+    From the left-hand menu, go to **Integrations**, scroll down to the **Analytics & Reporting** section, and click **Connect** on the **Google Analytics 4** card.
+
+    Click **Connect New Account**, give the integration a descriptive name, then click **Connect**. This launches the Google authorisation flow — log in with the Google account that has access to your GA4 properties and click **Continue** to grant the required permissions.
+
+    <Warning>
+      The integration is not complete after authorisation alone. You have authorised TheOptimizer to access GA4, but you still need to link the integration to your ad accounts. Continue to the next step.
+    </Warning>
+  </Step>
+  <Step title="Link GA4 to Your Ad Accounts">
+    Go back to the **Integrations** page, open your **Ad Networks** section, and click on the ad network whose campaigns you are tracking with GA4 (for example, Facebook).
+
+    Select one or more ad accounts. A floating action menu will appear at the bottom of the screen — click **Manage Linked Trackers**.
+
+    In the dialog that appears, click **Connect Tracking Platform** and choose the GA4 integration you just added from the list.
+
+    <Tip>
+      If the GA4 integration does not appear in the list immediately, refresh the page and navigate back to the ad account selection.
+    </Tip>
+  </Step>
+  <Step title="Add a GA4 Property">
+    After selecting the GA4 integration, a configuration dialog will open. Click **Add Analytics Property**.
+
+    Select the **GA4 account** accessible via the Google profile you used during authorisation, then select the **property** (the specific site whose data you want to use).
+  </Step>
+  <Step title="Select Metrics to Import">
+    Choose which GA4 metrics you want to import. Some are pre-selected by default. Click **Add more metrics** to search for additional ones, or deselect any you don't need.
+
+    <Warning>
+      There is a hard limit of **60 metrics** across all your GA4 integrations combined. This applies to the total number of distinct metrics imported from all properties and all GA4 connections. Plan your selection carefully — import only the metrics you will actually use in your views or automation rules.
+    </Warning>
+  </Step>
+  <Step title="Configure Macro Mapping">
+    The macro mapping section is where you tell TheOptimizer how your campaigns are tracked in GA4 — which UTM parameter (or custom dimension) carries each ad network dimension.
+
+    **Standard UTM mapping for Facebook:**
+
+    | Facebook Macro | UTM Parameter |
+    | --- | --- |
+    | Campaign ID | utm\_campaign |
+    | Ad Set ID | utm\_medium |
+    | Ad ID | utm\_content |
+    | Placement | utm\_source |
+
+    If you are already using standard UTM parameters for other purposes (for example, passing campaign names rather than campaign IDs), create **custom dimensions** in GA4 and pass the required ad network IDs through those. You can then select those custom dimensions in the macro mapping instead of the standard UTM parameters.
+
+    TheOptimizer requires Campaign ID, Ad Set ID, Ad ID, and Placement to be flowing into GA4 — either via standard UTMs or custom dimensions — before this integration can work.
+  </Step>
+  <Step title="Complete the Integration">
+    Once you have configured the macro mappings, click **Add** to save the property. You can add multiple properties at this stage. When done, click **Connect Tracker** to finalise the link between GA4 and the ad account.
+
+    After completing the integration:
+
+    - Allow **20–30 minutes** before GA4 metrics begin appearing in TheOptimizer.
+    - **Check your column visibility.** GA4 metrics are not displayed by default — go to your column settings and add the GA4 columns you want to see.
+    - If your campaigns are not yet passing macro data to GA4, append the tracking parameter code shown at the end of the setup flow to your campaign URLs.
+  </Step>
+</Steps>
+
+---
+
+## Google Sheets
+
+The Google Sheets integration is the solution for users whose tracking platform is not natively supported by TheOptimizer. Instead of a direct API connection, you export conversion data from your tracker into a Google Sheet. TheOptimizer reads from that sheet automatically every 30 minutes and makes the data available alongside your ad network metrics — just like any natively integrated tracker.
+
+<Steps>
+  <Step title="Add the Google Sheets Integration">
+    From the left-hand menu, go to **Integrations**, scroll down to **Analytics & Reporting**, and click **Connect** on the **Google Sheets** card.
+
+    Give the integration a name — for example, the name of the platform you're exporting from.
+  </Step>
+  <Step title="Clone the Template">
+    Below the name field, click the link to clone the required Google Sheet template. If you are logged into a Google account, this automatically creates a copy in your Google Drive.
+
+    <Warning>
+      You must use the provided template. The Google Sheet must follow a specific structure for TheOptimizer to read it correctly — do not create your own sheet from scratch. Review each column's description carefully; the data format, column order, and naming must match the template exactly.
+    </Warning>
+  </Step>
+  <Step title="Share the Sheet with TheOptimizer">
+    For TheOptimizer to read your Google Sheet, you must share it with TheOptimizer's service account. The service account email address is displayed in the integration dialog.
+
+    Copy the email address shown, then in Google Sheets: click **Share** in the top right, paste the service account email, grant it **Viewer** or **Editor** access, and click **Share**.
+
+    <Warning>
+      Without this step, TheOptimizer cannot access the sheet and the integration will fail. Complete the share before clicking Connect.
+    </Warning>
+  </Step>
+  <Step title="Enter the Sheet URL and Currency">
+    Back in TheOptimizer integration dialog, paste the Google Sheet URL into the URL field and select the currency that your revenue data is reported in. Click **Connect** — TheOptimizer will verify it can access the sheet.
+  </Step>
+  <Step title="Populate the Sheet and Keep It Updated">
+    Once the integration is live, TheOptimizer pulls data from your sheet every 30 minutes. You are responsible for keeping the sheet populated with up-to-date data, whether through a manual export or an automated export from your tracking system on a schedule.
+
+    **Data structure: one row per entity per level**
+
+    | Level | What to include |
+    | --- | --- |
+    | Campaign | One row per Campaign ID with its clicks, conversions, and revenue |
+    | Ad Set / Ad Group | One row per Ad Set ID with its clicks, conversions, and revenue |
+    | Ad | One row per Ad ID with its clicks, conversions, and revenue |
+
+    If a level is missing, TheOptimizer will not show data for that level. For example, if you only populate campaign-level rows, you will see Google Sheets data on campaigns but not on ad sets or ads.
+  </Step>
+</Steps>
