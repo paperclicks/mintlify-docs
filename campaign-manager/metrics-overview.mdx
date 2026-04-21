@@ -1,0 +1,73 @@
+---
+title: "Understanding Available Metrics"
+description: "An overview of all metric categories available in the Campaign Manager — from traffic source and tracker data to custom metrics and conversion events."
+---
+
+TheOptimizer consolidates metrics from multiple sources into a single table. The **Column Management** dialog organises them into groups so you can build column presets that match exactly what you need to see.
+
+---
+
+## Traffic Source Metrics
+
+These are the metrics reported directly by the ad network — the same numbers you would see inside Facebook Ads Manager, Taboola, TikTok Ads, or any other native dashboard. Common examples:
+
+- **Amount Spent** — total cost for the selected period
+- **Impressions** — how many times your ads were shown
+- **Clicks** — total clicks generated
+- **CTR** — click-through rate (Clicks / Impressions)
+- **CPC** — cost per click
+- **CPM** — cost per 1,000 impressions
+- **Frequency** — average number of times each person has seen your ad (Facebook)
+- **Traffic Source Conversions** — conversions recorded by the ad network's pixel or tracking tag
+- **Traffic Source CPA** — cost per conversion as reported by the ad network
+
+---
+
+## Tracker Metrics
+
+When you connect a tracking platform (ClickFlare, Voluum, RedTrack, etc.), TheOptimizer pulls click-level data that goes beyond what ad networks report natively. Tracker metrics include:
+
+- **Tracker Conversions** — conversions recorded by your tracker
+- **Tracker Revenue** — revenue attributed by your tracker
+- **Tracker CPA** — cost per acquisition from your tracker
+- **Tracker ROI** — return on investment calculated using tracker revenue
+- **Tracker EPC** — earnings per click from your tracker
+
+Tracker metrics are only visible when a tracking platform is connected to your account.
+
+---
+
+## Custom Conversion Metrics
+
+If you track multiple conversion events (e.g., Add to Cart, Checkout, Purchase), each event can appear as its own column. These are available under the **Custom Conversion Metrics** group in Column Management.
+
+---
+
+## Search Feed Metrics
+
+For ad networks that monetise search traffic, additional search feed-specific metrics are available under the **Search Feed Metrics** group.
+
+---
+
+## Network-Specific Metrics
+
+Some ad networks expose metrics that don't exist on other platforms. These are grouped by network in Column Management — for example, **Facebook Metrics** includes things like Video Average Play Time and Post Engagement that are unique to the Facebook ecosystem.
+
+---
+
+## Custom Metrics
+
+You can define up to 10 custom metrics using your own formulas, combining any of the metrics above with standard arithmetic operators. Once created, they appear as columns in any preset and are also available as conditions in your automation rules. See [Create Custom Metrics](/campaign-manager/custom-metrics) for the full setup guide.
+
+---
+
+## Totals Bar Metrics
+
+At the very top of the Campaign Manager, the **Totals Bar** summarises four key figures across all currently visible campaigns:
+
+| Metric | What it shows |
+|--------|---------------|
+| **Cost** | Total amount spent across selected accounts and date range |
+| **Revenue** | Total revenue (from ad network or tracker — see [Ad Network vs. Tracker Revenue](/campaign-manager/revenue-sources)) |
+| **NET** | Revenue minus Cost |
+| **ROI** | Return on investment as a percentage |

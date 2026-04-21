@@ -1,0 +1,34 @@
+---
+title: "Ad Network vs. Tracker Revenue"
+description: "Understand the difference between ad network revenue and tracker revenue — and how to switch between them."
+---
+
+TheOptimizer can pull revenue data from two different sources: the **ad network** itself, or your connected **tracking platform**. The source you choose affects the Revenue column throughout the Campaign Manager and the Totals Bar.
+
+---
+
+## The Two Sources
+
+**Ad Network Revenue** — revenue data passed directly by the ad network (e.g., Facebook, Taboola). This only works if you are actively sending revenue events back to the traffic source. If you do not, this figure will show `$0.00`.
+
+**Tracker Revenue** — revenue attributed by your connected tracking platform (ClickFlare, Voluum, RedTrack, etc.). This is generally the more reliable source for performance marketers, as trackers receive click-level postbacks from your offer or landing page regardless of what the ad network tracks.
+
+---
+
+## How to Switch Sources
+
+This setting is controlled from the **Dashboard** view — there is a toggle that switches between **Ad Network Revenue** and **Tracker Revenue**. Whichever option is active on the Dashboard also determines what the Campaign Manager shows.
+
+<Warning>
+  If you see `$0.00` in the Revenue column despite having active campaigns, the most likely cause is that **Ad Network Revenue** is selected but you are not pushing revenue data to the traffic source. Switch to **Tracker Revenue** on the Dashboard and the correct figures will appear.
+</Warning>
+
+---
+
+## Which Source Should You Use?
+
+| Scenario | Recommended source |
+|----------|--------------------|
+| You use a third-party tracker (ClickFlare, Voluum, etc.) | **Tracker Revenue** |
+| You send revenue events back to the ad network | **Ad Network Revenue** |
+| You are not sure | **Tracker Revenue** — more reliable in most setups |

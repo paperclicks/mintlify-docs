@@ -54,12 +54,33 @@
             "group": "Campaign Manager",
             "pages": [
               "campaign-manager/overview",
-              "campaign-manager/navigation",
-              "campaign-manager/filtering",
-              "campaign-manager/managing-campaigns",
-              "campaign-manager/details-view",
-              "campaign-manager/columns-and-metrics",
-              "campaign-manager/exporting"
+              {
+                "group": "Navigation & Filtering",
+                "pages": [
+                  "campaign-manager/nav-ad-networks-accounts",
+                  "campaign-manager/nav-campaigns-adsets-ads",
+                  "campaign-manager/filtering"
+                ]
+              },
+              {
+                "group": "Working with Campaigns, Ad Sets & Ads",
+                "pages": [
+                  "campaign-manager/quick-bulk-actions",
+                  "campaign-manager/customize-columns",
+                  "campaign-manager/compare-dates",
+                  "campaign-manager/metrics-overview"
+                ]
+              },
+              {
+                "group": "For Pros",
+                "pages": [
+                  "campaign-manager/details-view",
+                  "campaign-manager/custom-metrics",
+                  "campaign-manager/keyboard-navigation",
+                  "campaign-manager/multiple-currencies",
+                  "campaign-manager/revenue-sources"
+                ]
+              }
             ]
           },
           {
