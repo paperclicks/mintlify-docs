@@ -54,14 +54,7 @@
             "group": "Campaign Manager",
             "pages": [
               "campaign-manager/overview",
-              {
-                "group": "Navigation & Filtering",
-                "pages": [
-                  "campaign-manager/nav-ad-networks-accounts",
-                  "campaign-manager/nav-campaigns-adsets-ads",
-                  "campaign-manager/filtering"
-                ]
-              },
+              "campaign-manager/navigation-and-filtering",
               {
                 "group": "Working with Campaigns, Ad Sets & Ads",
                 "pages": [

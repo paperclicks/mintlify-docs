@@ -2,57 +2,18 @@
 title: "Quick Start"
 ---
 
+import { ArcadeVideoButton } from '/snippets/arcade-video-button';
+
 This guide walks you through the five steps to go from a new TheOptimizer account to a fully operational setup. By the end, your ad networks will be connected, your campaigns will be visible in a unified view, and you will have automation rules running to protect and optimize your spend.
+<ArcadeVideoButton
+  id="125wLEBSv5jjYVSDtZLq"
+  title="Connect an Ad Account"
+  label="✨ ▶ Watch Video ✨"
+/>
 
 <Steps>
   <Step title="Connect Your Ad Network">
 
-    <div>
-  {(() => {
-    if (typeof window !== 'undefined') {
-      window.removeEventListener('message', window.__onArcadeIframeMessage);
-      window.__onArcadeIframeMessage = function(e) {
-        if (e.origin !== 'https://demo.arcade.software' || !e.isTrusted) return;
-        const arcadeIframe = document.querySelector(`iframe[src*="${e.data.id}"]`);
-        if (!arcadeIframe || !arcadeIframe.contentWindow) return;
-        if (e.data.event === 'arcade-init') {
-          arcadeIframe.contentWindow.postMessage({event: 'register-popout-handler'}, '*');
-        }
-        if (e.data.event === 'arcade-popout-open') {
-          arcadeIframe.style.height = '100%';
-          arcadeIframe.style.zIndex = '9999999';
-        }
-        if (e.data.event === 'arcade-popout-close') {
-          arcadeIframe.style.height = '0';
-          arcadeIframe.style.zIndex = 'auto';
-        }
-      };
-      window.addEventListener('message', window.__onArcadeIframeMessage);
-    }
-    return null;
-  })()}
-
-  <button
-    onClick={() => {
-      const arcadeIframe = document.querySelector('iframe[src*="125wLEBSv5jjYVSDtZLq"]');
-      if (arcadeIframe && arcadeIframe.contentWindow) {
-        arcadeIframe.contentWindow.postMessage({event: 'request-popout-open'}, '*');
-      }
-    }}
-    style={{border: '1px solid #E5E7EB', padding: '8px 12px', borderRadius: '12px'}}>
-    ✨ ▶ Watch Video ✨
-  </button>
-
-  <iframe
-    src="https://demo.arcade.software/125wLEBSv5jjYVSDtZLq?embed&embed_custom&show_copy_link=true"
-    title="Facebook - Integrations - Connect using a personal profile"
-    frameBorder="0"
-    loading="lazy"
-    allowFullScreen
-    allow="clipboard-write"
-    style={{position: 'fixed', top: 0, left: 0, width: '100%', height: 0, colorScheme: 'light'}}
-  />
-</div>
 
     The first thing you need to do is connect at least one ad network. Without this, the platform has no campaign data to work with and cannot take any actions.
 
