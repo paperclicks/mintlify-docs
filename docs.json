@@ -65,7 +65,7 @@
                 ]
               },
               {
-                "group": "For Pros",
+                "group": "Advanced Features",
                 "pages": [
                   "campaign-manager/details-view",
                   "campaign-manager/custom-metrics",
@@ -86,12 +86,6 @@
             "group": "Creative Library",
             "pages": [
               "creative-library/guide"
-            ]
-          },
-          {
-            "group": "Native Networks",
-            "pages": [
-              "ad-networks/native-networks/automation/popular-rules"
             ]
           },
           {
@@ -134,21 +128,204 @@
                 ]
               },
               {
+                "group": "Google Ads",
+                "pages": [
+                  "ad-networks/google-ads/integration/connect"
+                ]
+              },
+              {
                 "group": "TikTok",
                 "pages": [
+                  "ad-networks/tiktok/integration/connect",
                   "ad-networks/tiktok/automation/popular-rules"
                 ]
               },
               {
                 "group": "Taboola",
                 "pages": [
-                  "ad-networks/taboola/automation/popular-rules"
+                  "ad-networks/taboola/integration/connect",
+                  "ad-networks/taboola/automation/popular-rules",
+                  {
+                    "group": "Campaign Uploader",
+                    "pages": [
+                      "ad-networks/taboola/campaign-uploader/excel-upload"
+                    ]
+                  }
                 ]
               },
               {
                 "group": "Outbrain",
                 "pages": [
-                  "ad-networks/outbrain/automation/popular-rules"
+                  "ad-networks/outbrain/integration/connect",
+                  "ad-networks/outbrain/automation/popular-rules",
+                  {
+                    "group": "Campaign Uploader",
+                    "pages": [
+                      "ad-networks/outbrain/campaign-uploader/excel-upload"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "MGID",
+                "pages": [
+                  "ad-networks/mgid/integration/connect",
+                  {
+                    "group": "Campaign Uploader",
+                    "pages": [
+                      "ad-networks/mgid/campaign-uploader/excel-upload"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "MediaGo",
+                "pages": [
+                  "ad-networks/mediago/integration/connect"
+                ]
+              },
+              {
+                "group": "BigoAds",
+                "pages": [
+                  "ad-networks/bigoads/integration/connect"
+                ]
+              },
+              {
+                "group": "Adskeeper",
+                "pages": [
+                  "ad-networks/adskeeper/integration/connect"
+                ]
+              },
+              {
+                "group": "RevContent",
+                "pages": [
+                  "ad-networks/revcontent/integration/connect",
+                  {
+                    "group": "Campaign Uploader",
+                    "pages": [
+                      "ad-networks/revcontent/campaign-uploader/excel-upload"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "NewsBreak",
+                "pages": [
+                  "ad-networks/newsbreak/integration/connect"
+                ]
+              },
+              {
+                "group": "Yahoo DSP",
+                "pages": [
+                  "ad-networks/yahoodsp/integration/connect"
+                ]
+              },
+              {
+                "group": "Trillion",
+                "pages": [
+                  "ad-networks/trillion/integration/connect"
+                ]
+              },
+              {
+                "group": "Native Networks",
+                "pages": [
+                  "ad-networks/native-networks/automation/popular-rules"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Tracking Platforms",
+            "pages": [
+              {
+                "group": "Assertive Yield",
+                "pages": [
+                  "tracking-platforms/assertive-yield/connect",
+                  "tracking-platforms/assertive-yield/metrics"
+                ]
+              },
+              {
+                "group": "ClickFlare",
+                "pages": [
+                  "tracking-platforms/clickflare/connect"
+                ]
+              },
+              {
+                "group": "Voluum",
+                "pages": [
+                  "tracking-platforms/voluum/connect"
+                ]
+              },
+              {
+                "group": "RedTrack",
+                "pages": [
+                  "tracking-platforms/redtrack/connect"
+                ]
+              },
+              {
+                "group": "Bemob",
+                "pages": [
+                  "tracking-platforms/bemob/connect"
+                ]
+              },
+              {
+                "group": "Binom",
+                "pages": [
+                  "tracking-platforms/binom/connect"
+                ]
+              },
+              {
+                "group": "Binom2",
+                "pages": [
+                  "tracking-platforms/binomv2/connect"
+                ]
+              },
+              {
+                "group": "Everflow",
+                "pages": [
+                  "tracking-platforms/everflow/connect"
+                ]
+              },
+              {
+                "group": "Keitaro",
+                "pages": [
+                  "tracking-platforms/keitaro/connect"
+                ]
+              },
+              {
+                "group": "AdsBridge",
+                "pages": [
+                  "tracking-platforms/adsbridge/connect"
+                ]
+              },
+              {
+                "group": "CloudThrive",
+                "pages": [
+                  "tracking-platforms/cloudthrive/connect"
+                ]
+              },
+              {
+                "group": "CPV Lab Pro",
+                "pages": [
+                  "tracking-platforms/cpvlab/connect"
+                ]
+              },
+              {
+                "group": "FunnelFlux",
+                "pages": [
+                  "tracking-platforms/funnelflux/connect"
+                ]
+              },
+              {
+                "group": "FunnelFlux Pro",
+                "pages": [
+                  "tracking-platforms/funnelfluxpro/connect"
+                ]
+              },
+              {
+                "group": "Kintura",
+                "pages": [
+                  "tracking-platforms/kintura/connect"
                 ]
               }
             ]

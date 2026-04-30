@@ -1,0 +1,57 @@
+---
+title: "Connect Assertive Yield"
+description: "Connect Assertive Yield to TheOptimizer to bring publisher revenue data into your campaign reports and automation rules."
+---
+
+import { ArcadeVideoButton } from '/snippets/arcade-video-button.mdx';
+
+Assertive Yield is a publisher revenue analytics and yield optimisation platform. Unlike click-based trackers, Assertive Yield focuses on programmatic revenue data — tracking metrics like Prebid revenue, Dynamic Allocation, Sessions, RPM, and Viewability. It is commonly used by content publishers and media buyers who monetise inventory through programmatic advertising and want to connect publisher-side revenue to their traffic source spend.
+
+<Note>
+  Assertive Yield connects using your account email and password, not an API key. Make sure you use the credentials for the Assertive Yield account that owns the properties you want to track.
+</Note>
+
+---
+
+## Connecting to TheOptimizer
+
+<Steps>
+  <Step title="Open Integrations">
+    From the left-hand menu, go to **Integrations**. Scroll to the **Tracking Platforms** section, find the Assertive Yield card and click **Connect →**.
+  </Step>
+  <Step title="Enter Your Account Credentials">
+    Fill in the connection form:
+
+    - **Integration name** — a label for this connection (e.g. "Assertive Yield – Main").
+    - **Email** — the email address you use to log in to Assertive Yield.
+    - **Password** — the password for your Assertive Yield account.
+
+    <Frame>
+      <img src="/images/assertive-yield.png" alt="Assertive Yield connection form in TheOptimizer" />
+    </Frame>
+  </Step>
+  <Step title="Add an Assertive Yield Entity">
+    After saving your credentials, TheOptimizer prompts you to add an **Assertive Yield Entity**. An entity represents a web property tracked in Assertive Yield (e.g. a website or domain).
+
+    Click **Add Assertive Yield Entity** and configure the tracking token mapping. This tells TheOptimizer how to match revenue data from Assertive Yield to your campaigns.
+
+    TheOptimizer supports passing all required tracking values through a single UTM parameter, so existing UTM configurations can be kept as-is while still correctly matching traffic source and Assertive Yield data.
+
+    <Note>
+      If you track multiple web properties in Assertive Yield, add a separate entity for each one.
+    </Note>
+  </Step>
+</Steps>
+
+---
+
+## What Data Assertive Yield Brings In
+
+Once connected, TheOptimizer pulls publisher revenue metrics from Assertive Yield into your campaign reports. These include:
+
+- **Revenue** (total, Prebid, Direct, Dynamic Allocation)
+- **RPM** and **Session RPM** variants
+- **Impressions**, **Sessions**, **Page Views**
+- **Viewability** and **Value-RPM** metrics
+
+For a full list of available metrics and their definitions, see the [Assertive Yield Metrics Reference](/tracking-platforms/assertive-yield/metrics).

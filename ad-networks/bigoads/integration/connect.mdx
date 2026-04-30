@@ -1,0 +1,52 @@
+---
+title: "Connect BigoAds"
+description: "Connect your BigoAds account to TheOptimizer using API credentials to sync campaign data and enable automated optimisation."
+---
+
+import { ArcadeVideoButton } from '/snippets/arcade-video-button.mdx';
+
+BigoAds is the advertising platform of Bigo Technology, offering access to large audiences across Bigo Live, Likee, and other apps in their portfolio. It is used by performance marketers targeting mobile-first audiences in Southeast Asia, the Middle East, and other emerging markets.
+
+BigoAds connects via API credentials — you copy an App ID and App Secret from your BigoAds business platform settings and paste them into TheOptimizer. These function as your Client ID and Client Secret for the API.
+
+---
+
+## Where to Find Your API Credentials
+
+Log in to the **BigoAds business platform** → go to **Settings** → **API** → copy your **App ID** and **App Secret**.
+
+---
+
+## Connecting to TheOptimizer
+
+<Steps>
+  <Step title="Open the Integrations page">
+    From the left-hand menu, go to **Integrations**. Find the **BigoAds** card and click **Connect →**.
+  </Step>
+  <Step title="Enter Your API Credentials">
+    Enter the credentials requested:
+
+    - **Integration name** — a descriptive label for this connection (e.g. "BigoAds – Main Account").
+    - **App ID** — paste the App ID from your BigoAds settings (this is your Client ID).
+    - **App Secret** — paste the App Secret from your BigoAds settings (this is your Client Secret).
+
+    Give the integration a descriptive name so it's easy to identify if you manage multiple accounts.
+
+    <Frame>
+      <img src="/images/bigoads.png" alt="BigoAds connection form in TheOptimizer" />
+    </Frame>
+  </Step>
+  <Step title="Connection confirmed">
+    Once credentials are accepted, TheOptimizer begins syncing your campaign data. Initial sync takes up to 20–30 minutes.
+
+    <Note>
+      If you have multiple ad accounts under this network, they will all be pulled in and listed under this integration after the initial sync.
+    </Note>
+  </Step>
+</Steps>
+
+---
+
+## Next Steps
+
+- Connect a tracking platform to bring conversion and revenue data into your campaign reports

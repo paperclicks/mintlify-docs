@@ -1,0 +1,47 @@
+---
+title: "Connect Google Ads"
+description: "Authorise TheOptimizer to access your Google Ads accounts using OAuth so it can read campaign data and manage bids and budgets on your behalf."
+---
+
+import { ArcadeVideoButton } from '/snippets/arcade-video-button.mdx';
+
+Google Ads uses OAuth for authentication — you log in with your Google account directly and grant TheOptimizer the permissions it needs. No API keys to copy and paste.
+
+For best results, log in with the Google account that has **Manager Account (MCC)** access. This allows TheOptimizer to access all child ad accounts under that MCC in a single connection.
+
+<Steps>
+  <Step title="Open the Integrations page">
+    From the left-hand menu, go to **Integrations**. Find the **Google Ads** card and click **Connect →**.
+  </Step>
+  <Step title="Authorise access">
+    You will be redirected to Google's authorisation screen. Sign in with the Google account that has access to your Google Ads Manager Account (MCC). If you manage multiple MCCs, connect with the account that has the broadest access.
+  </Step>
+  <Step title="Review permissions and complete">
+    Google will display a summary of the permissions being requested. These allow TheOptimizer to read your campaigns, ad groups, and ads, and to manage bids and budgets via the Google Ads API. Review the permissions and click **Allow** to complete the authorisation.
+  </Step>
+  <Step title="Connection confirmed">
+    TheOptimizer shows a confirmation screen once the connection is established. Initial sync takes **up to 20–30 minutes**. Your campaigns and ads may not appear immediately — this is expected. Give it up to half an hour before troubleshooting.
+
+    <Note>
+      If your MCC contains multiple child accounts, all of them will be pulled in and listed under this integration after the initial sync.
+    </Note>
+  </Step>
+</Steps>
+
+---
+
+## What Permissions Are Granted
+
+TheOptimizer requests the following Google Ads permissions:
+
+- **Read campaigns, ad groups, and ads** — retrieve your campaign structure and creative data
+- **Read performance statistics** — access impressions, clicks, spend, and conversion metrics
+- **Manage bids and budgets** — update keyword bids, campaign budgets, and ad group CPC/CPM values via the Google Ads API
+
+TheOptimizer does not request access to your Google account profile, Gmail, or any other Google product outside of Google Ads.
+
+---
+
+## Next Steps
+
+- Connect a tracking platform to bring conversion and revenue data into your campaign reports

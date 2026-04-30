@@ -1,0 +1,73 @@
+---
+title: "Connect CPV Lab Pro"
+description: "Connect CPV Lab Pro to TheOptimizer to bring click-level conversion and revenue data into your campaign reports and automation rules."
+---
+
+import { ArcadeVideoButton } from '/snippets/arcade-video-button.mdx';
+
+CPV Lab Pro is a self-hosted tracking platform designed for performance marketers running CPV, PPV, display, and native campaigns. It offers advanced traffic distribution, split testing, and click-level reporting. CPV Lab Pro is popular with media buyers who want full control over their data and a tracker optimised for direct-linking campaigns.
+
+---
+
+## Where to Find Your API Key
+
+Log in to your CPV Lab Pro installation → go to **Settings** → **API** → copy the API Key shown.
+
+---
+
+## Connecting to TheOptimizer
+
+<Steps>
+  <Step title="Open Integrations">
+    From the left-hand menu, go to **Integrations**. Scroll to the **Tracking Platforms** section, find the CPV Lab Pro card and click **Connect →**.
+  </Step>
+  <Step title="Enter Your API Credentials">
+    Fill in the connection form:
+
+    - **Integration name** — a label for this connection (e.g. "CPV Lab – Brand A").
+    - **API Key** — paste the API Key from your CPV Lab Pro installation.
+    - **Currency** — the currency your tracker reports revenue in. Must match your tracker's settings.
+    - **Conversion registration time** — choose **Visit time** (conversion counted when user lands) or **Postback time** (counted when conversion fires). Match this to your tracker's setup.
+    - **Custom Domains** *(optional)* — if you use custom tracking domains, add them here using the **+ Add Domain** button.
+
+
+    <Frame>
+      <img src="/images/cpvlab.png" alt="CPV Lab Pro connection form in TheOptimizer" />
+    </Frame>
+    <Warning>
+      The Currency and Conversion Registration Time settings must match what you have configured in CPV Lab Pro. Mismatched settings will cause data discrepancies.
+    </Warning>
+  </Step>
+  <Step title="Configure for Your Ad Networks">
+    After saving the credentials, TheOptimizer prompts you to configure the tracker for each connected ad network. This step tells the platform how to match CPV Lab Pro data to your campaigns.
+
+    Click **Configure →** next to each ad network and select the **tracking template** that matches how you set up CPV Lab Pro for that network.
+
+    **Understanding tracking templates**
+
+    A tracking template is a set of macros that maps your tracker's URL parameters to ad network identifiers (Campaign ID, Ad Set ID, Ad ID, Placement). The dropdown shows all templates available from your CPV Lab Pro account. Select the one you use for that ad network.
+
+    <Warning>
+      Required macros: a template must include mappings for **Campaign ID**, **Ad Set ID**, **Ad ID**, and **Placement**. If any are missing, TheOptimizer will flag the issue — fix the template in CPV Lab Pro before proceeding.
+    </Warning>
+
+    Once a template is selected, the connection status for that ad network updates to **Connected**.
+
+    <Note>
+      Ad networks where you have not selected a tracking template will not receive any data from CPV Lab Pro. Configure every network you actively use.
+    </Note>
+  </Step>
+  <Step title="Add Tracking Parameters to Your Campaigns">
+    TheOptimizer generates a **tracking parameters code** at the end of setup. Add this URL parameter string to your campaigns on each ad network. This is what allows CPV Lab Pro to receive the correct campaign and ad identifiers and report them back.
+
+    Without this step, CPV Lab Pro will receive visits but won't be able to match them to specific campaigns — no conversion or revenue data will appear in TheOptimizer.
+  </Step>
+</Steps>
+
+---
+
+## One Tracker Type Per Campaign
+
+Only one instance of a tracker type should track any individual campaign at a time. Running two CPV Lab Pro integrations against the same campaign causes attribution conflicts.
+
+Running **different tracker types** side by side on the same campaign is fine — for example, CPV Lab Pro for affiliate attribution alongside Google Analytics for on-site behaviour.

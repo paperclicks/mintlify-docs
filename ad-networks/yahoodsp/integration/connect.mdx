@@ -1,0 +1,56 @@
+---
+title: "Connect Yahoo DSP"
+description: "Connect your Yahoo DSP account to TheOptimizer using API credentials to sync campaign data and enable automated optimisation."
+---
+
+import { ArcadeVideoButton } from '/snippets/arcade-video-button.mdx';
+
+<Note>
+  Yahoo DSP integration is currently in **Beta**. Access may be limited. Contact your Yahoo account manager or TheOptimizer support to confirm availability for your account.
+</Note>
+
+Yahoo DSP (Demand Side Platform) is Yahoo's programmatic advertising platform, offering access to display, native, and video inventory across Yahoo's owned properties and the broader open web. It is used by performance marketers and agencies seeking programmatic reach with first-party Yahoo audience data.
+
+Yahoo DSP connects via API credentials — your Client ID and Client Secret are provided directly by your Yahoo account manager, as they are not self-serve from within the platform UI.
+
+---
+
+## Where to Find Your API Credentials
+
+API credentials for Yahoo DSP are not generated from a self-serve settings panel. Contact your **Yahoo account manager** to request your **Client ID** and **Client Secret** for the Yahoo DSP API.
+
+---
+
+## Connecting to TheOptimizer
+
+<Steps>
+  <Step title="Open the Integrations page">
+    From the left-hand menu, go to **Integrations**. Find the **Yahoo DSP** card and click **Connect →**.
+  </Step>
+  <Step title="Enter Your API Credentials">
+    Enter the credentials requested:
+
+    - **Integration name** — a descriptive label for this connection (e.g. "Yahoo DSP – Main Account").
+    - **Client ID** — paste the Client ID provided by your Yahoo account manager.
+    - **Client Secret** — paste the Client Secret provided by your Yahoo account manager.
+
+    Give the integration a descriptive name so it's easy to identify if you manage multiple accounts.
+
+    <Frame>
+      <img src="/images/yahoodsp.png" alt="Yahoo DSP connection form in TheOptimizer" />
+    </Frame>
+  </Step>
+  <Step title="Connection confirmed">
+    Once credentials are accepted, TheOptimizer begins syncing your campaign data. Initial sync takes up to 20–30 minutes.
+
+    <Note>
+      If you have multiple ad accounts under this network, they will all be pulled in and listed under this integration after the initial sync.
+    </Note>
+  </Step>
+</Steps>
+
+---
+
+## Next Steps
+
+- Connect a tracking platform to bring conversion and revenue data into your campaign reports

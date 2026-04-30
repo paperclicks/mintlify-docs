@@ -1,0 +1,74 @@
+---
+title: "Connect Bemob"
+description: "Connect Bemob to TheOptimizer to bring click-level conversion and revenue data into your campaign reports and automation rules."
+---
+
+import { ArcadeVideoButton } from '/snippets/arcade-video-button.mdx';
+
+Bemob is a cloud-hosted tracking platform built for affiliate marketers and performance advertisers. It offers click-level tracking, conversion attribution, and real-time reporting with a focus on simplicity and ease of setup. Bemob is commonly used by individual media buyers and small teams who want a reliable hosted solution without complex configuration.
+
+---
+
+## Where to Find Your API Credentials
+
+Log in to Bemob → click your **profile name** in the top-right corner → **My Profile** → open the **API** tab → copy the **Access Key** and **Secret Key** shown.
+
+---
+
+## Connecting to TheOptimizer
+
+<Steps>
+  <Step title="Open Integrations">
+    From the left-hand menu, go to **Integrations**. Scroll to the **Tracking Platforms** section, find the Bemob card and click **Connect →**.
+  </Step>
+  <Step title="Enter Your API Credentials">
+    Fill in the connection form:
+
+    - **Integration name** — a label for this connection (e.g. "Bemob – Brand A").
+    - **Access Key** — paste the Access Key from your Bemob profile.
+    - **Secret Key** — paste the Secret Key from your Bemob profile.
+    - **Currency** — the currency your tracker reports revenue in. Must match your tracker's settings.
+    - **Conversion registration time** — choose **Visit time** (conversion counted when user lands) or **Postback time** (counted when conversion fires). Match this to your tracker's setup.
+    - **Custom Domains** *(optional)* — if you use custom tracking domains in Bemob, add them here using the **+ Add Domain** button. This ensures TheOptimizer can correctly attribute data from those domains.
+
+
+    <Frame>
+      <img src="/images/Bemob.png" alt="Bemob connection form in TheOptimizer" />
+    </Frame>
+    <Warning>
+      The Currency and Conversion Registration Time settings must match what you have configured in Bemob. Mismatched settings will cause data discrepancies.
+    </Warning>
+  </Step>
+  <Step title="Configure for Your Ad Networks">
+    After saving the credentials, TheOptimizer prompts you to configure the tracker for each connected ad network. This step tells the platform how to match Bemob data to your campaigns.
+
+    Click **Configure →** next to each ad network and select the **tracking template** that matches how you set up Bemob for that network.
+
+    **Understanding tracking templates**
+
+    A tracking template is a set of macros that maps your tracker's URL parameters to ad network identifiers (Campaign ID, Ad Set ID, Ad ID, Placement). The dropdown shows all templates available from your Bemob account. Select the one you use for that ad network.
+
+    <Warning>
+      Required macros: a template must include mappings for **Campaign ID**, **Ad Set ID**, **Ad ID**, and **Placement**. If any are missing, TheOptimizer will flag the issue — fix the template in Bemob before proceeding.
+    </Warning>
+
+    Once a template is selected, the connection status for that ad network updates to **Connected**.
+
+    <Note>
+      Ad networks where you have not selected a tracking template will not receive any data from Bemob. Configure every network you actively use.
+    </Note>
+  </Step>
+  <Step title="Add Tracking Parameters to Your Campaigns">
+    TheOptimizer generates a **tracking parameters code** at the end of setup. Add this URL parameter string to your campaigns on each ad network. This is what allows Bemob to receive the correct campaign and ad identifiers and report them back.
+
+    Without this step, Bemob will receive visits but won't be able to match them to specific campaigns — no conversion or revenue data will appear in TheOptimizer.
+  </Step>
+</Steps>
+
+---
+
+## One Tracker Type Per Campaign
+
+Only one instance of a tracker type should track any individual campaign at a time. Running two Bemob integrations against the same campaign causes attribution conflicts.
+
+Running **different tracker types** side by side on the same campaign is fine — for example, Bemob for affiliate attribution alongside Google Analytics for on-site behaviour.

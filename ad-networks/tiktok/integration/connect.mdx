@@ -1,0 +1,45 @@
+---
+title: "Connect TikTok"
+description: "Authorise TheOptimizer to access your TikTok for Business ad accounts using OAuth so it can read campaign data and manage your ads on your behalf."
+---
+
+import { ArcadeVideoButton } from '/snippets/arcade-video-button.mdx';
+
+TikTok Ads uses OAuth for authentication — you log in with your TikTok for Business account directly and grant TheOptimizer the permissions it needs. No API keys to copy and paste.
+
+<Steps>
+  <Step title="Open the Integrations page">
+    From the left-hand menu, go to **Integrations**. Find the **TikTok** card and click **Connect →**.
+  </Step>
+  <Step title="Authorise access">
+    You will be redirected to TikTok for Business's authorisation screen. Sign in with the TikTok for Business account that has access to the ad accounts you want to manage in TheOptimizer.
+  </Step>
+  <Step title="Review permissions and complete">
+    TikTok will display a summary of the permissions being requested. These allow TheOptimizer to read and manage your ad campaigns via the TikTok Marketing API. Review the permissions and click **Confirm** to complete the authorisation.
+  </Step>
+  <Step title="Connection confirmed">
+    TheOptimizer shows a confirmation screen once the connection is established. Initial sync takes **up to 20–30 minutes**. Your campaigns and ads may not appear immediately — this is expected. Give it up to half an hour before troubleshooting.
+
+    <Note>
+      If your TikTok for Business account manages multiple ad accounts, all of them will be pulled in and listed under this integration after the initial sync.
+    </Note>
+  </Step>
+</Steps>
+
+---
+
+## What Permissions Are Granted
+
+TheOptimizer requests the following TikTok permissions:
+
+- **Read ad campaigns** — retrieve campaign structure, ad groups, and ad creative data
+- **Manage ad campaigns** — update campaign status, budgets, and bids via the TikTok Marketing API
+- **Read performance metrics** — access impressions, clicks, spend, and conversion data
+
+TheOptimizer does not request access to your TikTok creator profile, personal account, or any data outside of TikTok for Business.
+
+---
+
+## Next Steps
+
+- Connect a tracking platform to bring conversion and revenue data into your campaign reports

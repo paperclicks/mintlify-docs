@@ -1,0 +1,52 @@
+---
+title: "Connect RevContent"
+description: "Connect your RevContent account to TheOptimizer using API credentials to sync campaign data and enable automated optimisation."
+---
+
+import { ArcadeVideoButton } from '/snippets/arcade-video-button.mdx';
+
+RevContent is a native advertising network with a focus on premium publisher placements across news, media, and entertainment sites. It is used by performance marketers in verticals such as health, finance, and e-commerce who value quality publisher inventory and engagement-based targeting.
+
+RevContent connects via OAuth2 client credentials — you copy a Client ID and Client Secret from your RevContent account settings and paste them into TheOptimizer.
+
+---
+
+## Where to Find Your API Credentials
+
+Log in to the **RevContent platform** → go to **Account settings** → **API Access** → copy your **Client ID** and **Client Secret**.
+
+---
+
+## Connecting to TheOptimizer
+
+<Steps>
+  <Step title="Open the Integrations page">
+    From the left-hand menu, go to **Integrations**. Find the **RevContent** card and click **Connect →**.
+  </Step>
+  <Step title="Enter Your API Credentials">
+    Enter the credentials requested:
+
+    - **Integration name** — a descriptive label for this connection (e.g. "RevContent – Main Account").
+    - **Client ID** — paste the Client ID from your RevContent API Access settings.
+    - **Client Secret** — paste the Client Secret from your RevContent API Access settings.
+
+    Give the integration a descriptive name so it's easy to identify if you manage multiple accounts.
+
+    <Frame>
+      <img src="/images/revcontent.png" alt="RevContent connection form in TheOptimizer" />
+    </Frame>
+  </Step>
+  <Step title="Connection confirmed">
+    Once credentials are accepted, TheOptimizer begins syncing your campaign data. Initial sync takes up to 20–30 minutes.
+
+    <Note>
+      If you have multiple ad accounts under this network, they will all be pulled in and listed under this integration after the initial sync.
+    </Note>
+  </Step>
+</Steps>
+
+---
+
+## Next Steps
+
+- Connect a tracking platform to bring conversion and revenue data into your campaign reports

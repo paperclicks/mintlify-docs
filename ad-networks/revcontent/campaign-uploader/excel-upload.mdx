@@ -1,0 +1,84 @@
+---
+title: "Bulk Upload Campaigns via Excel"
+description: "Upload multiple RevContent campaigns at once using a pre-built Google Sheets template, then submit the exported Excel file through TheOptimizer's Campaign Creator."
+sidebarTitle: "Excel Bulk Upload"
+---
+
+The RevContent Excel Uploader lets you prepare and launch multiple campaigns at once without going through the UI one by one. You define everything — targeting, budget, bidding, and creatives — in a structured Google Sheets template, export it to Excel, and submit it through TheOptimizer.
+
+---
+
+## How It Works
+
+<Steps>
+  <Step title="Clone the Google Sheets Template">
+    Start by making a copy of the RevContent Excel template into your own Google account:
+
+    [**Clone the RevContent Google Sheets Template →**](https://docs.google.com/spreadsheets/d/1Y-xH7rw8H20tzVxQXcp3tLi-dhJuBb_RLcHHt2pAqWM/copy)
+
+    The template contains:
+    - A **main sheet** with one row per ad (campaign settings + creative in each row)
+    - **Auxiliary sheets** with reference data: Languages, Countries, Regions, Traffic Types, and more
+    - **Column notes** on every column header — hover over the column name to see the accepted values and format
+  </Step>
+  <Step title="Fill in Your Campaigns">
+    Each row in the main sheet represents one ad. To create a campaign with multiple ads, add one row per ad keeping all campaign-level columns identical, and vary only the ad-level columns (image URL, headline, etc.).
+
+    **Key things to note:**
+    - Columns marked 🚩 **REQUIRED** must be filled in — the upload will fail if they're missing
+    - Columns marked 🟡 are conditionally required (e.g. Country Codes only needed if Country Targeting is INCLUDE or EXCLUDE)
+    - Use the auxiliary sheets to look up valid values for countries, regions, languages, etc.
+  </Step>
+  <Step title="Export to Excel and Upload">
+    Once your sheet is ready:
+
+    1. In Google Sheets, go to **File → Download → Microsoft Excel (.xlsx)**
+    2. Open [**Campaign Creator**](https://native.theoptimizer.io/#/campaign-creator-queue) in TheOptimizer
+    3. From the menu, select **Create from Excel**
+    4. Follow the on-screen steps and submit your file
+  </Step>
+  <Step title="Check Your Email for Confirmation">
+    After submitting, TheOptimizer processes the file and sends you an email:
+
+    - ✅ **Successful upload** — your campaigns are queued and being created on RevContent. Track progress from the [Campaign Creator](https://native.theoptimizer.io/#/campaign-creator-queue) page.
+    - ⚠️ **Upload failed** — the email will include a new Excel file with all error cells highlighted. Download it, fix the issues, and re-upload.
+  </Step>
+</Steps>
+
+---
+
+## Column Reference
+
+The table below describes every column in the RevContent Excel template.
+
+| Column | Description |
+|---|---|
+| **Traffic Source Account ID** | 🚩 REQUIRED. The RevContent account ID from TheOptimizer where campaigns will be uploaded. Find it under Traffic Sources in the left menu. |
+| **Campaign Name** | 🚩 REQUIRED. The name of the campaign. |
+| **Bid Type** | 🚩 REQUIRED. `cpc` — pay per click. `vcpm` — pay per 1,000 views. |
+| **Bid Amount** | 🚩 REQUIRED. Amount per click (e.g. `0.15`) if Bid Type is `cpc`, or per 1,000 views (e.g. `1.5`) if `vcpm`. |
+| **Budget Type** | 🚩 REQUIRED. `Unlimited` or `Daily`. |
+| **Pacing** | Spreads budget evenly throughout the day (available for limited-budget campaigns). |
+| **Budget** | 🚩 REQUIRED. Minimum allowed budget is $100. |
+| **Conversion Tracking** | Comma-separated list of conversion names from your RevContent dashboard to use with this campaign. |
+| **Start date** | 🚩 REQUIRED. `immediately` to start right away, or a date in `yyyy-mm-dd hh:mm:ss` format. |
+| **End date** | 🚩 REQUIRED. `never` to run indefinitely, or a date in `yyyy-mm-dd hh:mm:ss` format. |
+| **Traffic Types** | 🚩 REQUIRED. Comma-separated list. Values: `Adblock`, `Native`, `PushNotifications`. |
+| **Country Targeting** | 🚩 REQUIRED. `ALL`, `INCLUDE`, or `EXCLUDE`. |
+| **Country Codes** | 🟡 Required if Country Targeting is INCLUDE or EXCLUDE. Comma-separated country codes. See Countries sheet. |
+| **Region Targeting** | 🚩 REQUIRED. `ALL`, `INCLUDE`, or `EXCLUDE`. |
+| **ZIP Code Targeting** | 🚩 REQUIRED. `ALL`, `INCLUDE`, or `EXCLUDE`. |
+| **Region Names** | 🟡 Required if Region Targeting is INCLUDE or EXCLUDE. Comma-separated region names. See Regions sheet. |
+| **Zip Codes** | 🟡 Required if ZIP Code Targeting is INCLUDE or EXCLUDE. Comma-separated zip codes. |
+| **Device Targeting** | 🚩 REQUIRED. Comma-separated list. Values: `Desktop`, `Mobile`, `Tablet`. |
+| **Browser Targeting** | 🚩 REQUIRED. Comma-separated list. Values: `Chrome`, `Firefox`, `Safari`, `Edge`. |
+| **OS Targeting** | 🚩 REQUIRED. Comma-separated list of operating systems to target. |
+| **Language Targeting** | 🚩 REQUIRED. Comma-separated list of languages (e.g. `English,French,Italian`). See Languages sheet. |
+| **Tracking Code** | URL parameters appended to landing page URLs for third-party tracker attribution. |
+| **Target URL** | 🚩 REQUIRED (unless using Media Manager Ads). Landing page URL. |
+| **Image URL** | 🚩 REQUIRED (unless using Media Manager Ads). Ad image URL. |
+| **Headline** | 🚩 REQUIRED (unless using Media Manager Ads). Ad headline. Max 80 characters. |
+| **Brand name** | 🚩 REQUIRED. Brand name displayed below the ad. Max 30 characters. |
+| **Media Manager Ads** | Reference a saved Ad group from RevContent's Media Manager instead of providing individual image/headline/URL fields. |
+| **Rules** | Comma-separated Rule IDs from TheOptimizer to attach to the campaign after creation. |
+| **Rule Groups** | Comma-separated rule group names from TheOptimizer to attach after creation. |

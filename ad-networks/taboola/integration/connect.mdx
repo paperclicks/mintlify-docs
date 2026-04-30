@@ -1,0 +1,52 @@
+---
+title: "Connect Taboola"
+description: "Connect your Taboola account to TheOptimizer using API credentials to sync campaign data and enable automated optimisation."
+---
+
+import { ArcadeVideoButton } from '/snippets/arcade-video-button.mdx';
+
+Taboola is one of the largest native advertising platforms, delivering content recommendations across a global network of premium publishers. It is widely used by performance marketers running native campaigns for lead generation, e-commerce, and content monetisation.
+
+Taboola connects via API credentials — you generate a Client ID and Client Secret from the Taboola Backstage settings and paste them into TheOptimizer.
+
+---
+
+## Where to Find Your API Credentials
+
+Log in to **Taboola Backstage** → click your account name → **My Account** → go to **API Management** → generate your **Client ID** and **Client Secret**. Copy both values before closing the page.
+
+---
+
+## Connecting to TheOptimizer
+
+<Steps>
+  <Step title="Open the Integrations page">
+    From the left-hand menu, go to **Integrations**. Find the **Taboola** card and click **Connect →**.
+  </Step>
+  <Step title="Enter Your API Credentials">
+    Enter the credentials requested:
+
+    - **Integration name** — a descriptive label for this connection (e.g. "Taboola – Main Account").
+    - **Client ID** — paste the Client ID from Taboola Backstage.
+    - **Client Secret** — paste the Client Secret from Taboola Backstage.
+
+    Give the integration a descriptive name so it's easy to identify if you manage multiple accounts.
+
+    <Frame>
+      <img src="/images/taboola.png" alt="Taboola connection form in TheOptimizer" />
+    </Frame>
+  </Step>
+  <Step title="Connection confirmed">
+    Once credentials are accepted, TheOptimizer begins syncing your campaign data. Initial sync takes up to 20–30 minutes.
+
+    <Note>
+      If you have multiple ad accounts under this network, they will all be pulled in and listed under this integration after the initial sync.
+    </Note>
+  </Step>
+</Steps>
+
+---
+
+## Next Steps
+
+- Connect a tracking platform to bring conversion and revenue data into your campaign reports

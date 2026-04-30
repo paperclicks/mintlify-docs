@@ -1,0 +1,74 @@
+---
+title: "Connect CloudThrive"
+description: "Connect CloudThrive to TheOptimizer to bring click-level conversion and revenue data into your campaign reports and automation rules."
+---
+
+import { ArcadeVideoButton } from '/snippets/arcade-video-button.mdx';
+
+CloudThrive is a cloud-based tracking platform built for performance marketers and affiliate teams. It provides click-level attribution, real-time reporting, and campaign analytics from a fully hosted environment. CloudThrive is a good fit for teams looking for a reliable hosted tracker with straightforward setup and maintenance.
+
+---
+
+## Where to Find Your API Credentials
+
+Log in to CloudThrive → go to your **Profile** or **Account Settings** → locate the **API** section → copy your **API Key** and **Install ID**.
+
+---
+
+## Connecting to TheOptimizer
+
+<Steps>
+  <Step title="Open Integrations">
+    From the left-hand menu, go to **Integrations**. Scroll to the **Tracking Platforms** section, find the CloudThrive card and click **Connect →**.
+  </Step>
+  <Step title="Enter Your API Credentials">
+    Fill in the connection form:
+
+    - **Integration name** — a label for this connection (e.g. "CloudThrive – Brand A").
+    - **API Key** — paste the API Key from your CloudThrive account.
+    - **Install ID** — paste the Install ID from your CloudThrive account. This uniquely identifies your CloudThrive installation.
+    - **Currency** — the currency your tracker reports revenue in. Must match your tracker's settings.
+    - **Conversion registration time** — choose **Visit time** (conversion counted when user lands) or **Postback time** (counted when conversion fires). Match this to your tracker's setup.
+    - **Custom Domains** *(optional)* — if you use custom tracking domains in CloudThrive, add them here using the **+ Add Domain** button.
+
+
+    <Frame>
+      <img src="/images/cloud-thrive.png" alt="CloudThrive connection form in TheOptimizer" />
+    </Frame>
+    <Warning>
+      The Currency and Conversion Registration Time settings must match what you have configured in CloudThrive. Mismatched settings will cause data discrepancies.
+    </Warning>
+  </Step>
+  <Step title="Configure for Your Ad Networks">
+    After saving the credentials, TheOptimizer prompts you to configure the tracker for each connected ad network. This step tells the platform how to match CloudThrive data to your campaigns.
+
+    Click **Configure →** next to each ad network and select the **tracking template** that matches how you set up CloudThrive for that network.
+
+    **Understanding tracking templates**
+
+    A tracking template is a set of macros that maps your tracker's URL parameters to ad network identifiers (Campaign ID, Ad Set ID, Ad ID, Placement). The dropdown shows all templates available from your CloudThrive account. Select the one you use for that ad network.
+
+    <Warning>
+      Required macros: a template must include mappings for **Campaign ID**, **Ad Set ID**, **Ad ID**, and **Placement**. If any are missing, TheOptimizer will flag the issue — fix the template in CloudThrive before proceeding.
+    </Warning>
+
+    Once a template is selected, the connection status for that ad network updates to **Connected**.
+
+    <Note>
+      Ad networks where you have not selected a tracking template will not receive any data from CloudThrive. Configure every network you actively use.
+    </Note>
+  </Step>
+  <Step title="Add Tracking Parameters to Your Campaigns">
+    TheOptimizer generates a **tracking parameters code** at the end of setup. Add this URL parameter string to your campaigns on each ad network. This is what allows CloudThrive to receive the correct campaign and ad identifiers and report them back.
+
+    Without this step, CloudThrive will receive visits but won't be able to match them to specific campaigns — no conversion or revenue data will appear in TheOptimizer.
+  </Step>
+</Steps>
+
+---
+
+## One Tracker Type Per Campaign
+
+Only one instance of a tracker type should track any individual campaign at a time. Running two CloudThrive integrations against the same campaign causes attribution conflicts.
+
+Running **different tracker types** side by side on the same campaign is fine — for example, CloudThrive for affiliate attribution alongside Google Analytics for on-site behaviour.

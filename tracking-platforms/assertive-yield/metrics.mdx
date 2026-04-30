@@ -1,0 +1,166 @@
+---
+title: "Assertive Yield Metrics Reference"
+description: "Full list of Assertive Yield metrics available in TheOptimizer, including their definitions and calculation formulas."
+---
+
+Assertive Yield tracks a wide range of programmatic revenue metrics. Below is the complete list of metrics available in TheOptimizer when Assertive Yield is connected, along with the corresponding Assertive Yield metric name and formula where applicable.
+
+<Note>
+  Some metrics are **calculated metrics** derived from raw data rather than reported directly by Assertive Yield. Formulas are provided where relevant.
+</Note>
+
+---
+
+## Clicks & Sessions
+
+| TheOptimizer Metric | Assertive Yield Metric | Formula |
+|---|---|---|
+| AY Clicks | Clicks | `clicks` |
+| Clicks Bounced | Clicks Bounced | `clicksBounced` |
+| Clicks Returned | Clicks Returned | `clicksReturned` |
+| AY New Sessions | New Sessions | `session_starts` |
+| AY Sessions | Sessions | `sessions` |
+| AY Page Views | PageViews | `pageViews` |
+| PageViews per Session | PageViews per Session | `pageViews / sessions` |
+
+---
+
+## Impressions
+
+| TheOptimizer Metric | Assertive Yield Metric | Formula |
+|---|---|---|
+| AY Impressions | Impressions | `impressions` |
+| D Impressions | D Impressions (Direct) | `direct_impressions` |
+| DA Impressions | DA Impressions (Dynamic Allocation) | `dynamicAllocation_impressions` |
+| DA Predicted Impressions | DA Predicted Impressions | `dynamicAllocation_predicted_impressions` |
+| PB Lost Impressions | Prebid Lost Impressions | `prebid_lost_impressions` |
+| PB Won Impressions | Prebid Won Impressions | `prebid_won_impressions` |
+| P Impressions | Programmatic Impressions | `prebid_won_impressions + dynamicAllocation_impressions` |
+| Nativo Impressions | Nativo Impressions | `nativo_impressions` |
+| AY First Five Indicator | First Five Indicator | — |
+| AY Viewable | Viewable | `viewable` |
+| AY Line Item Revenue | Line Item Revenue | `lineItem_revenue` |
+
+---
+
+## Revenue
+
+| TheOptimizer Metric | Assertive Yield Metric | Formula |
+|---|---|---|
+| Revenue | Assertive Yield Revenue | `prebid_won_revenue + dynamicAllocation_revenue + direct_revenue` |
+| D Revenue | Direct Revenue | `direct_revenue` |
+| DA Revenue | Dynamic Allocation Revenue | `dynamicAllocation_revenue` |
+| DA Predicted Revenue (Client) | DA Predicted Revenue (Client) | `dynamicAllocation_predicted_revenue / 1000` |
+| DA Predicted Revenue (Server) | DA Predicted Revenue (Server) | `dynamicAllocation_predicted_revenue_server / 1000` |
+| DA Revenue with Forecast | DA Revenue with Forecast | `dynamicAllocation_revenue_with_forecast` |
+| DA Revenue with Forecast (Client) | DA Revenue with Forecast (Client) | `dynamicAllocation_revenue_with_forecast_client` |
+| PB Revenue | Prebid Revenue | `prebid_revenue` |
+| PB Lost Revenue | Prebid Lost Revenue | `prebid_lost_revenue` |
+| PB Won Revenue | Prebid Won Revenue | `prebid_won_revenue` |
+| P Revenue | Programmatic Revenue | `prebid_won_revenue + dynamicAllocation_revenue` |
+| P Revenue with DA Forecast | P Revenue with DA Forecast | `prebid_won_revenue + dynamicAllocation_revenue_with_forecast` |
+| Revenue with DA Forecast | Revenue with DA Forecast | `prebid_won_revenue + dynamicAllocation_revenue_with_forecast + direct_revenue` |
+| Nativo Revenue | Nativo Revenue | `nativo_revenue` |
+| AY Line Item Revenue | Line Item Revenue | `lineItem_revenue` |
+
+---
+
+## RPM (Revenue Per Mille)
+
+| TheOptimizer Metric | Assertive Yield Metric | Formula |
+|---|---|---|
+| RPM | RPM | `revenue / impressions * 1000` |
+| RPM with DA Forecast | RPM with DA Forecast | `revenue_with_forecast / impressions * 1000` |
+| D RPM | Direct RPM | `direct_revenue / direct_impressions * 1000` |
+| DA RPM | Dynamic Allocation RPM | `dynamicAllocation_revenue / dynamicAllocation_impressions * 1000` |
+| PB RPM | Prebid RPM | `prebid_revenue / impressions * 1000` |
+| PB Lost RPM (PBL RPM) | Prebid Lost RPM | `prebid_lost_revenue / prebid_lost_impressions * 1000` |
+| PB Won RPM (PBW RPM) | Prebid Won RPM | `prebid_won_revenue / prebid_won_impressions * 1000` |
+| P RPM | Programmatic RPM | `programmatic_revenue / programmatic_impressions * 1000` |
+| NTV RPM | Nativo RPM | `nativo_revenue / nativo_impressions * 1000` |
+
+---
+
+## Session RPM
+
+| TheOptimizer Metric | Assertive Yield Metric | Formula |
+|---|---|---|
+| Session RPM | Session RPM | `revenue / sessions * 1000` |
+| Session RPM with DA Forecast | Session RPM with DA Forecast | `revenue_with_forecast / sessions * 1000` |
+| D Session RPM | Direct Session RPM | `direct_revenue / sessions * 1000` |
+| DA Session RPM | Dynamic Allocation Session RPM | `dynamicAllocation_revenue / sessions * 1000` |
+| DA Session RPM with Forecast | DA Session RPM with Forecast | `dynamicAllocation_revenue_with_forecast / sessions * 1000` |
+| PB Session RPM | Prebid Session RPM | `prebid_revenue / sessions * 1000` |
+| PBL Session RPM | Prebid Lost Session RPM | `prebid_lost_revenue / sessions * 1000` |
+| PBW Session RPM | Prebid Won Session RPM | `prebid_won_revenue / sessions * 1000` |
+| P Session RPM | Programmatic Session RPM | `programmatic_revenue / sessions * 1000` |
+| P Session RPM with Forecast | Programmatic Session RPM with Forecast | `programmatic_revenue_with_forecast / sessions * 1000` |
+| NTV Session RPM | Nativo Session RPM | `nativo_revenue / sessions * 1000` |
+
+---
+
+## PageView RPM
+
+| TheOptimizer Metric | Assertive Yield Metric | Formula |
+|---|---|---|
+| PageView RPM | PageView RPM | `revenue / pageViews * 1000` |
+| D PageView RPM | Direct PageView RPM | `direct_revenue / pageViews * 1000` |
+| DA PageView RPM | Dynamic Allocation PageView RPM | `dynamicAllocation_revenue / pageViews * 1000` |
+| PB PageView RPM | Prebid PageView RPM | `prebid_revenue / pageViews * 1000` |
+| PBL PageView RPM | Prebid Lost PageView RPM | `prebid_lost_revenue / pageViews * 1000` |
+| PBW PageView RPM | Prebid Won PageView RPM | `prebid_won_revenue / pageViews * 1000` |
+| P PageView RPM | Programmatic PageView RPM | `programmatic_revenue / pageViews * 1000` |
+| NTV PageView RPM | Nativo PageView RPM | `nativo_revenue / pageViews * 1000` |
+
+---
+
+## Value-RPM (Viewability-Adjusted)
+
+Value-RPM metrics apply a viewability multiplier to RPM figures to give a quality-adjusted revenue estimate.
+
+| TheOptimizer Metric | Assertive Yield Metric | Formula |
+|---|---|---|
+| Value-RPM | Value RPM | `rpm * viewability` |
+| Session Value-RPM | Session Value-RPM | `session_rpm * viewability` |
+| PageView Value-RPM | PageView Value-RPM | `pageView_rpm * viewability` |
+| D Value-RPM | Direct Value-RPM | `direct_rpm * viewability` |
+| D Session Value-RPM | Direct Session Value-RPM | `direct_session_rpm * viewability` |
+| D PageView Value-RPM | Direct PageView Value-RPM | `direct_pageView_rpm * viewability` |
+| DA Value-RPM | Dynamic Allocation Value-RPM | `dynamicAllocation_rpm * viewability` |
+| DA Session Value-RPM | Dynamic Allocation Session Value-RPM | `dynamicAllocation_session_rpm * viewability` |
+| DA PageView Value-RPM | Dynamic Allocation PageView Value-RPM | `dynamicAllocation_pageView_rpm * viewability` |
+| PB Value-RPM | Prebid Value-RPM | `prebid_rpm * viewability` |
+| PB Session Value-RPM | Prebid Session Value-RPM | `prebid_session_rpm * viewability` |
+| PB PageView Value-RPM | Prebid PageView Value-RPM | `prebid_pageView_rpm * viewability` |
+| PBL Value-RPM | Prebid Lost Value-RPM | `prebid_lost_rpm * viewability` |
+| PBL Session Value-RPM | Prebid Lost Session Value-RPM | `prebid_lost_session_rpm * viewability` |
+| PBL PageView Value-RPM | Prebid Lost PageView Value-RPM | `prebid_lost_pageView_rpm * viewability` |
+| PBW Value-RPM | Prebid Won Value RPM | `prebid_won_rpm * viewability` |
+| PBW Session Value-RPM | Prebid Won Session Value-RPM | `prebid_won_session_rpm * viewability` |
+| PBW PageView Value-RPM | Prebid Won PageView Value-RPM | `prebid_won_pageView_rpm * viewability` |
+| P Value-RPM | Programmatic Value-RPM | `programmatic_rpm * viewability` |
+| P Session Value-RPM | Programmatic Session Value-RPM | `programmatic_session_rpm * viewability` |
+| P PageView Value-RPM | Programmatic PageView Value-RPM | `programmatic_pageView_rpm * viewability` |
+
+---
+
+## Win Rates & Ratios
+
+| TheOptimizer Metric | Assertive Yield Metric | Formula |
+|---|---|---|
+| Viewability | Assertive Yield Viewability | `viewable / impressions` |
+| D Win Rate | Direct Win Rate | `direct_impressions / impressions` |
+| DA Win Rate | Dynamic Allocation Win Rate | `dynamicAllocation_impressions / impressions` |
+| PB Win Rate | Prebid Win Rate | `prebid_won_impressions / impressions` |
+| P Win Rate | Programmatic Win Rate | `programmatic_impressions / impressions` |
+| AY CTR | CTR % | `clicks / impressions * 100` |
+| AY Miss-Click Rate | Miss-Click Rate | `clicksBounced / clicks` |
+| Click-Leave Rate | Click-Leave Rate | `(clicks - clicksReturned) / clicks` |
+| AY Ads Per Pageview | Ads per PageView | `impressions / pageViews` |
+| AY Ads Per Session | Ads per Session | `impressions / sessions` |
+
+---
+
+<Note>
+  For the full official Assertive Yield metric definitions, refer to the [Assertive Yield API documentation](https://suite.assertiveyield.com/docs/api-v2#calculated-metrics).
+</Note>

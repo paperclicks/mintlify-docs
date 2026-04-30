@@ -1,0 +1,76 @@
+---
+title: "Connect Kintura"
+description: "Connect Kintura to TheOptimizer to bring click-level conversion and revenue data into your campaign reports and automation rules."
+---
+
+import { ArcadeVideoButton } from '/snippets/arcade-video-button.mdx';
+
+Kintura is a high-performance tracking platform designed for media buyers and affiliate teams who need fast, accurate click-level attribution. It combines a clean interface with powerful reporting and supports a wide range of traffic sources. Kintura is known for its speed and is used by teams running large volumes of traffic who cannot afford tracking latency.
+
+---
+
+## Where to Find Your API Credentials
+
+Log in to Kintura → go to **Settings** → **API** → copy your **API Key** and **API Secret**.
+
+You will also need the domain URL of your Kintura tracker when connecting in TheOptimizer.
+
+---
+
+## Connecting to TheOptimizer
+
+<Steps>
+  <Step title="Open Integrations">
+    From the left-hand menu, go to **Integrations**. Scroll to the **Tracking Platforms** section, find the Kintura card and click **Connect →**.
+  </Step>
+  <Step title="Enter Your API Credentials">
+    Fill in the connection form:
+
+    - **Integration name** — a label for this connection (e.g. "Kintura – Brand A").
+    - **API Key** — paste the API Key from your Kintura account.
+    - **API Secret** — paste the API Secret from your Kintura account.
+    - **Tracker URL** — the domain of your Kintura tracker (e.g. `https://tracker.yourdomain.com`).
+    - **Currency** — the currency your tracker reports revenue in. Must match your tracker's settings.
+    - **Conversion registration time** — choose **Visit time** (conversion counted when user lands) or **Postback time** (counted when conversion fires). Match this to your tracker's setup.
+
+
+    <Frame>
+      <img src="/images/kintura.png" alt="Kintura connection form in TheOptimizer" />
+    </Frame>
+    <Warning>
+      The Currency and Conversion Registration Time settings must match what you have configured in Kintura. Mismatched settings will cause data discrepancies.
+    </Warning>
+  </Step>
+  <Step title="Configure for Your Ad Networks">
+    After saving the credentials, TheOptimizer prompts you to configure the tracker for each connected ad network. This step tells the platform how to match Kintura data to your campaigns.
+
+    Click **Configure →** next to each ad network and select the **tracking template** that matches how you set up Kintura for that network.
+
+    **Understanding tracking templates**
+
+    A tracking template is a set of macros that maps your tracker's URL parameters to ad network identifiers (Campaign ID, Ad Set ID, Ad ID, Placement). The dropdown shows all templates available from your Kintura account. Select the one you use for that ad network.
+
+    <Warning>
+      Required macros: a template must include mappings for **Campaign ID**, **Ad Set ID**, **Ad ID**, and **Placement**. If any are missing, TheOptimizer will flag the issue — fix the template in Kintura before proceeding.
+    </Warning>
+
+    Once a template is selected, the connection status for that ad network updates to **Connected**.
+
+    <Note>
+      Ad networks where you have not selected a tracking template will not receive any data from Kintura. Configure every network you actively use.
+    </Note>
+  </Step>
+  <Step title="Add Tracking Parameters to Your Campaigns">
+    TheOptimizer generates a **tracking parameters code** at the end of setup. Add this URL parameter string to your campaigns on each ad network. This is what allows Kintura to receive the correct campaign and ad identifiers and report them back.
+
+    Without this step, Kintura will receive visits but won't be able to match them to specific campaigns — no conversion or revenue data will appear in TheOptimizer.
+  </Step>
+</Steps>
+
+---
+
+## One Tracker Type Per Campaign
+
+Only one instance of a tracker type should track any individual campaign at a time. Running two Kintura integrations against the same campaign causes attribution conflicts.
+
+Running **different tracker types** side by side on the same campaign is fine — for example, Kintura for affiliate attribution alongside Google Analytics for on-site behaviour.

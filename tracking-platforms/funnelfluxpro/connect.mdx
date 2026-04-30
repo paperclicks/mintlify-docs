@@ -1,0 +1,73 @@
+---
+title: "Connect FunnelFlux Pro"
+description: "Connect FunnelFlux Pro to TheOptimizer to bring click-level conversion and revenue data into your campaign reports and automation rules."
+---
+
+import { ArcadeVideoButton } from '/snippets/arcade-video-button.mdx';
+
+FunnelFlux Pro is the cloud-hosted version of FunnelFlux, providing the same visual funnel builder and click-level tracking without the need to manage your own server. It is designed for performance marketers running multi-step funnels who want a fully managed infrastructure. FunnelFlux Pro is well suited for teams that want FunnelFlux's capabilities without the overhead of self-hosting.
+
+---
+
+## Where to Find Your API Key
+
+Log in to FunnelFlux Pro → go to your **Account Settings** → open the **API** section → copy the API Key shown.
+
+---
+
+## Connecting to TheOptimizer
+
+<Steps>
+  <Step title="Open Integrations">
+    From the left-hand menu, go to **Integrations**. Scroll to the **Tracking Platforms** section, find the FunnelFlux Pro card and click **Connect →**.
+  </Step>
+  <Step title="Enter Your API Credentials">
+    Fill in the connection form:
+
+    - **Integration name** — a label for this connection (e.g. "FunnelFlux Pro – Brand A").
+    - **API Key** — paste the API Key from your FunnelFlux Pro account.
+    - **Currency** — the currency your tracker reports revenue in. Must match your tracker's settings.
+    - **Conversion registration time** — choose **Visit time** (conversion counted when user lands) or **Postback time** (counted when conversion fires). Match this to your tracker's setup.
+    - **Custom Domains** *(optional)* — if you use custom tracking domains in FunnelFlux Pro, add them here using the **+ Add Domain** button.
+
+
+    <Frame>
+      <img src="/images/funnelflux-pro.png" alt="FunnelFlux Pro connection form in TheOptimizer" />
+    </Frame>
+    <Warning>
+      The Currency and Conversion Registration Time settings must match what you have configured in FunnelFlux Pro. Mismatched settings will cause data discrepancies.
+    </Warning>
+  </Step>
+  <Step title="Configure for Your Ad Networks">
+    After saving the credentials, TheOptimizer prompts you to configure the tracker for each connected ad network. This step tells the platform how to match FunnelFlux Pro data to your campaigns.
+
+    Click **Configure →** next to each ad network and select the **tracking template** that matches how you set up FunnelFlux Pro for that network.
+
+    **Understanding tracking templates**
+
+    A tracking template is a set of macros that maps your tracker's URL parameters to ad network identifiers (Campaign ID, Ad Set ID, Ad ID, Placement). The dropdown shows all templates available from your FunnelFlux Pro account. Select the one you use for that ad network.
+
+    <Warning>
+      Required macros: a template must include mappings for **Campaign ID**, **Ad Set ID**, **Ad ID**, and **Placement**. If any are missing, TheOptimizer will flag the issue — fix the template in FunnelFlux Pro before proceeding.
+    </Warning>
+
+    Once a template is selected, the connection status for that ad network updates to **Connected**.
+
+    <Note>
+      Ad networks where you have not selected a tracking template will not receive any data from FunnelFlux Pro. Configure every network you actively use.
+    </Note>
+  </Step>
+  <Step title="Add Tracking Parameters to Your Campaigns">
+    TheOptimizer generates a **tracking parameters code** at the end of setup. Add this URL parameter string to your campaigns on each ad network. This is what allows FunnelFlux Pro to receive the correct campaign and ad identifiers and report them back.
+
+    Without this step, FunnelFlux Pro will receive visits but won't be able to match them to specific campaigns — no conversion or revenue data will appear in TheOptimizer.
+  </Step>
+</Steps>
+
+---
+
+## One Tracker Type Per Campaign
+
+Only one instance of a tracker type should track any individual campaign at a time. Running two FunnelFlux Pro integrations against the same campaign causes attribution conflicts.
+
+Running **different tracker types** side by side on the same campaign is fine — for example, FunnelFlux Pro for affiliate attribution alongside Google Analytics for on-site behaviour.

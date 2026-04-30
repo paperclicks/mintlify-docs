@@ -1,0 +1,76 @@
+---
+title: "Connect Voluum"
+description: "Connect Voluum to TheOptimizer to bring click-level conversion and revenue data into your campaign reports and automation rules."
+---
+
+import { ArcadeVideoButton } from '/snippets/arcade-video-button.mdx';
+
+Voluum is a cloud-hosted performance tracking platform widely used by affiliate marketers and media buying teams. It offers real-time reporting, anti-fraud features, and deep integration with major ad networks. Voluum is particularly popular among teams running large-scale campaigns that require robust click-level attribution and A/B testing.
+
+---
+
+## Where to Find Your API Credentials
+
+Log in to Voluum → click your **account name** in the top-right corner → **Settings** → open the **API Access** tab → copy the **Access Key ID** and **Access Key** shown. If no keys exist yet, click **Generate** first to create them, then copy both values.
+
+---
+
+## Connecting to TheOptimizer
+
+<Steps>
+  <Step title="Open Integrations">
+    From the left-hand menu, go to **Integrations**. Scroll to the **Tracking Platforms** section, find the Voluum card and click **Connect →**.
+  </Step>
+  <Step title="Enter Your API Credentials">
+    Fill in the connection form:
+
+    - **Integration name** — a label for this connection (e.g. "Voluum – Brand A").
+    - **Access Key ID** — paste the Access Key ID from Voluum.
+    - **Access Key** — paste the Access Key from Voluum.
+    - **Currency** — the currency your tracker reports revenue in. Must match your tracker's settings.
+    - **Conversion registration time** — choose **Visit time** (conversion counted when user lands) or **Postback time** (counted when conversion fires). Match this to your tracker's setup.
+    - **Custom Domains** *(optional)* — if you use custom tracking domains in Voluum, add them here using the **+ Add Domain** button. This ensures TheOptimizer can correctly attribute data from those domains.
+
+
+    <Frame>
+      <img src="/images/voluum.png" alt="Voluum connection form in TheOptimizer" />
+    </Frame>
+    <Warning>
+      The Currency and Conversion Registration Time settings must match what you have configured in Voluum. Mismatched settings will cause data discrepancies.
+    </Warning>
+  </Step>
+  <Step title="Configure for Your Ad Networks">
+    After saving the credentials, TheOptimizer prompts you to configure the tracker for each connected ad network. This step tells the platform how to match Voluum data to your campaigns.
+
+    Click **Configure →** next to each ad network and select the **tracking template** that matches how you set up Voluum for that network.
+
+    The example below shows Facebook, but the same process applies to every ad network you use.
+
+    **Understanding tracking templates**
+
+    A tracking template is a set of macros that maps your tracker's URL parameters to ad network identifiers (Campaign ID, Ad Set ID, Ad ID, Placement). The dropdown shows all templates available from your Voluum account. Select the one you use for that ad network.
+
+    <Warning>
+      Required macros: a template must include mappings for **Campaign ID**, **Ad Set ID**, **Ad ID**, and **Placement**. If any are missing, TheOptimizer will flag the issue — fix the template in Voluum before proceeding.
+    </Warning>
+
+    Once a template is selected, the connection status for that ad network updates to **Connected**.
+
+    <Note>
+      Ad networks where you have not selected a tracking template will not receive any data from Voluum. Configure every network you actively use.
+    </Note>
+  </Step>
+  <Step title="Add Tracking Parameters to Your Campaigns">
+    TheOptimizer generates a **tracking parameters code** at the end of setup. Add this URL parameter string to your campaigns on each ad network. This is what allows Voluum to receive the correct campaign and ad identifiers and report them back.
+
+    Without this step, Voluum will receive visits but won't be able to match them to specific campaigns — no conversion or revenue data will appear in TheOptimizer.
+  </Step>
+</Steps>
+
+---
+
+## One Tracker Type Per Campaign
+
+Only one instance of a tracker type should track any individual campaign at a time. Running two Voluum integrations against the same campaign causes attribution conflicts.
+
+Running **different tracker types** side by side on the same campaign is fine — for example, Voluum for affiliate attribution alongside Google Analytics for on-site behaviour.
