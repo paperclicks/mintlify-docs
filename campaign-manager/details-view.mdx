@@ -22,12 +22,16 @@ At the top of the panel:
 
 The Overview tab provides a snapshot of the item's status, configuration, and recent activity. It contains four widgets.
 
+<Frame>
+  ![Campaign Details View](/images/campaign-details-view.png)
+</Frame>
+
 ### Campaign Details
 
 A card showing the item's key configuration data:
 
 | Field | What it shows |
-|-------|---------------|
+| --- | --- |
 | **ID** | The campaign, ad set, or ad ID on the ad network |
 | **Status** | Current status (Running, Paused, etc.) |
 | **Account** | Which ad account the item belongs to |
@@ -65,6 +69,18 @@ The Performance tab lets you break a single campaign's data down by time dimensi
 
 When you use **By Hour of Day** with a multi-day date range (e.g., Last 7 Days), it aggregates traffic from all days at each hour — so "10 AM" shows the combined performance of every 10 AM–11 AM slot across the entire selected period.
 
+<Frame>
+  ![Campaign Details View Performance Tab](/images/campaign-details-view-performance-tab.png)
+</Frame>
+
+You can expand each column to show change treds (hour by hour, or day by day depending on the selected grouping option). Each column is going to show 3 values:
+
+**Final** - Is the final accumulative value recorded up to that moment (day or hour). For example if you are looking at amount spend at  11:00 AM, the Final value is the amount spent up until that hour.
+
+**Change** - Is the value of each single hour considered separately (difference between h and h-1). In case of the spending for example it gives you an understanding of how much you are spending on each single hour separately.
+
+**Growth** - It shows the trend between to consecutive hours or days (depending on which intervals you are looking at). It shows you if from one hour to another the spending has been decreasing or increasing. 
+
 ### Practical Use Case: Finding Your Best Hours for Dayparting
 
 <Steps>
@@ -101,11 +117,11 @@ The Logs tab shows a complete history of all actions that have affected the item
 Each log entry shows:
 
 | Field | What it shows |
-|-------|---------------|
+| --- | --- |
 | **Time** | When the action occurred |
 | **Action** | What was done (e.g., budget changed, campaign paused, bid adjusted) |
 | **Activity Type** | Whether the action came from a rule (and which rule) or from a manual user action |
-| **Change** | The specific change made (e.g., budget changed from $50 to $75) |
+| **Change** |  |
 
 You can filter log entries by **Rule** (show only actions triggered by a specific rule) or by **Type** (show only manual actions, or only rule-triggered actions).
 
@@ -133,7 +149,7 @@ For Taboola and Outbrain, a **Manage** tab appears at the campaign level with a 
 When you open the Details View for a **Facebook ad set** (not a campaign), a **Manage Targeting** tab appears. It contains three sub-breakdowns:
 
 | Sub-tab | What it shows |
-|---------|---------------|
+| --- | --- |
 | **Placement** | Performance by ad placement (Facebook Feed, Instagram Stories, Audience Network, etc.) |
 | **Device** | Performance split by device type (Mobile, Desktop, Tablet) |
 | **Geo** | Performance by targeted geography |
