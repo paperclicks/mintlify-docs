@@ -335,6 +335,15 @@
     ]
   },
   "redirects": [
+    { "source": "/help/article-categories/getting-started", "destination": "/getting-started" },
+    { "source": "/help/article-categories/traffic-source-setup", "destination": "/integrations/ad-networks" },
+    { "source": "/help/article-categories/tracking-platform-setup", "destination": "/integrations/tracking-platforms" },
+    { "source": "/help/article-categories/automation-optimization", "destination": "/automation/rules-guide" },
+    { "source": "/help/article-categories/campaign-creation-content-uploading", "destination": "/campaign-creator/overview" },
+    { "source": "/help/article-categories/media-manager", "destination": "/creative-library/guide" },
+    { "source": "/help/article-categories/reporting-system-activity", "destination": "/campaign-manager/overview" },
+    { "source": "/help/article-categories/manual-tools", "destination": "/integrations/upload-csv" },
+    { "source": "/help/article-categories/notifications", "destination": "/automation/rules-guide" },
     { "source": "/help/knowledge-base/adskeeper-setup-guide", "destination": "/ad-networks/adskeeper/integration/connect" },
     { "source": "/help/knowledge-base/bigoads-setup-guide", "destination": "/ad-networks/bigoads/integration/connect" },
     { "source": "/help/knowledge-base/benefits-of-connecting-bigoads-to-external-revenue-streams", "destination": "/ad-networks/bigoads/integration/connect" },
