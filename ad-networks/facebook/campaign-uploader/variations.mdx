@@ -28,14 +28,14 @@ For example, if you create two audience groups at the ad set level — one targe
 
 **Where groups are available:**
 
-| Level | Section | What varies between groups |
-|---|---|---|
-| **Campaign** | Advantage Campaign Budget | Daily budget, bid strategy |
-| **Ad Set** | Budget & Schedule | Daily/lifetime budget, schedule |
-| **Ad Set** | Audience Controls | Locations, age, gender, languages, custom audiences |
-| **Ad Set** | Placements | Platform and placement selections |
-| **Ad** | Identity | Facebook Page, Instagram Account |
-| **Ad** | Ad Creative | Media, primary text, headlines, descriptions, CTAs |
+| Level | Section | Group name in UI | What varies between groups |
+|---|---|---|---|
+| **Campaign** | Budget | Budget Group | Daily budget amount, bid strategy |
+| **Ad Set** | Budget & Schedule | Budget Group | Per-ad-set daily/lifetime budget, schedule |
+| **Ad Set** | Audience Controls | Audience Group | Locations (include/exclude), age, gender, languages, custom audiences |
+| **Ad Set** | Placements | Placement Group | Advantage+ vs manual placements, platform/position selections |
+| **Ad** | Identity | Identity Group | Facebook Page, Instagram Account |
+| **Ad** | Ad Creative | Creative Group | Media (images/videos), primary text, headlines, descriptions |
 
 **How permutations are calculated.** Groups at the same level multiply with each other. If you create three budget groups and three audience groups at the ad set level, the system generates 3 × 3 = 9 ad set variations. Add two placement groups and you get 3 × 3 × 2 = 18 ad set variations.
 
@@ -49,41 +49,176 @@ The **Variation Preview** panel on the right updates in real time as you add gro
 
 ## Using Campaign Restructuring
 
-Campaign Restructuring lets you take a simple campaign structure and transform it into something much larger — without going back and manually duplicating anything.
+Campaign Restructuring lets you take the variations you have built and distribute them across separate campaigns and ad sets exactly the way your testing strategy requires. Unlike older versions of the launcher where restructuring was a late step, **restructuring is now defined at the very beginning of the campaign creation flow**, immediately after selecting an ad account and naming your campaign.
 
-You access it in the **Manage Variations** step (click **Manage Variations** at the bottom of the screen after completing the **Create Campaign** step).
+This means you can plan your final structure upfront — before you even configure audiences or upload creatives — which prevents surprises at the end and makes the whole process faster.
 
-The idea is simple: you build a straightforward base structure (for example, one campaign, one ad set, 50 ads), and then use Restructuring to reshape it into the structure your testing strategy actually requires.
+Restructuring is split into two independent sections: one at the **campaign level** and one at the **ad set level**. Both sections have a **Preview** button that shows the complete campaign tree — with naming templates applied — based on your current settings and any groups you have already defined.
 
-**Convert into multiple campaigns:**
+---
 
-Toggle: **Create campaigns with ___ Ad Sets and ___ Ad(s) each**
+### Structure Your Campaigns
 
-Example: you have one campaign with one ad set and 50 ads. Turn this on and set it to "1 Ad Set and 1 Ad each" — TheOptimizer explodes it into 50 separate campaigns, each with its own ad set and its own ad. Set it to "1 Ad Set and 5 Ads each" and you get 10 campaigns with 5 ads each.
+The **Structure your campaigns** section sits at the top of the **Create Campaign** step (Step 1). It controls how your total set of ad sets and ads gets distributed across campaigns.
 
-This is the go-to option when you want full budget isolation per creative — each campaign gets its own budget, eliminating Facebook's delivery bias.
+<Frame>
+  <img src="/images/restructure-campaign-level.png" alt="Structure your campaigns — campaign-level restructuring UI" />
+</Frame>
 
-**Convert into multiple ad sets:**
+There are two options, each independently toggleable. You can enable one, the other, or both simultaneously.
 
-Toggle: **Create Ad Set with ___ Ad(s) for each Ad Set**
+**Option 1 — Generate campaigns based on Ad Set groups**
 
-Example: same starting point — one campaign, one ad set, 50 ads. Turn this on and set it to "1 Ad per Ad Set" — you get one campaign with 50 ad sets, each containing one ad. Set it to "5 Ads per Ad Set" and you get one campaign with 10 ad sets.
+This option lets you specify which ad set groups each generate a separate campaign. For example, if you have defined Audience groups and Placement groups at the ad set level, you can tell the system: "Give each unique combination of audience and placement its own campaign."
 
-This is the go-to option when you want to test creatives in separate ad sets while sharing a campaign-level budget.
+Selecting a group here moves that dimension of variation from the ad set level up to the campaign level. The result: each campaign contains ad sets that share the same audience/placement combination, and different campaigns are used to isolate different targeting setups.
 
-**Common use cases:**
+Multiple groups can be combined. The number of campaigns created equals the number of unique combinations across all selected groups. For example:
 
-| Scenario | How to restructure |
-|---|---|
-| Test each creative in its own campaign (full budget isolation) | Explode by campaign: 1 Ad Set, 1 Ad each |
-| Test each creative in its own ad set (shared campaign budget) | Explode by ad set: 1 Ad per Ad Set |
-| Group five creatives per ad set for rotation testing | Explode by ad set: 5 Ads per Ad Set |
+- 5 Audience groups × 3 Placement groups = **15 campaigns**, each containing ad sets for one specific audience + placement pair
+- Any other groups you defined but did not include here (e.g., Budget groups) remain as ad set-level variation inside each campaign
 
-The summary line at the bottom updates in real time — always verify the total campaign, ad set, and ad counts before proceeding.
+This option did not exist in the previous version of the launcher. Previously, you could only separate campaigns by the number of ad sets — you had no way to say "I want a separate campaign for each audience I'm testing."
 
 <Tip>
-  The typical workflow is: build a simple base campaign (one campaign, one ad set, many ads) → upload all your creatives → move to **Manage Variations** → use Restructuring to fan them out into the structure your testing strategy requires. It takes seconds.
+  Use group-based campaign separation when your testing strategy is audience-first or placement-first. It gives you clean, isolated campaign budgets per targeting dimension without having to manually create each campaign.
 </Tip>
+
+**Option 2 — Generate campaigns based on the number of Ad Sets per campaign**
+
+This is the same option that existed in the previous version, now surfaced earlier in the flow.
+
+Toggle it on and set a number — for example, 1. The system will create as many campaigns as needed to give each ad set its own campaign. Set it to 2 and each campaign gets two ad sets, and so on.
+
+Example: you have generated 20 ad set variations total. Setting this to "1 Ad Set per campaign" creates 20 campaigns, each with 1 ad set. Setting it to "2 Ad Sets per campaign" creates 10 campaigns, each with 2 ad sets.
+
+**Combining both options**
+
+If both options are enabled at the same time, their results are multiplied together.
+
+Example: you have 5 Audience groups and 3 Placement groups selected in Option 1, generating 15 base campaigns. You also have 20 total ad sets and have enabled Option 2 with "1 Ad Set per campaign". The final campaign count becomes 15 × 20 = **300 campaigns**.
+
+The **Preview** button at the bottom of this section shows the full resulting structure — including naming templates — so you can verify the outcome before you've finished building the campaign.
+
+---
+
+### Structure Your Ad Sets
+
+The **Structure your ad sets** section works at the ad level — controlling how your ads get distributed across ad sets.
+
+<Frame>
+  <img src="/images/restructure-adset-level.png" alt="Structure your ad sets — ad set-level restructuring UI" />
+</Frame>
+
+It has the same two-option layout as the campaign-level section, and also has a **Preview** button.
+
+**Option 1 — Generate ad sets based on Ad groups**
+
+This option lets you specify which ad-level groups each generate a separate ad set. For example:
+
+- Select **Identity group** → each Facebook Page / Instagram Account combination gets its own ad set
+- Select **Creative group** → each creative group (images, videos, copy variations) gets its own ad set
+- Select both → each combination of identity and creative gets its own ad set
+
+This is particularly useful for:
+
+- **Testing images vs. videos in separate ad sets** — create one Creative group with images and one with videos, select it here, and each gets its own ad set
+- **Running ads under different Pages in separate ad sets** — identity isolation per ad set without manual duplication
+- **Testing different copy groups on separate ad sets** — group ads by copy variation and isolate each group
+
+This option did not exist previously. In the old version, groups were only used at the ad level to generate ad variations — there was no way to say "I want a separate ad set for each creative group." Now you can.
+
+**Option 2 — Generate ad sets based on the number of Ads per ad set**
+
+Toggle this on and set the number of ads per ad set. The system generates the necessary number of ad sets to accommodate all your ads at that count.
+
+Example: you have uploaded 30 images (30 ads). Setting this to "5 Ads per Ad Set" creates 6 ad sets, each containing 5 ads. Setting it to "1 Ad per Ad Set" creates 30 ad sets.
+
+**How ad set restructuring affects campaign restructuring**
+
+The total number of ad sets generated by the ad set-level restructuring feeds directly into the campaign-level restructuring calculation. If the ad set structure produces 30 ad sets and you have "1 Ad Set per campaign" enabled at the campaign level, you will end up with 30 campaigns — regardless of how many you started with.
+
+Always use the **Preview** button after configuring both sections to see the final campaign count and structure.
+
+---
+
+### Restructuring Examples
+
+**Example 1 — Isolate each creative in its own campaign (full budget isolation)**
+
+Goal: 20 image ads, one campaign per creative, each with its own budget.
+
+Setup:
+- Ad set level → Option 2 → 1 Ad per Ad Set → generates 20 ad sets
+- Campaign level → Option 2 → 1 Ad Set per campaign → generates 20 campaigns
+
+Result: 20 campaigns, each with 1 ad set and 1 ad. Every creative has a completely isolated budget.
+
+---
+
+**Example 2 — Test audiences in separate campaigns, creatives in separate ad sets**
+
+Goal: 3 audiences each tested in their own campaign; within each campaign, each creative gets its own ad set.
+
+Setup:
+- Ad Set level → Audience groups (3 groups) → selected in Campaign level Option 1 → 3 campaigns
+- Creative group (5 creatives) → selected in Ad Set level Option 1 → 5 ad sets per campaign
+
+Result: 3 campaigns × 5 ad sets = 15 ad sets total. Each campaign targets one audience; within each campaign, each creative has its own ad set.
+
+---
+
+**Example 3 — Test pages in separate ad sets, audiences in separate campaigns**
+
+Goal: Run ads under 2 different Facebook Pages; test 4 different audiences, each in a separate campaign.
+
+Setup:
+- Ad level → Identity group (2 groups, one per Page) → selected in Ad Set level Option 1 → 2 ad sets per campaign
+- Ad Set level → Audience group (4 groups) → selected in Campaign level Option 1 → 4 campaigns
+
+Result: 4 campaigns × 2 ad sets = 8 ad sets total. Each campaign targets one audience; within each campaign, there is one ad set per Facebook Page identity.
+
+---
+
+## Reviewing the Preview
+
+Both the campaign-level and ad-set-level restructuring sections include a **Preview** button. Clicking it generates a complete, expandable campaign tree showing:
+
+- Every campaign that will be created, with its name (using your naming template)
+- Every ad set inside each campaign, with its name
+- Every ad inside each ad set
+
+The preview updates dynamically as you add groups and change restructuring settings throughout the campaign creation process. Use it frequently — especially before moving to the Review Variations step — to catch misconfigurations early.
+
+---
+
+## Reviewing Variations (Step 2)
+
+Once you complete the Create Campaign step (Step 1), clicking **Review Variations** takes you to a full read-only summary of the structure you are about to launch.
+
+<Frame>
+  <img src="/images/review-variations.png" alt="Review Variations step — information cards and campaign tree" />
+</Frame>
+
+The Review Variations step is now purely a review screen. Restructuring is no longer done here — it was moved to Step 1 in the latest version of the launcher.
+
+**What you see in Step 2:**
+
+At the top, a row of summary cards shows:
+
+- Number of Campaigns
+- Number of Ad Sets
+- Total Daily Budget (for ad set-level budgets)
+- Number of Ad Set Variations
+- Number of Audiences
+- Number of Ads
+- Number of Headlines
+- Number of Descriptions
+- Number of Ad Variations
+
+Below the summary cards is the full campaign tree — Campaign → Ad Set → Ad — with each item showing its final name (naming templates applied). Every item in the tree has a **toggle switch** you can use to enable or disable that specific variation. Disabling a campaign disables everything inside it; disabling an individual ad set or ad removes just that item from the launch.
+
+This is where you make any final adjustments — for example, removing a specific ad from one ad set, or disabling a campaign variation you no longer want — without going back and re-configuring the whole structure.
 
 ---
 
@@ -102,10 +237,10 @@ This is the most manual approach, but it gives you full control over exactly wha
 | Method | Best for | Control level |
 |---|---|---|
 | **Groups** | Testing combinations of variables (budgets × audiences × placements) — you want all permutations generated automatically | You control the variables; the system generates all combinations |
-| **Restructuring** | Reshaping a simple structure into many campaigns or ad sets — upload creatives once, then decide how to distribute them | You control the distribution rule; the system does the splitting |
+| **Restructuring** | Deciding how ad sets and ads are distributed across campaigns — audience isolation, creative isolation, budget isolation | You control the distribution rule; the system does the splitting |
 | **Duplication** | When you need specific creatives in specific ad sets, or different destination URLs per ad — full manual control | You control everything; no automation |
 
-In practice, most workflows use a combination: groups for the variables that can be freely combined, Restructuring to reshape the structure, and duplication for the parts that need manual precision. For example: create a campaign with three audience groups, upload 30 images, explode into one ad per ad set, then duplicate the entire campaign for a second ad account.
+In practice, most workflows use a combination: Groups define what varies, Restructuring decides how variations are distributed across campaigns and ad sets, and Duplication handles the parts that need manual precision.
 
 ---
 

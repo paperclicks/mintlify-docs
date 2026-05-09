@@ -13,26 +13,38 @@ When you are generating dozens or hundreds of variations, naming becomes critica
 
 ## How to Create a Naming Template
 
-Click **+ Create Naming Template** next to the name field at any level (campaign, ad set, or ad). In the template dialog:
+Click **+ Create Naming Template** next to the name field at any level (campaign, ad set, or ad). The template builder opens.
 
-1. Click **+ Add placeholder** to insert dynamic values into your name.
-2. Set a **Field Separator** to control what appears between placeholders (e.g., `_`, `-`, or a space).
-3. Save the template.
+<Frame>
+  <img src="/images/naming-templates-fb-campaign-launcher.png" alt="Campaign naming template builder — placeholders, separators, and quick suggestions" />
+</Frame>
 
-The name field at that level will now auto-populate with the resolved values when variations are generated.
+In the template dialog:
+
+1. **Quick Suggestions** — the top of the dialog shows one or more pre-built combinations of placeholders based on common naming conventions. Click any suggestion to instantly apply it as your starting template. You can then add, remove, or reorder placeholders from there.
+2. **Add placeholders** — click **+ Add placeholder** to insert any dynamic value into the name. Placeholders appear as draggable tiles in the template grid — drag them to reorder.
+3. **Mix in static text** — any tile you type free text into becomes a fixed string that appears in every name. Use this for prefixes, brand codes, or any text you always want in the name.
+4. **Set separators** — the **Field Separator** controls what appears between placeholders (e.g., `_`, `-`, `|`, or a space). The **Item Separator** controls what appears between multiple values within a single placeholder (e.g., when a placeholder resolves to a list).
+5. **Save** the template.
+
+The name field at that level will now auto-populate with the resolved values when variations are generated. Names are live — they update as you add groups or change settings.
 
 ---
 
 ## Available Placeholders
 
-Available placeholders include Targeting, Placement, Budget, Bid Amount, Bid Strategy, and many more. A few worth knowing about:
+Available placeholders include Targeting, Placement, Budget, Bid Amount, Bid Strategy, Account Value, Objective Value, Buying Type, and many more. A few worth calling out:
 
-**Group names** — inserts the name you gave each variation group (e.g., "Budget $25" or "US Audience"). Useful when group names describe what varies between variations.
+**Group names** — inserts the name you gave each variation group (e.g., "Budget $25" or "US Audience"). This is one of the most useful placeholders because group names are under your control — meaningful group names produce meaningful campaign names automatically.
 
-**Nested names** — lets you include the ad set name inside the campaign name, or the ad name inside the ad set name. The system resolves these automatically at generation time.
+**Nested names** — lets you include the ad set name inside the campaign name, or the ad name inside the ad set name. The system resolves these at generation time, so each campaign's name can include the ad set it contains.
 
-**Incremental index** — adds an auto-incrementing number (1, 2, 3, ...) to each variation. The simplest way to guarantee unique names across all generated items.
+**Incremental index** — adds an auto-incrementing number (1, 2, 3, ...) to each variation. The simplest guarantee of unique names across all generated items.
 
 <Tip>
   At minimum, add an **index placeholder** to your naming template. This guarantees unique names even if all other settings are identical across variations.
+</Tip>
+
+<Tip>
+  Use the **Quick Suggestions** at the top of the template builder as a starting point. They combine the most commonly useful placeholders and save time compared to building a template from scratch.
 </Tip>
