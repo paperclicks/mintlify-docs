@@ -27,6 +27,8 @@ You can also disable multiple accounts at once using the bulk actions menu.
 
 Each ad account is linked to a **profile** — the Facebook login used to access it. You can change which profile is linked to a specific ad account at any time:
 
+  <ArcadePopoutModal id="uImSQbP30BHmGyqJFDee" title="Connect a new Facebook Profile" />
+
 - Click on the ad account to open its settings.
 - Under **Profile**, select a different profile from the dropdown.
 
@@ -56,7 +58,10 @@ Access these settings from **Linked Trackers** on the individual ad account page
 
 **Profiles** are the Facebook logins (OAuth tokens) that TheOptimizer uses to access your ad accounts. After connecting Facebook via OAuth, each authenticated login becomes a profile.
 
-### Add Multiple Profiles
+### Add New Profiles
+
+  <ArcadePopoutModal id="BNj0P8qPYhSblTmaHztu" title="Connect a new Facebook Profile" />
+
 
 Go to **Integrations → Facebook → Profiles** and click **Add Profile**. Complete the OAuth flow with the additional Facebook login.
 
@@ -69,7 +74,9 @@ Reasons to add multiple profiles:
 ### Sync New Ad Accounts
 
 When you add a new ad account to a Business Manager you've already connected, it won't appear automatically. To pull in the new account:
-
+<Frame>
+  <img src="/images/facebook/facebook_Integrations_sync_ad_accounts.gif" alt="Select Ad Account — Use existing campaign tab showing searchable campaign list" />
+</Frame>
 1. Go to **Integrations → Facebook → Profiles**.
 2. Find the profile that has access to the new account.
 3. Click **Sync** (or **Refresh Accounts**).
@@ -77,6 +84,10 @@ When you add a new ad account to a Business Manager you've already connected, it
 This triggers a re-sync for that profile and pulls in any new accounts without requiring a full re-authorisation.
 
 ### Re-authenticate a Profile
+
+<Frame>
+  <img src="/images/facebook/facebook-mange-profiles-re-authenticate-profile.gif" alt="Select Ad Account — Use existing campaign tab showing searchable campaign list" />
+</Frame>
 
 Facebook OAuth tokens expire or become invalid when you:
 - Change your Facebook account password
