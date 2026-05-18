@@ -133,6 +133,30 @@ Select the accounts you want to add, then click **Save**. The selected accounts 
 
 When you add a new ad account to a Business Manager you've already connected, it won't appear automatically. To pull in the new account, click **Sync** on the relevant profile card. This re-queries Facebook for that profile and pulls in any newly accessible accounts.
 
+### Grant Access to New Pages
+
+If you create a new Facebook Page after connecting TheOptimizer, it won't automatically be available for use in the Campaign Creator. You need to re-authenticate the relevant profile and explicitly grant access to the new Page during the OAuth flow.
+
+1. Go to **Integrations → Facebook → Profiles**.
+2. Find the profile that should have access to the new Page and click **Re-Authenticate**.
+3. On the first step of the Facebook dialog, click **Edit settings** instead of Continue.
+
+<Frame>
+  <img src="/images/facebook/facebook-auth-edit-previous-settings.png" alt="Click Edit settings on the Facebook authorization dialog to modify page access" />
+</Frame>
+
+4. On the Pages selection screen, select the new Pages you want to grant TheOptimizer access to.
+
+<Frame>
+  <img src="/images/facebook/facebook-optin-all-pages.png" alt="Pages selection screen — choose Opt in to all current and future Pages to avoid repeating this step" />
+</Frame>
+
+5. Complete the rest of the OAuth flow as normal.
+
+<Tip>
+  Select **"Opt in to all current and future Pages"** on the Pages screen. This grants access to any Pages you create in the future, so you won't need to go through this process again the next time you launch a campaign under a new Page.
+</Tip>
+
 ### Re-authenticate a Profile
 
 Facebook OAuth tokens expire or become invalid when you:
