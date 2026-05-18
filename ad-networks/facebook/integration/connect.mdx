@@ -1,17 +1,34 @@
 ---
 title: "Connect Facebook"
-description: "Authorise TheOptimizer to access your Facebook ad accounts, Pages, and Business Managers using OAuth."
+description: "Authorise TheOptimizer to access your Facebook ad accounts using a Business profile, Personal profile, or Access Token."
 ---
 
 import { ArcadePopoutModal } from '/snippets/arcade-popout-modal.mdx';
 
 import { ArcadeVideoButton } from '/snippets/arcade-video-button.mdx';
 
-Facebook uses OAuth for authentication — you log in with your Facebook account directly and grant TheOptimizer the permissions it needs. No API keys to copy and paste.
+TheOptimizer supports three ways to connect Facebook. Choose the one that matches your setup:
+
+| Method | Best for |
+|---|---|
+| **Business profile** (recommended) | Agencies and teams using Meta Business Suite with a System User. Provides the most stable, long-lived connection. |
+| **Personal profile** | Individual users managing a limited set of ad accounts and Pages personally. Subject to standard OAuth token expiry. |
+| **Access Token** | Advanced users who want to connect via a manually generated System User access token from Meta Business Suite. Full control over token scope and lifetime. |
+
+<Frame>
+  <img src="/images/facebook/facebook-connect-profile-type.png" alt="Connect Facebook — choose Business profile, Personal profile, or Access Token" />
+</Frame>
+
+---
+
+## Connect with a Business or Personal Profile
 
 <Steps>
   <Step title="Open the Integrations page">
     From the left-hand navigation menu, go to **Integrations**. Find the **Facebook** card and click **Connect →**.
+  </Step>
+  <Step title="Choose your profile type">
+    A dialog appears asking how you want to connect. Select **Business profile** (recommended) or **Personal profile**, then click **Continue with Facebook**. You will be redirected to Facebook to complete the authorisation.
   </Step>
   <Step title="Authorise Pages Access">
     Facebook will ask which Pages you want TheOptimizer to access.
@@ -41,28 +58,72 @@ Facebook uses OAuth for authentication — you log in with your Facebook account
 
 ---
 
+## Connect with an Access Token
+
+Use this option when you want to connect using a System User access token generated directly from Meta Business Suite. This gives you full control over which permissions are included and is not subject to standard OAuth token expiry tied to a personal login.
+
+<Frame>
+  <img src="/images/facebook/facebook-connect-access-token.png" alt="Connect Facebook using an Access Token — Token Name and Access Token fields" />
+</Frame>
+
+<Steps>
+  <Step title="Generate a System User access token in Meta Business Suite">
+    In Meta Business Suite, go to **Business Settings → System Users**. Select or create a System User with admin access, assign the ad accounts you want TheOptimizer to manage, then generate an access token with the following permissions:
+
+    - `pages_show_list`
+    - `ads_management`
+    - `ads_read`
+    - `business_management`
+    - `pages_read_engagement`
+    - `public_profile`
+
+    Copy the generated token — it will only be shown once.
+  </Step>
+  <Step title="Select Access Token in the Connect dialog">
+    In TheOptimizer, go to **Integrations → Facebook → Connect →**. In the profile type dialog, click **Advanced — Use Access Token**.
+  </Step>
+  <Step title="Enter a Token Name and paste the token">
+    Give the connection a recognisable name (e.g., "Production Token" or "Agency Token"), paste your access token, and click **Save**.
+  </Step>
+  <Step title="Connection Confirmed">
+    TheOptimizer validates the token and pulls in the ad accounts the System User has access to. Initial sync takes up to 20–30 minutes.
+  </Step>
+</Steps>
+
+<Tip>
+  System User tokens generated in Meta Business Suite do not expire on password changes and are not tied to any individual's personal Facebook account, making them significantly more stable for long-running integrations.
+</Tip>
+
+---
+
 ## What Permissions Are Granted
 
-TheOptimizer requests the following Facebook permissions:
+TheOptimizer requests the following Facebook permissions regardless of connection method:
 
-- **ads_management** — read and update your ad campaigns, ad sets, and ads
-- **ads_read** — read campaign performance metrics
-- **business_management** — access ad accounts within your Business Managers
-- **pages_read_engagement** — read your Pages (required for ad identity setup)
+| Permission | Purpose |
+|---|---|
+| `pages_show_list` | List Pages available to the authenticated account |
+| `ads_management` | Read and update campaigns, ad sets, and ads |
+| `ads_read` | Read campaign performance metrics |
+| `business_management` | Access ad accounts within Business Managers |
+| `pages_read_engagement` | Read Pages (required for ad identity setup) |
+| `public_profile` | Basic profile identification |
 
-TheOptimizer does not request permission to post to your Pages, access your personal profile, or read your messages.
+TheOptimizer does not request permission to post to your Pages, access your personal messages, or take any actions outside of ad account management.
 
 ---
 
 ## Connecting Multiple Facebook Profiles
 
-You can connect multiple Facebook logins (profiles) to the same Facebook integration. This is useful for team members who each manage their own set of ad accounts, or to have a backup profile in case a primary one gets restricted.
+You can connect multiple Facebook profiles to the same Facebook integration — whether Business profiles, Personal profiles, or Access Tokens. This supports teams where each member manages their own set of accounts, and provides backup access if a primary profile gets restricted.
 
-To add a second profile, go to **Integrations → Facebook** and click **Add Profile**. Complete the same OAuth flow with the second login. Each profile can be assigned to specific ad accounts independently.
+To add a second profile, go to **Integrations → Facebook** and click **Add Profile** (or the **Connect new profile** card in the profiles panel). Complete the same connection flow with the additional login or token.
+
+See [Manage Ad Accounts & Profiles](/ad-networks/facebook/integration/manage-accounts) for how to assign ad accounts to profiles and manage the relationship between them.
 
 ---
 
 ## Next Steps
 
-- [Manage Ad Accounts & Profiles](/ad-networks/facebook/integration/manage-accounts) — enable/disable accounts, reassign profiles, add tags
+- [Manage Ad Accounts & Profiles](/ad-networks/facebook/integration/manage-accounts) — enable/disable/archive accounts, manage profile assignments, add tags
 - [Troubleshoot a Connection](/ad-networks/facebook/integration/troubleshoot) — fix token expiry, missing accounts, sync issues

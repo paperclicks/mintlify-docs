@@ -1,6 +1,6 @@
 ---
 title: "Manage Ad Accounts & Profiles"
-description: "Enable and disable Facebook ad accounts, reassign profiles, add tags, and manage tracker connections per account."
+description: "Enable, disable, and archive Facebook ad accounts — plus manage profile assignments, add tags, and configure tracker connections per account."
 ---
 
 import { ArcadePopoutModal } from '/snippets/arcade-popout-modal.mdx';
@@ -9,9 +9,11 @@ import { ArcadeVideoButton } from '/snippets/arcade-video-button.mdx';
 
 Once your Facebook integration is connected, you can manage the individual ad accounts and authentication profiles associated with it from **Integrations → Facebook**.
 
+---
+
 ## Ad Accounts
 
-Click on the Facebook integration to see the full list of ad accounts pulled from your connected Business Managers.
+Click on the Facebook integration to see the full list of ad accounts pulled from your connected profiles.
 
 ### Enable and Disable Accounts
 
@@ -19,20 +21,46 @@ Each ad account has an **ON/OFF** toggle. Disabling an account stops TheOptimize
 
 You can also disable multiple accounts at once using the bulk actions menu.
 
-<Warning>
-  Deleting ad accounts is not currently supported. To stop syncing without losing data, use the disable toggle. If you need permanent removal, contact support.
-</Warning>
+---
 
-### Change the Profile Per Account
+### Archive Ad Accounts
 
-Each ad account is linked to a **profile** — the Facebook login used to access it. You can change which profile is linked to a specific ad account at any time:
+Archiving is a stronger form of removal than disabling. When an ad account is archived it is completely hidden from the system — it no longer appears in dropdown selectors, filters, or the Campaign Creator, and TheOptimizer stops all processing for it: no data sync, no automation rules, no campaign or resource visibility.
 
-  <ArcadePopoutModal id="uImSQbP30BHmGyqJFDee" title="Connect a new Facebook Profile" />
+Use archiving when you want to permanently retire an ad account from your workflow without losing the ability to restore it later if needed.
 
-- Click on the ad account to open its settings.
-- Under **Profile**, select a different profile from the dropdown.
+**Archive a single account**
 
-This is useful when a profile gets restricted and you need to switch to a backup login, or when reorganising which team member's credentials manage which accounts.
+Hover over any ad account row in the list. Below the account name, two inline actions appear: **Edit** and **Archive**. Click **Archive** to archive that account immediately.
+
+<Frame>
+  <img src="/images/facebook/facebook-archive-single-ad-account.png" alt="Single ad account archive — hover the row to reveal the Archive inline action" />
+</Frame>
+
+**Archive multiple accounts at once**
+
+Select the checkboxes next to two or more ad accounts. A bulk action bar appears at the bottom of the screen showing options including **Manage Tags**, **Manage Linked Trackers**, and **Archive**. Click **Archive** to archive all selected accounts in one operation.
+
+<Frame>
+  <img src="/images/facebook/facebook-bulk-archive-ad-accounts.png" alt="Bulk archive — select multiple accounts and use the Archive button in the bottom action bar" />
+</Frame>
+
+**View and unarchive archived accounts**
+
+Archived accounts are hidden from the default view. To find them:
+
+1. Click **Filters** at the top of the ad accounts list.
+2. Select **Archived** from the filter menu.
+3. Choose **Archived** (to see only archived accounts) or **All** (to see both active and archived).
+4. Click **Apply Filters**.
+
+<Frame>
+  <img src="/images/facebook/facebook-filter-archived-ad-accounts.png" alt="Filter by Archived status to reveal hidden archived accounts" />
+</Frame>
+
+Once the archived accounts are visible, select one or more using their checkboxes, then click **Unarchive** in the bottom action bar. The account is immediately restored — it reappears in all selectors and filters, and TheOptimizer resumes data syncing and rule execution for it.
+
+---
 
 ### Add Tags
 
@@ -40,7 +68,9 @@ Ad accounts can be tagged with any labels you define — by client, brand, verti
 
 Some tags (timezone, currency) are applied automatically by TheOptimizer when the account is first synced.
 
-To add a tag: click on the ad account → **Tags** → **Add Tag**.
+To add a tag: hover the ad account row and click **Edit**, or use the tag controls directly in the Tags column.
+
+---
 
 ### Customise Tracker Connections Per Account
 
@@ -56,53 +86,69 @@ Access these settings from **Linked Trackers** on the individual ad account page
 
 ## Profiles
 
-**Profiles** are the Facebook logins (OAuth tokens) that TheOptimizer uses to access your ad accounts. After connecting Facebook via OAuth, each authenticated login becomes a profile.
+**Profiles** are the Facebook logins or access tokens that TheOptimizer uses to access your ad accounts. Each profile appears as a card in the Profiles panel, showing the profile name, how many ad accounts are assigned to it, and quick-action buttons.
+
+<Frame>
+  <img src="/images/facebook/facebook-connected-profiles.png" alt="Profiles panel — profile cards showing account count, Sync, Re-Authenticate, and Manage Ad Accounts buttons" />
+</Frame>
+
+Each profile card shows:
+
+- **Account count** — number of ad accounts currently assigned to this profile
+- **Sync** — re-queries Facebook to pull in any new ad accounts accessible to this profile
+- **Re-Authenticate** — refreshes the OAuth token or replaces a token that has expired
+- **Manage Ad Accounts** — opens the assignment dialog to control which ad accounts use this profile
 
 ### Add New Profiles
 
-  <ArcadePopoutModal id="BNj0P8qPYhSblTmaHztu" title="Connect a new Facebook Profile" />
-
-
-Go to **Integrations → Facebook → Profiles** and click **Add Profile**. Complete the OAuth flow with the additional Facebook login.
+Go to **Integrations → Facebook → Profiles** and click the **Connect new profile** card. Choose your connection method (Business profile, Personal profile, or Access Token) and complete the flow.
 
 Reasons to add multiple profiles:
 
 - **Team access** — each team member manages their own set of accounts under their own login.
 - **Backup access** — if a primary profile is restricted, a backup profile can take over the affected accounts immediately.
 - **Multiple Business Managers** — different Business Managers often have different admin logins.
+- **Access Token isolation** — keep system user tokens separate from personal logins for more stable long-running integrations.
+
+### Assign Ad Accounts to a Profile
+
+Each ad account must be assigned to exactly one profile — the profile TheOptimizer uses to access it. To change which profile an account uses, click **Manage Ad Accounts** on the profile you want to assign accounts to.
+
+<Frame>
+  <img src="/images/facebook/facebook-manage-ad-accounts-dialog.png" alt="Assign Ad Accounts dialog — accounts assigned to another profile (top) and accounts already using this profile (bottom)" />
+</Frame>
+
+The dialog shows two sections:
+
+- **Accounts assigned to another profile** — ad accounts that this profile has access to but which are currently using a different profile. Select any you want to reassign to this profile.
+- **Accounts already assigned to this profile** — ad accounts currently using this profile, listed for reference.
+
+Select the accounts you want to add, then click **Save**. The selected accounts immediately switch to using this profile for all data sync and automation.
+
+<Note>
+  You can also reassign a single ad account directly from the ad accounts table — hover the row and click **Edit** to change its assigned profile without opening the profiles panel.
+</Note>
 
 ### Sync New Ad Accounts
 
-When you add a new ad account to a Business Manager you've already connected, it won't appear automatically. To pull in the new account:
-<Frame>
-  <img src="/images/facebook/facebook_Integrations_sync_ad_accounts.gif" alt="Select Ad Account — Use existing campaign tab showing searchable campaign list" />
-</Frame>
-1. Go to **Integrations → Facebook → Profiles**.
-2. Find the profile that has access to the new account.
-3. Click **Sync** (or **Refresh Accounts**).
-
-This triggers a re-sync for that profile and pulls in any new accounts without requiring a full re-authorisation.
+When you add a new ad account to a Business Manager you've already connected, it won't appear automatically. To pull in the new account, click **Sync** on the relevant profile card. This re-queries Facebook for that profile and pulls in any newly accessible accounts.
 
 ### Re-authenticate a Profile
 
-<Frame>
-  <img src="/images/facebook/facebook-mange-profiles-re-authenticate-profile.gif" alt="Select Ad Account — Use existing campaign tab showing searchable campaign list" />
-</Frame>
-
 Facebook OAuth tokens expire or become invalid when you:
+
 - Change your Facebook account password
 - The ad network detects suspicious activity on your account
 - Security settings change (e.g., two-factor authentication changes)
 - The token is manually revoked from Facebook's security settings
 
-When a token expires, TheOptimizer can no longer sync data or run automation for the accounts under that profile.
-
-To re-authenticate:
-1. Go to **Integrations → Facebook → Profiles**.
-2. Find the profile showing an error or "Re-authentication required" warning.
-3. Click **Re-authenticate** and complete the OAuth flow again.
+When a token expires, TheOptimizer can no longer sync data or run automation for the accounts under that profile. Click **Re-Authenticate** on the profile card and complete the OAuth flow again to refresh the token.
 
 Re-authenticating refreshes the token without losing any account history, automation settings, or tags.
+
+<Frame>
+  <img src="/images/facebook/facebook-mange-profiles-re-authenticate-profile.gif" alt="Re-authenticate a profile to refresh an expired OAuth token" />
+</Frame>
 
 <Warning>
   You will receive email notifications when a profile needs re-authentication. Do not ignore them. If a profile becomes invalid and is not refreshed, all automation and data sync for its accounts will silently stop.

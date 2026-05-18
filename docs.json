@@ -130,13 +130,15 @@
               {
                 "group": "Google Ads",
                 "pages": [
-                  "ad-networks/google-ads/integration/connect"
+                  "ad-networks/google-ads/integration/connect",
+                  "ad-networks/google-ads/integration/manage-accounts"
                 ]
               },
               {
                 "group": "TikTok",
                 "pages": [
                   "ad-networks/tiktok/integration/connect",
+                  "ad-networks/tiktok/integration/manage-accounts",
                   "ad-networks/tiktok/automation/popular-rules"
                 ]
               },
@@ -144,6 +146,7 @@
                 "group": "Taboola",
                 "pages": [
                   "ad-networks/taboola/integration/connect",
+                  "ad-networks/taboola/integration/manage-accounts",
                   "ad-networks/taboola/automation/popular-rules",
                   {
                     "group": "Campaign Uploader",
@@ -157,6 +160,7 @@
                 "group": "Outbrain",
                 "pages": [
                   "ad-networks/outbrain/integration/connect",
+                  "ad-networks/outbrain/integration/manage-accounts",
                   "ad-networks/outbrain/automation/popular-rules",
                   {
                     "group": "Campaign Uploader",
@@ -170,6 +174,7 @@
                 "group": "MGID",
                 "pages": [
                   "ad-networks/mgid/integration/connect",
+                  "ad-networks/mgid/integration/manage-accounts",
                   {
                     "group": "Campaign Uploader",
                     "pages": [
@@ -181,25 +186,29 @@
               {
                 "group": "MediaGo",
                 "pages": [
-                  "ad-networks/mediago/integration/connect"
+                  "ad-networks/mediago/integration/connect",
+                  "ad-networks/mediago/integration/manage-accounts"
                 ]
               },
               {
                 "group": "BigoAds",
                 "pages": [
-                  "ad-networks/bigoads/integration/connect"
+                  "ad-networks/bigoads/integration/connect",
+                  "ad-networks/bigoads/integration/manage-accounts"
                 ]
               },
               {
                 "group": "Adskeeper",
                 "pages": [
-                  "ad-networks/adskeeper/integration/connect"
+                  "ad-networks/adskeeper/integration/connect",
+                  "ad-networks/adskeeper/integration/manage-accounts"
                 ]
               },
               {
                 "group": "RevContent",
                 "pages": [
                   "ad-networks/revcontent/integration/connect",
+                  "ad-networks/revcontent/integration/manage-accounts",
                   {
                     "group": "Campaign Uploader",
                     "pages": [
@@ -211,19 +220,22 @@
               {
                 "group": "NewsBreak",
                 "pages": [
-                  "ad-networks/newsbreak/integration/connect"
+                  "ad-networks/newsbreak/integration/connect",
+                  "ad-networks/newsbreak/integration/manage-accounts"
                 ]
               },
               {
                 "group": "Yahoo DSP",
                 "pages": [
-                  "ad-networks/yahoodsp/integration/connect"
+                  "ad-networks/yahoodsp/integration/connect",
+                  "ad-networks/yahoodsp/integration/manage-accounts"
                 ]
               },
               {
                 "group": "Trillion",
                 "pages": [
-                  "ad-networks/trillion/integration/connect"
+                  "ad-networks/trillion/integration/connect",
+                  "ad-networks/trillion/integration/manage-accounts"
                 ]
               },
               {

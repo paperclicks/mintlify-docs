@@ -1,0 +1,120 @@
+---
+title: "Manage Ad Accounts & Profiles"
+description: "Enable, disable, and archive RevContent ad accounts — plus manage credential profiles, add tags, and configure tracker connections per account."
+---
+
+Once your RevContent integration is connected, you can manage the individual ad accounts and API credential profiles associated with it from **Integrations → RevContent**.
+
+---
+
+## Ad Accounts
+
+Click on the RevContent integration to see the full list of ad accounts associated with your connected credentials.
+
+### Enable and Disable Accounts
+
+Each ad account has an **ON/OFF** toggle. Disabling an account stops TheOptimizer from syncing data and running automation rules for that account. All historical data is retained — you can re-enable it at any time and data will resume syncing.
+
+You can also disable multiple accounts at once using the bulk actions menu.
+
+---
+
+### Archive Ad Accounts
+
+Archiving is a stronger form of removal than disabling. When an ad account is archived it is completely hidden from the system — it no longer appears in dropdown selectors, filters, or the Campaign Creator, and TheOptimizer stops all processing for it: no data sync, no automation rules, no campaign or resource visibility.
+
+Use archiving when you want to permanently retire an ad account from your workflow without losing the ability to restore it later if needed.
+
+**Archive a single account**
+
+Hover over any ad account row in the list. Below the account name, two inline actions appear: **Edit** and **Archive**. Click **Archive** to archive that account immediately.
+
+**Archive multiple accounts at once**
+
+Select the checkboxes next to two or more ad accounts. A bulk action bar appears at the bottom of the screen showing options including **Manage Tags**, **Manage Linked Trackers**, **Change Profile**, and **Archive**. Click **Archive** to archive all selected accounts in one operation.
+
+**View and unarchive archived accounts**
+
+Archived accounts are hidden from the default view. To find them:
+
+1. Click **Filters** at the top of the ad accounts list.
+2. Select **Archived** from the filter menu.
+3. Choose **Archived** (to see only archived accounts) or **All** (to see both active and archived).
+4. Click **Apply Filters**.
+
+Once the archived accounts are visible, select one or more using their checkboxes, then click **Unarchive** in the bottom action bar. The account is immediately restored — it reappears in all selectors and filters, and TheOptimizer resumes data syncing and rule execution for it.
+
+---
+
+### Assign Ad Accounts to a Profile
+
+Each ad account uses one profile — the credentials TheOptimizer uses to access it. Ad account-to-profile assignments are managed from the Profiles panel: click **Manage Ad Accounts** on any profile card to open an assignment dialog where you can add or remove accounts from that profile.
+
+The dialog shows two sections: accounts that the selected profile has access to but which are currently assigned to a different profile (available to reassign), and accounts already using this profile. Select the accounts you want to add and click **Save**.
+
+You can also reassign a single ad account directly from the ad accounts table — hover the row and click **Edit** to change its assigned profile without opening the profiles panel.
+
+---
+
+### Add Tags
+
+Ad accounts can be tagged with any labels you define — by client, brand, vertical, team, or any other convention. Tags appear as filters throughout TheOptimizer, making it easy to work with specific subsets of accounts.
+
+Some tags (timezone, currency) are applied automatically by TheOptimizer when the account is first synced.
+
+To add a tag: click on the ad account → **Tags** → **Add Tag**.
+
+---
+
+### Customise Tracker Connections Per Account
+
+By default, tracker connections are configured at the integration level and apply to all ad accounts. But you can override this at the individual account level:
+
+- **Link a different tracker** — use a different tracking platform for this specific account.
+- **Pause the tracker connection** — stop pulling tracker data for this account without affecting others.
+- **Change the tracking template** — use a different template (macro mapping) for this account.
+
+Access these settings from **Linked Trackers** on the individual ad account page.
+
+---
+
+## Profiles
+
+**Profiles** are sets of API credentials (key and secret) that TheOptimizer uses to access your RevContent ad accounts. Each profile corresponds to one pair of valid API credentials. TheOptimizer uses whichever profile is assigned to each account to authenticate all requests for that account.
+
+### Add New Profiles
+
+Go to **Integrations → RevContent → Profiles** and click **Add Profile**. Enter the API key and secret for the new credential set and give it a recognisable name.
+
+Reasons to add multiple profiles:
+
+- **Multiple RevContent accounts** — if you manage ad accounts under different logins or organisations, each login has its own API credentials and needs its own profile.
+- **Team management** — different credential sets can be assigned to different account groups managed by different team members.
+- **Backup credentials** — if one credential set becomes invalid, accounts can be reassigned to a backup profile immediately without any reconfiguration.
+
+### Sync New Ad Accounts
+
+When new ad accounts become accessible under an existing set of credentials, they won't appear automatically. To pull them in:
+
+1. Go to **Integrations → RevContent → Profiles**.
+2. Find the relevant profile.
+3. Click **Sync** (or **Refresh Accounts**).
+
+This re-queries RevContent's API using the stored credentials and pulls in any newly available accounts without requiring you to re-enter your credentials.
+
+### Update API Credentials
+
+If your RevContent API credentials are regenerated or expire, the profile using them will stop working. TheOptimizer can no longer sync data or run automation for any accounts assigned to that profile until the credentials are updated.
+
+To update credentials:
+
+1. Go to **Integrations → RevContent → Profiles**.
+2. Find the profile with invalid or outdated credentials (it will typically show an error or warning).
+3. Click **Edit** on the profile and enter the new API key and secret.
+4. Save the changes.
+
+Data sync and automation resume immediately for all accounts assigned to that profile.
+
+<Warning>
+  You will receive notifications when a profile's credentials are invalid. If credentials are not updated promptly, all automation and data sync for accounts under that profile will silently stop. Check your integrations regularly after regenerating API keys in RevContent.
+</Warning>

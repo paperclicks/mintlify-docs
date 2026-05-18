@@ -93,15 +93,15 @@ Once an ad network is connected, click on the integration to see the list of ass
 
 **Enable / disable accounts** — use the ON/OFF toggle to pause syncing for a specific account. Pausing stops TheOptimizer from syncing data and running automation on that account but retains all historical data.
 
-**Change the profile per account** — each ad account is linked to a profile (the login or API credentials used to access it). You can reassign any account to a different profile at any time — useful when a profile gets banned and you need to switch to a backup login.
+**Archive accounts** — archiving goes further than disabling. An archived ad account is fully hidden from the system: it no longer appears in dropdown selectors, filters, or the Campaign Creator, and TheOptimizer stops all processing — no data sync, no automation rules, no campaign visibility. Use this to permanently retire accounts you no longer want visible anywhere in the platform. Archived accounts can be restored at any time by filtering for archived accounts and using the Unarchive bulk action.
+
+Both single-account and bulk archiving are supported. To archive a single account, hover its row and click the **Archive** inline action. To archive multiple accounts, select their checkboxes and click **Archive** in the bulk action bar that appears at the bottom. To view and unarchive archived accounts, use the **Filters → Archived** filter to surface them, then select and unarchive via the bulk action bar.
+
+**Assign ad accounts to profiles** — each ad account uses one profile (the login or API credentials that TheOptimizer uses to access it). Ad account-to-profile assignments are managed from the Profiles panel: click **Manage Ad Accounts** on any profile card to open an assignment dialog where you can add or remove accounts from that profile. You can also reassign a single account directly from the ad accounts table by hovering its row and clicking **Edit**.
 
 **Add tags** — tag ad accounts for organisation (by client, brand, vertical, or team) to make filtering and management easier across large account lists. Some tags (timezone, currency) are applied automatically.
 
 **Customise tracker connections per account** — link a different tracker, pause the tracker connection, or edit the tracking template for a specific ad account without affecting other accounts in the same integration.
-
-<Warning>
-  Deleting ad accounts is not currently supported. To stop syncing without losing data, use the pause toggle instead. Contact support if permanent removal is needed.
-</Warning>
 
 <Tip>
   There is no limit on the number of ad accounts you can connect across all networks.
@@ -113,7 +113,7 @@ Once an ad network is connected, click on the integration to see the list of ass
 
 <Frame>
   <img
-    src="/images/image-12.png"
+    src="/images/facebook/facebook-manage-profiles.png"
     alt="Image"
     title="Image"
     style={{ width:"98%" }}
