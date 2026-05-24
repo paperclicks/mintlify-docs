@@ -1,0 +1,94 @@
+---
+title: "CSV Format & Upload Guide"
+description: "How to correctly structure your Custom Data Source CSV — required columns, per-level rows, and how to submit data manually or via API."
+---
+
+Every Custom Data Source integration revolves around a CSV file. TheOptimizer generates a template based on the data fields you've defined, and you fill it in with the actual metric values for each campaign item you want to report on. This page explains the format in detail and walks through both upload methods.
+
+---
+
+## Downloading the Template
+
+From your Custom Data Source integration card (or the Edit dialog), click **Download CSV Template**. The file is named after your integration and contains:
+
+- All your **active data fields** as column headers
+- The **required system columns** that TheOptimizer needs to map each row to the right campaign item
+
+Do not add, remove, or rename any columns. The template structure is what TheOptimizer expects when you upload.
+
+---
+
+## Required System Columns
+
+In addition to your custom metric columns, every CSV template includes these required columns. They cannot be removed:
+
+| Column | Description |
+| --- | --- |
+| **date** | The date this row's data refers to, in `YYYY-MM-DD` format. Each row is attributed to a specific day. |
+| **level** | The entity type being reported on. Accepted values vary by ad network but include: `campaign`, `ad_set`, `ad`, `site`, `section`, `domain`, and similar. |
+| **campaign_id** | The ad network's ID for the campaign this row belongs to. **Required on every row**, regardless of which level you're uploading data for. |
+| **level_id** | The ID of the specific item at the level you're reporting. For campaign-level rows this is the same as `campaign_id`. For ad set or ad rows, this is the ID of that specific ad set or ad. |
+
+---
+
+## One Row Per Item, Per Level, Per Date
+
+This is the most important rule for structuring your CSV correctly: **TheOptimizer does not distribute data up or down the hierarchy automatically.**
+
+If you upload 20 sales and $2,000 in revenue for a campaign on a given day, TheOptimizer records those values at the campaign level only. It has no way of knowing which ad sets or individual ads generated those results — you have to tell it explicitly by providing separate rows.
+
+### Example
+
+Say you have a campaign with one ad set and three ads, and you want to upload today's data for all levels:
+
+| date | level | campaign_id | level_id | sales | revenue |
+| --- | --- | --- | --- | --- | --- |
+| 2026-05-23 | campaign | 1000001 | 1000001 | 20 | 2000.00 |
+| 2026-05-23 | ad_set | 1000001 | 1000002 | 20 | 2000.00 |
+| 2026-05-23 | ad | 1000001 | 1000003 | 8 | 800.00 |
+| 2026-05-23 | ad | 1000001 | 1000004 | 7 | 700.00 |
+| 2026-05-23 | ad | 1000001 | 1000005 | 5 | 500.00 |
+
+Notice that:
+- `campaign_id` is the same (`1000001`) on every row — it's the anchor that ties all rows to the right campaign.
+- `level_id` changes per row to identify the specific item at each level.
+- The ad-level rows add up to the ad set and campaign totals — but TheOptimizer does not enforce this. You're responsible for the consistency of your own data.
+
+You don't need to include every level in every upload. If you only have campaign-level data, upload only campaign-level rows. Just be aware that ad sets and ads will show no data for those metrics unless you upload rows for them explicitly.
+
+---
+
+## Uploading the CSV
+
+### Manual Upload
+
+From the Custom Data Source integration card, click **Upload CSV** and select your completed file. TheOptimizer validates the structure and imports the data.
+
+You can also upload from inside the **Edit** dialog — open the integration, scroll to the upload section, and attach your file there.
+
+Uploads are additive for the specified dates. If you upload data for a date that already has data, the new upload will overwrite the existing values for the rows provided.
+
+### API Upload
+
+For automated workflows, use the API to submit your CSV programmatically. From the integration card, click **Send Data via API** to open the API instructions dialog. You'll find:
+
+- A **unique API key** tied to this specific integration
+- The **endpoint URL** and **request format** for submitting the CSV file
+
+Share these with your development team to build an automated pipeline — for example, a nightly job that pulls data from your backend system, generates the CSV, and posts it to TheOptimizer. Once set up, the entire data delivery process runs without any manual steps.
+
+<Tip>
+  Each Custom Data Source integration has its own API key. If you have multiple integrations, make sure you're using the right key for each one — submitting data with the wrong key will result in the data landing in the wrong integration.
+</Tip>
+
+---
+
+## Common Mistakes to Avoid
+
+**Missing `campaign_id` on non-campaign rows.** The campaign ID is required on every row, not just campaign-level ones. Rows without a valid `campaign_id` will be rejected.
+
+**Uploading only campaign-level data and expecting ad-level reporting.** Data doesn't cascade down. If your rules or reports need ad-level metric values, you must upload ad-level rows.
+
+**Using the wrong date format.** TheOptimizer expects `YYYY-MM-DD`. Dates in other formats (e.g., `05/23/2026` or `23-05-2026`) will not be parsed correctly.
+
+**Uploading a modified template.** Adding columns not defined as data fields, or removing required system columns, will cause the upload to fail. Always use the downloaded template as your base.
