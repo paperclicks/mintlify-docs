@@ -1,42 +1,42 @@
 ---
-title: "Custom Data Source"
+title: "Bring Your Own Data"
 description: "Import any conversion, revenue, or custom event data from your own tracking systems into TheOptimizer — with full control over the metrics you define and support for both manual CSV uploads and automated API delivery."
 ---
 
-Custom Data Source is a flexible integration designed for teams who use their own internal tracking systems or third-party platforms that aren't natively supported by TheOptimizer. Instead of being limited to a fixed set of importable fields, you define exactly which metrics matter to your workflow — and then push that data in via CSV or API.
+Bring Your Own Data is a flexible integration designed for teams who use their own internal tracking systems or third-party platforms that aren't natively supported by TheOptimizer. Instead of being limited to a fixed set of importable fields, you define exactly which metrics matter to your workflow — and then push that data in via CSV or API.
 
 ---
 
-## Why Custom Data Source
+## Why Bring Your Own Data
 
 Before this integration, TheOptimizer's CSV and Google Sheets import options only supported a fixed structure: conversions, clicks, and revenue. That was sufficient for basic use cases but left teams unable to bring in richer data like custom sales events, add-to-cart actions, upsell completions, or any other metric tracked in their backend.
 
-Custom Data Source solves two specific problems:
+Bring Your Own Data solves two specific problems:
 
-**1. Flexible metric definition.** You create your own fields — give each one a name, choose a type, and TheOptimizer treats it as a proper metric across reporting and automation. You can define up to 50 fields in total across all your Custom Data Source integrations.
+**1. Flexible metric definition.** You create your own fields — give each one a name, choose a type, and TheOptimizer treats it as a proper metric across reporting and automation. You can define up to 50 fields in total across all your Bring Your Own Data integrations.
 
-**2. API-based submission.** In addition to manual CSV uploads, every Custom Data Source integration generates a unique API key and endpoint instructions, so your technical team can automate the entire data delivery process.
+**2. API-based submission.** In addition to manual CSV uploads, every Bring Your Own Data integration generates a unique API key and endpoint instructions, so your technical team can automate the entire data delivery process.
 
 ---
 
-## The Custom Data Sources View
+## The Bring Your Own Data View
 
-Navigate to **Integrations → Custom Data Source** to see all integrations you've created.
+Navigate to **Integrations → Bring Your Own Data** to see all integrations you've created.
 
 <Frame>
-  <img src="/images/custom-data-source/all-custom-data-sources.png" alt="Custom Data Sources list — all configured integrations with their quick action cards" />
+  <img src="/images/bring-your-own-data/all-custom-data-sources.png" alt="Bring Your Own Data list — all configured integrations with their quick action cards" />
 </Frame>
 
 Each integration card shows the integration name and surfaces three quick actions directly on the card (see [Working with a Data Source](#working-with-a-data-source) below). You can create as many integrations as you need — for example, one per ad network, one per data provider, or one per team.
 
 ---
 
-## Creating a Custom Data Source
+## Creating a Bring Your Own Data Integration
 
 Click **Connect New Account** to open the configuration dialog.
 
 <Frame>
-  <img src="/images/custom-data-source/new-custom-data-source.png" alt="New Custom Data Source dialog — name, currency, and data field configuration" />
+  <img src="/images/bring-your-own-data/new-custom-data-source.png" alt="New Bring Your Own Data dialog — name, currency, and data field configuration" />
 </Frame>
 
 ### Integration Name
@@ -65,11 +65,11 @@ To add a field: enter a name, select a type, and click **Add**. Repeat for every
 | **Decimal** | Fractional values that aren't monetary — ratios, rates, scores |
 | **Currency** | Monetary amounts — revenue, cost-per-sale, upsell value, etc. |
 
-There is a **hard limit of 50 data fields total** across all Custom Data Source integrations in your account. If you've already created fields for one integration, those count toward this limit.
+There is a **hard limit of 50 data fields total** across all Bring Your Own Data integrations in your account. If you've already created fields for one integration, those count toward this limit.
 
 #### Reusing Fields Across Integrations
 
-When you create a second (or third) Custom Data Source integration, you'll see a list of data fields already defined by your other integrations. You can toggle any of them **on** to include them in this integration's CSV template as well. Hovering over the lock icon on a field shows which integration owns it, its type, and its current status.
+When you create a second (or third) Bring Your Own Data integration, you'll see a list of data fields already defined by your other integrations. You can toggle any of them **on** to include them in this integration's CSV template as well. Hovering over the lock icon on a field shows which integration owns it, its type, and its current status.
 
 #### Active vs. Inactive Fields
 
@@ -79,17 +79,17 @@ Toggling a field off does **not** remove it from TheOptimizer's reporting or hid
 
 ## Working with a Data Source
 
-Once a Custom Data Source integration is created, three actions are available — directly from the card in the list view, or by opening **Edit**.
+Once a Bring Your Own Data integration is created, three actions are available — directly from the card in the list view, or by opening **Edit**.
 
 <Frame>
-  <img src="/images/custom-data-source/data-source-actions.png" alt="Data Source action cards — Download CSV Template, Upload CSV, and Send via API" />
+  <img src="/images/bring-your-own-data/data-source-actions.png" alt="Data Source action cards — Download CSV Template, Upload CSV, and Send via API" />
 </Frame>
 
 ### Download CSV Template
 
 Downloads a pre-formatted CSV file containing all your active data fields as column headers, plus the required system columns. The filename matches the integration name. Use this template as the base for every upload — do not add or rename columns manually.
 
-See [CSV Format & Upload Guide](/integrations/custom-data-source/csv-guide) for a full explanation of how to fill in the template correctly.
+See [CSV Format & Upload Guide](/integrations/bring-your-own-data/csv-guide) for a full explanation of how to fill in the template correctly.
 
 ### Upload CSV
 
@@ -108,7 +108,7 @@ Hand these details to your technical team to build an automated pipeline — for
 
 ---
 
-## Editing a Custom Data Source
+## Editing a Bring Your Own Data Integration
 
 Click **Edit** on any integration card to open the same configuration dialog used during creation. From here you can:
 
@@ -118,5 +118,5 @@ Click **Edit** on any integration card to open the same configuration dialog use
 - Access the upload and API panels
 
 <Frame>
-  <img src="/images/custom-data-source/edit-custom-data-source.png" alt="Edit Custom Data Source dialog — modify name, currency, fields, and access upload and API options" />
+  <img src="/images/bring-your-own-data/edit-custom-data-source.png" alt="Edit Bring Your Own Data dialog — modify name, currency, fields, and access upload and API options" />
 </Frame>

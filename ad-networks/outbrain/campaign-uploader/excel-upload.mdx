@@ -6,15 +6,25 @@ sidebarTitle: "Excel Bulk Upload"
 
 import { ArcadePopoutModal } from '/snippets/arcade-popout-modal.mdx';
 
-The Outbrain Excel Uploader lets you prepare and launch multiple campaigns at once without going through the UI one by one. You define everything — targeting, budget, bidding, and creatives — in a structured Google Sheets template, export it to Excel, and submit it through TheOptimizer.
+The Outbrain Excel Uploader lets you prepare and launch multiple campaigns at once without going through the UI one by one. You define everything — targeting, budget, bidding, and creatives — in an Excel file and submit it through TheOptimizer. You can start from a blank Google Sheets template, or download a pre-filled Excel directly from any existing campaign — ideal when you're launching variations of setups you already run.
 
 ---
 
 ## How It Works
 
 <Steps>
-  <Step title="Clone the Google Sheets Template">
-    Start by making a copy of the Outbrain Excel template into your own Google account:
+  <Step title="Get Your Template">
+    You have two ways to get started — choose whichever fits your workflow:
+
+    **Option A — Download pre-filled from an existing campaign (recommended)**
+
+    Open [**Campaign Creator**](https://native.theoptimizer.io/#/campaign-creator-queue) in TheOptimizer and choose **Create from Excel**. In the modal, select an existing campaign from the **Reference campaign** dropdown, then click **Download** to get an Excel file already populated with that campaign's targeting, budget, bidding, and ad structure. Use this as your base — duplicate rows, update creatives and headlines, and adjust settings as needed.
+
+    This is the fastest approach when you're launching campaigns similar to setups you already run.
+
+    **Option B — Start from the empty Google Sheets template**
+
+    If you're setting up a new campaign type from scratch, clone the empty template into your Google account:
 
     [**Clone the Outbrain Google Sheets Template →**](https://docs.google.com/spreadsheets/d/14Z3lSobmqQxY83I-XK6foWtLTxy3qGP7_2yrIsBBAAw/copy)
 
@@ -31,13 +41,12 @@ The Outbrain Excel Uploader lets you prepare and launch multiple campaigns at on
     - Columns marked 🟡 are conditionally required (e.g. End Date is only needed if Run Forever is set to FALSE)
     - Use the auxiliary sheets to look up valid values for locations, languages, IAB categories, etc.
   </Step>
-  <Step title="Export to Excel and Upload">
-    Once your sheet is ready:
+  <Step title="Upload Your File">
+    Open [**Campaign Creator**](https://native.theoptimizer.io/#/campaign-creator-queue) in TheOptimizer and select **Create from Excel**.
 
-    1. In Google Sheets, go to **File → Download → Microsoft Excel (.xlsx)**
-    2. Open [**Campaign Creator**](https://native.theoptimizer.io/#/campaign-creator-queue) in TheOptimizer
-    3. From the menu, select **Create from Excel**
-    4. Follow the on-screen steps and submit your file
+    If you used **Option B** (Google Sheets template), first export your sheet: in Google Sheets, go to **File → Download → Microsoft Excel (.xlsx)**. Then follow the on-screen steps and submit your file.
+
+    If you used **Option A** (pre-filled download), your file is already an Excel — just select it and submit.
   </Step>
   <Step title="Check Your Email for Confirmation">
     After submitting, TheOptimizer processes the file and sends you an email:

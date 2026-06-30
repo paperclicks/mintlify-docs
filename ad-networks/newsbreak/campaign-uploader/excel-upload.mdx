@@ -1,0 +1,77 @@
+---
+title: "Bulk Upload Campaigns via Excel"
+description: "Launch multiple NewsBreak campaigns at once using an Excel file prepared from an existing campaign or the provided template, then submit it through TheOptimizer's Campaign Creator."
+sidebarTitle: "Excel Bulk Upload"
+---
+
+The NewsBreak Excel Uploader lets you prepare and launch multiple campaigns at once without going through the UI one by one. You define everything — targeting, budget, bidding, and creatives — in an Excel file and submit it through TheOptimizer. You can start from a blank template, or download a pre-filled Excel directly from any existing NewsBreak campaign — ideal when you're launching variations of setups you already run.
+
+---
+
+## How It Works
+
+<Steps>
+  <Step title="Get Your Template">
+    You have two ways to get started — choose whichever fits your workflow:
+
+    **Option A — Download pre-filled from an existing campaign (recommended)**
+
+    Open [**Campaign Creator**](https://native.theoptimizer.io/#/campaign-creator-queue) in TheOptimizer and choose **Create from Excel**. In the modal, select an existing NewsBreak campaign from the **Reference campaign** dropdown, then click **Download** to get an Excel file already populated with that campaign's targeting, budget, bidding, and ad structure. Use this as your base — duplicate rows, update creatives and headlines, and adjust settings as needed.
+
+    This is the fastest approach when you're launching campaigns similar to setups you already run.
+
+    **Option B — Start from the empty template**
+
+    If you're setting up a new campaign type from scratch, open [**Campaign Creator**](https://native.theoptimizer.io/#/campaign-creator-queue), choose **Create from Excel**, and click **Download template** to get the empty NewsBreak Excel template. Fill in your campaign settings from scratch using the column notes in the template as a guide.
+  </Step>
+  <Step title="Fill In or Edit Your Campaigns">
+    Each row in the main sheet represents one ad. To create a campaign with multiple ads, add one row per ad — keep all campaign-level columns identical and vary only the ad-level columns (image URL, headline, etc.).
+
+    **Key things to note:**
+    - Columns marked 🚩 **REQUIRED** must be filled in — the upload will fail if they're missing
+    - Columns marked 🟡 are conditionally required (e.g. Countries is only needed if Geo Targeting is set to INCLUDE or EXCLUDE)
+    - Hover over any column header to see the accepted values and format
+
+    If you started from a reference campaign (Option A), most columns are already filled in. You typically only need to update the ad-level columns (image URL, headline, target URL) and duplicate rows for additional campaigns.
+  </Step>
+  <Step title="Upload Your File">
+    Open [**Campaign Creator**](https://native.theoptimizer.io/#/campaign-creator-queue) in TheOptimizer and select **Create from Excel**.
+
+    If you used **Option B** (blank template downloaded as Excel), your file is ready to submit — just select it and follow the on-screen steps.
+
+    If you used **Option A** (pre-filled download), your file is already an Excel — just select it and submit.
+  </Step>
+  <Step title="Check Your Email for Confirmation">
+    After submitting, TheOptimizer processes the file and sends you an email:
+
+    - ✅ **Successful upload** — your campaigns are queued and being created on NewsBreak. Track progress from the [Campaign Creator](https://native.theoptimizer.io/#/campaign-creator-queue) page.
+    - ⚠️ **Upload failed** — the email will include a new Excel file with all error cells highlighted. Download it, fix the issues, and re-upload.
+  </Step>
+</Steps>
+
+---
+
+## Column Reference
+
+The table below describes the key columns in the NewsBreak Excel template. Hover over any column header in the template for the full accepted values and format notes.
+
+| Column | Description |
+|---|---|
+| **Traffic Source Account ID** | 🚩 REQUIRED. The NewsBreak account ID from TheOptimizer where campaigns will be uploaded. Find it under Traffic Sources in the left menu. |
+| **Campaign Name** | 🚩 REQUIRED. The name of the campaign. |
+| **Campaign Status** | 🚩 REQUIRED. `ACTIVE` — starts running once approved. `PAUSED` — created paused; you start it manually. |
+| **Start Date** | Campaign start date. Leave empty to start immediately. |
+| **End Date** | Campaign end date. Leave empty to run until budget is depleted. |
+| **Country Targeting** | 🚩 REQUIRED. `ALL`, `INCLUDE`, or `EXCLUDE`. |
+| **Countries** | 🟡 Required if Country Targeting is INCLUDE or EXCLUDE. Comma-separated country codes (e.g. `US, CA`). |
+| **Device Targeting** | 🚩 REQUIRED. Target platforms. Values: `DESKTOP`, `MOBILE`, `TABLET`. Comma-separated for multiple. |
+| **OS Targeting** | OS to target. Comma-separated OS names. |
+| **Budget Type** | 🚩 REQUIRED. `DAILY` or `TOTAL`. |
+| **Budget** | 🚩 REQUIRED. Daily or total campaign budget. |
+| **Bid** | 🚩 REQUIRED. Cost per click. |
+| **Tracking Code** | URL parameters appended to landing page URLs for external tracking. |
+| **Target URL** | 🚩 REQUIRED. Landing page URL for the ad. |
+| **Image URL** | 🚩 REQUIRED. Ad image URL. |
+| **Headline** | 🚩 REQUIRED. Ad headline text. |
+| **Rules** | Comma-separated <a href="/automation/rules-guide" target="_blank" rel="noopener noreferrer">Rule</a> IDs from TheOptimizer to attach to the campaign after creation. |
+| **Rule Groups** | Comma-separated rule group names from TheOptimizer to attach after creation. |

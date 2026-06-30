@@ -42,10 +42,10 @@
               "integrations/google-analytics",
               "integrations/upload-csv",
               {
-                "group": "Custom Data Source",
+                "group": "Bring Your Own Data",
                 "pages": [
-                  "integrations/custom-data-source/connect",
-                  "integrations/custom-data-source/csv-guide"
+                  "integrations/bring-your-own-data/connect",
+                  "integrations/bring-your-own-data/csv-guide"
                 ]
               }
             ],
@@ -141,15 +141,20 @@
                     ]
                   },
                   {
-                    "group": "Mass Campaign Uploader",
+                    "group": "Campaign Creator",
                     "pages": [
                       "ad-networks/facebook/campaign-uploader/use-cases",
                       "ad-networks/facebook/campaign-uploader/vs-ads-manager",
-                      "ad-networks/facebook/campaign-uploader/getting-started",
                       "ad-networks/facebook/campaign-uploader/simple-campaign",
                       "ad-networks/facebook/campaign-uploader/variations",
                       "ad-networks/facebook/campaign-uploader/multi-account",
                       "ad-networks/facebook/campaign-uploader/existing-posts",
+                      {
+                        "group": "Cloning Campaigns, Ad Sets, Ads",
+                        "pages": [
+                          "ad-networks/facebook/cloning/overview"
+                        ]
+                      },
                       "ad-networks/facebook/campaign-uploader/existing-campaign",
                       "ad-networks/facebook/campaign-uploader/naming-templates",
                       "ad-networks/facebook/campaign-uploader/templates",
@@ -252,7 +257,13 @@
                 "group": "NewsBreak",
                 "pages": [
                   "ad-networks/newsbreak/integration/connect",
-                  "ad-networks/newsbreak/integration/manage-accounts"
+                  "ad-networks/newsbreak/integration/manage-accounts",
+                  {
+                    "group": "Campaign Uploader",
+                    "pages": [
+                      "ad-networks/newsbreak/campaign-uploader/excel-upload"
+                    ]
+                  }
                 ]
               },
               {
@@ -775,6 +786,14 @@
     {
       "source": "/help/knowledge-base/how-to-upload-revenue-via-csv-for-taboola-campaigns",
       "destination": "/integrations/upload-csv"
+    },
+    {
+      "source": "/integrations/custom-data-source/connect",
+      "destination": "/integrations/bring-your-own-data/connect"
+    },
+    {
+      "source": "/integrations/custom-data-source/csv-guide",
+      "destination": "/integrations/bring-your-own-data/csv-guide"
     }
   ]
 }

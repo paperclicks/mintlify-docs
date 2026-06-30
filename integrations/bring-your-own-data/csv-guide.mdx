@@ -1,15 +1,15 @@
 ---
 title: "CSV Format & Upload Guide"
-description: "How to correctly structure your Custom Data Source CSV — required columns, per-level rows, and how to submit data manually or via API."
+description: "How to correctly structure your Bring Your Own Data CSV — required columns, per-level rows, and how to submit data manually or via API."
 ---
 
-Every Custom Data Source integration revolves around a CSV file. TheOptimizer generates a template based on the data fields you've defined, and you fill it in with the actual metric values for each campaign item you want to report on. This page explains the format in detail and walks through both upload methods.
+Every Bring Your Own Data integration revolves around a CSV file. TheOptimizer generates a template based on the data fields you've defined, and you fill it in with the actual metric values for each campaign item you want to report on. This page explains the format in detail and walks through both upload methods.
 
 ---
 
 ## Downloading the Template
 
-From your Custom Data Source integration card (or the Edit dialog), click **Download CSV Template**. The file is named after your integration and contains:
+From your Bring Your Own Data integration card (or the Edit dialog), click **Download CSV Template**. The file is named after your integration and contains:
 
 - All your **active data fields** as column headers
 - The **required system columns** that TheOptimizer needs to map each row to the right campaign item
@@ -62,7 +62,7 @@ You don't need to include every level in every upload. If you only have campaign
 
 ### Manual Upload
 
-From the Custom Data Source integration card, click **Upload CSV** and select your completed file. TheOptimizer validates the structure and imports the data.
+From the Bring Your Own Data integration card, click **Upload CSV** and select your completed file. TheOptimizer validates the structure and imports the data.
 
 You can also upload from inside the **Edit** dialog — open the integration, scroll to the upload section, and attach your file there.
 
@@ -78,7 +78,7 @@ For automated workflows, use the API to submit your CSV programmatically. From t
 Share these with your development team to build an automated pipeline — for example, a nightly job that pulls data from your backend system, generates the CSV, and posts it to TheOptimizer. Once set up, the entire data delivery process runs without any manual steps.
 
 <Tip>
-  Each Custom Data Source integration has its own API key. If you have multiple integrations, make sure you're using the right key for each one — submitting data with the wrong key will result in the data landing in the wrong integration.
+  Each Bring Your Own Data integration has its own API key. If you have multiple integrations, make sure you're using the right key for each one — submitting data with the wrong key will result in the data landing in the wrong integration.
 </Tip>
 
 ---

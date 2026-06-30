@@ -1,0 +1,153 @@
+---
+title: "Cloning Campaigns, Ad Sets & Ads"
+description: "Clone Facebook campaigns, ad sets, and ads — individually or in bulk — to scale winning creatives, move campaigns between ad accounts, or test new setups without rebuilding from scratch."
+sidebarTitle: "Cloning"
+---
+
+Cloning lets you duplicate Facebook campaigns, ad sets, and ads with full control over the destination and key settings. You can clone a single item or select dozens at once and clone them all in one operation — across ad accounts, across campaigns, or within the same campaign.
+
+Cloning is available at all three levels: **Campaign**, **Ad Set**, and **Ad**.
+
+---
+
+## When to Use Cloning
+
+**Scale winning campaigns and ads**
+
+When a campaign, ad set, or ad is performing well, cloning lets you deploy it to additional ad accounts or create multiple copies on the same account to increase spend capacity. You can also filter ads in the Campaign Manager by performance metrics (spend, ROI, ROAS, net profit) and bulk-clone only the winners into a destination scaling campaign — without touching ads that aren't performing.
+
+**Reduce downtime when switching ad accounts**
+
+When you need to move your campaigns to a different ad account — whether you're migrating a business to a new account, replicating a setup for a new client, consolidating accounts, or simply starting fresh — cloning lets you do it in minutes rather than rebuilding from scratch. Select all campaigns in the source account, choose the destination account, update any pages, pixels, or identity settings that differ between the two accounts, and clone. What would otherwise take days of manual work becomes a single operation.
+
+**Test variations without rebuilding**
+
+Clone a set of ads into a different ad set to test a new destination URL, a different Facebook Page, or a different pixel — without recreating the ad creative. All identity and tracking settings can be overridden at clone time.
+
+---
+
+## Single vs. Bulk Cloning
+
+**Single clone** — hover over any campaign, ad set, or ad row in the Campaign Manager to reveal the inline **Clone** button below the item name. Click it to open the clone modal for that one item.
+
+**Bulk clone** — check the boxes on multiple campaigns, ad sets, or ads (even from different ad accounts or campaigns), then click **Clone** in the bulk action bar at the bottom of the screen. All selected items are cloned together in one operation.
+
+<Frame>
+  <img src="/images/facebook/cloning/bulk-cloning.png" alt="Bulk cloning — 10 ads selected, Clone button visible in the bulk action bar" />
+</Frame>
+
+---
+
+## Cloning a Campaign
+
+Click **Clone** on a campaign to open the Clone Campaign modal.
+
+<Frame>
+  <img src="/images/facebook/cloning/campaign-cloning.png" alt="Clone Campaign modal — name, destination account, number of copies, campaign status" />
+</Frame>
+
+### Name
+
+The cloned campaign inherits the original name by default. Click **+ Add suffix** to append additional identifiers:
+
+<Frame>
+  <img src="/images/facebook/cloning/clone-naming-options.png" alt="Name suffix options — Timestamp, Date, Account Name, Account ID, Custom text" />
+</Frame>
+
+| Option | Example output |
+| --- | --- |
+| **Timestamp** | `2026-06-24T08:54:46.735Z` |
+| **Date** | `2026-06-24` |
+| **Account Name** | The ad account's display name |
+| **Account ID** | The numeric account ID |
+| **Custom text** | Any text you type |
+
+You can combine multiple suffixes and edit the name field directly.
+
+### Destination Account
+
+Choose which ad account the cloned campaign should be created in. Defaults to the same account as the original.
+
+### Number of Copies
+
+How many copies to create for each selected campaign. Setting this to 3 with 2 campaigns selected creates 6 cloned campaigns total.
+
+### Campaign Status
+
+Whether the cloned campaigns start as **Active** (go live immediately) or **Paused** (held for review before activation).
+
+### Campaign Settings
+
+<Frame>
+  <img src="/images/facebook/cloning/campaign-cloning-schedule.png" alt="Campaign Settings expanded — Set Schedule with timezone, start date, and Adjust Budget" />
+</Frame>
+
+**Set Schedule** — optionally set a start date, end date, and time for the cloned campaign. Unlike Facebook's native scheduling, TheOptimizer lets you choose a **timezone** independent of the ad account's timezone. If your ad account is in UTC but you work in Eastern or Pacific time, you can schedule in your own timezone and the platform converts it automatically.
+
+**Adjust Budget** — override the original campaign budget for all cloned copies. Options:
+- Increase or decrease by a fixed amount or percentage
+- Set the budget to a specific value
+
+### Ad Set Settings
+
+**Promoted Object** — override the **Pixel** and **Optimized Event** for all ad sets inside the cloned campaigns. Useful when cloning to a different ad account that uses a different pixel.
+
+### Ad Settings
+
+<Frame>
+  <img src="/images/facebook/cloning/campaign-cloning-adset-ad-settings.png" alt="Ad Set Settings and Ad Settings expanded — promoted object, overwrite URL, identity, tracking" />
+</Frame>
+
+<Frame>
+  <img src="/images/facebook/cloning/campaign-cloning-identity-tracking.png" alt="Identity and Tracking settings expanded — Facebook Page, Instagram account, tracking pixel" />
+</Frame>
+
+**Overwrite Website & Display URL** — replace the destination URL on every ad in the cloned campaigns. Enter a new URL and optionally a separate display link. Leave this off to keep each ad's original URL.
+
+**Identity** — override the **Facebook Page** and **Instagram account** used for all cloned ads. This is essential when cloning to a new ad account after a restriction, where the original page may also be restricted.
+
+**Tracking** — override the **tracking pixel** for all cloned ads.
+
+---
+
+## Cloning an Ad Set
+
+Click **Clone** on an ad set to open the Clone Ad Set modal.
+
+<Frame>
+  <img src="/images/facebook/cloning/adset-cloning.png" alt="Clone Ad Set modal — name, destination account, destination campaign, number of copies" />
+</Frame>
+
+Ad set cloning includes the same name customisation as campaigns. Additional fields:
+
+| Field | Description |
+| --- | --- |
+| **Destination Account** | The ad account to create the cloned ad set in |
+| **Destination Campaign** | The campaign within that account to place the cloned ad set |
+| **Number of Copies** | How many copies to create for each selected ad set |
+| **Ad Set Settings** | Override the Promoted Object (Pixel, Optimized Event) |
+| **Ad Settings** | Override Identity (Facebook Page, Instagram account) and Tracking (pixel) |
+
+Ad sets can be cloned across campaigns and across ad accounts. You can select ad sets from multiple campaigns at once and clone them all to a single destination campaign in one operation.
+
+---
+
+## Cloning an Ad
+
+Click **Clone** on an ad to open the Clone Ad modal.
+
+<Frame>
+  <img src="/images/facebook/cloning/ad-cloning.png" alt="Clone Ad modal — name, destination account, destination campaign, destination ad set, number of copies" />
+</Frame>
+
+Ad cloning requires selecting three destinations: the account, the campaign within it, and the ad set within that campaign. Fields:
+
+| Field | Description |
+| --- | --- |
+| **Destination Account** | The ad account to create the cloned ad in |
+| **Destination Campaign** | The campaign to place the cloned ad in |
+| **Destination Ad Set** | The ad set within that campaign |
+| **Number of Copies** | How many copies to create for each selected ad |
+| **Ad Settings** | Override Identity (Facebook Page, Instagram account) and Tracking (pixel) |
+
+This is the most granular cloning operation. A common use is filtering ads in the Campaign Manager by performance, selecting winners, and cloning them all directly into a destination ad set inside your scaling campaign.
