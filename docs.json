@@ -386,6 +386,13 @@
               }
             ],
             "icon": "chart-line"
+          },
+          {
+            "group": "API",
+            "pages": [
+              "api/overview"
+            ],
+            "icon": "code"
           }
         ]
       }
