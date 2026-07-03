@@ -261,7 +261,8 @@
                   {
                     "group": "Campaign Uploader",
                     "pages": [
-                      "ad-networks/newsbreak/campaign-uploader/excel-upload"
+                      "ad-networks/newsbreak/campaign-uploader/excel-upload",
+                      "ad-networks/newsbreak/campaign-uploader/ai-campaign-builder"
                     ]
                   }
                 ]

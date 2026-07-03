@@ -1,0 +1,120 @@
+---
+title: "Build NewsBreak Campaigns with AI"
+description: "Use a ready-made AI skill to turn a NewsBreak campaign template plus your images and copy into a complete, upload-ready Excel/CSV file — in Claude, ChatGPT, or Gemini."
+sidebarTitle: "AI Campaign Builder"
+---
+
+The **NewsBreak Campaign Builder** is an AI skill we provide so you can generate a complete
+bulk-upload file from an existing campaign in seconds instead of filling the template by
+hand. You give the AI a campaign template, your images, and your headlines/descriptions;
+it produces a ready-to-upload Excel/CSV — correct column values, valid dropdowns, geo
+targeting by Location ID, naming conventions carried forward, and copy checked against
+NewsBreak's limits.
+
+It works best in **Claude** (where it installs as a proper Skill), and we also provide a
+portable version for **ChatGPT** and **Gemini**.
+
+<Info>
+  This skill only *builds the file*. You still upload it through TheOptimizer's
+  [NewsBreak Excel uploader](/ad-networks/newsbreak/campaign-uploader/excel-upload) to
+  create the campaigns.
+</Info>
+
+## What you'll need
+
+- A NewsBreak campaign template — export one from an existing campaign in
+  **Campaign Creator → NewsBreak → Reference campaign → download**, or start from the blank template.
+- Your **images** — as public URLs (recommended). If you only have image files, host them
+  somewhere public first (e.g. Google Drive) and use the links.
+- Your **headlines and descriptions** (Title ≤ 90 chars, Description ≤ 90 chars,
+  Brand Name ≤ 25 chars, media ≤ 5 MB).
+
+---
+
+## Option A — Claude (recommended)
+
+<Steps>
+  <Step title="Download the skill">
+    Download the skill file for your Claude platform:
+
+    - **Claude desktop app (Cowork):** [**newsbreak-campaign-builder.skill**](/downloads/newsbreak-campaign-builder.skill)
+    - **Claude Code / claude.ai:** [**newsbreak-campaign-builder.zip**](/downloads/newsbreak-campaign-builder.zip)
+  </Step>
+  <Step title="Install it">
+    - **Claude desktop app (Cowork)**: open the `.skill` file you downloaded and click **Save skill**.
+    - **claude.ai** (Pro, Max, Team, or Enterprise): go to **Settings → Capabilities** and upload the `.zip`. The skill is added to your account.
+    - **Claude Code**: unzip into `~/.claude/skills/`.
+
+    <Note>
+      Custom skills are **per user** — each team member installs it on their own account.
+      There is currently no org-wide push.
+    </Note>
+  </Step>
+  <Step title="Use it">
+    Start a chat, attach your template, and describe what you want. Claude detects the
+    skill automatically. Example prompt:
+
+    ```
+    Here's my NewsBreak campaign template (attached). Create 6 campaigns for Texas,
+    Florida, and California — one English and one Spanish each. Each campaign has 2 ad sets
+    with 3 ads. Here are 2 image links and 3 title+description pairs [paste them]. Make all
+    combinations, translate the Spanish versions, and keep every other setting the same.
+    ```
+
+    Claude will confirm the math, ask about anything missing, generate the file, and
+    validate it before handing it back.
+  </Step>
+  <Step title="Upload to TheOptimizer">
+    Take the generated `.xlsx` and upload it through the
+    [NewsBreak Excel uploader](/ad-networks/newsbreak/campaign-uploader/excel-upload).
+  </Step>
+</Steps>
+
+---
+
+## Option B — ChatGPT or Gemini
+
+ChatGPT and Gemini can't install the skill file, but the same logic works as a custom
+assistant.
+
+<Steps>
+  <Step title="Create a custom assistant">
+    - **ChatGPT:** create a **Custom GPT** (or a Project).
+    - **Gemini:** create a **Gem**.
+  </Step>
+  <Step title="Add the instructions">
+    Download [**newsbreak-campaign-builder-PORTABLE-chatgpt-gemini.md**](/downloads/newsbreak-campaign-builder-PORTABLE-chatgpt-gemini.md)
+    and paste its contents into the assistant's **Instructions** field.
+  </Step>
+  <Step title="Add the reference files as knowledge">
+    Upload the **NewsBreak template** and the **column reference** as knowledge/reference
+    files so the assistant always uses valid column values.
+  </Step>
+  <Step title="Use it">
+    Attach your template and use the same kind of prompt shown in Option A.
+  </Step>
+</Steps>
+
+<Warning>
+  On ChatGPT/Gemini the assistant can't upload your image files or automatically check that
+  links are live — provide **public image URLs** and double-check the generated file before
+  uploading.
+</Warning>
+
+---
+
+## What the AI checks for you
+
+- Required columns are filled on every row.
+- Dropdown columns use valid values (Objective, Platform, Bid Type, etc.).
+- Geo targeting uses numeric **Location IDs**, not place names.
+- URLs are well-formed.
+- Copy is within limits: Title ≤ 90, Description ≤ 90, Brand Name ≤ 25.
+- Dates use the `YYYY-MM-DD HH:MM` format.
+- Your existing **naming convention** is detected and carried into the new campaigns.
+
+<Tip>
+  Start from an existing campaign export rather than the blank template — the AI inherits
+  all your real settings (account, budget, bid, targeting, tracking) and you only change
+  what's different (geo, creatives, copy).
+</Tip>
