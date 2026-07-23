@@ -38,6 +38,7 @@
             "pages": [
               "integrations/overview",
               "integrations/ad-networks",
+              "integrations/custom-events",
               "integrations/tracking-platforms",
               "integrations/google-analytics",
               "integrations/upload-csv",
@@ -794,6 +795,10 @@
     {
       "source": "/help/knowledge-base/how-to-upload-revenue-via-csv-for-taboola-campaigns",
       "destination": "/integrations/upload-csv"
+    },
+    {
+      "source": "/ad-networks/facebook/integration/custom-events",
+      "destination": "/integrations/custom-events"
     },
     {
       "source": "/integrations/custom-data-source/connect",
