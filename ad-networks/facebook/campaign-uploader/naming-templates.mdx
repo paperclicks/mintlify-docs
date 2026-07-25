@@ -39,6 +39,8 @@ Available placeholders include Targeting, Placement, Budget, Bid Amount, Bid Str
 
 **Nested names** — lets you include the ad set name inside the campaign name, or the ad name inside the ad set name. The system resolves these at generation time, so each campaign's name can include the ad set it contains.
 
+**Cross-level placeholders** — you can reference group names from a different level in a template. For example, when building the **Ad Set naming template**, you can insert the **Ad (Creative) group name** as a placeholder. This means an ad set that contains ads from the "EN" creative group will include "EN" in its name automatically, even though the creative group belongs to a lower level. This is useful for keeping all levels of your campaign structure consistently named when groups span levels.
+
 **Incremental index** — adds an auto-incrementing number (1, 2, 3, ...) to each variation. The simplest guarantee of unique names across all generated items.
 
 <Tip>
@@ -47,4 +49,32 @@ Available placeholders include Targeting, Placement, Budget, Bid Amount, Bid Str
 
 <Tip>
   Use the **Quick Suggestions** at the top of the template builder as a starting point. They combine the most commonly useful placeholders and save time compared to building a template from scratch.
+</Tip>
+
+---
+
+## Transformation Functions
+
+Each placeholder tile in the naming template can have a **transformation function** applied to it. Click the **F** button on any placeholder tile to open the transformation menu. Transformations modify the resolved value of a placeholder before it appears in the name.
+
+Available transformations:
+
+| Function | What it does | Example |
+|---|---|---|
+| **Upcase** | Converts the value to ALL CAPS | `en-lp01` → `EN-LP01` |
+| **Downcase** | Converts the value to all lowercase | `EN-LP01` → `en-lp01` |
+| **Capitalize** | Capitalises the first letter | `united states` → `United states` |
+| **Trim** | Removes leading and trailing whitespace | ` US ` → `US` |
+| **Split** | Splits the value by a delimiter and returns all parts | `EN-LP01` split by `-` → `EN`, `LP01` |
+| **First** | Returns the first element after splitting | `EN-LP01` split by `-`, first → `EN` |
+| **Last** | Returns the last element after splitting | `EN-LP01` split by `-`, last → `LP01` |
+| **Index N** | Returns the Nth element after splitting (zero-based) | `EN-LP01` split by `-`, index 1 → `LP01` |
+| **Join** | Joins multiple values with a delimiter | `["EN", "LP01"]` join by `_` → `EN_LP01` |
+| **Find / Replace** | Replaces a substring within the value | `EN-LP01`, find `-`, replace `_` → `EN_LP01` |
+| **Prepend** | Adds a string before the value | `EN` prepend `lang_` → `lang_EN` |
+| **Append** | Adds a string after the value | `EN` append `_ads` → `EN_ads` |
+| **Slugify** | Converts the value to a URL-safe lowercase slug | `United States` → `united-states` |
+
+<Tip>
+  Transformations are especially useful with group names and cross-level placeholders. For example: apply **First** (split by `-`) to a Destination group named `EN-LP01` to extract just `EN` for the campaign name — keeping names short and consistent without creating separate groups.
 </Tip>

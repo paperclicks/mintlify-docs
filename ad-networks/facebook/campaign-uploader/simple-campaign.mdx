@@ -208,7 +208,7 @@ Each identity group card represents a separate Identity variation — add more g
 |---|---|
 | **Ad Name** | A name for the ad, or use a naming template |
 | **Status** | Active or Paused |
-| **Ad Format** | Single Image or Video |
+| **Ad Format** | Single Image or Video, Catalog Ads, or Flexible Ads |
 
 **Media** — click **+ Add Media** to open the media browser where you can:
 
@@ -243,6 +243,64 @@ Each uploaded image or video generates one ad. If you upload five images, five a
 <Tip>
   For the best workflow, upload and tag your creatives in the **Creative Library** first, then come back to the Campaign Creator and filter by tag. This is especially useful when your creative team and media buying team are separate — creatives upload and tag assets, media buyers pull them in by tag.
 </Tip>
+
+---
+
+### Apply to All Groups
+
+When you are working with multiple Creative groups, you can push the content of any media, primary text, headline, or description field to every other group in one click. Click the **three-dot menu (⋯)** on any media item, text field, headline, or description and select **Apply to All Groups**. This copies that value into the same field across all other Creative groups — useful when you want all groups to start from the same base creative or copy and then make minor tweaks per group.
+
+---
+
+### Auto-Match Images by Filename to Placements
+
+When you need different image crops for different placements (e.g., square for Feed, vertical for Stories, landscape for Right Column), you can have TheOptimizer assign them automatically based on the image filenames.
+
+Include the aspect ratio in each image's filename before uploading:
+
+| Filename pattern | Placement it maps to |
+|---|---|
+| `image_1x1.jpg` or `image_1×1.jpg` | Feeds, In-stream, Search results (square) |
+| `image_9x16.jpg` or `image_9×16.jpg` | Stories and Reels, Apps and sites (vertical) |
+| `image_1.91x1.jpg` or `image_1.91×1.jpg` | Right column, Search results (landscape) |
+
+In the **Select Images** dialog, enable the **Auto-match by filename** toggle at the bottom. When you click **Next**, TheOptimizer automatically assigns each image to the matching placement column based on the ratio in its filename.
+
+<Frame>
+  <img src="/images/automatic-placement-matching-by-file-name.png" alt="Select Images dialog — Auto-match by filename toggle at the bottom, enabled, with images named with aspect ratios" />
+</Frame>
+
+The next screen (**Edit Placements**) shows the result: each placement column already has the matching image pre-assigned, with the matched filename shown under the placement name.
+
+<Frame>
+  <img src="/images/automatic-placement-matching-by-file-name-next.png" alt="Edit Placements dialog — three placement columns each showing the auto-matched image from the filename" />
+</Frame>
+
+<Tip>
+  Prepare your image set with consistent naming before upload — for example, `creative1_1x1.jpg`, `creative1_9x16.jpg`, `creative1_1.91x1.jpg` — and the entire placement assignment across all creatives is done automatically in one step.
+</Tip>
+
+---
+
+### Tagging Images from the Campaign Creator
+
+You can tag uploaded images directly from the media browser inside the Campaign Creator — no need to go to the Creative Library first.
+
+After selecting the **Uploaded Media** tab in the **Select Images** dialog, click the **# Add Tags** button at the top right. Select the images you want to tag (or use "Select All"), choose your tags, and confirm. Tags are applied to the images in your Creative Library and will be available for filtering in future sessions.
+
+<Frame>
+  <img src="/images/add-tags-during-uploading.png" alt="Select Images dialog — Add Tags button in the top right, highlighted with an arrow" />
+</Frame>
+
+---
+
+### New Ad Formats: Catalog Ads and Flexible Ads
+
+Two new ad format options are now available in the **Ad Format** selector.
+
+**Catalog Ads** — connects the ad directly to a Facebook Product Catalog. When selected, the media section is replaced with a catalog and segment selector — choose the catalog and the product set to use. The ad dynamically pulls images, names, and prices from your catalog.
+
+**Flexible Ads** — allows you to organise images into groups within a single ad creative. Each Creative group can contain a different set of images, and you can drag and drop images to reorder them within each group. This is useful when you want to test different image batches while keeping the same ad set structure.
 
 ---
 
