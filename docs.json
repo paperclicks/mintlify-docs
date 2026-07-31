@@ -38,8 +38,8 @@
             "pages": [
               "integrations/overview",
               "integrations/ad-networks",
-              "integrations/custom-events",
               "integrations/tracking-platforms",
+              "integrations/custom-events",
               "integrations/google-analytics",
               "integrations/upload-csv",
               {
@@ -53,138 +53,101 @@
             "icon": "plug"
           },
           {
-            "group": "Automation",
+            "group": "Facebook",
             "pages": [
+              "ad-networks/facebook/overview",
               {
-                "group": "Rules",
+                "group": "Integration",
                 "pages": [
-                  "automation/rules-guide",
-                  "automation/rule-templates",
-                  "automation/rule-chains"
+                  "ad-networks/facebook/integration/connect",
+                  "ad-networks/facebook/integration/manage-accounts",
+                  "ad-networks/facebook/integration/troubleshoot"
                 ]
               },
               {
-                "group": "Smart Lists",
+                "group": "Automation",
                 "pages": [
-                  "automation/smart-lists"
-                ]
-              }
-            ],
-            "icon": "zap"
-          },
-          {
-            "group": "Logs",
-            "pages": [
-              "logs/overview"
-            ],
-            "icon": "scroll"
-          },
-          {
-            "group": "Campaign Manager",
-            "pages": [
-              "campaign-manager/overview",
-              "campaign-manager/navigation-and-filtering",
-              {
-                "group": "Working with Campaigns, Ad Sets & Ads",
-                "pages": [
-                  "campaign-manager/quick-bulk-actions",
-                  "campaign-manager/customize-columns",
-                  "campaign-manager/compare-dates",
-                  "campaign-manager/metrics-overview"
+                  "ad-networks/facebook/automation/overview",
+                  "ad-networks/facebook/automation/popular-rules"
                 ]
               },
               {
-                "group": "Advanced Features",
+                "group": "Campaign Creator",
                 "pages": [
-                  "campaign-manager/details-view",
-                  "campaign-manager/custom-metrics",
-                  "campaign-manager/keyboard-navigation",
-                  "campaign-manager/multiple-currencies",
-                  "campaign-manager/revenue-sources"
+                  "ad-networks/facebook/campaign-uploader/getting-started",
+                  "ad-networks/facebook/campaign-uploader/use-cases",
+                  "ad-networks/facebook/campaign-uploader/vs-ads-manager",
+                  "ad-networks/facebook/campaign-uploader/simple-campaign",
+                  "ad-networks/facebook/campaign-uploader/variations",
+                  "ad-networks/facebook/campaign-uploader/multi-account",
+                  "ad-networks/facebook/campaign-uploader/existing-posts",
+                  "ad-networks/facebook/campaign-uploader/existing-campaign",
+                  {
+                    "group": "Cloning Campaigns, Ad Sets & Ads",
+                    "pages": [
+                      "ad-networks/facebook/cloning/overview"
+                    ]
+                  },
+                  "ad-networks/facebook/campaign-uploader/naming-templates",
+                  "ad-networks/facebook/campaign-uploader/templates",
+                  "ad-networks/facebook/campaign-uploader/automation-review"
                 ]
               }
             ],
-            "icon": "gauge"
+            "icon": "facebook"
           },
           {
-            "group": "Campaign Creator",
-            "pages": [
-              "campaign-creator/overview"
-            ],
-            "icon": "plus-circle"
-          },
-          {
-            "group": "Creative Library",
-            "pages": [
-              "creative-library/guide"
-            ],
-            "icon": "image"
-          },
-          {
-            "group": "Ad Networks",
+            "group": "Other Ad Networks",
             "pages": [
               {
-                "group": "Facebook",
+                "group": "Google Ads",
                 "pages": [
+                  "ad-networks/google-ads/overview",
                   {
                     "group": "Integration",
                     "pages": [
-                      "ad-networks/facebook/integration/connect",
-                      "ad-networks/facebook/integration/manage-accounts",
-                      "ad-networks/facebook/integration/troubleshoot"
-                    ]
-                  },
-                  {
-                    "group": "Automation",
-                    "pages": [
-                      "ad-networks/facebook/automation/overview",
-                      "ad-networks/facebook/automation/popular-rules"
-                    ]
-                  },
-                  {
-                    "group": "Campaign Creator",
-                    "pages": [
-                      "ad-networks/facebook/campaign-uploader/use-cases",
-                      "ad-networks/facebook/campaign-uploader/vs-ads-manager",
-                      "ad-networks/facebook/campaign-uploader/simple-campaign",
-                      "ad-networks/facebook/campaign-uploader/variations",
-                      "ad-networks/facebook/campaign-uploader/multi-account",
-                      "ad-networks/facebook/campaign-uploader/existing-posts",
-                      {
-                        "group": "Cloning Campaigns, Ad Sets, Ads",
-                        "pages": [
-                          "ad-networks/facebook/cloning/overview"
-                        ]
-                      },
-                      "ad-networks/facebook/campaign-uploader/existing-campaign",
-                      "ad-networks/facebook/campaign-uploader/naming-templates",
-                      "ad-networks/facebook/campaign-uploader/templates",
-                      "ad-networks/facebook/campaign-uploader/automation-review"
+                      "ad-networks/google-ads/integration/connect",
+                      "ad-networks/google-ads/integration/manage-accounts"
                     ]
                   }
                 ]
               },
               {
-                "group": "Google Ads",
-                "pages": [
-                  "ad-networks/google-ads/integration/connect",
-                  "ad-networks/google-ads/integration/manage-accounts"
-                ]
-              },
-              {
                 "group": "TikTok",
                 "pages": [
-                  "ad-networks/tiktok/integration/connect",
-                  "ad-networks/tiktok/integration/manage-accounts",
-                  "ad-networks/tiktok/automation/popular-rules"
+                  "ad-networks/tiktok/overview",
+                  {
+                    "group": "Integration",
+                    "pages": [
+                      "ad-networks/tiktok/integration/connect",
+                      "ad-networks/tiktok/integration/manage-accounts"
+                    ]
+                  },
+                  {
+                    "group": "Automation",
+                    "pages": [
+                      "ad-networks/tiktok/automation/popular-rules"
+                    ]
+                  }
                 ]
               },
               {
                 "group": "Taboola",
                 "pages": [
-                  "ad-networks/taboola/integration/connect",
-                  "ad-networks/taboola/integration/manage-accounts",
-                  "ad-networks/taboola/automation/popular-rules",
+                  "ad-networks/taboola/overview",
+                  {
+                    "group": "Integration",
+                    "pages": [
+                      "ad-networks/taboola/integration/connect",
+                      "ad-networks/taboola/integration/manage-accounts"
+                    ]
+                  },
+                  {
+                    "group": "Automation",
+                    "pages": [
+                      "ad-networks/taboola/automation/popular-rules"
+                    ]
+                  },
                   {
                     "group": "Campaign Uploader",
                     "pages": [
@@ -196,9 +159,20 @@
               {
                 "group": "Outbrain",
                 "pages": [
-                  "ad-networks/outbrain/integration/connect",
-                  "ad-networks/outbrain/integration/manage-accounts",
-                  "ad-networks/outbrain/automation/popular-rules",
+                  "ad-networks/outbrain/overview",
+                  {
+                    "group": "Integration",
+                    "pages": [
+                      "ad-networks/outbrain/integration/connect",
+                      "ad-networks/outbrain/integration/manage-accounts"
+                    ]
+                  },
+                  {
+                    "group": "Automation",
+                    "pages": [
+                      "ad-networks/outbrain/automation/popular-rules"
+                    ]
+                  },
                   {
                     "group": "Campaign Uploader",
                     "pages": [
@@ -210,8 +184,14 @@
               {
                 "group": "MGID",
                 "pages": [
-                  "ad-networks/mgid/integration/connect",
-                  "ad-networks/mgid/integration/manage-accounts",
+                  "ad-networks/mgid/overview",
+                  {
+                    "group": "Integration",
+                    "pages": [
+                      "ad-networks/mgid/integration/connect",
+                      "ad-networks/mgid/integration/manage-accounts"
+                    ]
+                  },
                   {
                     "group": "Campaign Uploader",
                     "pages": [
@@ -223,29 +203,53 @@
               {
                 "group": "MediaGo",
                 "pages": [
-                  "ad-networks/mediago/integration/connect",
-                  "ad-networks/mediago/integration/manage-accounts"
+                  "ad-networks/mediago/overview",
+                  {
+                    "group": "Integration",
+                    "pages": [
+                      "ad-networks/mediago/integration/connect",
+                      "ad-networks/mediago/integration/manage-accounts"
+                    ]
+                  }
                 ]
               },
               {
                 "group": "BigoAds",
                 "pages": [
-                  "ad-networks/bigoads/integration/connect",
-                  "ad-networks/bigoads/integration/manage-accounts"
+                  "ad-networks/bigoads/overview",
+                  {
+                    "group": "Integration",
+                    "pages": [
+                      "ad-networks/bigoads/integration/connect",
+                      "ad-networks/bigoads/integration/manage-accounts"
+                    ]
+                  }
                 ]
               },
               {
                 "group": "Adskeeper",
                 "pages": [
-                  "ad-networks/adskeeper/integration/connect",
-                  "ad-networks/adskeeper/integration/manage-accounts"
+                  "ad-networks/adskeeper/overview",
+                  {
+                    "group": "Integration",
+                    "pages": [
+                      "ad-networks/adskeeper/integration/connect",
+                      "ad-networks/adskeeper/integration/manage-accounts"
+                    ]
+                  }
                 ]
               },
               {
                 "group": "RevContent",
                 "pages": [
-                  "ad-networks/revcontent/integration/connect",
-                  "ad-networks/revcontent/integration/manage-accounts",
+                  "ad-networks/revcontent/overview",
+                  {
+                    "group": "Integration",
+                    "pages": [
+                      "ad-networks/revcontent/integration/connect",
+                      "ad-networks/revcontent/integration/manage-accounts"
+                    ]
+                  },
                   {
                     "group": "Campaign Uploader",
                     "pages": [
@@ -257,8 +261,14 @@
               {
                 "group": "NewsBreak",
                 "pages": [
-                  "ad-networks/newsbreak/integration/connect",
-                  "ad-networks/newsbreak/integration/manage-accounts",
+                  "ad-networks/newsbreak/overview",
+                  {
+                    "group": "Integration",
+                    "pages": [
+                      "ad-networks/newsbreak/integration/connect",
+                      "ad-networks/newsbreak/integration/manage-accounts"
+                    ]
+                  },
                   {
                     "group": "Campaign Uploader",
                     "pages": [
@@ -271,21 +281,27 @@
               {
                 "group": "Yahoo DSP",
                 "pages": [
-                  "ad-networks/yahoodsp/integration/connect",
-                  "ad-networks/yahoodsp/integration/manage-accounts"
+                  "ad-networks/yahoodsp/overview",
+                  {
+                    "group": "Integration",
+                    "pages": [
+                      "ad-networks/yahoodsp/integration/connect",
+                      "ad-networks/yahoodsp/integration/manage-accounts"
+                    ]
+                  }
                 ]
               },
               {
                 "group": "Trillion",
                 "pages": [
-                  "ad-networks/trillion/integration/connect",
-                  "ad-networks/trillion/integration/manage-accounts"
-                ]
-              },
-              {
-                "group": "Native Networks",
-                "pages": [
-                  "ad-networks/native-networks/automation/popular-rules"
+                  "ad-networks/trillion/overview",
+                  {
+                    "group": "Integration",
+                    "pages": [
+                      "ad-networks/trillion/integration/connect",
+                      "ad-networks/trillion/integration/manage-accounts"
+                    ]
+                  }
                 ]
               }
             ],
@@ -387,6 +403,65 @@
               }
             ],
             "icon": "chart-line"
+          },
+          {
+            "group": "Campaign Manager",
+            "pages": [
+              "campaign-manager/overview",
+              "campaign-manager/navigation-and-filtering",
+              {
+                "group": "Working with Campaigns, Ad Sets & Ads",
+                "pages": [
+                  "campaign-manager/quick-bulk-actions",
+                  "campaign-manager/customize-columns",
+                  "campaign-manager/compare-dates",
+                  "campaign-manager/metrics-overview"
+                ]
+              },
+              {
+                "group": "Advanced Features",
+                "pages": [
+                  "campaign-manager/details-view",
+                  "campaign-manager/custom-metrics",
+                  "campaign-manager/keyboard-navigation",
+                  "campaign-manager/multiple-currencies",
+                  "campaign-manager/revenue-sources"
+                ]
+              }
+            ],
+            "icon": "gauge"
+          },
+          {
+            "group": "Campaign Creator",
+            "pages": [
+              "campaign-creator/overview"
+            ],
+            "icon": "plus-circle"
+          },
+          {
+            "group": "Automation",
+            "pages": [
+              "automation/rules-guide",
+              "automation/rule-chains",
+              "automation/rule-templates",
+              "automation/smart-lists",
+              "ad-networks/native-networks/automation/popular-rules"
+            ],
+            "icon": "zap"
+          },
+          {
+            "group": "Creative Library",
+            "pages": [
+              "creative-library/guide"
+            ],
+            "icon": "image"
+          },
+          {
+            "group": "Logs",
+            "pages": [
+              "logs/overview"
+            ],
+            "icon": "scroll"
           },
           {
             "group": "API",
@@ -807,6 +882,30 @@
     {
       "source": "/integrations/custom-data-source/csv-guide",
       "destination": "/integrations/bring-your-own-data/csv-guide"
+    },
+    {
+      "source": "/automation/popular-rules-facebook",
+      "destination": "/ad-networks/facebook/automation/popular-rules"
+    },
+    {
+      "source": "/automation/popular-rules-tiktok",
+      "destination": "/ad-networks/tiktok/automation/popular-rules"
+    },
+    {
+      "source": "/automation/popular-rules-taboola",
+      "destination": "/ad-networks/taboola/automation/popular-rules"
+    },
+    {
+      "source": "/automation/popular-rules-outbrain",
+      "destination": "/ad-networks/outbrain/automation/popular-rules"
+    },
+    {
+      "source": "/automation/popular-rules-native",
+      "destination": "/ad-networks/native-networks/automation/popular-rules"
+    },
+    {
+      "source": "/campaign-creator/facebook",
+      "destination": "/ad-networks/facebook/campaign-uploader/getting-started"
     }
   ]
 }

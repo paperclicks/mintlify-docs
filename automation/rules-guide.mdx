@@ -220,6 +220,10 @@ The Hour of Day condition restricts **when** a rule is allowed to act, independe
   If you use an Hour of Day condition, set the rule's execution frequency to **Every 1 Hour**. Running it every 10 minutes is redundant and clutters your execution logs.
 </Note>
 
+### Created Date Condition
+
+The **Created date** condition lets a rule act on ad sets and ads based on how recently they were created. Use it to target items by age — for example, hold off on brand-new ad sets that are still in the learning phase, or run a cleanup rule only on older ad sets and ads. Add a condition and select **Created date** from the metric dropdown, then choose an operator and a date or age threshold.
+
 ---
 
 ## 4. Rule Actions
@@ -269,7 +273,8 @@ Cloning rules automatically duplicate a campaign, adset, or ad when conditions a
 
 - **Number of Copies** — How many clones to create each time the rule fires.
 - **Adjust budget before cloning** — Optionally set the budget on the cloned copy to a specific value at creation time, rather than inheriting the original's current budget.
-- **Destination** — By default, clones land in the same campaign. Enable **Change Cloned Ad Destination** to redirect them to a specific adset, campaign, or even a different ad account.
+- **Destination** — By default, clones land in the same campaign. Enable **Change Cloned Ad Destination** to redirect them to a specific adset, campaign, or a different ad account. For campaign cloning rules you can now select **multiple destination ad accounts** in a single rule, so one rule replicates a winning campaign across your whole portfolio instead of needing a separate rule per account.
+- **Set start time** — For campaign cloning rules, choose when the cloned campaigns should start. Instead of going live the instant they're created, clones can be scheduled to begin at a specific time — useful for lining up automated launches with budget resets or peak-traffic hours.
 
 ### 4. Dayparting
 
