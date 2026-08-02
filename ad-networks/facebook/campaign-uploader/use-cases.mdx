@@ -9,7 +9,9 @@ import { ArcadeVideoButton } from '/snippets/arcade-video-button.mdx';
 
 The Facebook Mass Campaign Uploader is designed for teams who launch campaigns at scale — dozens or hundreds at a time. Here are the scenarios it is built to handle:
 
-**50 Creatives -> 50 Campaigns (1-1-1 Campaign Structure)** — automatically create a separate campaign and ad set for each uploaded creative, achieving full isolation per creative so Facebook cannot bias delivery toward a single ad.
+### 50 Creatives → 50 Campaigns (1-1-1 Campaign Structure)
+
+Automatically create a separate campaign and ad set for each uploaded creative, achieving full isolation per creative so Facebook cannot bias delivery toward a single ad.
 
 <div style={{ position: 'relative', width: '100%', paddingBottom: '56.25%', height: 0 }}>
   <iframe
@@ -22,7 +24,9 @@ The Facebook Mass Campaign Uploader is designed for teams who launch campaigns a
   ></iframe>
 </div>
 
-**50 Creatives -> 50 Ad Sets (1-N-1 Campaign Structure)** — automatically create a separate ad set for each uploaded creative while sharing a single campaign-level budget.
+### 50 Creatives → 50 Ad Sets (1-N-1 Campaign Structure)
+
+Automatically create a separate ad set for each uploaded creative while sharing a single campaign-level budget.
 
 <div style={{ position: 'relative', width: '100%', paddingBottom: '56.25%', height: 0 }}>
   <iframe
@@ -35,17 +39,70 @@ The Facebook Mass Campaign Uploader is designed for teams who launch campaigns a
   ></iframe>
 </div>
 
-**Test the same creatives across multiple audiences and budgets** — for example, three audiences × three budgets = nine ad set variations, all generated from a single base ad set.
+### Add new creatives as new ad sets into an existing campaign
 
-**Launch the same campaign structure across multiple ad accounts at once** — diversify delivery, take advantage of separate learning phases per account, or reduce Facebook's initial randomness.
+Feed a running test campaign fresh creatives without building a new campaign every time. Upload a batch and the uploader turns each creative into its own ad set (or groups several creatives per ad set with a single option) inside the campaign you already have live. The first launch builds the structure in a few minutes; save it as a template and every future batch becomes upload-and-publish in under a minute — the template already knows how many ad sets to create and where to publish them.
 
-**Group creatives into batches** — for example, five creatives per ad set for rotation testing instead of one creative per ad set.
+<div style={{ position: 'relative', width: '100%', paddingBottom: '56.25%', height: 0 }}>
+  <iframe
+    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+    src="https://www.youtube.com/embed/u8fqzlSSjAE"
+    title="Upload New Creatives as New Ad Sets Into an Existing Campaign — Facebook Campaign Creator"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+  ></iframe>
+</div>
 
-**Launch a full campaign structure from a saved template with new creatives** — swap in fresh assets and publish in minutes instead of rebuilding from scratch every time.
+### Upload localized ad sets — one per state or market — into an existing campaign
 
-**Attach automation rules at launch time** — campaigns go live with stop-loss, budget scaling, and other rules already active from the first impression.
+The advanced, multi-market version of the above. Feed a live campaign a fresh batch of creatives where each state (or country/region) gets its own ad set with its own copy, its own landing page URL, and its own per-placement image crops. Create one group per market on the audience, creative, and destination sections, then match by group-name pattern so every market only pairs with its own copy and its own URL — no crossed markets. Upload each creative's crops once and let the uploader auto-match them to placements by filename, turn off Advantage+ Creative Enhancement for every ad in one click, and keep your exact naming with dynamic naming templates. Save the whole structure as a template and every future batch — new images, same 10 markets — becomes upload-and-publish in about a minute.
 
-**Turn Off Creative Enhancement for all creatives in bulk** — disable Facebook's Creative Enhancement features across all ads in a campaign in one action, instead of turning them off manually ad by ad.
+<div style={{ position: 'relative', width: '100%', paddingBottom: '56.25%', height: 0 }}>
+  <iframe
+    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+    src="https://www.youtube.com/embed/xob5mjg_eiE"
+    title="Upload Localized Ad Sets Per State Into an Existing Campaign — Facebook Campaign Creator"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+  ></iframe>
+</div>
+
+### Test the same creatives across multiple audiences and budgets
+
+For example, three audiences × three budgets = nine ad set variations, all generated from a single base ad set.
+
+### Launch the same campaign structure across multiple ad accounts at once
+
+Build your campaign once, then replicate it into as many ad accounts as you want and publish to all of them in a single launch. Diversify delivery, take advantage of separate learning phases per account, or reduce Facebook's initial randomness. Build the structure in your first ad account, duplicate the campaign, switch the ad account on each copy, and publish. If a page or pixel differs per account, adjust those assets on the duplicated campaign so the launch goes through. Save it all as a template and every future multi-account launch becomes upload-and-publish in minutes — one campaign with 30 ad sets across three accounts publishes as 3 campaigns, 90 ad sets, and 90 ads at once.
+
+<div style={{ position: 'relative', width: '100%', paddingBottom: '56.25%', height: 0 }}>
+  <iframe
+    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+    src="https://www.youtube.com/embed/FJM7bs2egXw"
+    title="Launch the Same Campaign Into Multiple Ad Accounts at Once — Facebook Campaign Creator"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+  ></iframe>
+</div>
+
+### Group creatives into batches
+
+For example, five creatives per ad set for rotation testing instead of one creative per ad set.
+
+### Launch a full campaign structure from a saved template with new creatives
+
+Swap in fresh assets and publish in minutes instead of rebuilding from scratch every time.
+
+### Attach automation rules at launch time
+
+Campaigns go live with stop-loss, budget scaling, and other rules already active from the first impression.
+
+### Turn Off Creative Enhancement for all creatives in bulk
+
+Disable Facebook's Creative Enhancement features across all ads in a campaign in one action, instead of turning them off manually ad by ad.
 
 <div style={{ position: 'relative', width: '100%', paddingBottom: '56.25%', height: 0 }}>
   <iframe
@@ -58,7 +115,9 @@ The Facebook Mass Campaign Uploader is designed for teams who launch campaigns a
   ></iframe>
 </div>
 
-**Auto-match image crops to placements by filename** — prepare a square, vertical, and landscape version of each creative, include the aspect ratio in the filename (`1x1`, `9x16`, `1.91x1`), and the uploader assigns each crop to its matching placement automatically. Instead of editing placements ad by ad in Meta, every crop is placed across every ad in one step — even when you are launching hundreds of ads.
+### Auto-match image crops to placements by filename
+
+Prepare a square, vertical, and landscape version of each creative, include the aspect ratio in the filename (`1x1`, `9x16`, `1.91x1`), and the uploader assigns each crop to its matching placement automatically. Instead of editing placements ad by ad in Meta, every crop is placed across every ad in one step — even when you are launching hundreds of ads.
 
 <div style={{ position: 'relative', width: '100%', paddingBottom: '56.25%', height: 0 }}>
   <iframe
@@ -71,7 +130,9 @@ The Facebook Mass Campaign Uploader is designed for teams who launch campaigns a
   ></iframe>
 </div>
 
-**Launch one offer across many markets, localized (match by group name)** — run the same offer in every state, country, or region, each with its own copy, landing page URL, and page, all from a single reusable template. Create one group per market on the audience, creative, and destination sections, then turn on match by group name so each market only pairs with its own copy and its own URL — no crossed markets. On the next launch you upload new creatives once and click **Apply To All Groups** to populate every market at once.
+### Launch one offer across many markets, localized (match by group name)
+
+Run the same offer in every state, country, or region, each with its own copy, landing page URL, and page, all from a single reusable template. Create one group per market on the audience, creative, and destination sections, then turn on match by group name so each market only pairs with its own copy and its own URL — no crossed markets. On the next launch you upload new creatives once and click **Apply To All Groups** to populate every market at once.
 
 <div style={{ position: 'relative', width: '100%', paddingBottom: '56.25%', height: 0 }}>
   <iframe
