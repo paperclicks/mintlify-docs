@@ -464,6 +464,18 @@
             "icon": "scroll"
           },
           {
+            "group": "Account & Settings",
+            "pages": [
+              "account-settings/overview",
+              "account-settings/notifications",
+              "account-settings/team-members",
+              "account-settings/profile",
+              "account-settings/security",
+              "account-settings/billing"
+            ],
+            "icon": "user-gear"
+          },
+          {
             "group": "API",
             "pages": [
               "api/overview"

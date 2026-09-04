@@ -1,0 +1,100 @@
+---
+title: "Security"
+description: "Add two-factor authentication over email or an authenticator app, and review or end the sessions you are currently signed in on."
+sidebarTitle: "Security"
+---
+
+An account that runs automation rules across live ad spend is worth protecting properly. The **Security** page covers both halves of that: adding a second factor to your sign-in, and keeping an eye on the devices already signed in.
+
+Reach it from **Profile → Security**, or directly at `/profile/security`.
+
+{/* TODO: screenshot — the Security page showing Two-factor Authentication and Activity Sessions */}
+
+## Two-factor authentication
+
+With two-factor authentication on, your password alone is no longer enough to sign in — you also enter a time-based code. TheOptimizer supports two methods, and you can use either or both.
+
+<Tabs>
+  <Tab title="Email authentication">
+    Registers your email address to receive time-based codes at sign-in.
+
+    <Steps>
+      <Step title="Open Email Authentication">
+        Click **Email Authentication** on the Security page.
+      </Step>
+
+      <Step title="Confirm your email and password">
+        Enter the email address that should receive codes, then your account password.
+      </Step>
+
+      <Step title="Send the code">
+        Click **Send Code**. If it does not arrive, **Resend Code** sends another.
+      </Step>
+
+      <Step title="Enter the 6-digit code">
+        Type the code from the email and click **Verify**.
+      </Step>
+    </Steps>
+
+    {/* TODO: screenshot — Email Authentication modal with the email, password, and code steps */}
+  </Tab>
+
+  <Tab title="Authenticator app">
+    Links an authenticator app on your phone — Google Authenticator, Authy, 1Password, or any TOTP app.
+
+    <Steps>
+      <Step title="Install an authenticator app">
+        Install one on your phone if you don't have one already.
+      </Step>
+
+      <Step title="Scan the QR code">
+        Click **Mobile App Authentication** on the Security page and scan the QR code with the app.
+      </Step>
+
+      <Step title="Confirm with your password">
+        Enter your account password.
+      </Step>
+
+      <Step title="Enter the code from the app">
+        Type the 6-digit code your authenticator app is showing and click **Verify**.
+      </Step>
+    </Steps>
+
+    {/* TODO: screenshot — Mobile App Authentication modal showing the QR code and the numbered steps */}
+
+    <Warning>
+      After a device is verified, TheOptimizer shows a **security code** once. Save it somewhere safe — it is displayed a single time and cannot be retrieved later. Use the **Copy** button and store it in your password manager before closing the dialog.
+    </Warning>
+  </Tab>
+</Tabs>
+
+### Managing verified devices
+
+Every authenticator app you link appears as its own device, showing the browser it was registered from, when it was added, and the IP address it was registered from. You can rename a device by clicking its name — useful once you have more than one. Deleting a device asks for your password to confirm, and is only possible once you have more than one linked, so you can never lock yourself out by removing the last one.
+
+<Tip>
+  Link a second authenticator app — on a tablet, or a second phone — before you need it. It costs a minute now and saves a support ticket if your primary phone is lost or replaced.
+</Tip>
+
+## Activity sessions
+
+**Activity Sessions** lists every place your account is currently signed in. Each entry shows:
+
+- The device and browser
+- When it was last active
+- The IP address it connected from
+
+Your current session is marked so you don't end it by accident.
+
+{/* TODO: screenshot — Activity Sessions list with the current session marked */}
+
+| Action | What happens |
+| --- | --- |
+| **Logout this device** | Ends that one session. That device has to sign in again |
+| **Logout All** | Ends all of your other sessions at once, leaving the one you are using |
+
+**Logout All** appears once you have more than one active session, and asks you to confirm before it runs.
+
+<Tip>
+  Two habits worth keeping: end sessions on shared or client machines when you're finished with them, and after changing your password, use **Logout All** so anyone holding the old one is pushed out.
+</Tip>

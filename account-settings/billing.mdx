@@ -1,0 +1,157 @@
+---
+title: "Billing & Subscription"
+description: "See what your plan covers, switch plans, manage cards and invoices, and understand what happens when a payment fails or a subscription is cancelled."
+sidebarTitle: "Billing & Subscription"
+---
+
+The **Billing** page is where your subscription lives: which plan you are on, how much ad spend it covers, what you'll be charged next, and every invoice you have paid. Open it from the profile menu in the top-right corner.
+
+{/* TODO: screenshot — the Billing page showing the plan overview card, usage bar, and plan cards below */}
+
+<Note>
+  Billing is visible to the main account holder only. Invited team members do not see the menu item.
+</Note>
+
+## Your current plan at a glance
+
+The card at the top of the page summarizes your subscription:
+
+| Detail | What it tells you |
+| --- | --- |
+| **Plan name and price** | Your current plan and its monthly cost |
+| **Cycle** | Monthly or Annual |
+| **Seats** | How many seats your plan includes |
+| **Workspaces** | How many workspaces your plan includes |
+| **Renews** | The date of your next charge |
+
+That last row changes to match your situation — it reads **Free trial ends** during a trial without a card, **First charge** during a trial with a card on file, and **Subscription ends** once a cancellation is scheduled.
+
+### Covered ad spend and overage
+
+TheOptimizer's plans are tiered by the **monthly ad spend** they cover rather than by seats or campaigns. The usage bar on the plan card shows how much of that allowance you have used in the current period.
+
+If you go past it, the plan does not stop working — the spend above your allowance is billed at your plan's **overage rate**, shown as a percentage next to the bar. Higher tiers cover more spend and carry a lower overage rate, which is why moving up a tier often costs less than staying put and paying overage.
+
+<Tip>
+  Watch the usage bar around the middle of your billing period. If you're already past the allowance halfway through, upgrading now is usually cheaper than absorbing a full month of overage.
+</Tip>
+
+### Your payment method
+
+The card also shows the payment method on file — card brand, last four digits, and expiry. **Manage** next to it opens the **Payment methods** dialog.
+
+If no payment method is on file yet, an **Add payment method** card appears next to the plan overview instead.
+
+## Change plan
+
+The **Choose a plan** section lists every plan with what it covers and what it includes, grouped into Automation, Campaigns, Tracking & data, and Team & support. Plan cards are marked so you can orient quickly: your **Current plan**, the **Most popular** tier, and a **Recommended** badge on the next tier up from where you are.
+
+Use the **Monthly / Annual** toggle above the cards to compare cycles. Annual billing is discounted, and the saving is shown on each card.
+
+{/* TODO: screenshot — the Choose a plan section with the Monthly/Annual toggle and plan cards */}
+
+<Steps>
+  <Step title="Pick a plan">
+    Click the button on the plan you want. A confirmation dialog opens with the exact numbers. If you're restarting a lapsed subscription with no card on file, you'll be asked for a payment method first instead.
+  </Step>
+
+  <Step title="Review what you'll be charged">
+    The dialog shows **Due today**, when the plan renews, and what the renewal will cost. For a downgrade it shows the date the new plan takes effect instead.
+  </Step>
+
+  <Step title="Confirm">
+    Click **Confirm upgrade** or **Confirm downgrade** to apply.
+  </Step>
+</Steps>
+
+The timing differs by direction, and this is the part worth knowing before you click:
+
+<CardGroup cols={2}>
+  <Card title="Upgrades" icon="arrow-up">
+    Take effect immediately. You're charged a prorated amount for the rest of the current period and get the higher allowance right away.
+  </Card>
+
+  <Card title="Downgrades" icon="arrow-down">
+    Take effect at the end of your current billing cycle. You keep your current plan's features and allowance until then.
+  </Card>
+</CardGroup>
+
+When a downgrade or cycle change is scheduled, a banner at the top of the page names the plan and the date it switches. **Cancel change** on that banner reverts it and keeps you where you are.
+
+### Enterprise plans
+
+If your spend outgrows the listed tiers, the **Enterprise** card puts you in touch with the team to arrange a custom plan.
+
+Once you're on a custom plan, the Enterprise card disappears and your plan appears as a normal card in the grid, badged **Tailored for you**.
+
+### Promo codes
+
+Click **Have a promo code?** below the plan cards to reveal the field, enter your code, and click **Apply**. Once accepted, the discount is shown along with how long it lasts, and it is applied the next time you change plan. **Remove** clears it.
+
+## Payment methods
+
+**Manage** on the plan overview card opens **Payment methods**, the list of every card on your account.
+
+| Action | What it does |
+| --- | --- |
+| **Add payment method** | Adds a new card. Card details are handled by Stripe — TheOptimizer never stores them |
+| **Set as default** | Makes that card the one charged for your subscription |
+| **Remove** | Deletes a card from the account |
+
+{/* TODO: screenshot — Payment methods dialog showing a default card and a second card */}
+
+<Note>
+  Your default payment method cannot be removed while it is the default. Add the replacement, set it as default, then remove the old card.
+</Note>
+
+## Invoices and payments
+
+The **Invoices & payments** section shows what's coming and what's already been paid.
+
+At the top, the amount and date of your next invoice. Below it, your invoice history — date, amount, plan and cycle, invoice number, and status:
+
+| Status | Meaning |
+| --- | --- |
+| **Paid** | Charged successfully |
+| **Open** | Issued and awaiting payment |
+| **Draft** | Not yet finalized |
+| **Failed** | Could not be collected |
+| **Voided** | Cancelled and no longer owed |
+
+Each invoice has a **PDF** link for your records. **Edit in billing portal** opens the Stripe billing portal for your billing details.
+
+{/* TODO: screenshot — Invoices & payments section with the next invoice and the invoice list */}
+
+## When something needs your attention
+
+A banner at the top of the Billing page tells you when the subscription needs action:
+
+| Banner | What it means | What to do |
+| --- | --- | --- |
+| **We couldn't charge your card** | Your last invoice failed | **Update payment** — add or fix the card before access is affected |
+| **Your subscription isn't active yet** | The first payment didn't go through | **Update payment** to activate the plan |
+| **Your subscription has expired** | The subscription is no longer active | **Reactivate plan** to restore access |
+
+<Warning>
+  Once a subscription lapses, your workspace becomes read-only — your data, rules, and history are all still there, but automation stops running. Reactivating restores everything.
+</Warning>
+
+## Cancel your subscription
+
+**Cancel subscription** on the plan overview card starts the cancellation flow. It runs in three steps, and you can back out at any point:
+
+1. **Before you go** — confirms how long you keep access and, where one applies, offers a smaller plan instead of cancelling outright.
+2. **What made you decide to leave?** — pick a reason and add a comment of at least 20 characters. This goes straight to the product team.
+3. **One last check-in before you go** — an optional free 20-minute call to see whether whatever wasn't working has a quick fix.
+
+Click **Cancel subscription anyway** to finish.
+
+Cancelling does not end your access immediately. You keep full access to your plan until the end of the period you've already paid for, and the plan overview card switches its date row to **Subscription ends**. Until that date, **Resume subscription** reverses the cancellation with a single click.
+
+<Note>
+  During a trial the same button reads **Cancel trial**.
+</Note>
+
+## Legacy membership accounts
+
+Subscriptions that predate TheOptimizer's current billing system are managed in the TheOptimizer Membership portal rather than on this page. Those accounts see a **Membership** page instead, showing the current plan, the account email, and payment history, with a button to open the portal where plan changes, payment methods, and invoices are handled.

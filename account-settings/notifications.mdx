@@ -1,0 +1,107 @@
+---
+title: "Notification Settings"
+description: "Send rule executions, account issues, and optimization suggestions to email, Slack, or Telegram — and control exactly which alerts land in each destination."
+sidebarTitle: "Notification Settings"
+---
+
+Notification settings decide where TheOptimizer reaches you when something happens: a rule fires, an ad account stops syncing, or the platform spots something worth acting on. You configure them under **Settings → Notifications**.
+
+{/* TODO: screenshot — Settings page, Notifications tab, showing the Email / Slack / Telegram channel cards */}
+
+Alerts are delivered to **destinations**, and destinations are grouped by **channel**. Each channel holds several destinations — five on most accounts — so you can send rule alerts to your own inbox, account problems to a shared Slack channel, and everything to your phone over Telegram — all at the same time.
+
+## The three alert types
+
+Every destination has its own alert selection. These are the alerts you can choose from:
+
+| Alert | When it fires |
+| --- | --- |
+| **Rule Executed** | Every time one of your automation rules runs and takes an action |
+| **Account Issues** | Wrong API info, login problems, or missing tracking tokens on a connected account |
+| **Smart Notifications** | Periodic optimization suggestions and performance alerts from TheOptimizer |
+
+<Tip>
+  A destination with no alerts selected receives nothing. If a teammate reports that Slack has gone quiet, check the alert selection on that destination before looking anywhere else.
+</Tip>
+
+## Connect a destination
+
+<Steps>
+  <Step title="Open the wizard">
+    Go to **Settings → Notifications**. With nothing connected yet, the page shows a **Never miss an alert** screen with a tile for each channel — click the one you want. Otherwise use the **Add** button on the channel card you want to extend, or **Add Email** / **Add Slack** / **Add Telegram** on a card that is still empty.
+  </Step>
+
+  <Step title="Choose the channel">
+    Pick **Email**, **Slack**, or **Telegram**. A channel that has used all of its slots shows **Limit reached** and cannot be selected until you remove a destination.
+  </Step>
+
+  <Step title="Configure it">
+    What you fill in depends on the channel — see the tabs below.
+  </Step>
+
+  <Step title="Select the alerts">
+    Under **Send these alerts here**, tick the alerts this destination should receive, then click **Add destination**.
+  </Step>
+</Steps>
+
+<Tabs>
+  <Tab title="Email">
+    Enter a **Name** to identify the destination later (for example, `On-call inbox`) and the **Email address** that should receive the alerts.
+
+    The address does not have to be your login email — a shared team inbox or an alias works just as well.
+
+    {/* TODO: screenshot — Add destination wizard, email step with Name and Email address fields */}
+  </Tab>
+
+  <Tab title="Slack">
+    Click **Authorize Slack**. Slack asks you to pick the workspace and the channel TheOptimizer may post into, then returns you to the app.
+
+    Once authorization completes, the wizard confirms the workspace and channel it connected to and asks you to **Name this connection** — `#alerts` or `#media-buying` makes the destination easy to recognize in the list.
+
+    <Note>
+      TheOptimizer posts into the channel you select during authorization. To send alerts to a second Slack channel, add another Slack destination and authorize again, choosing the other channel.
+    </Note>
+
+    {/* TODO: screenshot — Add destination wizard, Slack step with the Authorize Slack button */}
+  </Tab>
+
+  <Tab title="Telegram">
+    Click the Telegram login button and authorize TheOptimizer to send you messages. Telegram confirms the chat, and the wizard shows the linked account.
+
+    Because Telegram links to a personal chat, each team member connects their own — there is nothing to share or forward.
+
+    {/* TODO: screenshot — Add destination wizard, Telegram step with the authorize button */}
+  </Tab>
+</Tabs>
+
+<Note>
+  The same email address, Slack channel, or Telegram chat cannot be added twice within a channel. If a destination already exists, adjust its alert selection instead of adding a duplicate.
+</Note>
+
+## Manage existing destinations
+
+Each channel card lists its destinations and shows how many of the allowed slots are in use — for example, `2/5 connected`.
+
+Every destination row offers:
+
+| Control | What it does |
+| --- | --- |
+| **Toggle** | Turns notifications on or off for that destination without removing it — useful for pausing alerts while you are away |
+| **Manage alerts** | Expands the row so you can change which of the three alerts are delivered there |
+| **Remove destination** | Deletes the destination. It stops receiving alerts immediately, and you can connect it again later |
+
+{/* TODO: screenshot — a channel card with one destination row expanded, showing the three alert checkboxes */}
+
+Changes save as you make them — there is no separate save step.
+
+<Tip>
+  Pausing a destination is almost always better than removing it. The toggle keeps the alert selection intact, so switching alerts back on is a single click instead of a trip back through the wizard.
+</Tip>
+
+## A setup that works well
+
+If you run rules across several ad accounts, this split keeps the noise manageable:
+
+- **Rule Executed** → Slack, in a channel the whole team watches. Rule activity is the highest-volume alert and reads best as a running feed.
+- **Account Issues** → email, to whoever owns the integrations. These need someone to actually fix something, so they deserve an inbox.
+- **Smart Notifications** → Telegram, on your own phone. They are suggestions, not emergencies, and they are useful to skim.

@@ -1,0 +1,117 @@
+---
+title: "Team Members"
+description: "Invite teammates into your account, assign them the Standard, Editor, or Admin role, and control exactly which ad accounts each one can see."
+sidebarTitle: "Team Members"
+---
+
+The **Team** tab under **Settings** lets you bring media buyers, creative staff, and clients into your account without sharing your own login. Each team member gets their own credentials, their own role, and access to only the ad accounts you assign them.
+
+{/* TODO: screenshot — Settings page, Team tab, showing the member list with roles and ad account avatars */}
+
+<Note>
+  Multi-user access is included on plans that support it. If your plan is single-user, opening the **Team** tab shows an upgrade prompt instead of the list. See [Billing & Subscription](/account-settings/billing) for how to change plan. Admins are the exception — they reach the Team tab regardless of plan.
+</Note>
+
+## Roles
+
+There are three roles, and they stack — each one can do everything the tier below it can:
+
+| Role | What it allows |
+| --- | --- |
+| **Standard** | Can only view the ad accounts you assign |
+| **Editor** | Can edit and connect new ad accounts |
+| **Admin** | Can manage all ad accounts and team members |
+
+Choose **Standard** for a media buyer or client who should stay inside a fixed set of accounts, **Editor** for someone who manages the integrations themselves, and **Admin** for a second-in-command who runs the account alongside you.
+
+<Tip>
+  For Standard and Editor, ad account access and role are separate controls: an Editor still only sees the accounts assigned to them — the role decides whether they can connect more, not which existing ones they can reach.
+</Tip>
+
+### What's different about Admin
+
+Admin is not just a bigger allow-list. Two things work differently:
+
+- **Admins see every ad account.** There is no allow-list to assign, so the account picker is hidden in the invite form and in the member's detail panel. Their row shows **All accounts** instead of a count, and bulk **Grant access** and **Revoke access** skip them.
+- **Admins can manage the team.** They see the **Team** tab and can invite, edit, and remove Standard and Editor members — even on plans that are otherwise single-user.
+
+<Note>
+  Only the account owner can hand out the Admin role — for an Admin, it isn't in the role dropdown at all. Admins also can't edit or remove other Admins; those stay the owner's to manage.
+</Note>
+
+## Invite a team member
+
+<Steps>
+  <Step title="Open the invite form">
+    Go to **Settings → Team** and click **Invite team member**.
+  </Step>
+
+  <Step title="Enter their email">
+    The invitation is sent to this address, and it becomes the email they sign in with.
+  </Step>
+
+  <Step title="Assign ad accounts">
+    Under **Assign Ad Accounts**, pick the accounts this person may work in. At least one account is required, and an invitation with none assigned cannot be sent.
+  </Step>
+
+  <Step title="Choose the role">
+    Select **Standard**, **Editor**, or **Admin**, then send the invitation.
+
+    Choosing **Admin** removes the account picker entirely and replaces it with a note that admins have access to all ad accounts and can manage team members — so for an Admin you can skip the step above.
+  </Step>
+</Steps>
+
+{/* TODO: screenshot — Invite User modal with the Email, Assign Ad Accounts, and Role fields */}
+{/* TODO: screenshot — Invite User modal with Admin selected, showing the note in place of the account picker */}
+
+The person receives an email invitation and appears in the team list right away, marked **Awaiting sign-up** until they complete registration. Until then they count toward the pending total shown above the list.
+
+<Tip>
+  Invitation not arriving? Open the member's row menu and choose **Resend invitation** rather than sending a second invite — a duplicate creates a second pending row for the same person.
+</Tip>
+
+## Edit a member
+
+Click a member's name to open their detail panel. From there you can change:
+
+| Field | Notes |
+| --- | --- |
+| **Status** | Active or Inactive. An inactive member keeps their account but loses access to the platform |
+| **Role** | Switch between Standard, Editor, and Admin. Shown as a read-only badge on invitations that haven't been accepted yet, and locked if you are an Admin editing another Admin |
+| **Ad accounts** | Opens the account picker so you can grant or revoke individual accounts. Replaced with "Admins have access to all ad accounts" when the role is Admin |
+| **Password** / **Invitation** | **Reset password** for members who have signed up, **Resend invitation** for those who have not |
+
+Click **Save changes** to apply. The button stays disabled until you actually change something.
+
+{/* TODO: screenshot — member detail modal showing Status, Role, and Ad accounts */}
+
+### Row actions
+
+The row itself gives you shortcuts: the **Role** cell is an inline dropdown, and the **Ad accounts** cell opens the account picker directly. The ⋮ menu near the start of the row holds the rest:
+
+- **Reset password** — sends the member an email with instructions to set a new password. You never see or set their password yourself.
+- **Resend invitation** — sends a fresh invitation email to someone who has not signed up yet.
+- **Remove** — permanently removes the member from your team. This cannot be undone.
+
+## Work on several members at once
+
+Tick the checkboxes on the rows you want, and an action bar appears at the bottom of the page:
+
+| Bulk action | What it does |
+| --- | --- |
+| **Enable** | Sets every selected member to active |
+| **Disable** | Sets every selected member to inactive |
+| **Grant access** | Adds ad accounts to every selected member |
+| **Revoke access** | Removes ad accounts from every selected member |
+
+{/* TODO: screenshot — team list with several rows selected and the bulk action bar visible */}
+
+**Grant access** is disabled when the selected members already have every ad account, and **Revoke access** is disabled when none of them has any — the bar explains which case you are in when you hover the disabled button. Admins in the selection are ignored by both, since they already have every account.
+
+<Tip>
+  Onboarding a new client and adding their ad accounts to several buyers at once is much faster through **Grant access** than by opening each member in turn.
+</Tip>
+
+## Finding people
+
+Above the list you'll see the total member count and, if any invitations are outstanding, how many are pending. Use the search box to filter by name, username, or email — helpful once the team grows past a screenful. The refresh button re-pulls the list, which is worth a click after someone tells you they have just completed sign-up.
