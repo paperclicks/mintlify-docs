@@ -1,12 +1,30 @@
 ---
 title: "Notification Settings"
-description: "Send rule executions, account issues, and optimization suggestions to email, Slack, or Telegram — and control exactly which alerts land in each destination."
+description: "Read account and integration alerts in the app, and send rule executions, account issues, and optimization suggestions to email, Slack, or Telegram — controlling exactly which alerts land where."
 sidebarTitle: "Notification Settings"
 ---
 
 Notification settings decide where TheOptimizer reaches you when something happens: a rule fires, an ad account stops syncing, or the platform spots something worth acting on. You configure them under **Settings → Notifications**.
 
 {/* TODO: screenshot — Settings page, Notifications tab, showing the Email / Slack / Telegram channel cards */}
+
+## In-app notifications
+
+TheOptimizer surfaces notifications **inside the app**, in the notification area of the top bar. Anything affecting a connected integration — a restricted ad account, an expired token, missing API permissions, a failed sync — appears there as soon as it is detected, with a badge on unread items.
+
+This is on by default and needs no setup. It exists because integration problems fail quietly: the dashboard keeps showing the last numbers it successfully pulled, so a broken connection can go unnoticed for days while rules run against stale data.
+
+{/* TODO: screenshot — top bar notification area with an unread badge and the notification panel open */}
+
+Open the panel to see the full list. Selecting a notification expands it to show which integration or ad account is affected and what went wrong, so you can go straight to the connection that needs attention instead of checking each integration in turn. Notifications can be cleared once you have dealt with them.
+
+<Tip>
+  Clear the notification panel before you read performance numbers, not after. If an integration stopped syncing, the metrics you are about to optimize against are incomplete — and you would be tuning rules based on data that never arrived.
+</Tip>
+
+Issues that appear in the app are also available as the **Account Issues** alert, so you can have the same problems pushed to email, Slack, or Telegram using the destinations below.
+
+## Where else alerts are delivered
 
 Alerts are delivered to **destinations**, and destinations are grouped by **channel**. Each channel holds several destinations — five on most accounts — so you can send rule alerts to your own inbox, account problems to a shared Slack channel, and everything to your phone over Telegram — all at the same time.
 
@@ -17,7 +35,7 @@ Every destination has its own alert selection. These are the alerts you can choo
 | Alert | When it fires |
 | --- | --- |
 | **Rule Executed** | Every time one of your automation rules runs and takes an action |
-| **Account Issues** | Wrong API info, login problems, or missing tracking tokens on a connected account |
+| **Account Issues** | Wrong API info, login problems, or missing tracking tokens on a connected account — these also appear in the in-app notification panel |
 | **Smart Notifications** | Periodic optimization suggestions and performance alerts from TheOptimizer |
 
 <Tip>
