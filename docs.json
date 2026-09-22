@@ -405,6 +405,14 @@
             "icon": "chart-line"
           },
           {
+            "group": "Dashboard",
+            "pages": [
+              "dashboard/overview",
+              "dashboard/widget-types"
+            ],
+            "icon": "chart-pie"
+          },
+          {
             "group": "Campaign Manager",
             "pages": [
               "campaign-manager/overview",
