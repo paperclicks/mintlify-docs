@@ -1,0 +1,95 @@
+---
+title: "Share reports"
+description: "Send a read-only link to a saved report — no TheOptimizer account needed. Choose when it expires and what viewers can change."
+---
+
+Any saved report can be shared as a link. Anyone who opens the link sees a read-only copy of the report — the same table and chart you see, under your report's name — without needing a TheOptimizer account. It's the quickest way to keep a client, a partner or a colleague outside your workspace up to date.
+
+---
+
+## Create a share link
+
+<Steps>
+  <Step title="Save the report">
+    Only saved reports can be shared, so the **Share** button stays disabled until you've saved.
+  </Step>
+  <Step title="Open the share settings">
+    Click **Share** at the top of the report. You can also choose **Share…** from the report's **⋯** menu on the Reports home page.
+  </Step>
+  <Step title="Choose when the link expires">
+    Under **Link expires**, pick **7 days**, **30 days**, **90 days** or **Never**. New links expire after 30 days unless you change it.
+  </Step>
+  <Step title="Choose what viewers can do">
+    Turn on the permissions you want to give. See [What viewers can do](#what-viewers-can-do).
+
+    <Frame>
+      ![Share report dialog for a report that is not shared yet](/images/reports-share-dialog.png)
+    </Frame>
+  </Step>
+  <Step title="Create and copy the link">
+    Click **Create link**, then **Copy**, and send the link to whoever should see the report.
+  </Step>
+</Steps>
+
+<Frame>
+  ![Share report dialog for a shared report, with its link and Stop sharing](/images/reports-share-dialog-shared.png)
+</Frame>
+
+Once a report is shared, its button reads **Shared**, and the **Sharing** column on the Reports home page shows the link's status — *Shared*, *Shared · expires in 5d*, *Shared · expires Dec 18*, or *Expired*. Click the copy icon next to the status to copy the link again.
+
+---
+
+## What viewers can do
+
+| Setting | When it's on | When it's off |
+| --- | --- | --- |
+| **Allow changing date range** | Viewers get a date picker and can look at any period | The report shows the saved date range only |
+| **Allow interacting (filters, grouping, columns)** | Viewers can change the breakdown, the grouping and the columns | Viewers see the report exactly as you saved it |
+| **Allow export** | Viewers can download the report as CSV or Excel | No export button |
+
+New links allow changing the date range, and nothing else. Changes a viewer makes only affect their own view — they never change your report.
+
+<Note>
+  Viewers always see your report's filters, listed at the top of the page, but can't change them — even when interacting is allowed.
+</Note>
+
+---
+
+## What viewers see
+
+The shared page shows the report's name, its description and a **Shared report** badge, followed by the chart and the table. Viewers can still pick which rows and metrics the chart compares, and sort the table.
+
+When interacting isn't allowed, the report's setup is listed as labels under the name — the network and the breakdown, for example — and the date range is shown as fixed dates unless changing it is allowed.
+
+- **The latest saved version** — viewers see the report as it was last saved. Unsaved changes on your side stay private until you save
+- **A fixed set of ad accounts** — the link covers the ad accounts you had connected for the report's network when you saved the share settings. Accounts you connect later aren't included until you open **Share** and save the settings again
+- **Your currency choice** — if the report converts amounts to one currency, the page says so, for example *All amounts in USD*
+- **Plain ad thumbnails** — ad previews on hover are only available inside TheOptimizer
+
+If the link has expired, viewers see *This shared report has expired* and are asked to request a fresh link. If sharing was stopped or the link is wrong, they see *This report link is not available*.
+
+<Frame>
+  ![A shared report as a viewer sees it, with the Shared report badge](/images/reports-shared-view.png)
+</Frame>
+
+---
+
+## Change, renew or stop sharing
+
+Open **Share** on the report at any time to change the link's settings, then click **Save changes**. The link itself stays the same.
+
+- **Renew an expired link** — pick a new expiration and save. The link works again at the same address
+- **Stop sharing** — click **Stop sharing** and confirm. The link stops working immediately. Sharing the report again creates a new link, so the old one can't be revived
+
+When you save changes to a shared report, the changes reach viewers straight away. See [Saving a report that's shared](/reports/save-and-manage#saving-a-report-thats-shared).
+
+---
+
+## What can't be shared yet
+
+- **Team member, Currency and Timezone grouping** — a report grouped this way can't be shared yet. Change the grouping and save the report before creating a link. If you add one of these groupings to a report that's already shared, TheOptimizer asks you to save it as a new report instead, so the shared link keeps working
+- **Reports with no matching ad accounts** — if none of your connected ad accounts belong to the report's network, the share dialog warns you that the link will show no data
+
+<Warning>
+  A share link works for anyone who has it. Treat it like a password: send it only to people who should see the numbers, give it an expiration, and stop sharing when it's no longer needed.
+</Warning>

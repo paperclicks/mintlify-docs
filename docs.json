@@ -413,6 +413,17 @@
             "icon": "chart-pie"
           },
           {
+            "group": "Reports",
+            "pages": [
+              "reports/overview",
+              "reports/build-a-report",
+              "reports/grouping",
+              "reports/save-and-manage",
+              "reports/sharing"
+            ],
+            "icon": "chart-line"
+          },
+          {
             "group": "Campaign Manager",
             "pages": [
               "campaign-manager/overview",
