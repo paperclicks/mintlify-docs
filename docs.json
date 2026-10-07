@@ -413,7 +413,7 @@
             "icon": "chart-pie"
           },
           {
-            "group": "Reports",
+            "group": "Reporting",
             "pages": [
               "reports/overview",
               "reports/build-a-report",

@@ -17,9 +17,9 @@ The options depend on the [breakdown](/reports/build-a-report#breakdown) — eac
 
 | Breakdown | Group by options |
 | --- | --- |
-| **Campaign**, and a network's own levels | **Traffic source** (all networks only), **Ad account**, **Status**, **Tag**, and custom groups — plus the extra options below |
-| **Ad account** | **Traffic source** (all networks only), **Tag** (ad account tags), **Team member**, **Currency**, **Timezone**, and custom groups |
-| **Day** or **Month** | **Traffic source** (all networks only), **Ad account**, **Team member**, **Currency**, **Timezone** |
+| **Campaign**, and a network's own levels | **Ad network** (*All ad networks* only), **Ad account**, **Status**, **Tag**, and group sets — plus the extra options below |
+| **Ad account** | **Ad network** (*All ad networks* only), **Tag** (ad account tags), **Team member**, **Currency**, **Timezone**, and group sets |
+| **Day** or **Month** | **Ad network** (*All ad networks* only), **Ad account**, **Team member**, **Currency**, **Timezone** |
 | **Ad network** | No grouping |
 
 Some breakdowns add options of their own:
@@ -30,7 +30,7 @@ Some breakdowns add options of their own:
 
 Pick **No grouping** to go back to a flat list.
 
-**Traffic source** groups rows by the ad network they come from. It's only offered with **All networks** selected, since a single-network report has just one.
+**Ad network** groups rows by the ad network they come from. It's only offered with **All ad networks** selected, since a single-network report has just one.
 
 <Note>
   **Team member** appears only when your plan includes [team members](/account-settings/team-members). It groups ad accounts by the team members who have access to them — an account several members share appears in each of their groups.
@@ -48,6 +48,7 @@ Choosing **Tag** opens a picker listing every tag in use at the current breakdow
 
 - Search the list, or use **Select all** and **Clear**
 - Select up to 20 tags. The counter at the top shows how many you've picked
+- Leave everything unselected to group by every tag — the counter then reads *None selected: shows all tags*
 - Click **Apply** to group the report
 
 A row with several tags appears in the group of each selected tag, so groups can overlap.
@@ -55,7 +56,7 @@ A row with several tags appears in the group of each selected tag, so groups can
 **Team member**, **Currency** and **Timezone** open the same kind of picker, so you can group by only the members, currencies or timezones you care about.
 
 <Tip>
-  Grouping by the same tags again and again? Click **Save as group set…** in the tag picker to save your selection as a [custom group set](#custom-groups), with one group per tag. It then appears in the **Group by** menu for every report.
+  Grouping by the same tags again and again? Click **Save as group set…** in the tag picker to save your selection as a [group set](#custom-groups), with one group per tag. It then appears in the **Group by** menu for every report.
 </Tip>
 
 ---
@@ -66,7 +67,7 @@ On native networks, a campaign's traffic comes from sites, publishers or widgets
 
 <Steps>
   <Step title="Pick a single native network">
-    Choose the network, for example Taboola, from the network control.
+    Choose the network, for example Taboola, from the ad network control.
   </Step>
   <Step title="Choose the Campaign breakdown">
     Set **Breakdown** to **Campaign**.
@@ -94,40 +95,39 @@ A set of custom groups is called a **group set**. Group sets are available on th
 
 <Steps>
   <Step title="Open the group builder">
-    Open **Group by** and choose **New custom group** under **Custom groups**.
-
+    Open **Group by** and choose **New group set…** under **Group sets**.
   </Step>
   <Step title="Name the set">
-    Type a name for the group set at the top of the dialog, for example *Funnel stages*.
+    Type a name for the group set at the top of the dialog, for example *Funnel stages*. A set needs a name before you can save it, but you can apply it without one.
   </Step>
   <Step title="Define each group">
-    For each group, give it a name and a color, then click **+ Condition** to add the rules a row must match. Conditions can use a row's **Name**, its **Status** or its **Tags** — for example *Campaign Name starts with US*. The count on the right, such as *2 campaigns*, shows how many rows the group matches right now.
+    For each group, give it a name and a color, then click **+ Condition** to add the rules a row must match. Conditions can use a row's **Name**, its **Status** or its **Tags** — for example *Campaign Name starts with US*. The count on the right, such as *2 campaigns*, shows how many rows the group matches right now. A group without a condition reads *Add a condition*.
 
     <Frame>
-      ![Group builder with two groups defined by campaign name](/images/reports-group-builder.png)
+      ![Group builder with a group set name, one group and the condition fields](/images/reports-group-builder.png)
     </Frame>
   </Step>
   <Step title="Add more groups">
     Click **Add group** for each additional bucket, up to 20. Use the duplicate icon to copy a group and adjust it.
   </Step>
   <Step title="Apply or save">
-    Click **Apply** to use the groups in this report right away without keeping them, or **Save to library** to keep the set and reuse it in any report.
+    Click **Apply** to use the groups in this report right away without keeping them, or **Save group set** to keep the set and reuse it in any report.
   </Step>
 </Steps>
 
 <Note>
-  Each group is an independent filter over the report's rows, so groups can overlap — a row that matches two groups is counted in both. **Net Results** always shows the unfiltered totals, not the sum of the groups.
+  Each group is an independent filter over the report's rows, so groups can overlap — a row that matches two groups is counted in both. The **Total** row always shows everything, not the sum of the groups.
 </Note>
 
 ### Manage saved group sets
 
-Saved group sets are listed under **Custom groups** in the **Group by** menu. Hover a set to reveal its actions:
+Saved group sets are listed under **Group sets** in the **Group by** menu. Hover a set to reveal its actions:
 
 - **Edit** — change the set's groups. Every report using the set picks up the change
 - **Duplicate** — copy the set as the starting point for a new one
-- **Delete** — remove the set. Reports that use it fall back to no grouping
+- **Delete** — remove the set. The confirmation tells you how many saved reports use it; those reports fall back to no grouping
 
-A group set built on a single network is only offered on that network. A set built with **All networks** selected is offered everywhere.
+A group set built on a single network is only offered on that network. A set built with **All ad networks** selected is offered everywhere.
 
 While you're using groups you applied but didn't save, **Group by** reads **Custom**, and the menu lists them as **Custom** with an edit icon. Finish or save those groups before starting a new set.
 
@@ -137,7 +137,7 @@ While you're using groups you applied but didn't save, **Group by** reads **Cust
 
 <CardGroup cols={2}>
   <Card title="Build a report" icon="table" href="/reports/build-a-report">
-    Network, breakdown, filters, dates, currency, chart, columns and export.
+    Ad network, ad accounts, breakdown, filters, dates, currency, chart, columns and export.
   </Card>
   <Card title="Share reports" icon="share-nodes" href="/reports/sharing">
     Which groupings a shared link can show.
