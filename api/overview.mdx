@@ -1,6 +1,6 @@
 ---
 title: "API Overview"
-description: "TheOptimizer exposes a public API for programmatic access to your campaign data. Explore the available endpoints in the Postman collection below."
+description: "TheOptimizer exposes a public API for programmatic access to your campaign data. Learn how authentication, token lifetimes, and rate limits work, then explore the endpoints in the Postman collection."
 sidebarTitle: "Overview"
 ---
 
@@ -16,11 +16,66 @@ TheOptimizer provides a public API that lets you retrieve and manage campaign da
 
 ## Authentication
 
-Please refer to the Postman collection
+The API uses two tokens:
+
+- **Access token** — sent with every API request. The **Authenticate** endpoint returns it in the `jwt` field.
+- **Refresh token** — used only to get a new access token. It's returned in the `refresh_token` field.
+
+To get your tokens:
+
+1. Call the **Authenticate** endpoint with your TheOptimizer email (or username) and password, and the `platform: native` header.
+2. If your account has two-factor authentication enabled, the response contains a `user_id` and a `session_id` instead of tokens. Send them with your one-time code to the **2FA Authentication** endpoint to receive your tokens.
+3. Store both tokens securely.
+
+Pass the access token with each request. Most endpoints expect it as a Bearer token in the `Authorization` header:
+
+```http
+Authorization: Bearer <access_token>
+```
+
+<Note>
+  A few endpoints — **Create campaigns via Excel**, **Upload Creative to Creative Library** and **Manage Campaign Tags** — expect the access token in a `jwt` header instead. Check each endpoint's headers in the Postman collection.
+</Note>
+
+## Token lifetime
+
+| Token | Valid for | When it expires |
+| --- | --- | --- |
+| Access token | 1 hour | Call **Refresh Access Token** to get a new one. |
+| Refresh token | 30 days from login | Call **Authenticate** again to get a new pair of tokens. |
+
+Refreshing returns a new access token in the `access_token` field. It doesn't issue a new refresh token or extend the current one. Once the refresh token expires, or if you sign out of that session, call **Authenticate** again.
+
+Both tokens are JWTs, so you can read the `exp` claim (a Unix timestamp) to see exactly when each one expires.
+
+We recommend this flow for long-running integrations:
+
+1. Call **Authenticate** once and store both tokens.
+2. Reuse the access token for every request until it expires, or until a request returns `401 Unauthorized`.
+3. Call **Refresh Access Token** with your refresh token, then retry the request with the new access token.
+4. Only when the refresh token has expired, call **Authenticate** again.
 
 ## Rate limits
 
-Please refer to the Postman collection for any rate limit notes on individual endpoints.
+### Authenticate endpoint
+
+The **Authenticate** endpoint is protected by dynamic rate limiting. The limits adjust automatically based on traffic, so we don't publish a fixed number, and repeated login requests can be blocked.
+
+Your integration should only need to call **Authenticate** once to get a refresh token, then again when that refresh token expires — roughly once every 30 days. To stay clear of the limits:
+
+- Don't log in before every request or every job run.
+- Renew an expired access token with **Refresh Access Token** instead of logging in again.
+- If several workers or scripts call the API, share one set of tokens between them instead of having each one authenticate.
+
+### Other endpoints
+
+The other endpoints, including **Reporting**, don't have fixed request limits. They're covered by a fair usage policy: use the API at a volume that matches what your integration needs. If we see usage that affects the platform, we'll reach out and ask you to reduce your request rate.
+
+To keep your usage fair:
+
+- Run reporting queries one after another rather than in large parallel bursts.
+- Request only the date ranges and fields you need.
+- If you receive a `429 Too Many Requests` response, wait before retrying and increase the delay with each retry.
 
 <Info>
   The API is currently in limited availability. Additional endpoints will be added over time. If you need access to specific data or actions not yet available, reach out to our support team.
