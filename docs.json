@@ -29,9 +29,18 @@
             "pages": [
               "introduction",
               "getting-started",
+              "finding-your-way",
               "faq"
             ],
             "icon": "rocket"
+          },
+          {
+            "group": "Jade AI Copilot",
+            "pages": [
+              "jade/overview",
+              "jade/scheduled-tasks"
+            ],
+            "icon": "sparkles"
           },
           {
             "group": "Integrations",

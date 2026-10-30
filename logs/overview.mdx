@@ -3,7 +3,7 @@ title: "Logs"
 description: "A complete audit trail of every manual action and automated change across your campaigns — with detailed rule condition snapshots to help you understand exactly what happened and why."
 ---
 
-Logs record everything that happens inside TheOptimizer: every manual change a team member makes, every action an automation rule fires, and every placement a Smart List blocks. Whenever you need to understand what changed, who changed it, why a rule fired, or why an action failed, Logs is where you start.
+Logs record everything that happens inside TheOptimizer: every manual change a team member makes, every action an automation rule fires, every placement a Smart List blocks, and every change you approve in [Jade](/jade/overview). Whenever you need to understand what changed, who changed it, why a rule fired, or why an action failed, Logs is where you start.
 
 ---
 
@@ -108,6 +108,26 @@ The expanded view shows:
   This makes it easy to see exactly why a rule fired or didn't fire. If a log is marked No Change and one condition's actual value didn't meet the threshold, that condition will be visible here.
 
 **View Details button** — for a complete technical snapshot, click **View Details** inside the expanded log. This opens a full before-and-after JSON record of the log, showing the exact state of the item before the action and after. This is primarily useful for technical debugging or for users who want to verify the precise data the rule acted on.
+
+---
+
+## Rolling back changes
+
+You can undo changes straight from the Logs table:
+
+<Steps>
+  <Step title="Select the entries">
+    Tick one or more log entries for the changes you want to reverse.
+  </Step>
+  <Step title="Click Rollback Activities">
+    Click **Rollback Activities** in the floating action bar at the bottom of the page. The dialog lists the changes that will be reverted for each item. Entries that can't be reverted are left out, and the dialog tells you how many.
+  </Step>
+  <Step title="Confirm">
+    Confirm the rollback. Each item is put back to its previous state, and the result for each one is shown, including any the ad network rejected.
+  </Step>
+</Steps>
+
+Changes made by [Jade](/jade/overview) are logged here like any other change. Facebook changes made by Jade can be rolled back the same way — or ask Jade in the chat to undo them.
 
 ---
 

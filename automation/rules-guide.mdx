@@ -12,65 +12,45 @@ Automation rules are the engine behind TheOptimizer's optimization capabilities.
 
 ---
 
-## 1. Navigating the Rules Engine
+## 1. The Rules page
+
+Go to **Automation** in the left navigation. The page opens on **Rules**; **Smart Lists** sits next to it in the title.
 
 <Frame>
-  ![Image](/images/image.png)
+  ![The Rules page](/images/rules-page.png)
 </Frame>
 
-### Accessing Rules
+- **New Rule** (top right) starts a new rule — see Section 2 below.
+- **Search by rule name or ID** and **Filters** narrow the list.
+- **Manage Groups** organizes rules into folders. Groups also let you assign a whole set of rules to a campaign at once, saving time as your rule library grows.
+- Hover a rule's name for **Clone**, **Run now**, **Logs** and **Delete**.
 
-<Steps>
-  <Step title="Open Automation">
-    On the left-side navigation menu, locate the **Automation** section.
-  </Step>
-  <Step title="Click Rules">
-    Click **Rules** to open the rules engine.
-  </Step>
-</Steps>
+### Standard rules vs. Global rules
 
-### Top Menu Options
+Every rule has a **Rule scope**, and it decides what happens when you launch a new campaign:
 
-Once inside the Rules page, the top menu bar gives you four key options:
+| Scope | Shown in the list as | What it covers |
+| --- | --- | --- |
+| **Specific campaigns** | Standard | Only the campaigns you pick. New campaigns must be added to the rule by hand. |
+| **Whole ad accounts** | Global | Every campaign in the ad accounts you pick, **new ones included**. |
 
-| Option | Description |
-| --- | --- |
-| **New Rule (Standard)** | Creates a rule that applies to specific campaigns you manually select. New campaigns launched later must be added manually. |
-| **New Global Rule** | Works identically to a Standard Rule in terms of logic, but applies to an entire **Ad Account**. Any new campaign launched inside the selected account automatically inherits the rule. |
-| **Load from Template** | Opens a library of pre-built rule templates (Stop-Loss, Scaling, Dayparting, and more). A fast way to get started — but always customize the default values before saving. |
-| **Manage Groups** | Lets you organize rules into folders. Groups also let you assign a whole set of rules to a campaign at once, saving significant time as your rule library grows. |
-
-### Standard Rules vs. Global Rules
-
-The most important practical difference between the two rule types is what happens when you launch a new campaign.
-
-With a **Standard Rule**, you must manually open the rule and add every new campaign you create. If you forget, those new campaigns are completely unprotected — no automation applies to them.
-
-With a **Global Rule**, you select an Ad Account instead of individual campaigns. Any new campaign you launch inside that account is automatically covered from day one, with no extra steps required.
+With a Standard rule, a campaign you forget to add is completely unprotected. With a Global rule, any campaign you launch in the selected accounts is covered from day one.
 
 <Tip>
-  For stop-loss and scaling rules that you want applied consistently across all your campaigns, prefer **Global Rules**. Reserve **Standard Rules** for logic that should only apply to a specific, curated subset of campaigns.
+  For stop-loss and scaling rules you want applied consistently, choose **Whole ad accounts**. Keep **Specific campaigns** for logic that should only touch a curated subset.
 </Tip>
 
-### Finding the Right Rule for Your Traffic Source
-
-When you click **New Rule**, the system loads available rule types for every ad network you have connected. Use these methods to find what you need quickly:
-
-<Frame>
-  ![Search Rules](/images/search-rules.png)
-</Frame>
-
-- **Search by network name** — type "Facebook" to filter only Facebook rules.
-- **Search by level** — type "ad", "campaign", or "adset" to see rules at that level.
-- **Read the icons** — each rule shows the logos of ad networks that support it. A rule showing all your connected network logos works across all of them.
-
 <Note>
-  **Cross-network rules:** Rules supported by multiple networks can be applied to campaigns from different ad networks within a single rule. If your Pause Campaign logic is the same for Facebook and TikTok, you can create one rule and add campaigns from both networks — rather than maintaining two separate rules.
+  **Whole ad accounts** is available on plans that include Global Rules. If yours doesn't, the option asks you to upgrade.
 </Note>
 
-### Platform Terminology: Widget & Content
+### One rule, several ad networks
 
-Sometimes you might encounter these terms throughout the platform (especially if you are working with native ad networks:
+A rule can run on more than one ad network at once. If your stop-loss logic is the same for Facebook, Taboola and TikTok, create one rule and pick all three, instead of maintaining three copies. See [Where the rule runs](#where-the-rule-runs).
+
+### Platform terminology: Widget & Content
+
+Sometimes you might encounter these terms throughout the platform (especially if you are working with native ad networks):
 
 | Platform term | What it means |
 | --- | --- |
@@ -79,34 +59,96 @@ Sometimes you might encounter these terms throughout the platform (especially if
 
 ---
 
-## 2. Creating a Rule: Basic Settings
+## 2. Creating a rule
 
-Click **New Rule**, select your rule type (for example, "Pause Ads – Facebook"), and you'll enter the rule builder. The first section is **Basic Settings**.
+Click **New Rule**. Instead of a long list of rule types, you get one starting point with three ways in:
 
 <Frame>
-  ![Rule 1](/images/rule-1.png)
+  ![Create new rule: describe it to Jade, start an empty rule, or explore strategies](/images/rules-create-new.png)
 </Frame>
 
-### Key Configuration Steps
+| Start from | What happens |
+| --- | --- |
+| **Describe it to Jade** | Type the strategy you want in the box at the top (or click one of the suggestions) and Jade builds the rule for you. See [Creating a rule with Jade](#creating-a-rule-with-jade). |
+| **Empty rule** | Opens a blank rule. You pick the rule type and where it runs yourself. |
+| **Explore strategies** | Opens a library of proven rules with their conditions filled in. Pick one and it opens in the rule form for you to adjust. See [Rule templates](/automation/rule-templates). |
+
+Whichever you choose, the rule opens in a side sheet over the Rules page, so your list stays in view.
+
+<Frame>
+  ![Strategies: proven rules ready to adjust](/images/rules-strategies.png)
+</Frame>
+
+<Warning>
+  If you start from a strategy, always review and adjust the values before saving. Strategy values are starting points — they are almost never the right numbers for your specific account and offers.
+</Warning>
+
+### Creating a rule with Jade
+
+Explain in plain English what you want to achieve — for example, *"Pause any Facebook or TikTok campaign that has spent $100 today with ROI below -30%, and raise the budget by 20% on campaigns above 50% ROI"*. [Jade](/jade/overview) turns it into one or more rules that match your strategy. Each one appears in the chat as a **Generated rule** card — a draft, not a live rule. Click **Review and save** to open it in the rule form with everything filled in, check the settings, and click **Save**. Nothing is created until you save.
+
+Ask Jade to change an existing rule and the card offers **Review changes** instead, opening that rule with the edits applied for you to save.
+
+You can do the same from any Jade chat — press **⌘J** / **Ctrl+J** and describe the rule.
+
+### The rule form
+
+The rule form is one page of sections, top to bottom:
+
+1. **Rule details** — name, group, default data interval and excluded days.
+2. **Where the rule runs** — ad networks, level, rule scope and the campaigns or ad accounts it checks.
+3. **Rule type** — what the rule does.
+4. **Rule conditions** — when it acts. See Section 3 below.
+5. **Rule action** — what it changes. See Section 4 below.
+6. Filtering — include or exclude specific items. See Section 5 below.
+7. **Auto tag** — add or remove tags on the items the rule acts on.
+8. **Schedule rule** — how often it runs, whether it acts or only alerts, and where alerts go. See Sections 6 and 7 below.
+
+Click **Save** at the bottom of the sheet when you're done. If you close the sheet with unsaved changes, you're asked whether to discard them.
+
+### Rule details
 
 <Steps>
   <Step title="Name your rule">
     Use a name that describes the logic, not just the type. `Pause Ads – Spend > $50 & 0 Conv` tells you everything at a glance; `Rule 1` tells you nothing. As your rule library grows, self-explanatory names save a lot of scrolling.
   </Step>
-  <Step title="Assign a Rule Group (optional)">
-    Assign the rule to a group to keep your dashboard tidy and to bulk-assign rules to campaigns later without selecting them one by one.
+  <Step title="Assign a Rule group (optional)">
+    Assign the rule to a group to keep your list tidy and to bulk-assign rules to campaigns later without selecting them one by one. Use **New group** to create one on the spot.
   </Step>
-  <Step title="Set the Default Data Interval">
+  <Step title="Set the Default data interval">
     The time window the system looks at when evaluating all conditions. Options range from **Today** and **Yesterday** to **Last 3 Days**, **Last 7 Days**, all the way to **Last 90 Days**. Every condition in the rule uses this interval unless you override it individually (see Section 3).
   </Step>
-  <Step title="Configure Exclude Days (optional)">
+  <Step title="Configure Exclude days from default interval (optional)">
     Removes specific recent days from the evaluation window. If your revenue data arrives with a 24-hour delay — common in Search Arbitrage — excluding **Today** prevents the rule from making decisions based on spend with no corresponding revenue yet. You can exclude up to the last 3 days.
   </Step>
 </Steps>
 
-<Warning>
-  If you create a rule from a template, always review and adjust the default values before saving. Template values are placeholders to get you started — they are almost never the right numbers for your specific account and offers.
-</Warning>
+### Where the rule runs
+
+<Frame>
+  ![Where the rule runs: ad networks, level, scope and campaigns](/images/rules-where-it-runs.png)
+</Frame>
+
+| Setting | What it sets |
+| --- | --- |
+| **Ad network** | The ad networks the rule runs on. Pick one or several — only connected networks are listed. |
+| **Level** | What the rule acts on: campaigns, ad sets, ads, or (on native networks) widgets/sites. |
+| **Rule scope** | **Specific campaigns** or **Whole ad accounts**. See [Standard rules vs. Global rules](#standard-rules-vs-global-rules). |
+| **Campaigns** / **Ad accounts** | The campaigns, or the ad accounts, the rule checks. |
+
+### Rule type
+
+The **Rule type** list shows only what the selected ad networks can **all** do at the chosen level, so picking more networks can narrow the list. For example, a campaign-level rule on Facebook, Taboola and TikTok offers **Pause or Activate**, **Change Budget** and **Day Parting**.
+
+<Frame>
+  ![Rule type options for a campaign-level rule on three ad networks](/images/rules-rule-type.png)
+</Frame>
+
+Choose the type first, then set the **Rule action** below the conditions — for **Pause or Activate**, that's a **Pause** / **Activate** switch.
+
+<Note>
+  Once a rule is saved, it keeps its ad networks, level and rule type. To change any of them, clone the rule and edit the copy.
+</Note>
 
 ---
 
@@ -314,17 +356,17 @@ You can populate either list by searching for specific items manually, or by usi
 
 ### Select Campaigns
 
-Every rule — regardless of whether it acts on ads, adsets, or campaigns — requires you to specify which campaigns it monitors. The rule evaluates entities within those campaigns only.
+Every rule — regardless of whether it acts on ads, adsets, or campaigns — needs to know which campaigns it monitors. You choose them in **Where the rule runs** (see Section 2). The rule evaluates entities within those campaigns only.
 
 - **Manual Selection** — Search for specific campaigns and check them one by one.
 - **Smart Filtering** — Use the filter sidebar to auto-select all campaigns matching a naming pattern (e.g., all campaigns containing "US\_2026").
 
 <Warning>
-  **Standard Rules: don't forget new campaigns.** A campaign not in this list is completely invisible to the rule. Every time you launch a new campaign with a Standard Rule, you must come back and add it here. This is the key reason to prefer Global Rules for broad automations.
+  **Specific campaigns: don't forget new campaigns.** A campaign not in this list is completely invisible to the rule. Every time you launch a new campaign under a Standard rule, you must come back and add it here. This is the key reason to choose **Whole ad accounts** for broad automations.
 </Warning>
 
 <Note>
-  If you are creating a **Global Rule**, this section asks you to select **Ad Accounts** instead of individual campaigns.
+  If the rule scope is **Whole ad accounts** (a Global rule), you select **Ad Accounts** instead of individual campaigns.
 </Note>
 
 ---
@@ -359,11 +401,11 @@ The final step controls whether the rule acts, notifies you, or both.
 | Mode | Description |
 | --- | --- |
 | **Execute & Alert** | The rule makes the change **and** sends you a notification listing all items that triggered it. |
-| **Execute** | The rule makes the change silently. No notification is sent. Use for well-established automations you trust completely. |
+| **Execute Only** | The rule makes the change silently. No notification is sent. Use for well-established automations you trust completely. |
 | **Alert Only** | Sends a notification but makes **no changes** whatsoever. The rule becomes a monitoring and alerting tool. |
 
 <Tip>
-  **Building a pure monitoring rule:** You can turn any rule type into a monitoring-only rule by selecting **Alert Only**. The rule type itself doesn't matter — what matters is the level (campaign, ad, adset) and the conditions. Create a "Pause Ads" rule, define your conditions, set it to **Alert Only**, and you'll be notified when matches occur without anything actually being paused.
+  **Building a pure monitoring rule:** You can turn any rule type into a monitoring-only rule by selecting **Alert Only**. The rule type itself doesn't matter — what matters is the level (campaign, ad, adset) and the conditions. Create a **Pause or Activate** rule, define your conditions, set it to **Alert Only**, and you'll be notified when matches occur without anything actually being paused.
 </Tip>
 
 ### Notification Channels
