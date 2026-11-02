@@ -137,6 +137,15 @@
                     "pages": [
                       "ad-networks/tiktok/automation/popular-rules"
                     ]
+                  },
+                  {
+                    "group": "Campaign Creator",
+                    "pages": [
+                      "ad-networks/tiktok/campaign-uploader/getting-started",
+                      "ad-networks/tiktok/campaign-uploader/build-a-campaign",
+                      "ad-networks/tiktok/campaign-uploader/variations",
+                      "ad-networks/tiktok/campaign-uploader/publish-and-templates"
+                    ]
                   }
                 ]
               },
