@@ -1,0 +1,130 @@
+---
+title: "Build a NewsBreak campaign"
+description: "Every setting on the campaign, ad set and ads levels of the NewsBreak Campaign Launcher — objectives, audience, placements, bidding, budget and schedule, creatives, destination and tracking."
+sidebarTitle: "Build a campaign"
+---
+
+The **Create Campaign** step has three levels, one per row in the tree: **Campaign**, **Ad Set** and **Ads**. Click **Next** to move down through them — the launcher checks each level before it lets you go on.
+
+Cards marked with group tabs (**Budget 1**, **Audience 1**…) can hold several [groups](/campaign-creator/groups-and-variations). Every combination becomes its own ad set or its own set of ads — see [Variations and publishing](/ad-networks/newsbreak/campaign-uploader/variations-and-publish).
+
+---
+
+## Campaign
+
+{/* SCREENSHOT: newsbreak-campaign-level.png — Campaign level: Select Ad Account card, Basic info, and the five objective cards. */}
+
+**Select Ad Account.** Pick the NewsBreak ad account to launch in. Inactive accounts are greyed out; the first active one is selected for you.
+
+**Basic info.**
+
+- **Campaign name** — type a name, leave it empty to have one generated, or click **Create Naming Template** to build it from parts (see [Naming templates](/campaign-creator/naming-templates)).
+- **Status** — Active or Paused once it's created.
+- **Tags** — optional, for your own organization.
+
+**Campaign objective.** Choose one: **Web Conversions**, **Web Traffic**, **Reach**, **App Conversions** or **App Traffic**. The objective decides which bid types and optimization events are available on the ad set. If you add more campaigns to the tree, each one has its own objective.
+
+<Note>
+  NewsBreak has no campaign-level budget, so campaigns don't have groups. Budgets live on the ad set — and that's where groups do their work.
+</Note>
+
+---
+
+## Ad Set
+
+{/* SCREENSHOT: newsbreak-adset-level.png — Ad Set level with Audience Controls open, showing two Audience tabs and the "2 variants: each makes an ad set of its own" hint. */}
+
+**Basic info.** Ad Set name (with **Create Naming Template**), Status and Tags — the same as on the campaign.
+
+**App.** For **App Traffic** campaigns, add your app's **Google Play package** (for example `com.example.app`) and/or its **App Store URL**.
+
+### Audience Controls
+
+*Group tabs: Audience 1, Audience 2…*
+
+- **Locations** — add **Include** and **Exclude** rows. Search states, cities, ZIP codes and DMAs, or tick from the list of States and DMAs. **Clear All** empties the list.
+- **Demographics** — **Age** (18–30, 31–44, 45–64, 65+), **Gender** (Male, Female, Not disclosed or All) and **Language** (English, Spanish).
+- **Interests** — include *or* exclude (not both) from NewsBreak's interest categories.
+- **Devices & connection** — **Operating systems** (iOS and Android versions, grouped by system) and **Network** (All, Cellular or Wi-Fi).
+- **Manufacturers** and **Carriers** — include or exclude.
+
+### Placements
+
+*Group tabs: Placement 1, Placement 2…*
+
+Leave **All surfaces (recommended)** on, or pick **Choose surfaces** to select **NewsBreak** and/or **Scoopz**, plus **Premium partners** (None, All, Gaming or Non-gaming).
+
+### Optimization & bidding
+
+*Group tabs: Bidding 1, Bidding 2…*
+
+{/* SCREENSHOT: newsbreak-bidding.png — Optimization & bidding card with Target ROAS selected, showing the purchase-history warning and the Optimization event picker. */}
+
+**Bid type.** The list only shows the bid types that work with your objective:
+
+| Bid type | Notes |
+| --- | --- |
+| **CPM** | Bid at least **$4.00** |
+| **CPC** | Bid at least **$0.10** |
+| **Target CPA** | Your target cost per conversion, in USD |
+| **Maximize conversions** | No bid needed |
+| **Maximize conversion value** | Value bid — see the warning below |
+| **Day-one max conversion value** | Value bid, app campaigns |
+| **Target ROAS** | Web Conversions only. Enter the return as a ratio — **1.5** is a 150% return |
+| **Day-one target ROAS** | App Conversions only |
+
+<Warning>
+  Value bids need purchase history. NewsBreak only accepts them when the ad account has recorded at least **20 purchase events with a value in the last 14 days** (15 for the day-one bids). The launcher warns you before you publish instead of letting NewsBreak reject the ad set.
+</Warning>
+
+- **Optimization event** — the Pixel or App postback event to optimize for. Shown for conversion objectives and for bids that track conversions.
+- **Count conversions** — **Every conversion** or **One per person**. This can't be changed after the ad set is created.
+- **Delivery** — **As fast as possible** or **Evenly**. Available for CPM and CPC bids.
+
+These are rules NewsBreak's API enforces without showing them in Ads Manager. The launcher checks them field by field, so a launch doesn't fail halfway through.
+
+### Budget & Schedule
+
+*Group tabs: Budget 1, Budget 2…*
+
+- **Budget** — **Daily Budget** or **Lifetime Budget**, in USD.
+- **Start date** and **End date** — both are required, and both are in **UTC**.
+- **Ad set scheduling** — tick it to choose the days and hours the ad set runs. Click and drag on the grid (UTC).
+
+{/* SCREENSHOT: newsbreak-schedule-grid.png — Budget & Schedule card with Ad set scheduling ticked and a weekday daytime block selected on the grid. */}
+
+---
+
+## Ads
+
+{/* SCREENSHOT: newsbreak-ads-level.png — Ads level with 3 images, 2 headlines and 2 descriptions, and the "Every creative runs with every headline and description: 12 ads" line. */}
+
+**Basic info.** Ad name (with **Create Naming Template**), Status and Tags.
+
+### Creatives
+
+- **Media** — click **Add Media**, then **Add Image or GIF** or **Add Video**, and pick from the **Media Manager** (your uploads in TheOptimizer — sent to NewsBreak for you when the campaign is created). Rename, replace or remove a tile, or **Clear all**. Videos get **Add cover** for a custom thumbnail.
+- **Headline** and **Description** — add as many as you want with **Add Headline** / **Add Description**, or click **Generate with AI** to have them written for you. You can add your own instructions before generating, then **Regenerate** until you like the result and **Apply** it.
+- **Call to action** — free text, for example *Learn More*.
+- **Brand name** — required.
+- **Logo** — optional. A square image shown beside the brand name.
+
+**Every creative runs with every headline and description.** Three images, two headlines and two descriptions make **12 ads** — the launcher shows the count as you go, and you can switch any of them off in [Review Variations](/ad-networks/newsbreak/campaign-uploader/variations-and-publish#review-variations).
+
+### Destination
+
+*Group tabs: Destination 1, Destination 2…*
+
+The **Landing page** URL the ads send people to. Add a second destination group to test two landing pages — each destination makes its own ads in the same ad set.
+
+### Tracking
+
+**Click tracking URLs** and **Impression tracking URLs** — both optional.
+
+---
+
+## Next step
+
+<Card title="Variations and publishing" icon="layer-group" href="/ad-networks/newsbreak/campaign-uploader/variations-and-publish">
+  How your groups multiply into ad sets and ads, Review Variations, and Publish.
+</Card>

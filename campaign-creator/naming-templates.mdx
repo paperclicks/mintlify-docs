@@ -1,0 +1,85 @@
+---
+title: "Naming templates on every level"
+description: "Build structured campaign, ad set/ad group and ad names from parts like date, objective, country, group name and creative number — so hundreds of generated items stay readable. Facebook, TikTok, Taboola and NewsBreak."
+sidebarTitle: "Naming templates"
+---
+
+When one launch creates dozens of campaigns and hundreds of ads, names are what keep them usable. A naming template builds each name from **parts** — the date, the objective, the country, the group, the creative number — so every generated item gets a unique, structured name that follows your convention, in TheOptimizer and in the ad network.
+
+Native ad managers make you type each name by hand. In TheOptimizer you define the convention once per level, and it's applied to every combination your [groups](/campaign-creator/groups-and-variations) generate. Save it in a [template](/campaign-creator/overview#what-makes-theoptimizers-campaign-creator-different) and every future launch follows the same convention automatically.
+
+{/* SCREENSHOT: naming-template-builder.png — The naming template builder open on a campaign level (TikTok or Taboola), with 3–4 parts (Date, Objective, Group name / Countries) and the preview of the resulting name. */}
+
+---
+
+## Creating a naming template
+
+<Steps>
+  <Step title="Open the builder">
+    Next to the name field on a level, click **Create Naming Template**. Once a level has one, the button reads **Edit Naming Template**.
+  </Step>
+  <Step title="Add parts in the order you want">
+    Pick the parts the name should be made of. Add your own text where you want a fixed prefix or code, such as an offer or a buyer's initials.
+  </Step>
+  <Step title="Save">
+    The name field now shows the template. The parts are filled in when each item is created, so every campaign, ad set/ad group or ad gets its own name.
+  </Step>
+</Steps>
+
+Parts are joined with **_** by default (for example `2026-11-09_Leads_US, CA`), and lists inside a part — such as several countries — are joined with **, **.
+
+<Tip>
+  Leave a name field empty and the creator generates a name for you. A template is better: it makes names you can filter on in the Campaign Manager and in [rules](/automation/rules-guide).
+</Tip>
+
+---
+
+## Group names keep variations apart
+
+The most useful part is **Group name**: it fills in the names of the [groups](/campaign-creator/groups-and-variations) an item was made from, such as *Budget 2 · US*. Give your groups meaningful names and every generated item explains itself.
+
+Even without the part, the creators keep variations apart: on TikTok and NewsBreak the group names are added to the end of the name when a template doesn't include them, and on Taboola each generated campaign's name ends with the names of its groups (for example *Summer Sale - Budget Group 2 - US*).
+
+---
+
+## Parts available on each network
+
+<Tabs>
+  <Tab title="Facebook">
+    Facebook's builder has the widest set of placeholders — targeting, placement, budget, bid amount and strategy, group names, nested names and more — plus quick suggestions and custom separators.
+
+    See [Dynamic naming templates](/ad-networks/facebook/campaign-uploader/naming-templates).
+  </Tab>
+  <Tab title="TikTok">
+    | Level | Parts |
+    | --- | --- |
+    | **Campaign** | Text, Date, Objective, Mode, Group name, Timestamp |
+    | **Ad group** | Text, Date, Objective, Group name, Copy number, Timestamp |
+    | **Ad** | Text, Date, Format, Group name, Creative number, Timestamp |
+
+    Copies of an ad group end in *_copy1*, *_copy2*… unless the name includes the copy number. With **One ad per creative**, each ad ends in *_1*, *_2*… unless the name includes the creative number.
+  </Tab>
+  <Tab title="Taboola">
+    | Level | Parts |
+    | --- | --- |
+    | **Campaign** | Text, Date, Start date, Objective, Brand name, Ad account, Countries, Campaign number, Timestamp |
+    | **Ad** | Text, Date, Campaign name, Ad name, Headline, Media name, Format, Creative number, Timestamp |
+
+    The ad template names **each creative** on Taboola, so Realize's reports show which headline and image an item is — something you can't do in bulk in Realize itself.
+
+    The campaign group is named with plain text: it's created once per launch.
+  </Tab>
+  <Tab title="NewsBreak">
+    | Level | Parts |
+    | --- | --- |
+    | **Campaign** | Text, Date, Objective, Timestamp |
+    | **Ad set** | Text, Date, Objective, Group name, Timestamp |
+    | **Ad** | Text, Date, Format (Image, Video or GIF), Group name, Creative number, Timestamp |
+
+    An empty name falls back to *NewsBreak Campaign*, *NewsBreak Ad Set* or *NewsBreak Ad*.
+  </Tab>
+</Tabs>
+
+<Note>
+  A name can't end up empty or too long: the builder warns you if a template would produce an empty name, or one over the network's limit (200 characters on Taboola).
+</Note>

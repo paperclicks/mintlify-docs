@@ -167,8 +167,12 @@
                     ]
                   },
                   {
-                    "group": "Campaign Uploader",
+                    "group": "Campaign Creator",
                     "pages": [
+                      "ad-networks/taboola/campaign-uploader/campaign-launcher",
+                      "ad-networks/taboola/campaign-uploader/campaign-groups",
+                      "ad-networks/taboola/campaign-uploader/build-a-campaign",
+                      "ad-networks/taboola/campaign-uploader/variations-and-publish",
                       "ad-networks/taboola/campaign-uploader/excel-upload"
                     ]
                   }
@@ -288,8 +292,11 @@
                     ]
                   },
                   {
-                    "group": "Campaign Uploader",
+                    "group": "Campaign Creator",
                     "pages": [
+                      "ad-networks/newsbreak/campaign-uploader/campaign-launcher",
+                      "ad-networks/newsbreak/campaign-uploader/build-a-campaign",
+                      "ad-networks/newsbreak/campaign-uploader/variations-and-publish",
                       "ad-networks/newsbreak/campaign-uploader/excel-upload",
                       "ad-networks/newsbreak/campaign-uploader/ai-campaign-builder"
                     ]
@@ -471,7 +478,9 @@
           {
             "group": "Campaign Creator",
             "pages": [
-              "campaign-creator/overview"
+              "campaign-creator/overview",
+              "campaign-creator/groups-and-variations",
+              "campaign-creator/naming-templates"
             ],
             "icon": "plus-circle"
           },

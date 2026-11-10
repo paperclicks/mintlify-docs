@@ -22,6 +22,40 @@ You can already create campaigns directly inside each ad network, so why use The
 
 ---
 
+## What makes TheOptimizer's Campaign Creator different
+
+Native ad managers are built to create **one** campaign at a time: you fill in a campaign, then an ad set or ad group, then an ad — and to test five audiences against three budgets, you repeat that fifteen times. TheOptimizer's guided creators (Facebook, TikTok, Taboola and NewsBreak) are built around a different idea: **you describe the variations once, and the creator builds every combination for you.** The same building blocks work the same way on every network.
+
+<CardGroup cols={2}>
+  <Card title="Groups generate your variations" icon="layer-group" href="/campaign-creator/groups-and-variations">
+    Add several budgets, audiences, placements, bids or destinations to one setting. Every combination becomes its own campaign, ad set/ad group or ad — no copy-pasting, no rebuilding.
+  </Card>
+  <Card title="Naming templates on every level" icon="tag" href="/campaign-creator/naming-templates">
+    Build structured names from parts — date, objective, country, group name, creative number — so hundreds of generated items stay readable in TheOptimizer and in the ad network.
+  </Card>
+  <Card title="Taboola campaign groups in one go" icon="folder-tree" href="/ad-networks/taboola/campaign-uploader/campaign-groups">
+    Create the campaign group, its goal and shared budget, and all of its campaigns and ads in a single launch. In Realize you create the group first and the campaigns afterwards.
+  </Card>
+  <Card title="Review every combination before it goes live" icon="list-check">
+    **Review Variations** shows the full tree of what will be created. Switch off any combination you don't want — it simply isn't created.
+  </Card>
+  <Card title="Templates and drafts" icon="bookmark">
+    Save a whole setup — structure, groups, naming and rules — as a template, and reapply it next time. Your work in progress is kept as a draft you can resume.
+  </Card>
+  <Card title="Automation from the first impression" icon="robot">
+    Attach your automation rules in the last step, so every new campaign is protected by your stop-loss and scaling rules the moment it's created.
+  </Card>
+</CardGroup>
+
+Other helpers vary by network, for example:
+
+- **Create what you need without leaving the creator** — new Taboola conversions and first-party customer audiences are created inline.
+- **Checks that catch rejections before they happen** — headline capitalization and image crops on Taboola, minimum bids on NewsBreak, missing click IDs in tracking parameters.
+- **Copy, paste and duplicate** campaigns, ad sets/ad groups and ads across the tree, and **load existing campaigns** to add new ad sets or ads to them (Facebook and TikTok).
+- **Reuse your recent settings** — apply a previous ad group's targeting or a previous ad's creatives in one click (Facebook and TikTok).
+
+---
+
 ## How to Access Campaign Creator
 
 **Campaign Creator** is accessible from the **left-hand navigation menu**. Click **Campaign Creator** to open the **Campaign Launcher**, which shows a card for each ad network you can launch campaigns on.
@@ -44,11 +78,11 @@ Once you've launched campaigns, the same page lists your launches and their stat
 
 ## Supported Ad Networks & Creation Methods
 
-TheOptimizer supports campaign creation for **Facebook**, **TikTok** (Beta), **Taboola**, **Outbrain**, **RevContent**, **MGID**, and **AdsKeeper**.
+TheOptimizer supports campaign creation for **Facebook**, **TikTok** (Beta), **NewsBreak** (Beta), **Taboola**, **Outbrain**, **RevContent**, **MGID**, and **AdsKeeper**.
 
 Depending on the traffic source, campaigns can be created through one or both of the following methods:
 
-**Interactive interface (Create Manually)** — a step-by-step guided launcher where you configure campaign settings and upload creatives through a familiar UI. For each ad network, the interface mirrors the flow you already know from that network's native dashboard, but with added helpers and options that make the whole process more efficient. You do not need to learn anything new — the navigation and options will feel familiar, just faster.
+**Interactive interface (Create Manually)** — when a network offers both methods, clicking its card asks you to choose **Create Manually** (the guided creator) or **Bulk Upload (Excel)**. The guided creator is a step-by-step launcher where you configure campaign settings and upload creatives through a familiar UI. For each ad network, the interface mirrors the flow you already know from that network's native dashboard, but with added helpers and options that make the whole process more efficient. You do not need to learn anything new — the navigation and options will feel familiar, just faster.
 
 **Excel uploader** — a bulk campaign creation tool. You fill in a Google Sheets template with your campaign data (one row per ad), export it to Excel, and upload it. TheOptimizer processes the file and pushes all campaigns to the ad network in one go.
 
@@ -56,7 +90,8 @@ Depending on the traffic source, campaigns can be created through one or both of
 |---|---|---|
 | Facebook | ✅ | — |
 | [TikTok](/ad-networks/tiktok/campaign-uploader/getting-started) (Beta) | ✅ | — |
-| Taboola | ✅ | ✅ |
+| [Taboola](/ad-networks/taboola/campaign-uploader/campaign-launcher) | ✅ | ✅ |
+| [NewsBreak](/ad-networks/newsbreak/campaign-uploader/campaign-launcher) (Beta) | ✅ | ✅ |
 | Outbrain | ✅ | ✅ |
 | RevContent | ✅ | ✅ |
 | MGID | ✅ | ✅ |
@@ -64,11 +99,11 @@ Depending on the traffic source, campaigns can be created through one or both of
 
 ### Why Two Options for Native Ad Networks?
 
-For Taboola, Outbrain, RevContent, MGID, and AdsKeeper, both creation methods are available because they serve different needs:
+For Taboola, NewsBreak, Outbrain, RevContent, MGID, and AdsKeeper, both creation methods are available because they serve different needs:
 
 - **The Excel uploader enables automation.** Teams with technical resources can generate the Excel file programmatically and push it to TheOptimizer via the API — automating the entire campaign launch pipeline end-to-end without any manual steps.
 - **The Excel uploader is reusable.** Once you build your first Google Sheets template, you will likely reuse it over and over with minor changes — new creatives, adjusted budgets, or updated targeting. Think of it as a living template. The first time takes some effort, but every subsequent launch is just a matter of updating a few columns and re-uploading.
-- **The interactive interface is better for one-off campaigns.** When you need to create a single campaign or a small batch and want a visual, guided experience with helpers and suggestions, the manual interface is the faster path.
+- **The interactive interface is the visual, guided path.** It validates every field as you go and adds helpers the spreadsheet can't. On **Taboola** and **NewsBreak** the guided creator is a bulk tool too: [Groups](/campaign-creator/groups-and-variations) turn one setup into many campaigns, ad sets and ads, so you only need Excel when you want to generate files programmatically or reuse a sheet you already maintain.
 
 ### Excel Uploader — How It Works
 

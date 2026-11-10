@@ -20,7 +20,7 @@ The last step of the creator attaches rules and sends everything to TikTok.
     **General information** lists the totals — campaigns, ad groups, budgets, ads, creatives and targeting. **Campaigns to create** lists each campaign; hover one to see its ad groups and ads.
   </Step>
   <Step title="Publish">
-    Click **Publish**. The **Final Check** dialog confirms that the campaign will be created in the background. Tick **Would you like to save your settings as a template?** to keep the setup for next time, then click **Confirm**.
+    Click **Publish**. The **Final Check** dialog confirms that the campaigns will be created in the background, and that you can check each one's status in the Campaign Creation Queue. Tick **Would you like to save your settings as a template?** to keep the setup for next time, then click **Confirm**.
 
     <Frame>
       ![The Final Check dialog](/images/tiktok-final-check.png)
@@ -48,6 +48,8 @@ A template saves your whole setup — campaign, ad groups, ads, variants and rul
 
 You can also tick **Would you like to save your settings as a template?** in the Final Check when you publish.
 
+Identities, pixels, apps, instant pages and media from the TikTok library belong to an ad account, so they only carry over when you use the template in the same ad account.
+
 **Reusing.** On the campaign level, the **Templates** panel on the right lists your saved TikTok templates. Search by name, then click **Apply template** to load one. You can also rename or remove templates from the list.
 
 <Tip>
@@ -66,6 +68,19 @@ You don't need a new campaign to test new ads. You can add new ad groups and ads
   ![Adding to an existing campaign](/images/tiktok-create-existing.png)
 </Frame>
 
-**From inside the creator.** On the campaign level, under **Select Ad Account**, click **Use existing campaign** and pick a campaign already on TikTok with the same mode and objective. On an ad group, you can likewise pick an ad group already in that campaign to add new ads to it.
+**From inside the creator.** On the campaign level, under **Select Ad Account**, click **Use existing campaign** and pick a campaign already on TikTok with the same mode and objective. The existing campaign is **added beside** the one you're building in the tree, and opens. Once a campaign is on TikTok, its ad groups offer **Use existing ad group** in the same way, to add new ads to an ad group that's already running.
 
-Existing campaigns and ad groups are marked **On TikTok** in the tree and on Review Variations, so it's always clear what will be created and what will be added to.
+If the campaign (or ad group) you started with is still untouched, the creator asks **Remove the empty campaign?** — **Remove** keeps only what you loaded, **Keep** leaves both. Tick **Remember my choice** to skip the question from then on in this browser.
+
+On a level that's already on TikTok, **Pick another** swaps it for a different one, and **Create new instead** turns it back into a new level.
+
+### Existing levels are read-only
+
+{/* SCREENSHOT: tiktok-existing-banner.png — An existing campaign open in the creator: the "Existing TikTok Campaign · Read-only" banner with Add Ad Group and Clone Campaign, and the greyed-out settings below. */}
+
+A campaign or ad group loaded from TikTok shows an **Existing TikTok Campaign** (or **Existing TikTok Ad Group**) banner with a **Read-only** tag. Its settings are shown, greyed out, so you can see what you're adding to — but they can't be changed, and the ad account is locked while it's selected. From the banner you can:
+
+- **Add Ad Group** / **Add Ad** — build something new inside it. (Smart+ ad groups run one ad, so they don't offer **Add Ad**.)
+- **Clone Campaign** / **Clone Ad Group** — make a new, editable copy of its settings.
+
+Existing levels can't hold variants. On Review Variations they're marked **On TikTok**, so it's always clear what will be created and what will be added to.

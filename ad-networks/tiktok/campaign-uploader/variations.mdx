@@ -4,7 +4,7 @@ description: "Add budget, audience, placement and destination variants, split th
 sidebarTitle: "Variations"
 ---
 
-The point of the TikTok Campaign Creator is launching many ad groups and ads at once. You don't build each one by hand: you add **variants** to a setting, and the creator multiplies them out. Two audiences and two budgets on one ad group become four ad groups.
+The point of the TikTok Campaign Creator is launching many ad groups and ads at once. You don't build each one by hand: you add **variants** to a setting, and the creator multiplies them out. Two audiences and two budgets on one ad group become four ad groups. (How groups work across every network: [Groups and variations](/campaign-creator/groups-and-variations).)
 
 ---
 
@@ -22,17 +22,26 @@ Some sections have a row of variant tabs at the top — **Audience 1**, **Budget
 | **Ad group** | **Budget** (with ad group budgets, ABO), **Audience** (targeting), **Placement** |
 | **Ads** | **Destination** (landing page) |
 
-Under the tabs, a line tells you what the variants will make — for example *2 variants: each makes an ad group of its own*. Use a tab's **⋯** menu to **Rename** or **Delete** it.
+Under the tabs, a line tells you what the variants will make — for example *2 variants: each makes an ad group of its own*. **Campaign budget** variants each make a campaign of their own.
+
+- **+** adds a variant that starts as a copy of the open one.
+- A tab's **⋯** menu has **Rename**, **Clone** and **Delete**. Double-click a tab to rename it.
+- **☰ Manage variants** (left of the tabs, once there are two) opens the group manager: search, drag to reorder, rename, clone or delete one — or select several and **Clone**, **Rename** (add a prefix or suffix) or **Delete** them at once.
+- A tab whose variant has an error is marked, so you can find it without opening every tab.
+
+{/* SCREENSHOT: tiktok-group-manager.png — Manage variants window with 4 audience variants, two selected, and the bulk Clone / Rename / Delete actions. */}
 
 Variants on the same level multiply: 3 audiences × 2 budgets gives 6 ad groups. The **×N** badges in the tree and the **General overview** on the right update as you go, so you always know how much you're about to create.
 
 <Tip>
-  Name your variants (double-click a tab, or **⋯ → Rename**) — for example *US 18-34* and *US 35+*. The names are added to the generated ad group names, so you can tell the results apart in the Campaign Manager.
+  Name your variants (double-click a tab, or **⋯ → Rename**) — for example *US 18-34* and *US 35+*. The names fill the **Group name** part of your [naming template](/campaign-creator/naming-templates) — or are added at the end of the generated names if the template has no Group name part — so you can tell the results apart in the Campaign Manager.
 </Tip>
 
 ### A campaign for each variant
 
 By default, ad group variants become ad groups inside one campaign. Switch on **A campaign for each** next to the variant tabs to give each variant a campaign of its own instead — useful when you want separate campaign budgets or cleaner reporting per audience.
+
+Campaigns and ad groups that are already on TikTok can't hold variants, and **A campaign for each** only shows for a campaign the creator is making.
 
 ### Smart+ and destinations
 
@@ -54,13 +63,13 @@ The **⋯** menu on each item in the tree lets you build out the structure by ha
 
 | Level | Menu options |
 | --- | --- |
-| **Campaign** | **Create New Campaign**, **Duplicate Campaign**, **Create Ad Group**, **Copy All Ad Groups**, **Paste Ad Groups**, **Rename**, **Start Over** |
-| **Ad group** | **Create Ads**, **Duplicate Ad Group**, **Copy Ad Group**, **Paste Ads**, **Rename**, **Reset Ad Group** |
-| **Ads** | **Duplicate Ads**, **Copy Ads**, **Rename**, **Reset Ads** |
+| **Campaign** | **Create New Campaign**, **Duplicate Campaign**, **Create Ad Group**, **Copy All Ad Groups**, **Paste Ad Groups**, **Rename**, **Delete** (or **Start Over** for the only campaign) |
+| **Ad group** | **Create Ads**, **Duplicate Ad Group**, **Copy Ad Group**, **Paste Ads**, **Rename**, **Delete** (or **Reset Ad Group** for the only one) |
+| **Ads** | **Duplicate Ads**, **Copy Ads**, **Rename**, **Delete** (or **Reset Ads** for the only one) |
 
 - **Duplicate** makes a copy right next to the original, which you can then change.
 - **Copy** and **Paste** move an ad group into another campaign, or ads into another ad group.
-- **Reset** puts a level back to its defaults; **Start Over** resets everything except the ad account.
+- **Delete** removes a level and everything under it. When it's the only one of its kind, you get **Reset** instead, which puts it back to its defaults; **Start Over** resets everything except the ad account.
 
 ---
 
