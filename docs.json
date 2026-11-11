@@ -87,6 +87,7 @@
                   "ad-networks/facebook/campaign-uploader/use-cases",
                   "ad-networks/facebook/campaign-uploader/vs-ads-manager",
                   "ad-networks/facebook/campaign-uploader/simple-campaign",
+                  "ad-networks/facebook/campaign-uploader/ad-formats",
                   "ad-networks/facebook/campaign-uploader/variations",
                   "ad-networks/facebook/campaign-uploader/multi-account",
                   "ad-networks/facebook/campaign-uploader/existing-posts",
