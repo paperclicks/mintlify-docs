@@ -1,36 +1,54 @@
 ---
 title: "Taboola variations, review and publishing"
-description: "Generate many Taboola campaigns from one setup with Budget Groups and Audience Groups, add more campaigns to a launch, review every campaign and ad, and publish with automation rules attached."
+description: "Generate many Taboola campaigns and ads from one setup with Budget, Audience, Targeting, Creative and Click-through Groups, add more campaigns to a launch, review every campaign and ad, and publish with automation rules attached."
 sidebarTitle: "Variations & publishing"
 ---
 
-## Budget Groups and Audience Groups
+## Groups that make campaigns: Budget, Audience and Targeting
 
-Two cards on the **Settings** step can hold [groups](/campaign-creator/groups-and-variations): **Budget and bidding** (*Budget Group 1, 2…*) and **Audience Controls** (*Audience Group 1, 2…*).
+Three cards on the **Settings** step can hold [groups](/campaign-creator/groups-and-variations), and **every combination of them becomes its own campaign**:
 
-**Every budget group × audience group combination becomes its own campaign.** Everything else — the campaign setup, schedule, devices, contextual targeting, tracking and ads — is shared by all of them.
+| Card | Groups | What each group holds |
+| --- | --- | --- |
+| **Budget and bidding** | *Budget Group 1, 2…* | Bid strategy and CPC or target CPA, conversions, budget type and amount, spending limit, ad delivery, SpendGuard |
+| **Audience Controls** | *Audience Group 1, 2…* | Locations, marketplace audiences, lookalike and custom audiences |
+| **Campaign targeting** | *Targeting Group 1, 2…* | Devices and inventory, connection, operating systems, browsers, supply, site exclusion and brand safety |
 
-| Groups | What each group holds |
-| --- | --- |
-| **Budget Group** | Bid strategy and CPC or target CPA, conversions, budget type and amount, spending limit, ad delivery, SpendGuard |
-| **Audience Group** | Locations, marketplace audiences, lookalike and custom audiences |
+Everything else — the campaign setup, schedule, contextual targeting, tracking and ads — is shared by all of them.
 
-For example: create three Audience Groups that each target one country — the US, the UK and Australia — and two Budget Groups with different CPCs, and the launch creates **six campaigns**, all in the same [campaign group](/ad-networks/taboola/campaign-uploader/campaign-groups).
+For example: three Audience Groups for the US, the UK and Australia × two Budget Groups with different CPCs × two Targeting Groups (*Desktop*, *Mobile*) make **12 campaigns**, all in the same [campaign group](/ad-networks/taboola/campaign-uploader/campaign-groups). In Realize, that's twelve campaigns built and kept in sync by hand.
 
-{/* SCREENSHOT: taboola-groups-variation-preview.png — Settings step with 3 Audience Groups and 2 Budget Groups, and Variation Preview on the right listing the 6 generated campaigns with their switches. */}
+<Frame>
+  <img src="/images/taboola-groups-variation-preview.png" alt="Taboola Settings step with Desktop and Mobile targeting groups, and Variation Preview listing the generated campaigns with their switches" />
+</Frame>
 
-### Working with groups
+## Groups that make ads: Creative and Click-through
+
+Two cards on the **Ads** step can hold groups too:
+
+| Card | Groups | What each group holds |
+| --- | --- | --- |
+| **Ad creative** | *Creative Group 1, 2…* | Format, media, headlines, descriptions, call to action, the AI-content label, and any changes made to its single ads |
+| **Click-through and delivery** | *Click-through Group 1, 2…* | Landing page and flight dates |
+
+**Every creative group × click-through group makes ads of their own, in the same campaign.** Inside each pair, every image still runs with every headline. Two creative sets × two landing pages is four sets of ads — a full creative and landing-page test in one campaign.
+
+<Frame>
+  <img src="/images/taboola-creative-groups.png" alt="Taboola Ad creative with two creative groups and Click-through and delivery with two click-through groups" />
+</Frame>
+
+## Working with groups
 
 - Click **+** next to the tabs to add a group. It starts as a copy of the open one, ready to rename.
 - A group's **⋯** menu has **Rename**, **Clone**, **Delete other groups** and **Delete**.
 - **Manage groups** opens the full list: search, drag to reorder, clone, rename or delete — and rename many at once with a prefix or suffix.
 - An error in a group you're not looking at is shown on the card with the group's name, so nothing gets missed.
 
-### How generated campaigns are named
+## How generated campaigns are named
 
 Each generated campaign is named after its groups: the campaign name, then the name of each group that has siblings — for example *Summer Sale - Budget Group 2 - US*. Rename your groups (*US*, *CPC 0.45*) and the names explain themselves. Add a [naming template](/campaign-creator/naming-templates) for a fixed convention on top.
 
-### Switching combinations off
+## Switching combinations off
 
 **Variation Preview**, on the right, lists every campaign your groups generate. Switch one off and it isn't created. You need at least one campaign switched on to launch.
 
@@ -38,7 +56,7 @@ Each generated campaign is named after its groups: the campaign name, then the n
 
 ## More campaigns in one launch
 
-Groups vary budget and audience. To launch campaigns that differ in anything else — another objective, other devices, other ads — add more campaigns to the tree:
+Groups vary budget, audience, targeting, creatives and landing pages. To launch campaigns that differ in anything else — another objective, another schedule, other tracking — add more campaigns to the tree:
 
 - **Create New Campaign** on the campaign group row starts a fresh one.
 - **Duplicate Campaign** on a campaign makes a copy to change.
@@ -52,11 +70,13 @@ All of them go into the same campaign group, and each can have its own groups.
 
 The **Review** step shows everything the launch will create before anything is sent.
 
-{/* SCREENSHOT: taboola-review.png — Review step: General information tiles, the collapsed checks row, and the Ad variations card with headline rows, image chips and on/off switches. */}
+<Frame>
+  <img src="/images/taboola-review.png" alt="Taboola Review: General information, checks, and Ad variations with the creative and click-through pair picker open" />
+</Frame>
 
 - **General information** — campaigns, ads, budget, bid strategy, countries and devices.
 - **Checks** — a summary of anything worth a second look (countries, conversions, headlines, media, ads, status), each with a **Fix** link that takes you to it. Checks don't block the launch.
-- **Ad variations** — pick a campaign to see its ads as rows: each headline with the images it runs with. Filter by **All**, **On**, **Off** or **Edited**, and use **Launch this ad** to leave any single ad out.
+- **Ad variations** — the ads as rows: each headline with the images it runs with. When the ads have several Creative or Click-through Groups, a second picker lists every creative × click-through pair with how many of its ads launch; pick one to see and edit those ads. Filter by **All**, **On**, **Off** or **Edited**, and use **Launch this ad** to leave any single ad out.
 - **Per-ad overrides** — give one ad its own **Landing page URL** or **Status** without touching the others. Edited ads are badged.
 - **Preview** — see the ad in a Desktop or Mobile *You May Like* widget.
 
@@ -78,7 +98,9 @@ When it looks right, click **Add Automation and Publish**.
   </Step>
 </Steps>
 
-{/* SCREENSHOT: taboola-publish.png — Publish step with a rule group selected and the "Campaigns to create" list. */}
+<Frame>
+  <img src="/images/taboola-publish.png" alt="Taboola Publish step with a rule selected, General information and Campaigns to create" />
+</Frame>
 
 ### After you publish
 

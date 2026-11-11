@@ -10,7 +10,7 @@ This is where the NewsBreak Campaign Launcher does what NewsBreak Ads Manager ca
 
 ## Groups on NewsBreak
 
-Five cards can hold [groups](/campaign-creator/groups-and-variations):
+Six cards can hold [groups](/campaign-creator/groups-and-variations):
 
 | Level | Card | Group tabs | What each group holds |
 | --- | --- | --- | --- |
@@ -18,34 +18,37 @@ Five cards can hold [groups](/campaign-creator/groups-and-variations):
 | Ad Set | **Audience Controls** | Audience 1, 2… | Locations, demographics, interests, devices, manufacturers and carriers |
 | Ad Set | **Optimization & bidding** | Bidding 1, 2… | Bid type, bid or ROAS, optimization event, conversion counting, delivery |
 | Ad Set | **Placements** | Placement 1, 2… | Surfaces and premium partners |
+| Ads | **Creatives** | Creative 1, 2… | Media, headlines, descriptions, call to action, brand name and logo |
 | Ads | **Destination** | Destination 1, 2… | Landing page |
 
 **On the ad set, every combination of groups becomes its own ad set** — all inside the same campaign. Once a card has two or more groups, the launcher tells you: *"2 variants: each makes an ad set of its own."*
 
-**On the ads, every destination makes its own ads** in that ad set, and each one runs with every creative, headline and description.
+**On the ads, every creative group × destination makes its own ads** in that ad set. Inside each creative group, every creative still runs with every headline and description.
 
 ### A worked example
 
-One campaign. On the ad set: **3 Audience groups** (California, Texas, Florida) × **2 Bidding groups** (CPC $0.25, Maximize conversions). On the ads: 2 images × 2 headlines × 1 description, and **1 destination**.
+One campaign. On the ad set: **3 Audience groups** (California, Texas, Florida) × **2 Bidding groups** (CPC $0.25, Maximize conversions). On the ads: **2 Creative groups**, each with 2 images × 2 headlines × 1 description, and **1 destination**.
 
 - Ad sets: 3 × 2 = **6 ad sets**
-- Ads per ad set: 2 × 2 × 1 × 1 = **4 ads**
-- Total: **24 ads**, built and named in one launch.
+- Ads per ad set: 2 creative groups × (2 × 2 × 1) × 1 destination = **8 ads**
+- Total: **48 ads**, built and named in one launch.
 
-In NewsBreak Ads Manager, that's six ad sets and 24 ads set up by hand.
+In NewsBreak Ads Manager, that's six ad sets and 48 ads set up by hand.
 
-{/* SCREENSHOT: newsbreak-groups-variation-preview.png — Ad Set level with 3 Audience tabs and 2 Bidding tabs, and Variation Preview on the right listing the 6 ad sets with their switches. */}
+<Frame>
+  <img src="/images/newsbreak-groups-variation-preview.png" alt="NewsBreak ad set level with three audience groups, and Variation Preview listing the six ad sets they generate" />
+</Frame>
 
 ### Working with groups
 
 - Click **+** next to the tabs to add a group. It starts as a copy of the open one.
-- Double-click a tab (or click the pen icon) to rename it. Its **⋯** menu has **Rename**, **Clone** and **Delete**.
+- Double-click a tab (or click the pen icon) to rename it. Its **⋯** menu has **Rename**, **Clone** and **Delete** (available once a card has two or more groups).
 - **☰ Manage variants** opens the full list once a card has two groups: search, drag to reorder, and clone, rename or delete in bulk.
 - A group with an error is marked on its tab, so nothing gets missed.
 
 ### How generated ad sets and ads are named
 
-Group names go into the names of what they generate (for example *Budget 2 · Audience 1*). Add **Group name** to a [naming template](/campaign-creator/naming-templates) to decide where it appears — if your template doesn't include it, the group names are added at the end. Rename your groups (*California*, *CPC 0.25*) and the names explain themselves.
+Group names go into the names of what they generate (for example *Budget 2 · Audience 1*). Add **Group name** to a [naming template](/campaign-creator/naming-templates) to decide where it appears — if your template doesn't include it, the group names are added at the end, joined with the template's separator. Rename your groups (*California*, *CPC 0.25*) and the names explain themselves.
 
 ### Switching combinations off
 
@@ -61,20 +64,24 @@ Use **Create New Campaign** or **Duplicate Campaign** in the tree's **⋯** menu
 
 The second step shows everything the launch will create before anything reaches NewsBreak.
 
-{/* SCREENSHOT: newsbreak-review-variations.png — Review Variations: General information tiles at the top, the Structure tree with switches, and the detail panel for a selected ad set. */}
+<Frame>
+  <img src="/images/newsbreak-review-variations.png" alt="NewsBreak Review Variations: totals, the Structure tree with one ad switched off, and the details of the selected ad set" />
+</Frame>
 
 - **General information** — totals for campaigns, ad sets, ad set budget, ad set variations, audiences, videos and images, and ads.
 - **Structure** — every campaign, ad set and individual ad, each with a switch. Switch a row off and it isn't created. You need at least one active campaign, ad set and ad.
 - **Details** — select a row to check it:
   - Campaign: objective, created as on/off, tags.
-  - Ad set: budget, bid, surfaces, locations and schedule (UTC).
+  - Ad set: the groups it was made from (audience, bidding…), budget, bid, surfaces, locations and schedule (UTC).
   - Ad: format, media, status, headline, description, brand name, link URL and call to action.
 
 ---
 
 ## Add Automation & Publish
 
-{/* SCREENSHOT: newsbreak-publish.png — Add Automation & Publish step with a rule group selected and the Campaigns to create list. */}
+<Frame>
+  <img src="/images/newsbreak-publish.png" alt="NewsBreak Add Automation & Publish with a rule selected, General information and Campaigns to create" />
+</Frame>
 
 <Steps>
   <Step title="Attach automation rules">

@@ -21,7 +21,7 @@ Pick the TikTok ad account to launch in under **Select Ad Account**. Below it, c
 
 ### Basic info
 
-- **Campaign name** — type a name, or leave it empty and one is generated. Click **Create Naming Template** to build the name from parts — text, the date, the objective, the mode, the group name and a timestamp — so every campaign follows the same convention. See [Naming templates](/campaign-creator/naming-templates).
+- **Campaign name** — type a name, or leave it empty and one is generated. Click **Create Naming Template** to build the name from parts — text, the date, the objective, the mode, the budget, the group name and a timestamp — so every campaign follows the same convention. See [Naming templates](/campaign-creator/naming-templates).
 - **Status** — **Active** or **Paused** once it's created.
 - **Tags** — added to the campaign in TheOptimizer once it's created, so you can filter by them in the Campaign Manager and use them in rules.
 
@@ -69,7 +69,7 @@ The budget field combines the **budget type** and the amount. The type is **Dyna
 
 ### Basic info
 
-**Ad Group name** works like the campaign name: type one, leave it empty, or use **Create Naming Template** to build it from text, the date, the objective, the group name, the copy number and a timestamp. Set the **Status** and any **Tags**.
+**Ad Group name** works like the campaign name: type one, leave it empty, or use **Create Naming Template** to build it from its own settings — the locations (as country codes), ages, gender, placement, budget, optimization goal and bid strategy — plus the campaign's name, the group name, the copy number, the date and a timestamp. Set the **Status** and any **Tags**.
 
 ### Promotion and lead destination
 
@@ -87,13 +87,15 @@ Depending on the objective, you also choose what the ads promote — a **Website
 
 Then set:
 
-- **Locations** — search countries and regions (*Dubai, United Arab Emirates*), or click **Browse country groups** to add a whole group at once — Africa, Europe, EEA, GCC, Worldwide and more. Your picks show as chips.
+- **Locations** — search countries and regions (*Dubai, United Arab Emirates*), or click **Browse country groups**, tick one or more groups — ASEAN, Asia, Europe, EEA, GCC, Worldwide and more — and click **Apply** to add all their countries. Your picks show as chips.
 - **Languages** — leave empty for every language.
 - **Minimum age** (18+ or 25+) or age ranges, and gender.
 - **Interests** and **interest keywords** — search TikTok's keywords (at least 2 characters).
 - **Operating system** — Smart+ targets one at most.
 
-{/* SCREENSHOT: tiktok-country-groups.png — Locations field with country chips and the Browse country groups picker open (Europe, EEA, GCC, Worldwide…). */}
+<Frame>
+  <img src="/images/tiktok-country-groups.png" alt="TikTok Locations with United States added and the Browse country groups picker open" />
+</Frame>
 
 ### Placements
 
@@ -103,10 +105,12 @@ Tick where the ads show: **TikTok** (in the TikTok app's feeds), **Pangle** (acr
 
 - **Optimization goal** — the result TikTok delivers the ads for, such as conversions, value, clicks, landing page views, leads, reach, app installs or in-app events. It also sets what you're billed for.
 - **Bid Strategy** — **Maximum delivery** gets the most results for the budget; **Cost cap** keeps the average cost per result near your bid (**Bid › Cost per result**, in the account currency) and needs a dynamic daily budget.
-- **Get suggestion** — under the bid, ask TikTok for its suggested bid for this objective, goal and these locations. It answers with a bid, a range and the estimated results; click **Apply** to use it. Pick an objective, a goal and at least one location first.
+- **Get suggestion** — under the bid, ask TikTok for its suggested bid for this objective, goal and these locations. It answers with a bid and a range (plus the estimated results when TikTok has them); click **Apply** to use it. Pick an objective, a goal and at least one location first.
 - For value goals, **Highest value** or **Minimum ROAS** (set the **Minimum return on ad spend**), and the value window (**Day 7** or **Day 0**).
 
-{/* SCREENSHOT: tiktok-bid-suggestion.png — Cost cap bid with the "TikTok suggests X (range A–B)…" note and the Apply link. */}
+<Frame>
+  <img src="/images/tiktok-bid-suggestion.png" alt="TikTok Cost cap bid with TikTok's suggested bid and range, and Apply" />
+</Frame>
 
 ### Tracking
 
@@ -130,16 +134,24 @@ Manual campaigns also offer **Pacing** — **Standard** spreads the budget evenl
 
 ### Ad details and identity
 
-- **Ad name** — type one, leave it empty, or build it with **Create Naming Template** from text, the date, the format, the group name, the creative number and a timestamp. With one ad per creative, each ad gets its own name.
+- **Ad name** — type one, leave it empty, or build it with **Create Naming Template** from its format, creative number, media name, ad text and call to action, plus the campaign and ad group names, the group name, the date and a timestamp. With one ad per creative, each ad gets its own name.
 - **Status** and **Tags**, as on the other levels.
 - **Identity (TikTok account)** — the TikTok account the ads show as. Tick **Only show as ads** to publish the posts as ads only, not on your TikTok profile. Some formats also take a **Display name** (the brand name shown on the ad).
 
 ### Ad copy
 
-- **Ad texts** — up to 5 texts of 100 characters each. TikTok mixes the texts with the creatives. Click **Add Text** for another one, or **Enhance with AI** in a text's corner to improve it.
-- **Generate with AI** — opens the AI text window with two sources: the **AI writer** (add your own instructions if you like) or **TikTok suggestions** (from your **Keywords** and **Language**). Tick **Add hashtags** and click **Suggest hashtags** to add hashtags within the 100-character limit. **Generate**, pick an option and **Apply** it.
+*Group tabs: Ad copy 1, Ad copy 2…* Each ad copy group holds its own texts, call to action and dynamic call to action, and makes its own ads — test one angle against another without duplicating the ad group. (Under Smart+, each ad copy group makes an ad group of its own.)
 
-{/* SCREENSHOT: tiktok-ai-text.png — AI text window with the TikTok suggestions source, keywords, Suggest hashtags and generated options. */}
+<Frame>
+  <img src="/images/tiktok-ad-copy-groups.png" alt="TikTok Ad copy card with two ad copy groups, Speed angle and Savings angle, and the “2 variants: each makes its own ads in this ad group” line" />
+</Frame>
+
+- **Ad texts** — up to 5 texts of 100 characters each. TikTok mixes the texts with the creatives. Click **Add Text** for another one, or **Enhance with AI** in a text's corner to improve it.
+- **Generate with AI** — opens the AI text window with two sources: the **AI writer** (add your own instructions if you like) or **TikTok suggestions** (from your **Keywords** and **Language**). **Generate**, pick an option, then under **Add hashtags** click **Suggest hashtags** and pick the ones you want — they're added to the end of the text within the 100-character limit. Click **Apply**.
+
+<Frame>
+  <img src="/images/tiktok-ai-text.png" alt="TikTok AI text window with TikTok suggestions, five suggested texts and picked hashtags" />
+</Frame>
 - **Call to action** — the button on the ad, or a **Dynamic call to action**: pick several and TikTok rotates them, showing the best one more often. Smart+ ads take a dynamic call to action only.
 
 ### Destination

@@ -8,7 +8,9 @@ When one launch creates dozens of campaigns and hundreds of ads, names are what 
 
 Native ad managers make you type each name by hand. In TheOptimizer you define the convention once per level, and it's applied to every combination your [groups](/campaign-creator/groups-and-variations) generate. Save it in a [template](/campaign-creator/overview#what-makes-theoptimizers-campaign-creator-different) and every future launch follows the same convention automatically.
 
-{/* SCREENSHOT: naming-template-builder.png — The naming template builder open on a campaign level (TikTok or Taboola), with 3–4 parts (Date, Objective, Group name / Countries) and the preview of the resulting name. */}
+<Frame>
+  <img src="/images/naming-template-builder.png" alt="Taboola campaign naming template with Text, Date and Countries parts and the field and item separators" />
+</Frame>
 
 ---
 
@@ -53,9 +55,11 @@ Even without the part, the creators keep variations apart: on TikTok and NewsBre
   <Tab title="TikTok">
     | Level | Parts |
     | --- | --- |
-    | **Campaign** | Text, Date, Objective, Mode, Group name, Timestamp |
-    | **Ad group** | Text, Date, Objective, Group name, Copy number, Timestamp |
-    | **Ad** | Text, Date, Format, Group name, Creative number, Timestamp |
+    | **Campaign** | Text, Date, Objective, Mode, Budget, Group name, Timestamp |
+    | **Ad group** | Text, Date, Campaign name, Locations, Age, Gender, Placement, Budget, Optimization goal, Bid strategy, Group name, Copy number, Timestamp |
+    | **Ad** | Text, Date, Campaign name, Ad group name, Format, Creative number, Media name, Ad text, Call to action, Group name, Timestamp |
+
+    Each level offers its own settings plus the names of the levels above it — so an ad can be named *US_Purchase_Video_3*, with the campaign or ad group name in front if you like. Locations are written as country codes. When you add to a campaign or ad group that's already on TikTok, its real name fills the Campaign name or Ad group name part.
 
     Copies of an ad group end in *_copy1*, *_copy2*… unless the name includes the copy number. With **One ad per creative**, each ad ends in *_1*, *_2*… unless the name includes the creative number.
   </Tab>
@@ -73,8 +77,10 @@ Even without the part, the creators keep variations apart: on TikTok and NewsBre
     | Level | Parts |
     | --- | --- |
     | **Campaign** | Text, Date, Objective, Timestamp |
-    | **Ad set** | Text, Date, Objective, Group name, Timestamp |
-    | **Ad** | Text, Date, Format (Image, Video or GIF), Group name, Creative number, Timestamp |
+    | **Ad set** | Text, Date, Campaign name, Budget, Bid, Locations, Gender, Age, Placement, Group name, Timestamp |
+    | **Ad** | Text, Date, Campaign name, Ad set name, Format (Image, Video or GIF), Creative number, Media name, Headline, Brand name, Call to action, Group name, Timestamp |
+
+    Each level offers its own settings plus the names of the levels above it.
 
     An empty name falls back to *NewsBreak Campaign*, *NewsBreak Ad Set* or *NewsBreak Ad*.
   </Tab>

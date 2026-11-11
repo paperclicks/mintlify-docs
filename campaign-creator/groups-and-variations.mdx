@@ -1,6 +1,6 @@
 ---
 title: "Groups: generate campaign variations"
-description: "How Groups work in TheOptimizer's Campaign Creator — add several budgets, audiences, bids, placements or destinations to one setting and every combination is built for you, on Facebook, TikTok, Taboola and NewsBreak."
+description: "How Groups work in TheOptimizer's Campaign Creator — add several budgets, audiences, bids, placements, creatives or destinations to one setting and every combination is built for you, on Facebook, TikTok, Taboola and NewsBreak."
 sidebarTitle: "Groups & variations"
 ---
 
@@ -8,7 +8,9 @@ Groups are the heart of TheOptimizer's Campaign Creator, and the main reason it'
 
 In a native ad manager, testing three audiences against two budgets means building six ad sets (or campaigns) by hand, one field at a time. In TheOptimizer you set up **one** campaign, add three audience groups and two budget groups, and the creator generates all six for you — named, structured and ready to publish.
 
-{/* SCREENSHOT: groups-concept-tabs.png — A settings card (e.g. TikTok "Targeting" or Taboola "Audience Controls") with 3 group tabs ("US", "UK", "AU"), the "+" button and the "3 variants: each makes …" line. Crop to the card. */}
+<Frame>
+  <img src="/images/groups-concept-tabs.png" alt="NewsBreak Audience Controls card with California and Texas group tabs, the + button and the “2 variants: each makes an ad set of its own” line" />
+</Frame>
 
 ---
 
@@ -45,7 +47,9 @@ Creatives multiply ads in the same way. On every network the creator can turn ea
 - **Variation Preview** lists the combinations of the level you're on. Switch one off and it isn't created.
 - **Review Variations** — the second step of every guided creator — shows the full tree of what will be created, with a switch on every row. Leave out any combination you don't want.
 
-{/* SCREENSHOT: groups-review-variations.png — Review Variations on any creator with several generated items and one row switched off. */}
+<Frame>
+  <img src="/images/groups-review-variations.png" alt="NewsBreak Review Variations: totals, the Structure tree with one ad switched off, and the details of the selected ad set" />
+</Frame>
 
 ---
 
@@ -62,7 +66,7 @@ Creatives multiply ads in the same way. On every network the creator can turn ea
     | --- | --- | --- |
     | Campaign | **Budget** (with a campaign budget, CBO) | A campaign |
     | Ad group | **Budget**, **Audience**, **Placement** | An ad group — or, with **A campaign for each** switched on, a campaign |
-    | Ads | **Destination** | Separate ads (Manual) or a separate ad group (Smart+, which runs one ad per ad group) |
+    | Ads | **Ad copy**, **Destination** | Separate ads (Manual) or a separate ad group (Smart+, which runs one ad per ad group) |
 
     Creatives: **One ad per creative** turns every video or image into its own ad.
 
@@ -73,10 +77,13 @@ Creatives multiply ads in the same way. On every network the creator can turn ea
     | --- | --- | --- |
     | **Budget and bidding** | **Budget Group 1, 2…** | Bid strategy and CPC or target CPA, conversions, budget type and amount, spending limit, ad delivery, SpendGuard |
     | **Audience Controls** | **Audience Group 1, 2…** | Locations, marketplace audiences, lookalike and custom audiences |
+    | **Campaign targeting** | **Targeting Group 1, 2…** | Devices, connection, operating systems, browsers, supply, site exclusion, brand safety |
+    | **Ad creative** | **Creative Group 1, 2…** | Format, media, headlines, descriptions, call to action |
+    | **Click-through and delivery** | **Click-through Group 1, 2…** | Landing page and flight dates |
 
-    Every budget group × audience group combination becomes **its own campaign**. For example, three audience groups for the US, the UK and Australia, with one budget, give three campaigns — one per country.
+    Every budget × audience × targeting group combination becomes **its own campaign**. For example, three audience groups for the US, the UK and Australia, with one budget and one targeting group, give three campaigns — one per country.
 
-    Media and headlines: every image or video runs with every headline.
+    Every creative group × click-through group makes **its own ads** in the same campaign — and inside each, every image or video runs with every headline.
 
     See [Taboola variations](/ad-networks/taboola/campaign-uploader/variations-and-publish).
   </Tab>
@@ -84,7 +91,7 @@ Creatives multiply ads in the same way. On every network the creator can turn ea
     | Level | Groups | Each combination makes |
     | --- | --- | --- |
     | Ad set | **Budget**, **Audience**, **Bidding**, **Placement** | An ad set, inside the same campaign |
-    | Ads | **Destination** | Separate ads in the ad set |
+    | Ads | **Creative**, **Destination** | Separate ads in the ad set |
 
     Creatives: every creative runs with every headline and description, and each combination is its own ad.
 

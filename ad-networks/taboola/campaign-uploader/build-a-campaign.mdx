@@ -4,7 +4,7 @@ description: "Every setting on the Taboola Campaign Launcher's Settings and Ads 
 sidebarTitle: "Build a campaign"
 ---
 
-This page covers the **Settings** and **Ads** steps of the [Taboola Campaign Launcher](/ad-networks/taboola/campaign-uploader/campaign-launcher). Two of the Settings cards — **Budget and bidding** and **Audience Controls** — can hold several [groups](/ad-networks/taboola/campaign-uploader/variations-and-publish) to generate campaign variations; everything else is shared by all the campaigns a setup generates.
+This page covers the **Settings** and **Ads** steps of the [Taboola Campaign Launcher](/ad-networks/taboola/campaign-uploader/campaign-launcher). Five cards can hold several [groups](/ad-networks/taboola/campaign-uploader/variations-and-publish): **Budget and bidding**, **Audience Controls** and **Campaign targeting** on the Settings step generate campaign variations; **Ad creative** and **Click-through and delivery** on the Ads step generate ad variations. Everything else is shared by all the campaigns a setup generates.
 
 ---
 
@@ -22,7 +22,9 @@ This page covers the **Settings** and **Ads** steps of the [Taboola Campaign Lau
 - **Set ad delivery schedule** — **24/7**, or **Specific days or hours**: turn each day on or off, set its hours, and pick the time zone.
 - **Status** — **Active** (the default) or **Paused**. A paused campaign is created and reviewed by Taboola, but doesn't spend until you activate it.
 
-{/* SCREENSHOT: taboola-schedule.png — Set campaign schedule with "Specific days or hours" open, a few days set, time zone picker visible. */}
+<Frame>
+  <img src="/images/taboola-schedule.png" alt="Taboola ad delivery schedule set to specific days, weekdays only, with the time zone picker" />
+</Frame>
 
 ### Budget and bidding
 
@@ -50,7 +52,9 @@ This card can hold several **Budget Groups** — see [Variations](/ad-networks/t
 
 **SpendGuard** — on or off: stops bidding on sites that spend without converting.
 
-{/* SCREENSHOT: taboola-budget-bidding.png — Budget and bidding card with 2 Budget Group tabs, Bid control → Enhanced CPC, Daily budget and spending limit. */}
+<Frame>
+  <img src="/images/taboola-budget-bidding.png" alt="Taboola Budget and bidding with two budget groups (CPC 0.30, CPC 0.45), Bid control with Enhanced CPC, conversions from the campaign group and a daily budget" />
+</Frame>
 
 ### Audience Controls
 
@@ -62,9 +66,17 @@ This card can hold several **Audience Groups** — the easiest way to create one
 - **Custom audiences** — include or exclude. Audiences of people who already converted are excluded to start with, as Realize does; remove them to reach those people too.
 - **Upload a customer list** — create a first-party audience without leaving the launcher. See [Uploading a customer list](#uploading-a-customer-list).
 
-{/* SCREENSHOT: taboola-audience-groups.png — Audience Controls with 3 Audience Group tabs named US / UK / AU and the info line about generating campaign variations. */}
+<Frame>
+  <img src="/images/taboola-audience-groups.png" alt="Taboola Audience Controls with three audience groups named US, UK and AU" />
+</Frame>
 
 ### Campaign targeting
+
+This card can hold several **Targeting Groups** — for example *Desktop* and *Mobile*, to run each device in a campaign of its own.
+
+<Frame>
+  <img src="/images/taboola-targeting-groups.png" alt="Taboola Campaign targeting with two targeting groups, Desktop and Mobile" />
+</Frame>
 
 - **Devices & inventory** — Desktop, Mobile, Tablet; inventory type (All, Web, App); connection (All connections, Wi-Fi only).
 - **Operating systems** and **Browsers** — include or exclude.
@@ -87,7 +99,9 @@ Target people by the topics they read — include or exclude topics.
 
 **Third-party tags** (optional) — pixels Taboola calls on an impression, a viewable impression or a click. Each tag is fetched and checked before it's added, because a tag that doesn't load, or is over 1 KB, stops the whole campaign.
 
-{/* SCREENSHOT: taboola-tracking.png — Tracking card with a preset selected, URL parameters, and the "No {click_id}" warning with the Add click_id button. */}
+<Frame>
+  <img src="/images/taboola-tracking.png" alt="Taboola Tracking card with a Voluum preset, URL parameters and Tracking complete, and Third-party tags" />
+</Frame>
 
 ### Creating a conversion
 
@@ -115,13 +129,17 @@ Use **Create Naming Template** to give **each creative its own name in Taboola**
 
 ### Ad creative
 
+This card can hold several **Creative Groups** — each with its own format, media, headlines, descriptions and call to action — to test whole creative sets against each other in the same campaign. See [Creative and Click-through groups](/ad-networks/taboola/campaign-uploader/variations-and-publish#groups-that-make-ads-creative-and-click-through).
+
 **Format** — **Standard** (horizontal or square images and videos) or **Vertical** (static images only).
 
 **Media** — 1 to 10 images or videos (Taboola recommends at least 2). Images up to 5 MB, videos up to 50 MB. **Each one runs with every headline.** Use **Add Media** to add an image, a video (Standard format only, with a fallback image), **Stock images (Getty)**, or media from a URL. **Generate with AI** is available if AI image generation is enabled on your account.
 
 Every image is checked as you add it: the minimum size (600 × 400; 1000 × 600 recommended) and whether its shape suits the format. Open **Customize placements** on an image to choose each crop yourself, or leave it on **Original** and let Taboola crop it.
 
-{/* SCREENSHOT: taboola-media-checks.png — Ad creative with 3 images, one flagged for size or shape, and the "Edit placements" crop dialog open. */}
+<Frame>
+  <img src="/images/taboola-media-checks.png" alt="Taboola Edit placements window with a 1:1 crop chosen and the other ratios left on Original" />
+</Frame>
 
 ### Headlines
 
@@ -136,11 +154,15 @@ The launcher checks every headline against the rules Taboola's review enforces, 
 
 When you paste a list, tick **Fix capitalization while adding** and each line is fixed, skipped (too long, duplicate, already added) or flagged before it's added.
 
-{/* SCREENSHOT: taboola-headline-checks.png — Headlines list with a Title Case warning on one headline, and/or the Paste headlines dialog showing per-line states. */}
+<Frame>
+  <img src="/images/taboola-headline-checks.png" alt="Taboola headlines with a Title Case warning on the second headline" />
+</Frame>
 
 **Description** (optional, up to 250 characters), **Call to action**, and the **AI content** box (*These ads contain AI-generated or AI-modified content*) complete the creative.
 
 ### Click-through and delivery
+
+This card can hold several **Click-through Groups**, each with its own landing page and flight dates — the way to test landing pages.
 
 - **Landing page** — where the ads lead. Tracking tokens such as `{site}` go in the [Tracking](#tracking) section, not here.
 - **Flight dates** (optional) — **Schedule these ads** with a start and end date and time, in a time zone you pick or each viewer's own. Times are on the quarter hour.

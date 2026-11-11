@@ -12,7 +12,9 @@ Cards marked with group tabs (**Budget 1**, **Audience 1**…) can hold several 
 
 ## Campaign
 
-{/* SCREENSHOT: newsbreak-campaign-level.png — Campaign level: Select Ad Account card, Basic info, and the five objective cards. */}
+<Frame>
+  <img src="/images/newsbreak-campaign-level.png" alt="NewsBreak campaign level: Select Ad Account, Basic info and the five campaign objectives" />
+</Frame>
 
 **Select Ad Account.** Pick the NewsBreak ad account to launch in. Inactive accounts are greyed out; the first active one is selected for you.
 
@@ -32,7 +34,9 @@ Cards marked with group tabs (**Budget 1**, **Audience 1**…) can hold several 
 
 ## Ad Set
 
-{/* SCREENSHOT: newsbreak-adset-level.png — Ad Set level with Audience Controls open, showing two Audience tabs and the "2 variants: each makes an ad set of its own" hint. */}
+<Frame>
+  <img src="/images/newsbreak-adset-level.png" alt="NewsBreak ad set Audience Controls with two audience groups and the “2 variants: each makes an ad set of its own” hint" />
+</Frame>
 
 **Basic info.** Ad Set name (with **Create Naming Template**), Status and Tags — the same as on the campaign.
 
@@ -58,7 +62,9 @@ Leave **All surfaces (recommended)** on, or pick **Choose surfaces** to select *
 
 *Group tabs: Bidding 1, Bidding 2…*
 
-{/* SCREENSHOT: newsbreak-bidding.png — Optimization & bidding card with Target ROAS selected, showing the purchase-history warning and the Optimization event picker. */}
+<Frame>
+  <img src="/images/newsbreak-bidding.png" alt="NewsBreak Optimization & bidding with two bidding groups, Target ROAS 1.5, the purchase-history note and the optimization event" />
+</Frame>
 
 **Bid type.** The list only shows the bid types that work with your objective:
 
@@ -69,12 +75,12 @@ Leave **All surfaces (recommended)** on, or pick **Choose surfaces** to select *
 | **Target CPA** | Your target cost per conversion, in USD |
 | **Maximize conversions** | No bid needed |
 | **Maximize conversion value** | Value bid — see the warning below |
-| **Day-one max conversion value** | Value bid, app campaigns |
+| **Day-one max conversion value** | Value bid, optimized for the first day's conversion value |
 | **Target ROAS** | Web Conversions only. Enter the return as a ratio — **1.5** is a 150% return |
 | **Day-one target ROAS** | App Conversions only |
 
 <Warning>
-  Value bids need purchase history. NewsBreak only accepts them when the ad account has recorded at least **20 purchase events with a value in the last 14 days** (15 for the day-one bids). The launcher warns you before you publish instead of letting NewsBreak reject the ad set.
+  Value bids need purchase history. NewsBreak only accepts them when the ad account has recorded at least **20 purchase events with a value in the last 14 days** (15 for the day-one bids). The launcher shows this as soon as you pick a value bid — without that history, the ad set fails in the queue.
 </Warning>
 
 - **Optimization event** — the Pixel or App postback event to optimize for. Shown for conversion objectives and for bids that track conversions.
@@ -88,20 +94,30 @@ These are rules NewsBreak's API enforces without showing them in Ads Manager. Th
 *Group tabs: Budget 1, Budget 2…*
 
 - **Budget** — **Daily Budget** or **Lifetime Budget**, in USD.
-- **Start date** and **End date** — both are required, and both are in **UTC**.
+- **Start date** and **End date** — both are required, and both are in **UTC**. Pick a **Specific Date**, **Tomorrow** or **Day After Tomorrow** — or, for the end, **After Days** to stop a set number of days after the start.
 - **Ad set scheduling** — tick it to choose the days and hours the ad set runs. Click and drag on the grid (UTC).
 
-{/* SCREENSHOT: newsbreak-schedule-grid.png — Budget & Schedule card with Ad set scheduling ticked and a weekday daytime block selected on the grid. */}
+<Frame>
+  <img src="/images/newsbreak-schedule-grid.png" alt="NewsBreak schedule: start Tomorrow, end after 30 days, and Ad set scheduling with a weekday daytime block on the UTC grid" />
+</Frame>
 
 ---
 
 ## Ads
 
-{/* SCREENSHOT: newsbreak-ads-level.png — Ads level with 3 images, 2 headlines and 2 descriptions, and the "Every creative runs with every headline and description: 12 ads" line. */}
+<Frame>
+  <img src="/images/newsbreak-ads-level.png" alt="NewsBreak Creatives card with three images and the “Every creative runs with every headline and description: 12 ads” line" />
+</Frame>
 
 **Basic info.** Ad name (with **Create Naming Template**), Status and Tags.
 
 ### Creatives
+
+*Group tabs: Creative 1, Creative 2…* Each creative group holds its own media, headlines, descriptions, call to action, brand name and logo, and makes its own ads in the ad set — test a whole creative set or brand against another in one launch.
+
+<Frame>
+  <img src="/images/newsbreak-creative-groups.png" alt="NewsBreak Creatives card with two creative groups, Savings angle and Price angle, and the “2 variants: each makes its own ads in this ad set” line" />
+</Frame>
 
 - **Media** — click **Add Media**, then **Add Image or GIF** or **Add Video**, and pick from the **Media Manager** (your uploads in TheOptimizer — sent to NewsBreak for you when the campaign is created). Rename, replace or remove a tile, or **Clear all**. Videos get **Add cover** for a custom thumbnail.
 - **Headline** and **Description** — add as many as you want with **Add Headline** / **Add Description**, or click **Generate with AI** to have them written for you. You can add your own instructions before generating, then **Regenerate** until you like the result and **Apply** it.
