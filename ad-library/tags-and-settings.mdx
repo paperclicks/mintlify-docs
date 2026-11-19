@@ -1,0 +1,110 @@
+---
+title: "Tags and settings"
+description: "Set up how the Ad Library describes and ranks your creatives: AI tags, custom tags, naming rules that turn your ad names into labels, AI auto-tagging, the goal metric and shared report links."
+sidebarTitle: "Tags and settings"
+---
+
+Tags are what let you compare creatives by idea instead of one ad at a time — every hook against every other hook, one persona against another. The Ad Library has three kinds of tags, and you can filter and group any report by all of them.
+
+Open **Settings** with the gear icon at the top of the Ad Library sidebar. It has six tabs:
+
+| Tab | What it's for |
+| --- | --- |
+| **AI tags** | What each AI tag means and how your ads are grouped by it. |
+| **Custom tags** | Your own tags, beside the AI ones, for grouping ads your way. |
+| **Naming convention** | Rules that read tags from the way your campaigns and ads are named. |
+| **Auto-tagging** | Let AI tag new creatives on its own, within a monthly credit limit. |
+| **Goal** | The metric your Ad Library ranks creatives by. |
+| **Shared links** | Every public report link your workspace has made, in one place. |
+
+{/* TODO: screenshot — Ad Library Settings, AI tags tab (ad-library-settings.png) */}
+
+---
+
+## AI tags
+
+AI tags are set by creative analysis: the AI watches or reads each creative and tags what's in it — for example its **hook**, **angle**, **persona**, **format** and visual **style**. The **AI tags** tab lists each tag with what it means and its values, and how many creatives have each value.
+
+You can't change an AI tag's list of values, but you can correct the tag on a single creative from the [creative inspector](/ad-library/creative-inspector#tags-on-a-creative).
+
+Creatives get AI tags when they're analysed — automatically with [auto-tagging](#auto-tagging), or one at a time with **Analyse** in the inspector.
+
+---
+
+## Custom tags
+
+Custom tags label creatives your own way — by creator, product, funnel stage, or anything else your team tracks. You tag creatives by hand, and can filter and group reports by them.
+
+<Steps>
+  <Step title="Create the tag">
+    On the **Custom tags** tab, click **New custom tag** and give it a name, for example *Funnel stage*.
+  </Step>
+  <Step title="Choose how many values a creative can have">
+    **One value** (one per creative, like a funnel stage) or **Several values** (like the products an ad shows).
+  </Step>
+  <Step title="Add the first values">
+    Optionally type the first values, pressing **Enter** or a comma after each one, or paste a list. Then click **Create tag**.
+  </Step>
+</Steps>
+
+Tag a creative from the **Custom tags** card in its inspector. Rename a tag or add a description with **Edit tag**; renaming keeps every creative's values and the reports that use it. Archived values are hidden from the pickers, but creatives already tagged keep them.
+
+---
+
+## Naming convention
+
+If you already put information in your campaign, ad set or ad names — a creator, an offer, a date, a test ID — a naming rule turns those parts into labels you can filter, group and compare by. Nothing in your ad accounts changes.
+
+<Steps>
+  <Step title="Start a rule">
+    On the **Naming convention** tab, click **New naming rule** (or **Set up a naming rule**). Pick the **platform** and the **name level** to read: campaign, ad set or ad names.
+  </Step>
+  <Step title="Split an example name into parts">
+    The rule shows one of your most-used names, split by its separator. Use **AI detect** to propose a whole rule from your names, or set the **Separator** and structure yourself.
+  </Step>
+  <Step title="Name the parts that matter">
+    Give each useful part a name to turn its values into a label — or set it to **Ignore**. For a part with a fixed list of values, map each spelling in your names to the value it should show as, for example *us* → *United States*.
+  </Step>
+  <Step title="Save and review">
+    Click **Save rule**. Every name is checked against the rule, and names that don't fit appear under **Needs review**, where you can merge a misspelling into an existing value, add it as a new value, or map it.
+  </Step>
+</Steps>
+
+<Tip>
+  The **Values** tab of a rule shows every value it has read, with how many ads use it, and asks you to decide when a new value appears that looks like one you already have.
+</Tip>
+
+---
+
+## Auto-tagging
+
+Auto-tagging lets AI tag new creatives on its own as they arrive, so your reports and themes always have tags to group by.
+
+| Setting | Options |
+| --- | --- |
+| **New creatives** | **Off**, **Images only** (low cost per creative), or **Images and videos** (every new creative; a video costs several times more than an image). |
+| **Monthly credit limit** | The most auto-tagging can spend in a month. The default is a quarter of your workspace's AI credits. When the month's limit is reached, auto-tagging pauses and resumes on the 1st. |
+| **Existing creatives** | Turn on **Also tag creatives you already have** to tag the ones that delivered in the last 30 days too, highest spend first, until the monthly limit. |
+
+The tab shows how many credits auto-tagging has used this month.
+
+<Note>
+  Only a workspace admin can change the auto-tagging and goal settings.
+</Note>
+
+---
+
+## Goal
+
+The goal is the metric that decides your top creatives and winners across the Ad Library — on Home, the leaderboard, themes and launch reports.
+
+- **ROAS (ad platform)** — revenue the ad platform reports, over spend.
+- **ROAS (tracker)** — revenue your tracker reports, over spend. Use it when the platform doesn't get all your revenue.
+
+Both ROAS columns stay available in your reports either way.
+
+---
+
+## Shared links
+
+The **Shared links** tab lists every public link created for an Ad Library report in your workspace, with who it's for and when it expires. Turn off a link here and it stops working for everyone who has it. See [Sharing a report](/ad-library/reports#sharing-a-report).

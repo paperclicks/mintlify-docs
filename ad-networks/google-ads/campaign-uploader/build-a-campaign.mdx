@@ -1,0 +1,112 @@
+---
+title: "Build a Google Ads campaign"
+description: "The campaign, ad group and ad settings in TheOptimizer's Google Ads Campaign Creator — bidding, targeting, keywords and keyword ideas, AI Max, asset groups, responsive search ads, image crops and groups that create variations."
+sidebarTitle: "Build a campaign"
+---
+
+The creator builds a tree of **campaigns**, each with its **ad groups** (or **asset groups** for Performance Max), each with its **ads**. Work through the levels from the tree on the left; the fields on each level depend on the campaign type you pick.
+
+{/* TODO: screenshot — the level tree with a campaign, two ad groups and their ads (google-ads-creator-tree.png) */}
+
+---
+
+## Campaign level
+
+### Basic info
+
+- **Campaign name** — type a name, or build it from parts with a [naming template](/campaign-creator/naming-templates): text, the date, the campaign type, budget, bid strategy, locations or variants.
+- **Campaign type** — Search, Performance Max, Display, Demand Gen, Shopping or App. It decides the ad groups, ads and bid strategies on offer.
+- **Status** — **Enabled** or **Paused**.
+
+### Budget & bidding
+
+- **Budget** — **Average daily**, or **Campaign total** (spent over the campaign's dates, so it needs an end date). Under **Advanced**, spend from a **Shared budget** of the account instead.
+- **Bid strategy** — Maximize conversions, Maximize conversion value, Maximize clicks, Target impression share, Manual CPC, Target CPC or Target CPM, depending on the type, with the targets each one takes (target CPA, target ROAS, max CPC bid limit, impression share and where on the page). Or use a **Portfolio strategy** shared in the account.
+
+<Note>
+  Demand Gen has a minimum daily budget, shown on the field. Google recommends a daily budget of 15 times your target CPA or more.
+</Note>
+
+### Targeting
+
+- **Networks** — Google Search Partners and the Google Display Network, where the type allows.
+- **Locations & languages** — include and exclude countries, regions, cities or postal codes, set **location bid adjustments**, and choose whether to reach people by **presence or interest** or **presence** only.
+- **Negative keywords** — type them, or add the account's **negative keyword lists**.
+- **Schedule** — start and end dates, and **Run ads on a schedule** to pick days and hours (in the account's time zone; click and drag to pick several hours).
+- **Devices** — mobile phones, computers and tablets.
+- **EU political ads** — Google needs every campaign to declare whether it contains political advertising in the EU.
+
+### Settings by campaign type
+
+| Type | Extra campaign settings |
+| --- | --- |
+| **Search** | **AI Max** — search term matching, **text customization** (Google writes extra headlines and descriptions from your landing page), and **final URL expansion**, with words Google must not use and pages never to send people to. **Ad rotation**: optimize or rotate evenly. |
+| **Performance Max** | **Brand guidelines** — set the business name and logo once for every asset group. **Final URL expansion**. |
+| **Shopping** | The **Merchant Center** account, an optional **feed label**, the **campaign priority**, and whether to include products sold in local stores. |
+| **App** | The store (Google Play, Apple App Store or both), the app, and what to **optimize for**: installs, installs likely to act in the app, in-app actions or in-app action value. |
+
+### Assets
+
+Add **sitelinks**, **callouts**, **structured snippets** and a **phone number** to the campaign; its ads use them.
+
+---
+
+## Ad group level
+
+### Search ad groups
+
+- **Keywords** — one per line, as in Google Ads: `running shoes` is broad, `"running shoes"` is phrase and `[running shoes]` is exact. **Make all** switches every keyword to one match type.
+- **Get keyword ideas** suggests keywords from the ones you entered — or, with none yet, **Get ideas from your landing page**. Each idea shows its monthly searches and competition; click it to add it as broad match.
+- **Keep to these keywords** turns off AI Max's search term matching for this ad group, so its ads show only for its keywords.
+- **Bids**, **negative keywords**, **audiences** (your data segments, interests & in-market, custom segments — as **Targeting** or **Observation**) and **demographic exclusions**.
+
+<Note>
+  Keyword ideas need the Google Ads account to have Basic access to Keyword Planner.
+</Note>
+
+### Performance Max asset groups
+
+An asset group holds the destination (final URL and display path), the text assets (headlines, long headlines, descriptions), the business name, images, logos, videos and call to action, plus optional **signals** that help Google start faster: **audience signals** and **search themes**.
+
+### Display and Demand Gen ad groups
+
+Choose where a Demand Gen ad group runs: **All channels**, **Google channels only**, or **Selected channels** — YouTube in-stream, YouTube in-feed, YouTube Shorts, Discover, Gmail and Display. Set its audiences and demographics as for Search.
+
+---
+
+## Ad level
+
+| Campaign type | The ad |
+| --- | --- |
+| **Search** | A **responsive search ad**: up to 15 headlines (30 characters) and 4 descriptions (90 characters) that Google mixes for each search, a display path, optional pinning, and images Google can show beside the ad. A live preview shows one way the ad may appear, with its **Ad strength** and what to improve. |
+| **Display** | A responsive display ad: headlines, a long headline, descriptions, business name, images and logos. |
+| **Demand Gen** | An **image ad**, **video ad** or **carousel ad** (with cards, each with its own picture and landing page). |
+| **App** | Text, images and videos for the app's ads. |
+
+Every ad has a **final URL**, and under **Advanced** a mobile final URL, a tracking template and a final URL suffix.
+
+### Images in every ratio
+
+When you add an image, the creator makes a crop of it for each ratio Google uses — **Landscape 1.91:1**, **Square 1:1** and **Portrait 4:5** for images, **Square logo 1:1** and **Landscape logo 4:1** for logos. Click **Adjust crops** to move or zoom each ratio's crop. The crops are cut from your original picture when the campaign is created.
+
+{/* TODO: screenshot — Adjust crops on an image set (google-ads-image-crops.png) */}
+
+---
+
+## Groups that create variations
+
+Each level can hold [groups](/campaign-creator/groups-and-variations) of the things you want to test. Every combination becomes a campaign, ad group or ad of its own:
+
+| Level | Groups |
+| --- | --- |
+| **Campaign** | Budget, Bidding, Targeting |
+| **Ad group** | Keywords, Bids (Performance Max asset groups: Creative, Destination) |
+| **Ad** | Creative, Destination |
+
+On **Review Variations**, check every campaign, ad group and ad the groups produce before you publish. Copy a level from its menu and paste it into another campaign or ad group to reuse it.
+
+---
+
+## Publish
+
+On **Add Automation & Publish**, attach [rules](/automation/rules-guide) to the new campaigns, then publish. Google checks each campaign first (see [Getting started](/ad-networks/google-ads/campaign-uploader/campaign-launcher#googles-check-before-you-publish)); the campaigns then go to the Campaign Creation Queue, which shows their progress. You can also save the setup as a template in the Final Check.

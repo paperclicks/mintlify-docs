@@ -30,6 +30,7 @@
               "introduction",
               "getting-started",
               "finding-your-way",
+              "mobile-app",
               "faq"
             ],
             "icon": "rocket"
@@ -89,6 +90,7 @@
                   "ad-networks/facebook/campaign-uploader/simple-campaign",
                   "ad-networks/facebook/campaign-uploader/ad-formats",
                   "ad-networks/facebook/campaign-uploader/variations",
+                  "ad-networks/facebook/campaign-uploader/creative-lab",
                   "ad-networks/facebook/campaign-uploader/multi-account",
                   "ad-networks/facebook/campaign-uploader/existing-posts",
                   "ad-networks/facebook/campaign-uploader/existing-campaign",
@@ -118,6 +120,31 @@
                     "pages": [
                       "ad-networks/google-ads/integration/connect",
                       "ad-networks/google-ads/integration/manage-accounts"
+                    ]
+                  },
+                  {
+                    "group": "Campaign Creator",
+                    "pages": [
+                      "ad-networks/google-ads/campaign-uploader/campaign-launcher",
+                      "ad-networks/google-ads/campaign-uploader/build-a-campaign"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Snapchat",
+                "pages": [
+                  "ad-networks/snapchat/overview",
+                  {
+                    "group": "Integration",
+                    "pages": [
+                      "ad-networks/snapchat/integration/connect"
+                    ]
+                  },
+                  {
+                    "group": "Campaign Creator",
+                    "pages": [
+                      "ad-networks/snapchat/campaign-uploader/campaign-creator"
                     ]
                   }
                 ]
@@ -486,6 +513,27 @@
             "icon": "plus-circle"
           },
           {
+            "group": "Ad Library",
+            "pages": [
+              "ad-library/overview",
+              "ad-library/reports",
+              "ad-library/creative-inspector",
+              "ad-library/tags-and-settings",
+              "ad-library/leaderboard-themes-notes"
+            ],
+            "icon": "images"
+          },
+          {
+            "group": "Inspiration",
+            "pages": [
+              "inspiration/overview",
+              "inspiration/brands-creators-and-trends",
+              "inspiration/boards-and-saving",
+              "inspiration/alerts-and-settings"
+            ],
+            "icon": "lightbulb"
+          },
+          {
             "group": "Automation",
             "pages": [
               "automation/rules-guide",
@@ -497,7 +545,7 @@
             "icon": "zap"
           },
           {
-            "group": "Creative Library",
+            "group": "Media Library",
             "pages": [
               "creative-library/guide"
             ],

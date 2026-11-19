@@ -1,0 +1,63 @@
+---
+title: "Connect Snapchat"
+description: "Authorise TheOptimizer to access your Snapchat Ads accounts with OAuth so it can read campaign data, run your rules and launch campaigns."
+sidebarTitle: "Connect"
+---
+
+Snapchat uses OAuth: you log in with your Snapchat account and grant TheOptimizer access to the ad accounts it can see. There are no API keys to copy.
+
+<Steps>
+  <Step title="Open the Integrations page">
+    In the left navigation, go to **Connections → Integrations**. Find the **Snapchat** card and click **Connect**.
+  </Step>
+  <Step title="Name the profile">
+    Give the connection (the profile) a name you'll recognize, for example the name of the Snapchat login you're about to use.
+  </Step>
+  <Step title="Authorise access">
+    You're sent to Snapchat's login page. Sign in with the Snapchat account that has access to the ad accounts you want to manage, and approve the access TheOptimizer asks for.
+  </Step>
+  <Step title="Wait for the first sync">
+    Back in TheOptimizer, your Snapchat ad accounts are listed under the integration. Campaigns, ad squads and ads appear after the first sync.
+  </Step>
+</Steps>
+
+{/* TODO: screenshot — the Snapchat card on the Integrations page (snapchat-connect.png) */}
+
+---
+
+## What TheOptimizer asks for
+
+TheOptimizer asks for access to the **Snapchat Marketing API** — to read your campaigns, ad squads, ads and their stats, and to make the changes you or your rules ask for (status, budgets, bids, names, URLs, clones and new campaigns) — and to your **Snapchat public profiles**, which Snapchat ads need to show.
+
+---
+
+## Profiles and ad accounts
+
+Each ad account card shows its **ad account ID**, time zone and currency. If several profiles can reach the same ad account, choose which one TheOptimizer uses under **Profile currently in use**. Switch to another profile if one stops working or loses access. See [Ad Networks](/integrations/ad-networks) for how profiles work across networks.
+
+---
+
+## Tracking parameters
+
+Snapchat fills in these macros in your URLs, so your tracker can pass the IDs back to TheOptimizer:
+
+| Level | Macro |
+| --- | --- |
+| Campaign | `{{campaign.id}}` |
+| Ad squad | `{{adSet.id}}` |
+| Ad | `{{ad.id}}` |
+
+Snapchat adds its own click ID (`ScCid`) to the landing page URL. Use **Connect tracker** on the ad account to link it with your tracking platform.
+
+---
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Snapchat overview" icon="ghost" href="/ad-networks/snapchat/overview">
+    What you can do with Snapchat in TheOptimizer.
+  </Card>
+  <Card title="Snapchat Campaign Creator" icon="rocket" href="/ad-networks/snapchat/campaign-uploader/campaign-creator">
+    Launch Snapchat campaigns with every variation built for you.
+  </Card>
+</CardGroup>

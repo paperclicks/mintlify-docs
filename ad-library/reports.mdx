@@ -1,0 +1,133 @@
+---
+title: "Ad Library reports"
+description: "Rank your creatives, compare groups of ads side by side and follow new launches with Ad Library reports — start blank or from a template, filter by AI tags, and share a live link."
+sidebarTitle: "Reports"
+---
+
+Ad Library reports answer one question about your creatives at a time: which ads win on the metrics you care about, how one group of ads compares to another, or how the ads you launched recently are doing. Each report reads one platform — Facebook, TikTok or Snapchat — and the ad accounts you pick for it.
+
+---
+
+## Create a report
+
+Click **Create report** in the Ad Library sidebar. Start from a blank canvas, or pick a template that already asks the right question.
+
+{/* TODO: screenshot — Create report dialog with the templates (ad-library-create-report.png) */}
+
+### Blank reports
+
+| Report | What it does |
+| --- | --- |
+| **Top performers** | Ranks your ads by the metrics you pick. |
+| **Comparative analysis** | Compares groups of ads side by side, for example by hook, angle or persona. |
+| **Launch analysis** | Follows the ads you launched recently, from launch to scale to winner. |
+
+### Templates
+
+Templates start you on a ready report you can then change like any other.
+
+| Section | Templates |
+| --- | --- |
+| **Creative strategy** | Persona analysis, Hook analysis, Visual analysis, Messaging theme analysis |
+| **Find winners** | Top engagers, Top converters, Scalers, Top hook, Top hold |
+| **Find problems** | Bottom performers (CPM), Heavies, Drop off rate, Video analysis, Static analysis |
+| **Understand performance** | Customer journey, Creative stage analysis, Ad format comparison, Funnel comparison |
+
+A template that needs a metric the selected platform doesn't report is shown as unavailable, with the reason.
+
+<Tip>
+  The templates are also listed under **From Templates** in the sidebar. If some of them depend on AI tags your creatives don't have yet, the sidebar shows how many creatives **need AI tags**, with a **Turn on** link to [auto-tagging](/ad-library/tags-and-settings#auto-tagging).
+</Tip>
+
+---
+
+## Top performers
+
+A Top performers report lists your creatives, ranked by the metrics you choose, over a date range (the last 14 days by default).
+
+- **Pick metrics and columns.** Add or remove metrics, use a column preset, and reorder the columns.
+- **Filter.** Click **Add filter** to filter by any attribute (such as ad type, AI tag or campaign name) or metric. Metric filters let you keep only rows above or below a threshold, for example spend over $250.
+- **Switch the layout.** Show the creatives as a **table** or as **cards** with their thumbnails. In the card view you can set the aspect ratio of the previews.
+- **Table settings.** Highlight high and low values, and show or hide tags, the active status, the launch date and the ad length.
+
+{/* TODO: screenshot — a Top performers report in card view (ad-library-top-report.png) */}
+
+---
+
+## Comparative analysis
+
+A comparative report groups your ads by a property — an AI tag like **Hook** or **Persona**, a custom tag, or a value read from your naming convention — and compares the groups on a chart and in a table.
+
+Use **Group by** to choose the property. The report adds a group automatically for every new value that appears. To control the groups yourself, choose **Edit groups manually**; the report then stops adding groups for new values.
+
+{/* TODO: screenshot — a Comparative analysis report grouped by hook (ad-library-comparative.png) */}
+
+---
+
+## Launch analysis
+
+A launch report follows the creatives you launched recently, week by week, in three stages:
+
+| Stage | What it holds |
+| --- | --- |
+| **Launched** | Creatives launched since the start of the window. |
+| **Scaled** | Launched creatives whose spend passed your spend threshold. |
+| **Winners** | Scaled creatives that also meet your goal. |
+
+The goal chip at the top shows both thresholds, for example *ROAS > 3, Spend > $250*. Show each week as a **Table** or as **Cards**, and add AI tags to see what the winners have in common.
+
+---
+
+## Working with a saved report
+
+The bar at the top of a report holds its actions:
+
+| Action | What it does |
+| --- | --- |
+| **Refresh data** | Reloads the report's numbers. |
+| **Save** | Saves your changes. **Save as a new report** keeps the original as it was. |
+| **Share report** | Creates a link to the report. See below. |
+| **Manage shared links** | Lists, and lets you turn off, the links made for this report. |
+| **Export CSV** | Downloads the table. |
+| **Delete report** | Removes the report. Only its owner can delete it. |
+
+The header under the title shows the report's platform, date range, ad accounts and where each metric comes from, with how fresh it is.
+
+Under the report, **Ask me anything** sends a question about it to [Jade](/jade/overview), with suggested questions to start from.
+
+### Organizing reports
+
+Saved reports are listed under **Reports** in the sidebar. Create folders with **New folder**, drag reports into them, and use **Search** to find one by name. Each report's menu lets you **Rename**, **Duplicate**, **Copy link**, **Move to folder** or **Delete** it.
+
+---
+
+## Sharing a report
+
+<Steps>
+  <Step title="Click Share report">
+    In the report's top bar, click **Share report**.
+  </Step>
+  <Step title="Add a note and an expiry">
+    Optionally write who the link is for, and choose when it expires: in 7, 30 or 90 days, on a date you pick, or never.
+  </Step>
+  <Step title="Create the link">
+    Click **Create link**. The link is copied, and it's shown only once, so paste it somewhere safe.
+  </Step>
+</Steps>
+
+Anyone with the link sees the report's **live data**, but can't edit it. The link shows the **saved** version of the report, so save first to include your latest changes.
+
+All the links your workspace has created are listed in **Ad Library → Settings → Shared links**, where you can turn any of them off.
+
+---
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Creative inspector" icon="magnifying-glass" href="/ad-library/creative-inspector">
+    Click any creative in a report to see everything about it.
+  </Card>
+  <Card title="Tags and settings" icon="tags" href="/ad-library/tags-and-settings">
+    The AI tags, custom tags and naming rules your reports group by.
+  </Card>
+</CardGroup>
