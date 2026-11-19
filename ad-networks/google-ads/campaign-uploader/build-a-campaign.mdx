@@ -6,7 +6,9 @@ sidebarTitle: "Build a campaign"
 
 The creator builds a tree of **campaigns**, each with its **ad groups** (or **asset groups** for Performance Max), each with its **ads**. Work through the levels from the tree on the left; the fields on each level depend on the campaign type you pick.
 
-{/* TODO: screenshot — the level tree with a campaign, two ad groups and their ads (google-ads-creator-tree.png) */}
+<Frame>
+  <img src="/images/google-ads-keyword-groups.png" alt="Two keyword groups on an ad group: the tree shows ×2 and the Variation Preview lists one ad group per group" />
+</Frame>
 
 ---
 
@@ -15,8 +17,12 @@ The creator builds a tree of **campaigns**, each with its **ad groups** (or **as
 ### Basic info
 
 - **Campaign name** — type a name, or build it from parts with a [naming template](/campaign-creator/naming-templates): text, the date, the campaign type, budget, bid strategy, locations or variants.
-- **Campaign type** — Search, Performance Max, Display, Demand Gen, Shopping or App. It decides the ad groups, ads and bid strategies on offer.
-- **Status** — **Enabled** or **Paused**.
+- **Campaign type** — Search, Performance Max, Display, Demand Gen, Shopping or App. It decides the ad groups, ads and bid strategies on offer, and can't be changed once the campaign is created.
+
+<Frame>
+  <img src="/images/google-ads-campaign-types.png" alt="The six Google Ads campaign types: Search, Performance Max, Display, Demand Gen, Shopping and App" />
+</Frame>
+- **Status** — **Active** (Enabled in Google Ads) or **Paused**.
 
 ### Budget & bidding
 
@@ -57,6 +63,10 @@ Add **sitelinks**, **callouts**, **structured snippets** and a **phone number** 
 
 - **Keywords** — one per line, as in Google Ads: `running shoes` is broad, `"running shoes"` is phrase and `[running shoes]` is exact. **Make all** switches every keyword to one match type.
 - **Get keyword ideas** suggests keywords from the ones you entered — or, with none yet, **Get ideas from your landing page**. Each idea shows its monthly searches and competition; click it to add it as broad match.
+
+<Frame>
+  <img src="/images/google-ads-keyword-ideas.png" alt="Keyword ideas under the Keywords box, each with monthly searches and competition" />
+</Frame>
 - **Keep to these keywords** turns off AI Max's search term matching for this ad group, so its ads show only for its keywords.
 - **Bids**, **negative keywords**, **audiences** (your data segments, interests & in-market, custom segments — as **Targeting** or **Observation**) and **demographic exclusions**.
 
@@ -78,18 +88,24 @@ Choose where a Demand Gen ad group runs: **All channels**, **Google channels onl
 
 | Campaign type | The ad |
 | --- | --- |
-| **Search** | A **responsive search ad**: up to 15 headlines (30 characters) and 4 descriptions (90 characters) that Google mixes for each search, a display path, optional pinning, and images Google can show beside the ad. A live preview shows one way the ad may appear, with its **Ad strength** and what to improve. |
+| **Search** | A **responsive search ad**: up to 15 headlines (30 characters) and 4 descriptions (90 characters) that Google mixes for each search, a display path, optional pinning, and images Google can show beside the ad. **Generate with AI** writes headlines and descriptions for you. The **Preview** tab shows one way the ad may appear, with its **Ad strength** and what to improve. |
 | **Display** | A responsive display ad: headlines, a long headline, descriptions, business name, images and logos. |
 | **Demand Gen** | An **image ad**, **video ad** or **carousel ad** (with cards, each with its own picture and landing page). |
 | **App** | Text, images and videos for the app's ads. |
 
 Every ad has a **final URL**, and under **Advanced** a mobile final URL, a tracking template and a final URL suffix.
 
+<Frame>
+  <img src="/images/google-ads-rsa.png" alt="A responsive search ad with three headlines and two descriptions, and the Preview tab showing the ad and its Ad strength" />
+</Frame>
+
 ### Images in every ratio
 
-When you add an image, the creator makes a crop of it for each ratio Google uses — **Landscape 1.91:1**, **Square 1:1** and **Portrait 4:5** for images, **Square logo 1:1** and **Landscape logo 4:1** for logos. Click **Adjust crops** to move or zoom each ratio's crop. The crops are cut from your original picture when the campaign is created.
+When you add an image from your Media Library, the creator makes a crop of it for each ratio the campaign type uses — from **Landscape 1.91:1**, **Square 1:1** and **Portrait 4:5** for images, and **Square logo 1:1** and **Landscape logo 4:1** for logos — and shows a tick on each one it has. Click **Adjust crops** to move or zoom each ratio's crop. The crops are cut from your original picture when the campaign is created.
 
-{/* TODO: screenshot — Adjust crops on an image set (google-ads-image-crops.png) */}
+<Frame>
+  <img src="/images/google-ads-image-crops.png" alt="An image on a Display ad with its Landscape 1.91:1 and Square 1:1 crops ticked, and the Adjust crops button" />
+</Frame>
 
 ---
 

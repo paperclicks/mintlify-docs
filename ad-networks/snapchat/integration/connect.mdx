@@ -8,7 +8,7 @@ Snapchat uses OAuth: you log in with your Snapchat account and grant TheOptimize
 
 <Steps>
   <Step title="Open the Integrations page">
-    In the left navigation, go to **Connections → Integrations**. Find the **Snapchat** card and click **Connect**.
+    In the left navigation, go to **Connections → Integrations**. Find the **Snapchat** card and click **Connect →**. If Snapchat is already connected, open the card and click **Connect new account** to add another login.
   </Step>
   <Step title="Name the profile">
     Give the connection (the profile) a name you'll recognize, for example the name of the Snapchat login you're about to use.
@@ -21,7 +21,9 @@ Snapchat uses OAuth: you log in with your Snapchat account and grant TheOptimize
   </Step>
 </Steps>
 
-{/* TODO: screenshot — the Snapchat card on the Integrations page (snapchat-connect.png) */}
+<Frame>
+  <img src="/images/snapchat-accounts.png" alt="The Snapchat integration: Connect new account, connected profiles, and the ad account table with status, main profile, linked trackers, currency and time zone" />
+</Frame>
 
 ---
 
@@ -33,7 +35,7 @@ TheOptimizer asks for access to the **Snapchat Marketing API** — to read your 
 
 ## Profiles and ad accounts
 
-Each ad account card shows its **ad account ID**, time zone and currency. If several profiles can reach the same ad account, choose which one TheOptimizer uses under **Profile currently in use**. Switch to another profile if one stops working or loses access. See [Ad Networks](/integrations/ad-networks) for how profiles work across networks.
+Open the **Snapchat** card to manage the connection. The table lists each ad account with its status toggle (turn an account on or off), ID, name, **Main Profile**, linked trackers, currency and time zone. If several profiles can reach the same ad account, pick the one TheOptimizer uses in **Main Profile**, and switch to another if one stops working or loses access. **Profiles** at the top lists every Snapchat login you've connected. See [Ad Networks](/integrations/ad-networks) for how profiles work across networks.
 
 ---
 
@@ -47,7 +49,7 @@ Snapchat fills in these macros in your URLs, so your tracker can pass the IDs ba
 | Ad squad | `{{adSet.id}}` |
 | Ad | `{{ad.id}}` |
 
-Snapchat adds its own click ID (`ScCid`) to the landing page URL. Use **Connect tracker** on the ad account to link it with your tracking platform.
+Snapchat adds its own click ID (`ScCid`) to the landing page URL. Link the ad account with your tracking platform from its **Linked Trackers** column.
 
 ---
 
